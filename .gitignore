@@ -1,0 +1,7 @@
+/backend/laravel/public/build
+/backend/laravel/public/hot
+/backend/laravel/public/storage
+/backend/laravel/node_modules
+/backend/laravel/vendor
+/backend/public/storage
+/backend/public/storage/app/public

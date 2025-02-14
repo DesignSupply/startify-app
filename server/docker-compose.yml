@@ -1,0 +1,62 @@
+services:
+  web:
+    build:
+      context: ./docker/nginx
+      dockerfile: Dockerfile
+    image: ${APP_NAME}_web
+    container_name: ${APP_NAME}_web
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ../backend:/var/www/html
+    ports:
+      - "80:80"
+    depends_on:
+      - app
+    links:
+      - app
+
+  app:
+    build:
+      context: ./docker/php
+      dockerfile: Dockerfile
+    image: ${APP_NAME}_app
+    container_name: ${APP_NAME}_app
+    volumes:
+      - ../backend:/var/www/html
+    environment:
+      - APP_ENV=local
+      - APP_DEBUG=true
+    depends_on:
+      - db
+      - smtp
+
+  db:
+    build:
+      context: ./docker/mysql
+      dockerfile: Dockerfile
+    image: ${APP_NAME}_db
+    container_name: ${APP_NAME}_db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db-store:/var/lib/mysql
+      - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
+    ports:
+      - "3306:3306"
+
+  smtp:
+    build:
+      context: ./docker/mailpit
+      dockerfile: Dockerfile
+    image: ${APP_NAME}_smtp
+    container_name: ${APP_NAME}_smtp
+    ports:
+      - "8025:8025"
+      - "1025:1025"
+
+volumes:
+  db-store:
+    name: ${APP_NAME}_store
