@@ -1,4 +1,4 @@
-# プロジェクト環境構築手順
+# 環境構築手順
 
 ---
 
@@ -14,8 +14,8 @@
 
 下記の場所にファイルを作成します
 
-- /specifications/APP_OVERVIEW.md
-- /specifications/BUILD_PROCEDURES.md
+- /specifications/PROJECT_OVERVIEW.md
+- /specifications/ENV_PROCEDURES.md
 
 ### 0.3. Composer使用準備
 
@@ -71,8 +71,8 @@ make up
 ### 1.7. 動作確認
 
 - 環境変数で設定した情報でローカル環境のデータベースに接続できることを確認します
-- /backend/public/info.phpを作成、http://localhost にアクセスして、info.phpが表示されPHPの情報が表示されることを確認します
-- /backend/public/testing-mail.phpを作成、http://localhost/testing-mail.php にアクセスして、メール送信テスト用ファイルを使用して送信されることを確認します
+- /backend/public/testing-app.phpを作成、http://localhost/testing-app.php にアクセスして、PHPの情報が表示されることを確認します
+- /backend/public/testing-smtp.phpを作成、http://localhost/testing-smtp.php にアクセスして、メール送信テスト用ファイルを使用して送信されることを確認します
 - http://localhost:8025/ にアクセスして、MailpitのWebメール画面が表示、ならびにテストメールの受信ができることを確認します
 
 _（〜4h）_
@@ -105,6 +105,8 @@ make laravel-keygen
 cd /server
 make laravel-migrate
 ```
+
+ローカル環境のデータベースにアクセスし、Laravelのマイグレーションによってテーブルが作成されていることを確認します
 
 ### 2.4. ストレージのシンボリックリンク作成
 

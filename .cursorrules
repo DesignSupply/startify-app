@@ -123,39 +123,12 @@
 - Node.js: ^22.11.0
 - npm: ^10.8.2
 - npx: ^10.8.2
+- mailpit: ^1.22.0
 
 ---
 
-# プロジェクト構成
+# プロジェクト概要
 
-以下のディレクトリ構造に従って実装を行ってください：
-
-```
-/                                        # プロジェクトルート  
-├── backend/                             # バックエンド（appコンテナの/var/www/htmlマウントポイント）
-│   ├── laravel/                           # Laravelルートディレクトリ
-│   ├── wordpress/                         # WordPressルートディレクトリ
-│   └── public/                            # サーバードキュメントルート（webコンテナのドキュメントルート）
-│       ├── testing-mail.php                 # メール送信テスト用ファイル
-│       └── info.php                         # PHP情報表示用ファイル
-├── frontend/                            # フロントエンド
-│   └── nextjs/                            # Next.jsルートディレクトリ
-├── server/                              # サーバー
-│   ├── docker/                            # Docker環境
-│   │   ├── mailpit/                         # メーラー
-│   │   │   └── Dockerfile                   # メーラー用Dockerfile
-│   │   ├── mysql/                           # データベース
-│   │   │   ├── Dockerfile                   # データベース用Dockerfile
-│   │   │   └── my.cnf                       # データベース用設定ファイル
-│   │   ├── nginx/                           # ウェブサーバー
-│   │   │   ├── Dockerfile                   # ウェブサーバー用Dockerfile
-│   │   │   └── nginx.conf                   # ウェブサーバー用設定ファイル
-│   │   └── php/                             # プログラミング言語
-│   │       ├── Dockerfile                   # PHP用Dockerfile
-│   │       └── php.ini                      # PHP用設定ファイル
-│   ├── docker-compose.yml                 # Docker Composeファイル
-│   ├── .env                               # Docker環境変数
-│   └── Makefile                           # Makeコマンドファイル
-└── specifications/                      # プロジェクト仕様書
-
-```
+## 手順書・仕様書
+- プロジェクトは、/specifications/PROJECT_OVERVIEW.mdに記載のディレクトリ構造に従ったファイル・ディレクトリを作成するものとする。
+- 開発環境の構築は、/specifications/ENV_PROCEDURES.mdに記載の手順に従って実装を行ってください。
