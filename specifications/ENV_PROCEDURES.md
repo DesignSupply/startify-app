@@ -8,14 +8,14 @@
 
 下記の場所にファイルを作成します
 
-- /server/.cursorrules
+- `/server/.cursorrules`
 
 ### 0.2. プロジェクト仕様書の作成
 
 下記の場所にファイルを作成します
 
-- /specifications/PROJECT_OVERVIEW.md
-- /specifications/ENV_PROCEDURES.md
+- `/specifications/PROJECT_OVERVIEW.md`
+- `/specifications/ENV_PROCEDURES.md`
 
 ### 0.3. Composer使用準備
 
@@ -29,36 +29,36 @@
 
 下記の場所にファイルを作成します
 
-- /server/.env
+- `/server/.env`
 
 ### 1.2. 各種イメージ用Dcokerfileの作成
 
 下記の場所にファイルを作成します
 
-- /server/docker/nginx/Dockerfile
-- /server/docker/php/Dockerfile
-- /server/docker/mysql/Dockerfile
-- /server/docker/mailpit/Dockerfile
+- `/server/docker/nginx/Dockerfile`
+- `/server/docker/php/Dockerfile`
+- `/server/docker/mysql/Dockerfile`
+- `/server/docker/mailpit/Dockerfile`
 
 ### 1.3. MySQL用設定ファイル、nginx用設定ファイル、PHP用設定ファイルの作成
 
 下記の場所にファイルを作成します、各設定ファイルは、Dockerのコンテナーにマウントされるようにします
 
-- /server/docker/mysql/my.cnf
-- /server/docker/nginx/nginx.conf
-- /server/docker/php/php.ini
+- `/server/docker/mysql/my.cnf`
+- `/server/docker/nginx/nginx.conf`
+- `/server/docker/php/php.ini`
 
 ### 1.4. docker-compose.ymlの作成
 
 下記の場所にファイルを作成します、イメージ、コンテナー、ボリューム名など、環境変数ファイルで指定した名前が設定されるようにします
 
-- /server/docker-compose.yml
+- `/server/docker-compose.yml`
 
 ### 1.5. Makefileの作成
 
 下記の場所にファイルを作成します、Docker操作、Laravel、WordPressを扱う中で必要となるコマンドを登録します
 
-- /server/Makefile
+- `/server/Makefile`
 
 ### 1.6. Dockerイメージのビルド、コンテナーの起動
 
@@ -71,9 +71,9 @@ make up
 ### 1.7. 動作確認
 
 - 環境変数で設定した情報でローカル環境のデータベースに接続できることを確認します
-- /backend/public/testing-app.phpを作成、http://localhost/testing-app.php にアクセスして、PHPの情報が表示されることを確認します
-- /backend/public/testing-smtp.phpを作成、http://localhost/testing-smtp.php にアクセスして、メール送信テスト用ファイルを使用して送信されることを確認します
-- http://localhost:8025/ にアクセスして、MailpitのWebメール画面が表示、ならびにテストメールの受信ができることを確認します
+- `/backend/public/testing-app.php` を作成、`http://localhost/testing-app.php` にアクセスして、PHPの情報が表示されることを確認します
+- `/backend/public/testing-smtp.php` を作成、`http://localhost/testing-smtp.php` にアクセスして、メール送信テスト用ファイルを使用して送信されることを確認します
+- `http://localhost:8025/` にアクセスして、MailpitのWebメール画面が表示、ならびにテストメールの受信ができることを確認します
 
 _（〜4h）_
 
@@ -83,7 +83,7 @@ _（〜4h）_
 
 ### 2.1. Laravelプロジェクトの作成
 
-Dockerコンテナー内でLaravelプロジェクトを作成します、Laravelインストール後にマウントされた/backend/laravelディレクトリ配下にソースコードが同期されることを確認します
+Dockerコンテナー内でLaravelプロジェクトを作成します、Laravelインストール後にマウントされた `/backend/laravel` ディレクトリ配下にソースコードが同期されることを確認します
 
 ```
 cd /server
@@ -130,7 +130,7 @@ make laravel-storage-link-change
 
 下記の場所にアプリケーションのエントリーポイントファイルを作成します、既存のLaravelのエントリーポイントファイルをコピーし、Laravelのプロジェクトルートを参照するように変更します
 
-- /backend/public/index.php
+- `/backend/public/index.php`
 
 ### 2.5. テスト・表示確認
 
@@ -140,9 +140,8 @@ make laravel-test
 ```
 
 - テストが実行され、テスト結果が表示されることを確認します
-- http://localhost/ にアクセスして、Laravelのテストページが表示されることを確認します
+- `http://localhost/` にアクセスして、Laravelのテストページが表示されることを確認します
 
 _（〜0.5h）_
 
 ---
-

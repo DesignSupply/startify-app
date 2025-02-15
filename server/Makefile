@@ -55,6 +55,9 @@ laravel-seed:
 laravel-cache-clear:
 	docker compose exec app bash -c "cd /var/www/html/laravel && php artisan cache:clear"
 
+laravel-route-clear:
+	docker compose exec app bash -c "cd /var/www/html/laravel && php artisan route:clear"
+
 laravel-config-clear:
 	docker compose exec app bash -c "cd /var/www/html/laravel && php artisan config:clear"
 
@@ -63,6 +66,9 @@ laravel-optimize:
 
 laravel-test:
 	docker compose exec app bash -c "cd /var/www/html/laravel && php artisan test"
+
+laravel-route:
+	docker compose exec app bash -c "cd /var/www/html/laravel && php artisan route:list"
 
 # WordPress
 wp-cli-install:

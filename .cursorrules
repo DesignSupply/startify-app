@@ -131,4 +131,5 @@
 
 ## 手順書・仕様書
 - プロジェクトは、/specifications/PROJECT_OVERVIEW.mdに記載のディレクトリ構造に従ったファイル・ディレクトリを作成するものとする。
-- 開発環境の構築は、/specifications/ENV_PROCEDURES.mdに記載の手順に従って実装を行ってください。
+- 開発環境の構築は、/specifications/ENV_PROCEDURES.mdに記載の手順に従って実装を行うものとする。
+- バックエンドの実装は、/specifications/DEV_BACKEND.mdに記載の手順に従って実装を行うものとする。
