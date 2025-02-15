@@ -132,10 +132,10 @@
 
 ```
 /                                        # プロジェクトルート  
-├── backend/                             # バックエンド
+├── backend/                             # バックエンド（appコンテナの/var/www/htmlマウントポイント）
 │   ├── laravel/                           # Laravelルートディレクトリ
 │   ├── wordpress/                         # WordPressルートディレクトリ
-│   └── public/                            # サーバードキュメントルート
+│   └── public/                            # サーバードキュメントルート（webコンテナのドキュメントルート）
 │       ├── testing-mail.php                 # メール送信テスト用ファイル
 │       └── info.php                         # PHP情報表示用ファイル
 ├── frontend/                            # フロントエンド

@@ -26,9 +26,17 @@ services:
     environment:
       - APP_ENV=local
       - APP_DEBUG=true
+      - DB_CONNECTION=mysql
+      - DB_HOST=db
+      - DB_PORT=${DB_PORT}
+      - DB_DATABASE=${DB_DATABASE}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
     depends_on:
       - db
       - smtp
+    env_file:
+      - ./.env
 
   db:
     build:
@@ -41,6 +49,7 @@ services:
       MYSQL_DATABASE: ${DB_DATABASE}
       MYSQL_USER: ${DB_USERNAME}
       MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_HOST: '%'
     volumes:
       - db-store:/var/lib/mysql
       - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
