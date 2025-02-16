@@ -1,3 +1,4 @@
+# Laravel
 /backend/laravel/public/build
 /backend/laravel/public/hot
 /backend/laravel/public/storage
@@ -5,3 +6,4 @@
 /backend/laravel/vendor
 /backend/public/storage
 /backend/public/storage/app/public
+

@@ -17,7 +17,10 @@
 │       ├── index.php                        # バックエンドアプリケーションエントリーポイントファイル
 │       └── storage                          # ストレージ用シンボリックリンク
 ├── frontend/                            # フロントエンド
-│   └── nextjs/                            # Next.jsルートディレクトリ
+│   ├── next/                              # Next.jsプロジェクトルートディレクトリ
+│   ├── nuxt/                              # Nuxt.jsプロジェクトルートディレクトリ
+│   ├── astro/                             # Astroプロジェクトルートディレクトリ
+│   └── vite/                              # Viteプロジェクトルートディレクトリ
 ├── server/                              # サーバー
 │   ├── docker/                            # Docker環境
 │   │   ├── mailpit/                         # メーラー
@@ -34,7 +37,7 @@
 │   ├── docker-compose.yml                 # Docker Composeファイル
 │   ├── .env                               # Docker環境変数
 │   └── Makefile                           # Makeコマンドファイル
-└── specifications/                      # プロジェクト仕様書
+└── SPECIFICATIONS/                      # プロジェクト仕様書
     ├── ENV_PROCEDURES.md                  # 開発環境構築手順
     ├── DEV_BACKEND.md                     # バックエンド実装
     └── PROJECT_OVERVIEW.md                # プロジェクト概要
