@@ -11,7 +11,7 @@
 ├── backend/                             # バックエンド（appコンテナの/var/www/htmlマウントポイント）
 │   ├── laravel/                           # Laravelルートディレクトリ
 │   ├── wordpress/                         # WordPressルートディレクトリ
-│   └── public/                            # サーバードキュメントルート（webコンテナのドキュメントルート）
+│   └── _webroot/                            # サーバードキュメントルート（webコンテナのドキュメントルート）
 │       ├── testing-app.php                  # PHP情報表示用ファイル
 │       ├── testing-smtp.php                 # メール送信テスト用ファイル
 │       ├── index.php                        # バックエンドアプリケーションエントリーポイントファイル

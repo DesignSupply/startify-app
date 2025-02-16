@@ -4,6 +4,6 @@
 /backend/laravel/public/storage
 /backend/laravel/node_modules
 /backend/laravel/vendor
-/backend/public/storage
-/backend/public/storage/app/public
+/backend/_webroot/storage
+/backend/_webroot/storage/app/public
 

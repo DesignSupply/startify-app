@@ -44,7 +44,7 @@ laravel-storage-link:
 
 laravel-storage-link-change:
 	docker compose exec app bash -c "rm -f /var/www/html/laravel/public/storage"
-	docker compose exec app bash -c "ln -s /var/www/html/laravel/storage/app/public /var/www/html/public/storage"
+	docker compose exec app bash -c "ln -s /var/www/html/laravel/storage/app/public /var/www/html/_webroot/storage"
 
 laravel-migrate:
 	docker compose exec app bash -c "cd /var/www/html/laravel && php artisan migrate"

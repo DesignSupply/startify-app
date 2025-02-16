@@ -71,8 +71,8 @@ make up
 ### 1.7. 動作確認
 
 - 環境変数で設定した情報でローカル環境のデータベースに接続できることを確認します
-- `/backend/public/testing-app.php` を作成、`http://localhost/testing-app.php` にアクセスして、PHPの情報が表示されることを確認します
-- `/backend/public/testing-smtp.php` を作成、`http://localhost/testing-smtp.php` にアクセスして、メール送信テスト用ファイルを使用して送信されることを確認します
+- `/backend/_webroot/testing-app.php` を作成、`http://localhost/testing-app.php` にアクセスして、PHPの情報が表示されることを確認します
+- `/backend/_webroot/testing-smtp.php` を作成、`http://localhost/testing-smtp.php` にアクセスして、メール送信テスト用ファイルを使用して送信されることを確認します
 - `http://localhost:8025/` にアクセスして、MailpitのWebメール画面が表示、ならびにテストメールの受信ができることを確認します
 
 _（〜4h）_
@@ -124,13 +124,13 @@ make laravel-storage-link-change
 
 シンボリックリンクの変更後、下記の場所にストレージのシンボリックリンクが作成されているかを確認します
 
-- /backend/public/storage
+- /backend/_webroot/storage
 
 ### 2.7. アプリケーションエントリーポイントファイルの作成
 
 下記の場所にアプリケーションのエントリーポイントファイルを作成します、既存のLaravelのエントリーポイントファイルをコピーし、Laravelのプロジェクトルートを参照するように変更します
 
-- `/backend/public/index.php`
+- `/backend/_webroot/index.php`
 
 ### 2.5. テスト・表示確認
 
