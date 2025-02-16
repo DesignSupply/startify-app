@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 
-class SigninController extends Controller
+class SignInController extends Controller
 {
 
     public function showPage()
@@ -17,7 +17,7 @@ class SigninController extends Controller
     /**
      * ログイン処理
      */
-    public function signin(Request $request)
+    public function signIn(Request $request)
     {
         $credentials = $request->only('email', 'password');
 
