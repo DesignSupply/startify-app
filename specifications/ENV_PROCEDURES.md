@@ -16,6 +16,7 @@
 
 - `/specifications/PROJECT_OVERVIEW.md`
 - `/specifications/ENV_PROCEDURES.md`
+- `/specifications/DEV_BACKEND.md`
 
 ### 0.3. Composer使用準備
 
@@ -92,7 +93,7 @@ make laravel-install
 
 ### 2.2. 環境変数ファイルの設定、キーの生成
 
-Dockerで使用している環境変数をLaravelの.envファイルに反映し、キーを生成します
+Dockerで使用している環境変数を `/backend/laravel/.env` ファイルに反映し、キーを生成します
 
 ```
 cd /server
