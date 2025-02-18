@@ -23,7 +23,7 @@
         <p>こんにちは、{{ Auth::user()->name }} さん</p>
     @endauth
 
-    <form method="POST" action="{{ route('signout') }}">
+    <form method="POST" action="{{ route('signout.post') }}">
         @csrf
         <button type="submit">ログアウト</button>
     </form>

@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 class FrontPageController extends Controller
 {
 
-    public function showPage()
+    public function index()
     {
         return view('static.frontpage.index');
     }

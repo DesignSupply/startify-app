@@ -9,7 +9,7 @@ use App\Models\User;
 class SignInController extends Controller
 {
 
-    public function showPage()
+    public function index()
     {
         return view('auth.signin.index');
     }
