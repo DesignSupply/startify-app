@@ -55,7 +55,8 @@
 | frontpage | フロントページ | アプリケーションのトップ画面 |
 | signin | ログイン | ログイン画面 |
 | home | ホーム | ログイン認証後のトップ画面 |
-
+| admin | 管理者ログイン | 管理者ログイン画面 |
+| dashboard | ダッシュボード | 管理者ダッシュボード画面 |
 
 ---
 
@@ -65,7 +66,10 @@
 
 ```mermaid
 flowchart TD
-    A[フロントページ] --> B[ログイン]
-    B --> C[ホーム]
-    C --> |ログアウト| B
+    frontpage[フロントページ] --> signin[ログイン]
+    signin -- login -->  home[ホーム]
+    home -- logout --> signin
+    frontpage --> admin[管理者ログイン]
+    admin -- login --> dashboard[ダッシュボード]
+    dashboard -- logout --> admin
 ```
