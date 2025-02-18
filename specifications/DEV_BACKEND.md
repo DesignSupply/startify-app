@@ -109,68 +109,211 @@ make laravel-config-clear
 
 アプリケーションのトップ画面となるフロントページを表示させる機能を実装します。
 
-- パスは `/` とし、`GET` メソッドでアクセスします
-- ルーティング名は `frontpage` とします
-- コントローラー名は `FrontPageController` とし、`showPage` アクションでビューを表示させます
-- ビューは `backend/laravel/resources/views/static/frontpage/index.blade.php` とします
+- ルート
+  - パス: `/`
+  - メソッド: `GET`
+  - ルーティング名: `frontpage`
+- コントローラー
+  - クラス名: `FrontPageController`
+  - メソッド: `index`
+- ビュー
+  - パス: `backend/laravel/resources/views/static/frontpage/index.blade.php`
 
 ---
 
 ## 4. ログイン機能の実装
 
-メールアドレスとパスワードを用いたログイン機能を実装します
+メールアドレスとパスワードを用いたログイン機能を実装します。
 
 ### 4.1. ログイン画面の作成
 
-ログインフォームを表示させるページを作成します
+ログインフォームを表示させるページを作成します。
 
-- パスは `/signin` とし、`GET` メソッドでアクセスします
-- ルーティング名は `signin` とします
-- コントローラー名は `SigninController` とし、`showPage` アクションでビューを表示させます
-- ビューは `backend/laravel/resources/views/auth/signin/index.blade.php` とします
-- 画面上にはメールアドレスとパスワードを入力するフォームを表示します
+- ルート
+  - パス: `/signin`
+  - メソッド: `GET`
+  - ルーティング名: `signin`
+- コントローラー
+  - クラス名: `SigninController`
+  - メソッド: `index`
+- ビュー
+  - パス: `backend/laravel/resources/views/static/signin/index.blade.php`
+- 機能仕様
+  - 画面上にはメールアドレスとパスワードを入力するフォームを表示します
+  - 画面内にはログインボタンを設置し、ログインできるようにします
 
 ### 4.2. ログイン処理の実装
 
-ログイン認証に必要な処理やモデルを定義します
+ログイン認証に必要な処理やモデルを定義します、Authファサードを使用して、認証に必要な設定を行います。
 
-- ログイン認証に必要なモデルは `backend/laravel/app/Models/User.php` とします
-- コントローラー名は `SigninController` とし、`signin` アクションでログイン処理を行います
-- パスは `/signin` とし、`POST` メソッドでアクセスします
-- ルーティング名は `signin.post` とします
-- Authファサードを使用して、認証に必要な設定を行います
-- ログイン成功時には `/home` にリダイレクトします
-- ログイン成功時にはセッションを作成し、ログイン情報をセッションに保存します
-- ログイン失敗時には `/signin` にリダイレクトし、エラーメッセージを表示します
+- ルート
+  - パス: `/signin`
+  - メソッド: `POST`
+  - ルーティング名: `signin.post`
+- コントローラー
+  - クラス名: `SigninController`
+  - メソッド: `signIn`
+- 機能仕様
+  - ログイン成功時には `/home` にリダイレクトします
+  - ログイン成功時にはセッションを作成し、ログイン情報をセッションに保存します
+  - ログイン失敗時には `/signin` にリダイレクトし、エラーメッセージを表示します
 
 ### 4.3. ログイン後の画面の作成
 
-ログイン成功時にリダイレクトされる画面を作成します
+ログイン成功時にリダイレクトされる画面を作成します。
 
-- パスは `/home` とし、`GET` メソッドでアクセスし、認証を必要とするルートとします
-- ルーティング名は `home` とします
-- コントローラー名は `HomeController` とし、`showPage` アクションでビューを表示させます
-- ビューは `backend/laravel/resources/views/auth/home/index.blade.php` とします
-- 画面上にはログイン成功後のメッセージを表示します
-- 画面内にはログアウトボタンを設置し、ログアウトできるようにします
+- ルート
+  - パス: `/home`
+  - メソッド: `GET`
+  - ルーティング名: `home`
+- コントローラー
+  - クラス名: `HomeController`
+  - メソッド: `index`
+- ビュー
+  - パス: `backend/laravel/resources/views/auth/home/index.blade.php`
+- 機能仕様
+  - 画面上にはログイン成功後のメッセージを表示します
+  - 画面内にはログアウトボタンを設置し、ログアウトできるようにします
 
 ### 4.4. ログアウト処理の実装
 
-ログアウト処理を実装します
+ログアウト処理を実装します。
 
-- パスは `/signout` とし、`POST` メソッドでアクセスします
-- ルーティング名は `signout` とします
-- コントローラー名は `SignoutController` とし、`signout` アクションでログアウト処理を行います
-- ログアウトボタンをクリックすると、セッションを破棄します
-- ログアウト後には `/signin` にリダイレクトします
+- ルート
+  - パス: `/signout`
+  - メソッド: `POST`
+  - ルーティング名: `signout.post`
+- コントローラー
+  - クラス名: `SignoutController`
+  - メソッド: `signOut`
+- 機能仕様
+  - ログアウトボタンをクリックすると、セッションを破棄します
+  - ログアウト後には `/signin` にリダイレクトします
 
 ### 4.5. シーダーを実行しテストとユーザーを作成、ログインテスト
 
-シーダーを実行しテストとユーザーを作成、ログインテストを行います
+シーダーを実行しテストとユーザーを作成、ログインテストを行います。
 
-- テストユーザーのシーダーを `backend/laravel/database/seeders/UserSeeder.php` に追加し、`backend/laravel/database/seeders/DatabaseSeeder.php` で実行できるようにします
-- テストユーザーはユーザー名とメールアドレス、パスワードの情報を持ちます
-- ユーザー名は `テスト 太郎` とし、メールアドレスは `test@example.com` とし、パスワードは `password` とします、パスワードはハッシュ化します
-- シーダーを実行し、テストユーザーのメールアドレスとパスワードでログインテストを行います
+- シーダー
+  - パス: `backend/laravel/database/seeders/UserSeeder.php`
+  - クラス名: `UserSeeder`
+- テストユーザー
+  - 名前: `テスト 太郎`
+  - メールアドレス: `test@example.com`
+  - パスワード: `password`
+- 機能仕様
+  - シーダーは、`backend/laravel/database/seeders/DatabaseSeeder.php` のメソッドを使用し、一括で実行できるようにします
 
 ---
+
+## 5. 管理者ログイン機能の実装
+
+管理者ユーザーとしてメールアドレスとパスワードを用いたログイン機能を実装します。
+
+### 5.1 admin_usersテーブルのマイグレーションファイルを作成
+
+マイグレーションファイルを作成、マイグレーションを実行し、`admin_users` テーブルを作成します。
+
+- マイグレーション
+  - ファイル名: `backend/laravel/database/migrations/[YYYY_MM_DD_HHMMSS]_create_admin_users_table.php`
+  - クラス名: `CreateAdminUsersTable`
+  - カラム
+    - `id` / integer / primary key / auto increment
+    - `name` / string
+    - `email` / string / unique
+    - `email_verified_at` / timestamp / nullable
+    - `password` / string
+    - `created_at` / timestamp / nullable
+    - `updated_at` / timestamp / nullable
+
+### 5.2 AdminUserモデルの作成
+
+`AdminUser` モデルを作成します。
+
+- モデル
+  - ファイル名: `backend/laravel/app/Models/AdminUser.php`
+  - クラス名: `AdminUser`
+  
+`config/auth.php` の `guards` と `providers` に `admin_users` の設定を追加します。
+
+### 5.3 ログイン画面の作成
+
+管理者ログインフォームを表示させるページを作成します。
+
+- ルート
+  - パス: `/admin`
+  - メソッド: `GET`
+  - ルーティング名: `admin`
+- コントローラー
+  - クラス名: `AdminController`
+  - メソッド: `index`
+- ビュー
+  - パス: `backend/laravel/resources/views/static/admin/index.blade.php`
+- 機能仕様
+  - 画面上にはメールアドレスとパスワードを入力するフォームを表示します
+  - 画面内にはログインボタンを設置し、ログインできるようにします
+
+### 5.4 ログイン処理の実装
+
+ログイン認証に必要な処理やモデルを定義します、Authファサードを使用して、認証に必要な設定を行います。
+
+- ルート
+  - パス: `/admin`
+  - メソッド: `POST`
+  - ルーティング名: `admin.signin.post`
+- コントローラー
+  - クラス名: `AdminController`
+  - メソッド: `signIn`
+- 機能仕様
+  - ログイン成功時には `/admin/dashboard` にリダイレクトします
+  - ログイン成功時にはセッションを作成し、ログイン情報をセッションに保存します
+  - ログイン失敗時には `/admin` にリダイレクトし、エラーメッセージを表示します
+
+### 5.5 管理者用ダッシュボード画面の作成
+
+管理者ログイン成功時にリダイレクトされる画面を作成します。
+
+- ルート
+  - パス: `/admin/dashboard`
+  - メソッド: `GET`
+  - ルーティング名: `dashboard`
+- コントローラー
+  - クラス名: `DashboardController`
+  - メソッド: `index`
+- ビュー
+  - パス: `backend/laravel/resources/views/auth/admin/dashboard/index.blade.php`
+- 機能仕様
+  - 画面上には管理者用のダッシュボード画面を表示します
+  - 画面内にはログアウトボタンを設置し、ログアウトできるようにします
+
+### 5.6 ログアウト処理の実装
+
+ログアウト処理を実装します。
+
+- ルート
+  - パス: `/admin/signout`
+  - メソッド: `POST`
+  - ルーティング名: `admin.signout.post`
+- コントローラー
+  - クラス名: `AdminController`
+  - メソッド: `signOut`
+- 機能仕様
+  - ログアウトボタンをクリックすると、セッションを破棄します
+  - ログアウト後には `/admin` にリダイレクトします
+
+### 5.7 シーダーを実行しテストとユーザーを作成、ログインテスト
+
+シーダーを実行しテストとユーザーを作成、ログインテストを行います。
+
+- シーダー
+  - パス: `backend/laravel/database/seeders/AdminUserSeeder.php`
+  - クラス名: `AdminUserSeeder`
+- テストユーザー
+  - 名前: `管理者 太郎`
+  - メールアドレス: `admin@example.com`
+  - パスワード: `password`
+- 機能仕様
+  - シーダーは、`backend/laravel/database/seeders/DatabaseSeeder.php` のメソッドを使用し、一括で実行できるようにします
+  
+---
+

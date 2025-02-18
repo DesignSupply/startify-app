@@ -4,15 +4,15 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
-use App\Models\User;
+use App\Models\AdminUser;
 
-class UserSeeder extends Seeder
+class AdminUserSeeder extends Seeder
 {
     public function run()
     {
-        User::create([
-            'name' => 'テスト 太郎',
-            'email' => 'test@example.com',
+        AdminUser::create([
+            'name' => '管理者 太郎',
+            'email' => 'admin@example.com',
             'password' => Hash::make('password'),
         ]);
     }

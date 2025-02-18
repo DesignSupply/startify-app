@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,6 +21,14 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        $this->call(UserSeeder::class);
+        // テーブルのクリア
+        DB::table('users')->truncate();
+        DB::table('admin_users')->truncate();
+
+        // シーダーの実行
+        $this->call([
+            UserSeeder::class,
+            AdminUserSeeder::class,
+        ]);
     }
 }

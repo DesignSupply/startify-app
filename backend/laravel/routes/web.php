@@ -22,4 +22,19 @@ Route::namespace('App\Http\Controllers')->group(function () {
 
     });
 
+    // 管理者ログインページ
+    Route::get('/admin', 'AdminController@index')->name('admin');
+    Route::post('/admin', 'AdminController@signIn')->name('admin.signin.post');
+
+    // 管理者認証ルーティング
+    Route::middleware('auth:admin')->group(function () {
+
+        // 管理者ダッシュボード
+        Route::get('/admin/dashboard', 'DashboardController@index')->name('dashboard');
+
+        // 管理者ログアウト
+        Route::post('/admin/signout', 'AdminController@signOut')->name('admin.signout.post');
+
+    });
+
 });
