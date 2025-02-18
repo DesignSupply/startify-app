@@ -11,7 +11,7 @@ class SignInController extends Controller
 
     public function index()
     {
-        return view('auth.signin.index');
+        return view('static.signin.index');
     }
 
     public function signIn(Request $request)
