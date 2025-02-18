@@ -12,8 +12,12 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-        // ゲストリダイレクト
-        $middleware->redirectGuestsTo('/signin');
+
+        // ゲストリダイレクト先の設定
+        $middleware->redirectGuestsTo(function ($request) {
+            return $request->is('admin*') ? '/admin' : '/signin';
+        });
+
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

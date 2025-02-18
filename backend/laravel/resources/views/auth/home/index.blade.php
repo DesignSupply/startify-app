@@ -20,7 +20,7 @@
     @endif
 
     @auth
-        <p>こんにちは、{{ Auth::user()->name }} さん</p>
+        <p>こんにちは、{{ $user->name }} さん</p>
     @endauth
 
     <form method="POST" action="{{ route('signout.post') }}">
