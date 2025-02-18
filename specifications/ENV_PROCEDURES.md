@@ -76,8 +76,6 @@ make up
 - `/backend/_webroot/testing-smtp.php` を作成、`http://localhost/testing-smtp.php` にアクセスして、メール送信テスト用ファイルを使用して送信されることを確認します
 - `http://localhost:8025/` にアクセスして、MailpitのWebメール画面が表示、ならびにテストメールの受信ができることを確認します
 
-_（〜4h）_
-
 ---
 
 ## 2. Laravel環境構築
@@ -142,7 +140,5 @@ make laravel-test
 
 - テストが実行され、テスト結果が表示されることを確認します
 - `http://localhost/` にアクセスして、Laravelのテストページが表示されることを確認します
-
-_（〜0.5h）_
 
 ---

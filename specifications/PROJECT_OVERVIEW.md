@@ -20,7 +20,8 @@
 │   ├── next/                              # Next.jsプロジェクトルートディレクトリ
 │   ├── nuxt/                              # Nuxt.jsプロジェクトルートディレクトリ
 │   ├── astro/                             # Astroプロジェクトルートディレクトリ
-│   └── vite/                              # Viteプロジェクトルートディレクトリ
+│   ├── vite/                              # Viteプロジェクトルートディレクトリ
+│   └── react-native/                      # ReactNativeプロジェクトルートディレクトリ
 ├── server/                              # サーバー
 │   ├── docker/                            # Docker環境
 │   │   ├── mailpit/                         # メーラー

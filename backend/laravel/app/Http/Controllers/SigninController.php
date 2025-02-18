@@ -14,9 +14,6 @@ class SignInController extends Controller
         return view('auth.signin.index');
     }
 
-    /**
-     * ログイン処理
-     */
     public function signIn(Request $request)
     {
         $credentials = $request->only('email', 'password');

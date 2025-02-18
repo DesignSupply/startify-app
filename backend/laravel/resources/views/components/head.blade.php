@@ -14,10 +14,10 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black">
 <meta name="apple-mobile-web-app-title" content="">
 <meta name="theme-color" content="#000">
-<link rel="manifest" href="{{ asset('manifest.json') }}">
+<!-- <link rel="manifest" href="{{ asset('manifest.json') }}"> -->
 <link rel="apple-touch-icon" href="data:,">
 <link rel="icon" sizes="192x192" href="data:,">
 <link rel="icon" href="data:,">
-<link rel="stylesheet" href="{{ asset('css/app.css') }}">
+<!-- <link rel="stylesheet" href="{{ asset('css/app.css') }}"> -->
+<!-- <script src="{{ asset('js/bootstrap.js') }}"></script> -->
 <title>@yield('title', 'Default Title')</title>
-<script src="{{ asset('js/bootstrap.js') }}"></script>
