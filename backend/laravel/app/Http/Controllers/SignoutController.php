@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Auth;
 
 class SignOutController extends Controller
 {
-
     public function signOut(Request $request)
     {
         Auth::logout();
@@ -16,5 +15,4 @@ class SignOutController extends Controller
         $request->session()->flash('status', 'ログアウトしました。');
         return redirect()->route('signin');
     }
-
 }

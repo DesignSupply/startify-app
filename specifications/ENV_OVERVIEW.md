@@ -1,13 +1,13 @@
-# プロジェクト概要
+# 開発環境概要
 
 ---
 
 ## ディレクトリ構成
 
-プロジェクトは以下のディレクトリ構造にしたがって実装を進めていくものとする
+開発環境は以下のディレクトリ構造にしたがって実装を進めていくものとする
 
 ```
-/                                        # プロジェクトルート  
+/                                      # 開発環境ルート
 ├── backend/                             # バックエンド（appコンテナの/var/www/htmlマウントポイント）
 │   ├── laravel/                           # Laravelルートディレクトリ
 │   ├── wordpress/                         # WordPressルートディレクトリ
@@ -39,9 +39,10 @@
 │   ├── .env                               # Docker環境変数
 │   └── Makefile                           # Makeコマンドファイル
 └── SPECIFICATIONS/                      # プロジェクト仕様書
+    ├── ENV_OVERVIEW.md                    # 開発環境概要
     ├── ENV_PROCEDURES.md                  # 開発環境構築手順
-    ├── DEV_BACKEND.md                     # バックエンド実装
-    └── PROJECT_OVERVIEW.md                # プロジェクト概要
+    └── DEV_BACKEND.md                     # バックエンド実装
+
 ```
 
 ---

@@ -8,7 +8,6 @@ use App\Models\User;
 
 class SignInController extends Controller
 {
-
     public function index()
     {
         return view('static.signin.index');
@@ -20,7 +19,6 @@ class SignInController extends Controller
 
         // メールアドレスの確認
         $user = User::where('email', $credentials['email'])->first();
-
         if (!$user) {
             return redirect()->route('signin')->withErrors([
                 'email' => 'このメールアドレスは登録されていません。',
@@ -39,5 +37,4 @@ class SignInController extends Controller
         $request->session()->flash('status', 'ログインに成功しました！');
         return redirect()->route('home');
     }
-
 }

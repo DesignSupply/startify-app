@@ -14,7 +14,7 @@
 
 下記の場所にファイルを作成します
 
-- `/specifications/PROJECT_OVERVIEW.md`
+- `/specifications/ENV_OVERVIEW.md`
 - `/specifications/ENV_PROCEDURES.md`
 - `/specifications/DEV_BACKEND.md`
 
@@ -28,13 +28,13 @@
 
 ### 1.1. Docker用環境変数ファイル作成
 
-下記の場所にファイルを作成します
+下記の場所にファイルを作成します、`COMPOSE_PROJECT_NAME` とアプリケーション名、データベース接続情報と、CMSのログイン情報を環境変数として設定します
 
 - `/server/.env`
 
 ### 1.2. 各種イメージ用Dcokerfileの作成
 
-下記の場所にファイルを作成します
+下記の場所にファイルを作成します、それぞれ適切なバージョンのDockerイメージを使用します
 
 - `/server/docker/nginx/Dockerfile`
 - `/server/docker/php/Dockerfile`
@@ -57,11 +57,13 @@
 
 ### 1.5. Makefileの作成
 
-下記の場所にファイルを作成します、Docker操作、Laravel、WordPressを扱う中で必要となるコマンドを登録します
+下記の場所にファイルを作成します、Docker操作、Laravel、WordPressを扱う中で必要とされるコマンドを登録します
 
 - `/server/Makefile`
 
 ### 1.6. Dockerイメージのビルド、コンテナーの起動
+
+下記のコマンドでDockerイメージのビルド、コンテナーの起動を行います
 
 ```
 cd /server
@@ -71,10 +73,12 @@ make up
 
 ### 1.7. 動作確認
 
+Dockerコンテナー起動後、以下の方法で動作確認を行います
+
 - 環境変数で設定した情報でローカル環境のデータベースに接続できることを確認します
-- `/backend/_webroot/testing-app.php` を作成、`http://localhost/testing-app.php` にアクセスして、PHPの情報が表示されることを確認します
-- `/backend/_webroot/testing-smtp.php` を作成、`http://localhost/testing-smtp.php` にアクセスして、メール送信テスト用ファイルを使用して送信されることを確認します
-- `http://localhost:8025/` にアクセスして、MailpitのWebメール画面が表示、ならびにテストメールの受信ができることを確認します
+- `/backend/_webroot/testing-app.php` を作成、`php_info()` 関数を使用し `http://localhost/testing-app.php` にアクセスして、PHPの情報が表示されることを確認します
+- `/backend/_webroot/testing-smtp.php` を作成、`mail()` 関数を使用しメール送信のテスト処理を作成し `http://localhost/testing-smtp.php` にアクセスして、メール送信テスト用ファイルを使用して送信されることを確認します
+- `http://localhost:8025/` にアクセスして、MailpitのWebメール画面が表示、ならびに送信されたテストメールの受信ができていることを確認します
 
 ---
 
@@ -82,7 +86,7 @@ make up
 
 ### 2.1. Laravelプロジェクトの作成
 
-Dockerコンテナー内でLaravelプロジェクトを作成します、Laravelインストール後にマウントされた `/backend/laravel` ディレクトリ配下にソースコードが同期されることを確認します
+Dockerコンテナー内でLaravelのインストールを行います、Laravelインストール後にマウントされた `/backend/laravel` ディレクトリ配下にソースコードが同期されていることを確認します
 
 ```
 cd /server
@@ -100,6 +104,8 @@ make laravel-keygen
 
 ### 2.3. データベースの作成、マイグレーション
 
+下記のコマンドでデータベースの作成、マイグレーションを行います
+
 ```
 cd /server
 make laravel-migrate
@@ -109,12 +115,14 @@ make laravel-migrate
 
 ### 2.4. ストレージのシンボリックリンク作成
 
+ストレージのシンボリックリンクを作成します
+
 ```
 cd /server
 make laravel-storage-link
 ```
 
-アプリケーションのプロジェクトルートがドキュメントルート外にある場合にはシンボリックリンクの場所を変更します
+アプリケーションのルートディレクトリがドキュメントルートより上の階層にある場合にはシンボリックリンクの場所を変更します
 
 ```
 cd /server
