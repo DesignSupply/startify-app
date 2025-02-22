@@ -35,7 +35,7 @@ class AdminController extends Controller
         // 認証成功
         $request->session()->regenerate();
         $request->session()->flash('status', 'ログインに成功しました！');
-        return redirect()->route('dashboard');
+        return redirect()->route('admin.dashboard');
     }
 
     public function signOut(Request $request)

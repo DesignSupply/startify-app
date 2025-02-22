@@ -35,11 +35,12 @@ Route::namespace('App\Http\Controllers')->group(function () {
 
     });
 
-    // 管理者ログインページ
-    Route::get('/admin', 'AdminController@index')->name('admin');
-    Route::post('/admin', 'AdminController@signIn')->name('admin.signin.post');
-
+    // 管理者ルーティング
     Route::prefix('admin')->group(function () {
+
+        // 管理者ログインページ
+        Route::get('/', 'AdminController@index')->name('admin');
+        Route::post('/', 'AdminController@signIn')->name('admin.signin.post');
 
         // 管理者パスワードリセット（メールアドレス確認）
         Route::get('/password-forgot', 'AdminPasswordForgotController@index')->name('admin.password-forgot');
@@ -56,7 +57,7 @@ Route::namespace('App\Http\Controllers')->group(function () {
         Route::prefix('admin')->group(function () {
 
             // 管理者ダッシュボード
-            Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+            Route::get('/dashboard', 'DashboardController@index')->name('admin.dashboard');
 
             // 管理者ログアウト
             Route::post('/signout', 'AdminController@signOut')->name('admin.signout.post');

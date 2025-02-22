@@ -40,7 +40,7 @@
             <input type="password" name="password" id="password" required>
         </div>
         <div>
-            <button type="submit">ログイン</button>
+            <button type="submit">管理者ログイン</button>
         </div>
     </form>
     <a href="{{ route('admin.password-forgot') }}">パスワードを忘れた方はこちら</a>
