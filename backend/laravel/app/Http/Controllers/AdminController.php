@@ -41,9 +41,8 @@ class AdminController extends Controller
     public function signOut(Request $request)
     {
         Auth::guard('admin')->logout();
-        $request->session()->invalidate();
         $request->session()->regenerateToken();
-        $request->session()->flash('status', 'ログアウトしました。');
+        $request->session()->flash('status', '管理者ログアウトしました。');
         return redirect()->route('admin');
     }
 }

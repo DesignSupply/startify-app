@@ -10,7 +10,6 @@ class SignOutController extends Controller
     public function signOut(Request $request)
     {
         Auth::logout();
-        $request->session()->invalidate();
         $request->session()->regenerateToken();
         $request->session()->flash('status', 'ログアウトしました。');
         return redirect()->route('signin');
