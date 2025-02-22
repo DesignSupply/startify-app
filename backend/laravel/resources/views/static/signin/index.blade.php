@@ -43,5 +43,6 @@
             <button type="submit">ログイン</button>
         </div>
     </form>
+    <a href="{{ route('password-forgot') }}">パスワードを忘れた方はこちら</a>
 </main>
 @endsection

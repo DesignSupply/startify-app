@@ -14,6 +14,8 @@ services:
       - app
     links:
       - app
+    networks:
+      - app-network
 
   app:
     build:
@@ -37,6 +39,8 @@ services:
       - smtp
     env_file:
       - ./.env
+    networks:
+      - app-network
 
   db:
     build:
@@ -55,6 +59,8 @@ services:
       - ./docker/mysql/my.cnf:/etc/mysql/my.cnf
     ports:
       - "3306:3306"
+    networks:
+      - app-network
 
   smtp:
     build:
@@ -65,7 +71,13 @@ services:
     ports:
       - "8025:8025"
       - "1025:1025"
+    networks:
+      - app-network
 
 volumes:
   db-store:
     name: ${APP_NAME}_store
+
+networks:
+  app-network:
+    driver: bridge

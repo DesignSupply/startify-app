@@ -212,11 +212,12 @@ make laravel-config-clear
 
 ### 5.1 admin_usersテーブルのマイグレーションファイルを作成
 
-マイグレーションファイルを作成、マイグレーションを実行し、`admin_users` テーブルを作成します。
+マイグレーションファイルを作成、マイグレーションを実行しテーブルを作成します。
 
 - マイグレーション
   - ファイル名: `backend/laravel/database/migrations/[YYYY_MM_DD_HHMMSS]_create_admin_users_table.php`
   - クラス名: `CreateAdminUsersTable`
+  - テーブル名: `admin_users`
   - カラム
     - `id` / integer / primary key / auto increment
     - `name` / string
@@ -228,9 +229,10 @@ make laravel-config-clear
 
 ### 5.2 AdminUserモデルの作成
 
-`AdminUser` モデルを作成します。
+管理者ユーザー用のモデルファイルを作成します。
 
 - モデル
+  - モデル名: `AdminUser`
   - ファイル名: `backend/laravel/app/Models/AdminUser.php`
   - クラス名: `AdminUser`
   
@@ -301,9 +303,9 @@ make laravel-config-clear
   - ログアウトボタンをクリックすると、セッションを破棄します
   - ログアウト後には `/admin` にリダイレクトします
 
-### 5.7 シーダーを実行しテストとユーザーを作成、ログインテスト
+### 5.7 ユーザー用シーダーの作成と実行、テスト
 
-シーダーを実行しテストとユーザーを作成、ログインテストを行います。
+シーダーを実行しユーザーデータを作成、ログインテストを行います。
 
 - シーダー
   - パス: `backend/laravel/database/seeders/AdminUserSeeder.php`
@@ -317,3 +319,146 @@ make laravel-config-clear
   
 ---
 
+## 6. パスワードリセット（一般ユーザー、管理者ユーザー）機能の実装
+
+一般ユーザーと管理者ユーザーそれぞれにパスワードリセット機能を実装します。
+
+### 6.1 管理者ユーザーのパスワードリセットトークン用テーブルのマイグレーションファイルを作成
+
+パスワードリセットトークン用のテーブルを作成します。マイグレーションファイルを作成、マイグレーションを実行し `admin_password_reset_tokens` テーブルを作成します。
+
+なお、一般ユーザー用のパスワードリセットトークン用テーブルは既存の `password_reset_tokens` テーブルを使用します。
+
+- マイグレーション（管理者用）
+  - ファイル名: `backend/laravel/database/migrations/[YYYY_MM_DD_HHMMSS]_create_admin_password_reset_tokens_table.php`
+  - クラス名: `CreateAdminPasswordResetTokensTable`
+  - テーブル名: `admin_password_reset_tokens`
+  - カラム
+    - `email` / string / primary key
+    - `token` / string
+    - `created_at` / timestamp
+
+### 6.2 パスワードリセット（一般ユーザー、管理者ユーザー）用のモデル作成
+
+一般ユーザーと管理者ユーザーのパスワードリセットトークン用のモデルファイルを作成します。
+
+- モデル（一般ユーザー）
+  - モデル名: `PasswordResetToken`
+  - ファイル名: `backend/laravel/app/Models/PasswordResetToken.php`
+  - クラス名: `PasswordResetToken`
+- モデル（管理者ユーザー）
+  - モデル名: `AdminPasswordResetToken`
+  - ファイル名: `backend/laravel/app/Models/AdminPasswordResetToken.php`
+  - クラス名: `AdminPasswordResetToken`
+
+### 6.3 パスワードリセット（一般ユーザー、管理者ユーザー）用の通知クラスの作成
+
+一般ユーザーと管理者ユーザーのパスワードリセット用の通知クラスを作成します。トークンの生成やメール送信処理を作成します。
+
+- 通知クラス（一般ユーザー）
+  - クラス名: `PasswordResetNotification`
+  - ファイル名: `backend/laravel/app/Notifications/PasswordResetNotification.php`
+- 通知クラス（管理者ユーザー）
+  - クラス名: `AdminPasswordResetNotification`
+  - ファイル名: `backend/laravel/app/Notifications/AdminPasswordResetNotification.php`
+
+### 6.4 パスワードリセット（一般ユーザー、管理者ユーザー）用のメールテンプレートの作成
+
+パスワードリセット用の通知メールテンプレートを作成します。
+
+- メールテンプレート（一般ユーザー）
+  - ファイル名: `backend/laravel/resources/views/emails/password-reset.blade.php`
+  - メール件名：パスワードリセットのお知らせ
+- メールテンプレート（管理者ユーザー）
+  - ファイル名: `backend/laravel/resources/views/emails/admin-password-reset.blade.php`
+  - メール件名：管理者パスワードリセットのお知らせ
+
+### 6.5 パスワードリセット（一般ユーザー、管理者ユーザー）用のビューの作成
+
+パスワードリセット用のビューを作成します。メールアドレス確認用フォーム画面と、パスワード再設定用フォーム画面を作成します。
+
+- ビュー（一般ユーザー）
+  - ファイル名（メールアドレス確認）: `backend/laravel/resources/views/static/password-forgot/index.blade.php`
+  - ファイル名（パスワード再設定）: `backend/laravel/resources/views/static/password-reset/index.blade.php`
+- ビュー（管理者ユーザー）
+  - ファイル名（メールアドレス確認）: `backend/laravel/resources/views/static/admin/password-forgot/index.blade.php`
+  - ファイル名（パスワード再設定）: `backend/laravel/resources/views/static/admin/password-reset/index.blade.php`
+- 機能仕様
+  - メールアドレス確認用フォーム画面ではメールアドレスと入力するフォームを表示します
+  - パスワード再設定用フォーム画面ではパスワードと入力するフォームを入力用と確認用の2つを表示し、同じ値であることを確認します
+  - ログインページにはメールアドレス確認用フォーム画面のリンクを表示します
+
+### 6.6 パスワードリセット（一般ユーザー、管理者ユーザー）用のルーティングの作成
+
+パスワードリセット用のルーティングを作成します。
+
+- ルーティング（一般ユーザー）
+  - メールアドレス確認（画面表示）
+    - パス: `/password-forgot`
+    - メソッド: `GET`
+    - ルーティング名: `password-forgot`
+  - メールアドレス確認（フォーム送信）
+    - パス: `/password-forgot`
+    - メソッド: `POST`
+    - ルーティング名: `password-forgot.post`
+  - パスワード再設定（画面表示）
+    - パス: `/password-reset`
+    - メソッド: `GET`
+    - ルーティング名: `password-reset`
+  - パスワード再設定（フォーム送信）
+    - パス: `/password-reset`
+    - メソッド: `POST`
+    - ルーティング名: `password-reset.post`
+- ルーティング（管理者ユーザー）
+  - メールアドレス確認（画面表示）
+    - パス: `/admin/password-forgot`
+    - メソッド: `GET`
+    - ルーティング名: `admin.password-forgot`
+  - メールアドレス確認（フォーム送信）
+    - パス: `/admin/password-forgot`
+    - メソッド: `POST`
+    - ルーティング名: `admin.password-forgot.post`
+  - パスワード再設定（画面表示）
+    - パス: `/admin/password-reset`
+    - メソッド: `GET`
+    - ルーティング名: `admin.password-reset`
+  - パスワード再設定（フォーム送信）
+    - パス: `/admin/password-reset`
+    - メソッド: `POST`
+    - ルーティング名: `admin.password-reset.post`
+
+### 6.7 パスワードリセット（一般ユーザー、管理者ユーザー）用のコントローラーの作成
+
+パスワードリセット用のコントローラーを作成します。メールの送信、トークンの生成、バリデーション処理も含めて作成します。
+
+- コントローラー（一般ユーザー）
+  - メールアドレス確認
+    - クラス名: `PasswordForgotController`
+    - ファイル名: `backend/laravel/app/Http/Controllers/PasswordForgotController.php`
+    - メソッド
+      - `index`
+      - `sendMail`
+  - パスワード再設定
+    - クラス名: `PasswordResetController`
+    - ファイル名: `backend/laravel/app/Http/Controllers/PasswordResetController.php`
+    - メソッド
+      - `index`
+      - `reset`
+- コントローラー（管理者ユーザー）
+  - メールアドレス確認
+    - クラス名: `AdminPasswordForgotController`
+    - ファイル名: `backend/laravel/app/Http/Controllers/AdminPasswordForgotController.php`
+    - メソッド
+      - `index`
+      - `sendMail`
+  - パスワード再設定
+    - クラス名: `AdminPasswordResetController`
+    - ファイル名: `backend/laravel/app/Http/Controllers/AdminPasswordResetController.php`
+    - メソッド
+      - `index`
+      - `reset`
+
+メール送信やトークン生成に伴い下記Laravelの設定ファイルも必要に応じて修正します。
+
+- `backend/laravel/config/mail.php`
+- `backend/laravel/config/auth.php`
