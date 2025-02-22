@@ -12,6 +12,7 @@
             && !str_contains(Route::currentRouteName(), 'admin')
         )
             @if (Auth::check())
+                <a href="{{ route('home') }}">ホーム</a>
                 <form method="POST" action="{{ route('signout.post') }}" style="display: inline;">
                     @csrf
                     <button type="submit">ログアウト</button>
@@ -27,6 +28,7 @@
             && !str_contains(Route::currentRouteName(), 'admin.password-reset'))
         )
             @if (Auth::guard('admin')->check())
+                <a href="{{ route('admin.dashboard') }}">管理者ダッシュボード</a>
                 <form method="POST" action="{{ route('admin.signout.post') }}" style="display: inline;">
                     @csrf
                     <button type="submit">管理者ログアウト</button>
