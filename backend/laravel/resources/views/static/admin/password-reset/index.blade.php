@@ -49,9 +49,6 @@
             </button>
         </div>
     </form>
-    <a href="{{ route('admin') }}">
-        管理者ログイン画面に戻る
-    </a>
 </main>
 @endsection
 

@@ -49,9 +49,6 @@
             </button>
         </div>
     </form>
-    <a href="{{ route('signin') }}">
-        ログイン画面に戻る
-    </a>
 </main>
 @endsection
 
