@@ -22,6 +22,28 @@ Route::namespace('App\Http\Controllers')->group(function () {
         Route::get('/password-reset/{token}', 'PasswordResetController@index')->name('password-reset');
         Route::post('/password-reset', 'PasswordResetController@reset')->name('password-reset.post');
 
+        // 新規ユーザー登録
+        Route::prefix('signup')->group(function () {
+
+            // メールアドレス確認
+            Route::get('/', 'SignUpController@index')->name('signup');
+            Route::post('/', 'SignUpController@verifyEmail')->name('signup.post');
+
+            // メール送信完了・確認待ち
+            Route::get('/pending', 'SignUpController@pending')->name('signup.pending');
+
+            // メールアドレス検証（トークン検証）
+            Route::get('/verify/{token}', 'SignUpController@verifyToken')->name('signup.verify');
+
+            // 新規登録フォーム
+            Route::get('/register', 'SignUpController@form')->name('signup.register');
+            Route::post('/register', 'SignUpController@register')->name('signup.register.post');
+
+            // 新規登録完了
+            Route::get('/complete', 'SignUpController@complete')->name('signup.complete');
+
+        });
+
     });
 
     // 認証ルーティング

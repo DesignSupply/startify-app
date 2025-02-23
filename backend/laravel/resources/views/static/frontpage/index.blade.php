@@ -17,6 +17,7 @@
     <p>アプリケーションのフロントページです。</p>
     <a href="{{ route('signin') }}">ログイン</a>
     <a href="{{ route('admin') }}">管理者ログイン</a>
+    <a href="{{ route('signup') }}">新規ユーザー登録</a>
 </main>
 @endsection
 

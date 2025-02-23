@@ -3,11 +3,16 @@
         @if (
             !str_contains(Route::currentRouteName(), 'password-reset')
             && !str_contains(Route::currentRouteName(), 'admin.password-reset')
+            && (
+                !str_contains(Route::currentRouteName(), 'signup')
+                || in_array(Route::currentRouteName(), ['signup', 'signup.pending'])
+            )
         )
             <a href="{{ route('frontpage') }}">フロントページ</a>
         @endif
         @if (
             !str_contains(Route::currentRouteName(), 'password-reset')
+            && !str_contains(Route::currentRouteName(), 'signup')
             && Route::currentRouteName() !== 'signin'
             && !str_contains(Route::currentRouteName(), 'admin')
         )
@@ -36,6 +41,14 @@
             @else
                 <a href="{{ route('admin') }}">管理者ログイン</a>
             @endif
+        @endif
+        @if (
+            !str_contains(Route::currentRouteName(), 'admin')
+            && !str_contains(Route::currentRouteName(), 'password-reset')
+            && !str_contains(Route::currentRouteName(), 'signup')
+            && !Auth::check()
+        )
+            <a href="{{ route('signup') }}">新規ユーザー登録</a>
         @endif
     </nav>
 </header>
