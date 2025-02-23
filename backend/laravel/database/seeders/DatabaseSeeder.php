@@ -24,6 +24,8 @@ class DatabaseSeeder extends Seeder
         // テーブルのクリア
         DB::table('users')->truncate();
         DB::table('admin_users')->truncate();
+        DB::table('password_reset_tokens')->truncate();
+        DB::table('admin_password_reset_tokens')->truncate();
 
         // シーダーの実行
         $this->call([
