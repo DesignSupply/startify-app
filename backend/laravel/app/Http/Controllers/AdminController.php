@@ -10,7 +10,7 @@ class AdminController extends Controller
 {
     public function index()
     {
-        return view('static.admin.index');
+        return view('pages.admin.index');
     }
 
     public function signIn(Request $request)

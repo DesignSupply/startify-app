@@ -12,7 +12,7 @@ class SignUpController extends Controller
 {
     public function index()
     {
-        return view('static.signup.verify');
+        return view('pages.signup.verify');
     }
 
     public function verifyEmail(Request $request)
@@ -44,7 +44,7 @@ class SignUpController extends Controller
             return redirect()->route('signup');
         }
 
-        return view('static.signup.pending');
+        return view('pages.signup.pending');
     }
 
     public function verifyToken(Request $request, $token)
@@ -68,7 +68,7 @@ class SignUpController extends Controller
             return redirect()->route('signup');
         }
 
-        return view('static.signup.register', [
+        return view('pages.signup.register', [
             'email' => session('signup_email')
         ]);
     }
@@ -108,6 +108,6 @@ class SignUpController extends Controller
 
     public function complete()
     {
-        return view('static.signup.complete');
+        return view('pages.signup.complete');
     }
 }

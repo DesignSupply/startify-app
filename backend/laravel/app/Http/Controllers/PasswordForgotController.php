@@ -11,7 +11,7 @@ class PasswordForgotController extends Controller
 {
     public function index()
     {
-        return view('static.password-forgot.index');
+        return view('pages.password-forgot.index');
     }
 
     public function sendMail(Request $request)

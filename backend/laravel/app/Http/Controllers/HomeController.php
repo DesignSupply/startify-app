@@ -10,7 +10,7 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('auth.home.index', [
+        return view('pages.home.index', [
             'user' => $user
         ]);
     }

@@ -20,6 +20,7 @@
 - モデルのファイルパスは `backend/laravel/app/Models/[モデル名].php` とします
 - コントローラーのファイルパスは `backend/laravel/app/Http/Controllers/[コントローラー名].php` とします
 - シーダーのファイルパスは `backend/laravel/database/seeders/[シーダー名].php` とします
+- ビューのファイルパスは `backend/laravel/resources/views/[ディレクトリ名]/[ファイル名].blade.php` とし、ディレクトリ名は `components` と `layouts` と `pages` と `emails` の4つを用意し、用途に応じて格納するディレクトリを分けるようにします
 - モデルはアッパーケースで記載します
 - ビューファイルはケバブケースで記載します
 - ルーティングのパスはケバブケースで記載します
@@ -143,7 +144,7 @@ make laravel-config-clear
 フロントページのビューを作成します。
 
 - ビュー
-  - パス: `backend/laravel/resources/views/static/frontpage/index.blade.php`
+  - パス: `backend/laravel/resources/views/pages/frontpage/index.blade.php`
 - 機能仕様
   - 一般ユーザーのログイン画面、管理者ユーザーのログイン画面へのリンクを設置します
   
@@ -175,7 +176,7 @@ make laravel-config-clear
 一般ユーザーログインフォームを表示させるページのビューを作成します。
 
 - ビュー
-  - パス: `backend/laravel/resources/views/static/signin/index.blade.php`
+  - パス: `backend/laravel/resources/views/pages/signin/index.blade.php`
 - 機能仕様
   - 画面上にはメールアドレスとパスワードを入力するフォームを表示します
   - 画面内にはログインボタンを設置し、ログインできるようにします
@@ -221,7 +222,7 @@ make laravel-config-clear
   - クラス: `HomeController`
   - メソッド: `index`
 - ビュー
-  - パス: `backend/laravel/resources/views/auth/home/index.blade.php`
+  - パス: `backend/laravel/resources/views/pages/home/index.blade.php`
 - 機能仕様
   - 画面上にはログイン成功後のメッセージを表示します
   - 画面内にはログアウトボタンを設置し、ログアウトできるようにします
@@ -295,7 +296,7 @@ make laravel-config-clear
 管理者ログインフォームを表示させるページのビューを作成します。
 
 - ビュー
-  - パス: `backend/laravel/resources/views/static/admin/index.blade.php`
+  - パス: `backend/laravel/resources/views/pages/admin/index.blade.php`
 - 機能仕様
   - 画面上にはメールアドレスとパスワードを入力するフォームを表示します
   - 画面内にはログインボタンを設置し、ログインできるようにします
@@ -340,7 +341,7 @@ make laravel-config-clear
   - クラス: `DashboardController`
   - メソッド: `index`
 - ビュー
-  - パス: `backend/laravel/resources/views/auth/admin/dashboard/index.blade.php`
+  - パス: `backend/laravel/resources/views/pages/admin/dashboard/index.blade.php`
 - 機能仕様
   - 画面上には管理者用のダッシュボード画面を表示します
   - 画面内にはログアウトボタンを設置し、ログアウトできるようにします
@@ -414,11 +415,11 @@ make laravel-config-clear
 パスワードリセット用のビューを作成します。メールアドレス確認用フォーム画面と、パスワード再設定用フォーム画面を作成します。
 
 - ビュー（一般ユーザー）
-  - パス（メールアドレス確認）: `backend/laravel/resources/views/static/password-forgot/index.blade.php`
-  - パス（パスワード再設定）: `backend/laravel/resources/views/static/password-reset/index.blade.php`
+  - パス（メールアドレス確認）: `backend/laravel/resources/views/pages/password-forgot/index.blade.php`
+  - パス（パスワード再設定）: `backend/laravel/resources/views/pages/password-reset/index.blade.php`
 - ビュー（管理者ユーザー）
-  - パス（メールアドレス確認）: `backend/laravel/resources/views/static/admin/password-forgot/index.blade.php`
-  - パス（パスワード再設定）: `backend/laravel/resources/views/static/admin/password-reset/index.blade.php`
+  - パス（メールアドレス確認）: `backend/laravel/resources/views/pages/admin/password-forgot/index.blade.php`
+  - パス（パスワード再設定）: `backend/laravel/resources/views/pages/admin/password-reset/index.blade.php`
 - 機能仕様
   - メールアドレス確認用フォーム画面ではメールアドレスと入力するフォームを表示します
   - パスワード再設定用フォーム画面ではパスワードと入力するフォームを入力用と確認用の2つを表示し、同じ値であることを確認します
@@ -536,10 +537,10 @@ make laravel-config-clear
 新規ユーザー登録画面のビューを作成します。
 
 - ビュー
-  - パス（メールアドレス確認）: `backend/laravel/resources/views/static/signup/verify.blade.php`
-  - パス（メール送信完了・確認待ち）: `backend/laravel/resources/views/static/signup/pending.blade.php`
-  - パス（新規登録フォーム）: `backend/laravel/resources/views/static/signup/register.blade.php`
-  - パス（登録完了）: `backend/laravel/resources/views/static/signup/complete.blade.php`
+  - パス（メールアドレス確認）: `backend/laravel/resources/views/pages/signup/verify.blade.php`
+  - パス（メール送信完了・確認待ち）: `backend/laravel/resources/views/pages/signup/pending.blade.php`
+  - パス（新規登録フォーム）: `backend/laravel/resources/views/pages/signup/register.blade.php`
+  - パス（登録完了）: `backend/laravel/resources/views/pages/signup/complete.blade.php`
 
 ### 7.2 新規ユーザー登録のメールテンプレートを作成
 

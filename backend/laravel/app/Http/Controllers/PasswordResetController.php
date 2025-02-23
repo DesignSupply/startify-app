@@ -11,7 +11,7 @@ class PasswordResetController extends Controller
 {
     public function index(Request $request)
     {
-        return view('static.password-reset.index', [
+        return view('pages.password-reset.index', [
             'token' => $request->token,
             'email' => $request->email
         ]);

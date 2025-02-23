@@ -11,7 +11,7 @@ class AdminPasswordForgotController extends Controller
 {
     public function index()
     {
-        return view('static.admin.password-forgot.index');
+        return view('pages.admin.password-forgot.index');
     }
 
     public function sendMail(Request $request)

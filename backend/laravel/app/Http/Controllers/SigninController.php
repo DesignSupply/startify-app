@@ -10,7 +10,7 @@ class SignInController extends Controller
 {
     public function index()
     {
-        return view('static.signin.index');
+        return view('pages.signin.index');
     }
 
     public function signIn(Request $request)
