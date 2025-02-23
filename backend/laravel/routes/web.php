@@ -43,7 +43,6 @@ Route::namespace('App\Http\Controllers')->group(function () {
             Route::get('/complete', 'SignUpController@complete')->name('signup.complete');
 
         });
-
     });
 
     // 認証ルーティング

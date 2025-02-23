@@ -4,18 +4,18 @@
 
 ## ディレクトリ構成
 
-開発環境は以下のディレクトリ構造にしたがって実装を進めていくものとする
+開発環境は以下のファイル・ディレクトリ構造にしたがって実装を進めていくものとする
 
 ```
 /                                      # 開発環境ルート
 ├── backend/                             # バックエンド（appコンテナの/var/www/htmlマウントポイント）
 │   ├── laravel/                           # Laravelルートディレクトリ
 │   ├── wordpress/                         # WordPressルートディレクトリ
-│   └── _webroot/                            # サーバードキュメントルート（webコンテナのドキュメントルート）
+│   └── _webroot/                            # 開発環境ローカルサーバードキュメントルート（webコンテナのドキュメントルート）
 │       ├── testing-app.php                  # PHP情報表示用ファイル
 │       ├── testing-smtp.php                 # メール送信テスト用ファイル
 │       ├── index.php                        # バックエンドアプリケーションエントリーポイントファイル
-│       └── storage                          # ストレージ用シンボリックリンク
+│       └── storage                          # バックエンドファイルストレージ用シンボリックリンク
 ├── frontend/                            # フロントエンド
 │   ├── next/                              # Next.jsプロジェクトルートディレクトリ
 │   ├── nuxt/                              # Nuxt.jsプロジェクトルートディレクトリ
@@ -38,11 +38,13 @@
 │   ├── docker-compose.yml                 # Docker Composeファイル
 │   ├── .env                               # Docker環境変数
 │   └── Makefile                           # Makeコマンドファイル
-└── SPECIFICATIONS/                      # プロジェクト仕様書
-    ├── ENV_OVERVIEW.md                    # 開発環境概要
-    ├── ENV_PROCEDURES.md                  # 開発環境構築手順
-    └── DEV_BACKEND.md                     # バックエンド実装
-
+├── SPECIFICATIONS/                      # プロジェクト仕様書
+│   ├── ENV_OVERVIEW.md                    # 開発環境概要
+│   ├── ENV_PROCEDURES.md                  # 開発環境構築手順
+│   └── DEV_BACKEND.md                     # バックエンド実装
+├── README.md                            # 開発環境説明
+├── .gitignore                           # Git設定
+└── .cursorrules                         # Cursor設定
 ```
 
 ---
@@ -62,6 +64,10 @@
 | password-reset | パスワードリセット・パスワード再設定 | 一般ユーザーのパスワードリセット時のパスワード再設定画面 |
 | admin-password-forgot | 管理者パスワードリセット・メールアドレス確認 | 管理者ユーザーのパスワードリセット時のメールアドレス確認画面 |
 | admin-password-reset | 管理者パスワードリセット・パスワード再設定 | 管理者ユーザーのパスワードリセット時のパスワード再設定画面 |
+| signup | 新規ユーザー登録・メールアドレス確認 | 新規ユーザー登録時の確認用メールアドレス入力画面 |
+| signup-pending | 新規ユーザー登録・確認メール送信完了 | 新規ユーザー登録時の確認用メールの送信完了画面 |
+| signup-register | 新規ユーザー登録・ユーザー情報入力 | 新規ユーザー登録時のユーザー情報入力フォーム画面 |
+| signup-complete | 新規ユーザー登録完了 | 新規ユーザーの登録完了画面 |
 
 開発するアプリケーションで扱うメールの一覧を以下に示す
 
@@ -69,7 +75,7 @@
 | --- | --- | --- |
 | mail-password-forgot | パスワードリセットメール | 一般ユーザーのパスワードリセット時に送信されるトークン付きリンクが記載されたメール |
 | mail-admin-password-forgot | 管理者パスワードリセットメール | 管理者ユーザーのパスワードリセット時に送信されるトークン付きリンクが記載されたメール |
-
+| mail-signup | 新規ユーザー登録メール | 新規ユーザー登録時に送信される確認用メール |
 ---
 
 ## アプリケーション画面構成図
@@ -94,6 +100,11 @@ flowchart TD
     mail-admin-password-forgot -- token --> admin-password-reset[管理者パスワードリセット・パスワード再設定]
     admin-password-reset -- redirect --> admin
     admin-password-forgot --> admin
+    frontpage --> signup[新規ユーザー登録・メールアドレス確認]
+    signup --> signup-pending[新規ユーザー登録・確認メール送信完了]
+    signup-pending -.-> |send-mail| mail-signup(新規ユーザー登録メール)
+    mail-signup -- token --> signup-register[新規ユーザー登録・ユーザー情報入力]
+    signup-register --> signup-complete[新規ユーザー登録完了]
 ```
 
 ---
