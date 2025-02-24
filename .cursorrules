@@ -132,6 +132,8 @@
 # 開発環境概要
 
 ## 手順書・仕様書
-- 開発環境は、/specifications/ENV_OVERVIEW.mdに記載のディレクトリ構造に従ったファイル・ディレクトリを作成するものとする。
-- 開発環境の構築は、/specifications/ENV_PROCEDURES.mdに記載の手順に従って実装を行うものとする。
-- バックエンドの実装は、/specifications/DEV_BACKEND.mdに記載の手順に従って実装を行うものとする。
+- 開発環境は、/SPECIFICATIONS/ENV_OVERVIEW.mdに記載のディレクトリ構造に従ったファイル・ディレクトリを作成するものとする。
+- 開発環境の構築は、/SPECIFICATIONS/ENV_PROCEDURES.mdに記載の手順に従って実装を行うものとする。
+- バックエンドの実装は、/SPECIFICATIONS/DEV_BACKEND.mdに記載の手順に従って実装を行うものとする。
+- デザイントークンは、/SPECIFICATIONS/DESIGN_TOKENS.mdに記載の内容に従って定義するものとする。
+- UIデザインや画面レイアウト、コンポーネントのコーディングは、/SPECIFICATIONS/DESIGN_UI.mdに記載の内容に従って実装を行うものとする。

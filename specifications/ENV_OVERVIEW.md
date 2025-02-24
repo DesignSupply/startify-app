@@ -9,14 +9,19 @@
 ```
 /                                      # 開発環境ルート
 ├── backend/                             # バックエンド（appコンテナの/var/www/htmlマウントポイント）
+│   ├── _webroot/                          # 開発環境ローカルサーバードキュメントルート（webコンテナのドキュメントルート）
+│   │   ├── testing-app.php                  # PHP情報表示用ファイル
+│   │   ├── testing-smtp.php                 # メール送信テスト用ファイル
+│   │   ├── index.php                        # バックエンドアプリケーションエントリーポイントファイル
+│   │   └── storage                          # バックエンドファイルストレージ用シンボリックリンク
 │   ├── laravel/                           # Laravelルートディレクトリ
-│   ├── wordpress/                         # WordPressルートディレクトリ
-│   └── _webroot/                            # 開発環境ローカルサーバードキュメントルート（webコンテナのドキュメントルート）
-│       ├── testing-app.php                  # PHP情報表示用ファイル
-│       ├── testing-smtp.php                 # メール送信テスト用ファイル
-│       ├── index.php                        # バックエンドアプリケーションエントリーポイントファイル
-│       └── storage                          # バックエンドファイルストレージ用シンボリックリンク
+│   └── wordpress/                         # WordPressルートディレクトリ
 ├── frontend/                            # フロントエンド
+│   ├── _ui/                               # UIコンポーネント用ディレクトリ
+│   │   ├── components/                    # コンポーネント要素テンプレートHTML
+│   │   ├── head/                          # head要素テンプレートHTML
+│   │   ├── layouts/                       # レイアウト要素テンプレートHTML
+│   │   └── ui.html                        # UIデザイン用サンプルHTMLファイル
 │   ├── next/                              # Next.jsプロジェクトルートディレクトリ
 │   ├── nuxt/                              # Nuxt.jsプロジェクトルートディレクトリ
 │   ├── astro/                             # Astroプロジェクトルートディレクトリ
@@ -41,7 +46,9 @@
 ├── SPECIFICATIONS/                      # プロジェクト仕様書
 │   ├── ENV_OVERVIEW.md                    # 開発環境概要
 │   ├── ENV_PROCEDURES.md                  # 開発環境構築手順
-│   └── DEV_BACKEND.md                     # バックエンド実装
+│   ├── DEV_BACKEND.md                     # バックエンド実装
+│   ├── DESIGN_TOKENS.md                   # デザイントークン仕様書
+│   └── DESIGN_UI.md                       # UIデザイン仕様書
 ├── README.md                            # 開発環境説明
 ├── .gitignore                           # Git設定
 └── .cursorrules                         # Cursor設定
