@@ -17,11 +17,19 @@
 │   ├── laravel/                           # Laravelルートディレクトリ
 │   └── wordpress/                         # WordPressルートディレクトリ
 ├── frontend/                            # フロントエンド
+│   ├── _design-tokens/                    # UIデザイン用デザイントークン
+│   │   ├── color-scheme.yaml                # 配色用
+│   │   ├── size-scale.yaml                  # サイズ指定
+│   │   ├── typography.yaml                  # タイポグラフィ
+│   │   ├── grid-system.yaml                 # グリッドシステム
+│   │   ├── dropshadow.yaml                  # ドロップシャドウ
+│   │   ├── corner-style.yaml                # コーナースタイル
+│   │   └── easing.yaml                      # イージング
 │   ├── _ui/                               # UIコンポーネント用ディレクトリ
-│   │   ├── components/                    # コンポーネント要素テンプレートHTML
-│   │   ├── head/                          # head要素テンプレートHTML
-│   │   ├── layouts/                       # レイアウト要素テンプレートHTML
-│   │   └── ui.html                        # UIデザイン用サンプルHTMLファイル
+│   │   ├── components/                      # コンポーネント要素テンプレートHTML
+│   │   ├── head/                            # head要素テンプレートHTML
+│   │   ├── layouts/                         # レイアウト要素テンプレートHTML
+│   │   └── ui.html                          # UIデザイン用サンプルHTMLファイル
 │   ├── next/                              # Next.jsプロジェクトルートディレクトリ
 │   ├── nuxt/                              # Nuxt.jsプロジェクトルートディレクトリ
 │   ├── astro/                             # Astroプロジェクトルートディレクトリ
@@ -43,13 +51,13 @@
 │   ├── docker-compose.yml                 # Docker Composeファイル
 │   ├── .env                               # Docker環境変数
 │   └── Makefile                           # Makeコマンドファイル
-├── SPECIFICATIONS/                      # プロジェクト仕様書
+├── SPECIFICATIONS/                      # 仕様書
 │   ├── ENV_OVERVIEW.md                    # 開発環境概要
 │   ├── ENV_PROCEDURES.md                  # 開発環境構築手順
 │   ├── DEV_BACKEND.md                     # バックエンド実装
 │   ├── DESIGN_TOKENS.md                   # デザイントークン仕様書
 │   └── DESIGN_UI.md                       # UIデザイン仕様書
-├── README.md                            # 開発環境説明
+├── README.md                            # 概要説明
 ├── .gitignore                           # Git設定
 └── .cursorrules                         # Cursor設定
 ```

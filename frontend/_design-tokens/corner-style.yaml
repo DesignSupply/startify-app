@@ -1,0 +1,20 @@
+token-name: corner-style
+token-value:
+  round:
+    shape:
+      square: 0
+      pill: "99em"
+      circle: "50%"
+    radius:
+      5s: { px: 4, rem: 0.25 }
+      4s: { px: 8, rem: 0.5 }
+      3s: { px: 10, rem: 0.625 }
+      2s: { px: 12, rem: 0.75 }
+      s: { px: 14, rem: 0.875 }
+      r: { px: 16, rem: 1 }
+      m: { px: 18, rem: 1.125 }
+      l: { px: 20, rem: 1.25 }
+      2l: { px: 24, rem: 1.5 }
+      3l: { px: 28, rem: 1.75 }
+      4l: { px: 32, rem: 2 }
+      5l: { px: 48, rem: 3 }

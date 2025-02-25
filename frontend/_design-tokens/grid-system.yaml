@@ -1,0 +1,32 @@
+token-name: grid-system
+token-value:
+  container:
+    type:
+      - fixed
+      - fluid
+    max-width:
+      default: { px: 1280, rem: 80 }
+      small: { px: 992, rem: 62 }
+      large: { px: 1440, rem: 90 }
+    gutter:
+      default: { px: 24, rem: 1.5 }
+      small: { px: 16, rem: 1 }
+      extra-small: { px: 12, rem: 0.75 }
+  row:
+    type: 
+      - evenly
+      - units
+  column:
+    units:
+      unit01: "8.3333%"
+      unit02: "16.6666%"
+      unit03: "25%"
+      unit04: "33.3333%"
+      unit05: "41.6666%"
+      unit06: "50%"
+      unit07: "58.3333%"
+      unit08: "66.6666%"
+      unit09: "75%"
+      unit10: "83.3333%"
+      unit11: "91.6666%"
+      unit12: "100%"
