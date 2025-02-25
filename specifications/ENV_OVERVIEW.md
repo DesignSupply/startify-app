@@ -30,6 +30,7 @@
 │   │   ├── head/                            # head要素テンプレートHTML
 │   │   ├── layouts/                         # レイアウト要素テンプレートHTML
 │   │   └── ui.html                          # UIデザイン用サンプルHTMLファイル
+│   ├── _projects/                         # 静的コーディングプロジェクト用ディレクトリ
 │   ├── next/                              # Next.jsプロジェクトルートディレクトリ
 │   ├── nuxt/                              # Nuxt.jsプロジェクトルートディレクトリ
 │   ├── astro/                             # Astroプロジェクトルートディレクトリ
