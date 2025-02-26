@@ -84,6 +84,7 @@
 | signup-pending | 新規ユーザー登録・確認メール送信完了 | 新規ユーザー登録時の確認用メールの送信完了画面 |
 | signup-register | 新規ユーザー登録・ユーザー情報入力 | 新規ユーザー登録時のユーザー情報入力フォーム画面 |
 | signup-complete | 新規ユーザー登録完了 | 新規ユーザーの登録完了画面 |
+| profile | ユーザープロフィール | ユーザー情報の表示画面 |
 
 開発するアプリケーションで扱うメールの一覧を以下に示す
 
@@ -121,6 +122,8 @@ flowchart TD
     signup-pending -.-> |send-mail| mail-signup(新規ユーザー登録メール)
     mail-signup -- token --> signup-register[新規ユーザー登録・ユーザー情報入力]
     signup-register --> signup-complete[新規ユーザー登録完了]
+    home --> profile[ユーザープロフィール]
+    profile --> home
 ```
 
 ---

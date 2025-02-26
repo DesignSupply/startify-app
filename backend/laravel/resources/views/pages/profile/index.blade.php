@@ -26,6 +26,7 @@
                 <th>名前</th>
                 <td>{{ $user->name }}</td>
             </tr>
+
             @if ($isOwn)
                 <tr>
                     <th>メールアドレス</th>
@@ -40,6 +41,7 @@
                     <td>{{ $user->updated_at->format('Y年m月d日') }}（{{ $user->updated_at->isoFormat('ddd') }}）{{ $user->updated_at->format('H:i') }}</td>
                 </tr>
             @endif
+
         </tbody>
     </table>
     <a href="{{ route('home') }}" class="btn">ホームに戻る</a>
