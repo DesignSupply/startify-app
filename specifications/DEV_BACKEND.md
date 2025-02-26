@@ -252,11 +252,17 @@ make laravel-config-clear
   - パス: `backend/laravel/database/seeders/UserSeeder.php`
   - クラス: `UserSeeder`
 - テストユーザー
-  - 名前: `テスト 太郎`
-  - メールアドレス: `test@example.com`
-  - パスワード: `password`
+  - 1
+    - 名前: `テスト 太郎`
+    - メールアドレス: `test@example.com`
+    - パスワード: `password`
+  - 2
+    - 名前: `テスト 花子`
+    - メールアドレス: `sample@example.com`
+    - パスワード: `qwerty`
 - 機能仕様
   - シーダーは、`backend/laravel/database/seeders/DatabaseSeeder.php` のメソッドを使用し、一括で実行できるようにします
+  - テストユーザーは複数のユーザーをバルクインサートします
 
 ---
 
