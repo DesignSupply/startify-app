@@ -21,7 +21,7 @@
         @enderror
     @endforeach
 
-    <form method="POST" action="{{ route('signup.register.post') }}">
+    <form method="POST" action="{{ route('signup.register.store') }}">
 
         @csrf
 

@@ -23,7 +23,7 @@
         <p style="color: red;">{{ $message }}</p>
     @enderror
 
-    <form method="POST" action="{{ route('admin.password-forgot.post') }}">
+    <form method="POST" action="{{ route('admin.password-forgot.request') }}">
 
         @csrf
 

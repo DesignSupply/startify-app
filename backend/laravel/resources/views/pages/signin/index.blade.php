@@ -27,7 +27,7 @@
         </div>
     @endif
 
-    <form method="POST" action="{{ route('signin.post') }}">
+    <form method="POST" action="{{ route('signin.auth') }}">
 
         @csrf
 

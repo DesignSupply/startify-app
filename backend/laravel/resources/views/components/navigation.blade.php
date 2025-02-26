@@ -17,7 +17,7 @@
     )
         @if (Auth::check())
             <a href="{{ route('home') }}">ホーム</a>
-            <form method="POST" action="{{ route('signout.post') }}" style="display: inline;">
+            <form method="POST" action="{{ route('signout') }}" style="display: inline;">
                 @csrf
                 <button type="submit">ログアウト</button>
             </form>
@@ -33,7 +33,7 @@
     )
         @if (Auth::guard('admin')->check())
             <a href="{{ route('admin.dashboard') }}">管理者ダッシュボード</a>
-            <form method="POST" action="{{ route('admin.signout.post') }}" style="display: inline;">
+            <form method="POST" action="{{ route('admin.signout') }}" style="display: inline;">
                 @csrf
                 <button type="submit">管理者ログアウト</button>
             </form>

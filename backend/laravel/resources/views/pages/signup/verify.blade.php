@@ -19,7 +19,7 @@
         <p style="color: red;">{{ $message }}</p>
     @enderror
 
-    <form method="POST" action="{{ route('signup.post') }}">
+    <form method="POST" action="{{ route('signup.request') }}">
 
         @csrf
 

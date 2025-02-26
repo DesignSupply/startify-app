@@ -9,25 +9,25 @@ Route::namespace('App\Http\Controllers')->group(function () {
 
     // ログイン
     Route::get('/signin', 'SignInController@index')->name('signin');
-    Route::post('/signin', 'SignInController@signIn')->name('signin.post');
+    Route::post('/signin/auth', 'SignInController@signIn')->name('signin.auth');
 
     // 未認証ルーティング
     Route::middleware('guest')->group(function () {
 
         // パスワードリセット（メールアドレス確認）
         Route::get('/password-forgot', 'PasswordForgotController@index')->name('password-forgot');
-        Route::post('/password-forgot', 'PasswordForgotController@sendMail')->name('password-forgot.post');
+        Route::post('/password-forgot/request', 'PasswordForgotController@sendMail')->name('password-forgot.request');
 
         // パスワードリセット（パスワード再設定）
         Route::get('/password-reset/{token}', 'PasswordResetController@index')->name('password-reset');
-        Route::post('/password-reset', 'PasswordResetController@reset')->name('password-reset.post');
+        Route::post('/password-reset/reset', 'PasswordResetController@reset')->name('password-reset.reset');
 
         // 新規ユーザー登録
         Route::prefix('signup')->group(function () {
 
             // メールアドレス確認
             Route::get('/', 'SignUpController@index')->name('signup');
-            Route::post('/', 'SignUpController@verifyEmail')->name('signup.post');
+            Route::post('/request', 'SignUpController@verifyEmail')->name('signup.request');
 
             // メール送信完了・確認待ち
             Route::get('/pending', 'SignUpController@pending')->name('signup.pending');
@@ -37,7 +37,7 @@ Route::namespace('App\Http\Controllers')->group(function () {
 
             // 新規登録フォーム
             Route::get('/register', 'SignUpController@form')->name('signup.register');
-            Route::post('/register', 'SignUpController@register')->name('signup.register.post');
+            Route::post('/register/store', 'SignUpController@register')->name('signup.register.store');
 
             // 新規登録完了
             Route::get('/complete', 'SignUpController@complete')->name('signup.complete');
@@ -52,7 +52,7 @@ Route::namespace('App\Http\Controllers')->group(function () {
         Route::get('/home', 'HomeController@index')->name('home');
 
         // ログアウト
-        Route::post('/signout', 'SignOutController@signOut')->name('signout.post');
+        Route::post('/signout', 'SignOutController@signOut')->name('signout');
 
     });
 
@@ -61,15 +61,15 @@ Route::namespace('App\Http\Controllers')->group(function () {
 
         // 管理者ログインページ
         Route::get('/', 'AdminController@index')->name('admin');
-        Route::post('/', 'AdminController@signIn')->name('admin.signin.post');
+        Route::post('/signin', 'AdminController@signIn')->name('admin.signin');
 
         // 管理者パスワードリセット（メールアドレス確認）
         Route::get('/password-forgot', 'AdminPasswordForgotController@index')->name('admin.password-forgot');
-        Route::post('/password-forgot', 'AdminPasswordForgotController@sendMail')->name('admin.password-forgot.post');
+        Route::post('/password-forgot/request', 'AdminPasswordForgotController@sendMail')->name('admin.password-forgot.request');
 
         // 管理者パスワードリセット（パスワード再設定）
         Route::get('/password-reset/{token}', 'AdminPasswordResetController@index')->name('admin.password-reset');
-        Route::post('/password-reset', 'AdminPasswordResetController@reset')->name('admin.password-reset.post');
+        Route::post('/password-reset/reset', 'AdminPasswordResetController@reset')->name('admin.password-reset.reset');
 
     });
 
@@ -81,7 +81,7 @@ Route::namespace('App\Http\Controllers')->group(function () {
             Route::get('/dashboard', 'DashboardController@index')->name('admin.dashboard');
 
             // 管理者ログアウト
-            Route::post('/signout', 'AdminController@signOut')->name('admin.signout.post');
+            Route::post('/signout', 'AdminController@signOut')->name('admin.signout');
 
         });
     });

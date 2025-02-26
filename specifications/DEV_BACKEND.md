@@ -191,9 +191,9 @@ make laravel-config-clear
   - メソッド: `GET`
   - ルート名: `signin`
 - ルーティング（ログイン処理）
-  - パス: `/signin`
+  - パス: `/signin/auth`
   - メソッド: `POST`
-  - ルート名: `signin.post`
+  - ルート名: `signin.auth`
 
 ### 4.3. ログイン画面のコントローラーを作成
 
@@ -235,7 +235,7 @@ make laravel-config-clear
 - ルーティング
   - パス: `/signout`
   - メソッド: `POST`
-  - ルート名: `signout.post`
+  - ルート名: `signout`
 - コントローラー
   - クラス: `SignoutController`
   - メソッド: `signOut`
@@ -310,9 +310,9 @@ make laravel-config-clear
   - メソッド: `GET`
   - ルート名: `admin`
 - ルーティング（管理者ログイン処理）
-  - パス: `/admin`
+  - パス: `/admin/signin`
   - メソッド: `POST`
-  - ルート名: `admin.signin.post`
+  - ルート名: `admin.signin`
 
 ### 5.5 管理者ログイン画面のコントローラーを作成
 
@@ -354,7 +354,7 @@ make laravel-config-clear
 - ルーティング
   - パス: `/admin/signout`
   - メソッド: `POST`
-  - ルート名: `admin.signout.post`
+  - ルート名: `admin.signout`
 - コントローラー
   - クラス: `AdminController`
   - メソッド: `signOut`
@@ -446,34 +446,34 @@ make laravel-config-clear
     - メソッド: `GET`
     - ルート名: `password-forgot`
   - メールアドレス確認（フォーム送信）
-    - パス: `/password-forgot`
+    - パス: `/password-forgot/request`
     - メソッド: `POST`
-    - ルート名: `password-forgot.post`
+    - ルート名: `password-forgot.request`
   - パスワード再設定（画面表示）
-    - パス: `/password-reset`
+    - パス: `/password-reset/{token}`
     - メソッド: `GET`
     - ルート名: `password-reset`
   - パスワード再設定（フォーム送信）
-    - パス: `/password-reset`
+    - パス: `/password-reset/reset`
     - メソッド: `POST`
-    - ルート名: `password-reset.post`
+    - ルート名: `password-reset.reset`
 - ルーティング（管理者ユーザー）
   - メールアドレス確認（画面表示）
     - パス: `/admin/password-forgot`
     - メソッド: `GET`
     - ルート名: `admin.password-forgot`
   - メールアドレス確認（フォーム送信）
-    - パス: `/admin/password-forgot`
+    - パス: `/admin/password-forgot/request`
     - メソッド: `POST`
-    - ルート名: `admin.password-forgot.post`
+    - ルート名: `admin.password-forgot.request`
   - パスワード再設定（画面表示）
-    - パス: `/admin/password-reset`
+    - パス: `/admin/password-reset/{token}`
     - メソッド: `GET`
     - ルート名: `admin.password-reset`
   - パスワード再設定（フォーム送信）
-    - パス: `/admin/password-reset`
+    - パス: `/admin/password-reset/reset`
     - メソッド: `POST`
-    - ルート名: `admin.password-reset.post`
+    - ルート名: `admin.password-reset.reset`
 
 ### 6.6 パスワードリセット（一般ユーザー、管理者ユーザー）用の通知クラスを作成
 
@@ -560,9 +560,9 @@ make laravel-config-clear
     - メソッド: `GET`
     - ルート名: `signup`
   - メールアドレス確認（フォーム送信）
-    - パス: `/signup`
+    - パス: `/signup/request`
     - メソッド: `POST`
-    - ルート名: `signup.post`
+    - ルート名: `signup.request`
   - メール送信完了・確認待ち（画面表示）
     - パス: `/signup/pending`
     - メソッド: `GET`
@@ -576,9 +576,9 @@ make laravel-config-clear
     - メソッド: `GET`
     - ルート名: `signup.register`
   - 新規登録フォーム（フォーム送信）
-    - パス: `/signup/register`
+    - パス: `/signup/register/store`
     - メソッド: `POST`
-    - ルート名: `signup.register.post`
+    - ルート名: `signup.register.store`
   - 登録完了（画面表示）
     - パス: `/signup/complete`
     - メソッド: `GET`

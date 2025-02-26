@@ -19,7 +19,7 @@
         <p style="color: red;">{{ $message }}</p>
     @enderror
 
-    <form method="POST" action="{{ route('password-reset.post') }}">
+    <form method="POST" action="{{ route('password-reset.reset') }}">
 
         @csrf
 
