@@ -21,6 +21,7 @@
 
     @auth
         <p>こんにちは、{{ $user->name }} さん</p>
+        <a href="{{ route('profile', $user->id) }}">プロフィール</a>
     @endauth
 
     <form method="POST" action="{{ route('signout') }}">

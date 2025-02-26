@@ -51,6 +51,10 @@ Route::namespace('App\Http\Controllers')->group(function () {
         // ホーム
         Route::get('/home', 'HomeController@index')->name('home');
 
+        // ユーザープロフィール
+        Route::get('/profile', 'ProfileController@redirect')->name('profile.redirect');
+        Route::get('/profile/{id}', 'ProfileController@index')->name('profile');
+
         // ログアウト
         Route::post('/signout', 'SignOutController@signOut')->name('signout');
 
