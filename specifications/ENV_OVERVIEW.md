@@ -10,6 +10,7 @@
 /                                      # 開発環境ルート
 ├── backend/                             # バックエンド（appコンテナの/var/www/htmlマウントポイント）
 │   ├── _webroot/                          # 開発環境ローカルサーバードキュメントルート（webコンテナのドキュメントルート）
+│   │   ├── preview                          # プレビューテスト用ディレクトリ
 │   │   ├── testing-app.php                  # PHP情報表示用ファイル
 │   │   ├── testing-smtp.php                 # メール送信テスト用ファイル
 │   │   ├── index.php                        # バックエンドアプリケーションエントリーポイントファイル
@@ -29,8 +30,7 @@
 │   │   ├── components/                      # コンポーネント要素テンプレートHTML
 │   │   ├── head/                            # head要素テンプレートHTML
 │   │   ├── layouts/                         # レイアウト要素テンプレートHTML
-│   │   └── ui.html                          # UIデザイン用サンプルHTMLファイル
-│   ├── _projects/                         # 静的コーディングプロジェクト用ディレクトリ
+│   │   └── page.html                          # UIデザイン用サンプルHTMLファイル
 │   ├── next/                              # Next.jsプロジェクトルートディレクトリ
 │   ├── nuxt/                              # Nuxt.jsプロジェクトルートディレクトリ
 │   ├── astro/                             # Astroプロジェクトルートディレクトリ
