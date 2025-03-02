@@ -4,21 +4,21 @@
 
 ## ディレクトリ構成
 
-開発環境は以下のファイル・ディレクトリ構造にしたがって実装を進めていくものとする
+開発環境は以下のファイル・ディレクトリ構造にしたがって実装を進めていくものとする。
 
 ```
 /                                      # 開発環境ルート
 ├── backend/                             # バックエンド（appコンテナの/var/www/htmlマウントポイント）
 │   ├── _webroot/                          # 開発環境ローカルサーバードキュメントルート（webコンテナのドキュメントルート）
-│   │   ├── preview                          # プレビューテスト用ディレクトリ
-│   │   ├── testing-app.php                  # PHP情報表示用ファイル
-│   │   ├── testing-smtp.php                 # メール送信テスト用ファイル
+│   │   ├── preview                          # プレビューテストディレクトリ
+│   │   ├── testing-app.php                  # PHP情報表示確認用ファイル
+│   │   ├── testing-smtp.php                 # メール送受信テスト用ファイル
 │   │   ├── index.php                        # バックエンドアプリケーションエントリーポイントファイル
-│   │   └── storage                          # バックエンドファイルストレージ用シンボリックリンク
-│   ├── laravel/                           # Laravelルートディレクトリ
-│   └── wordpress/                         # WordPressルートディレクトリ
+│   │   └── storage                          # バックエンドファイルストレージシンボリックリンク
+│   ├── laravel/                           # Laravelプロジェクトルート
+│   └── wordpress/                         # WordPressプロジェクトルート
 ├── frontend/                            # フロントエンド
-│   ├── _design-tokens/                    # UIデザイン用デザイントークン
+│   ├── _design-tokens/                    # デザイントークン
 │   │   ├── color-scheme.yaml                # 配色用
 │   │   ├── size-scale.yaml                  # サイズ指定
 │   │   ├── typography.yaml                  # タイポグラフィ
@@ -26,38 +26,37 @@
 │   │   ├── dropshadow.yaml                  # ドロップシャドウ
 │   │   ├── corner-style.yaml                # コーナースタイル
 │   │   └── easing.yaml                      # イージング
-│   ├── _ui/                               # UIコンポーネント用ディレクトリ
-│   │   ├── components/                      # コンポーネント要素テンプレートHTML
-│   │   ├── head/                            # head要素テンプレートHTML
-│   │   ├── layouts/                         # レイアウト要素テンプレートHTML
-│   │   └── page.html                          # UIデザイン用サンプルHTMLファイル
-│   ├── next/                              # Next.jsプロジェクトルートディレクトリ
-│   ├── nuxt/                              # Nuxt.jsプロジェクトルートディレクトリ
-│   ├── astro/                             # Astroプロジェクトルートディレクトリ
-│   ├── vite/                              # Viteプロジェクトルートディレクトリ
-│   └── react-native/                      # ReactNativeプロジェクトルートディレクトリ
+│   ├── _ui/                               # UIコンポーネントHTMLテンプレート
+│   │   ├── components/                      # コンポーネント要素テンプレート
+│   │   ├── head/                            # head要素テンプレート
+│   │   ├── layouts/                         # レイアウト要素テンプレート
+│   │   └── page.html                        # ページテンプレート
+│   ├── next/                              # Next.jsプロジェクトルート
+│   ├── nuxt/                              # Nuxt.jsプロジェクトルート
+│   ├── astro/                             # Astroプロジェクトルート
+│   ├── vite/                              # Viteプロジェクトルート
+│   └── react-native/                      # ReactNativeプロジェクトルート
 ├── server/                              # サーバー
 │   ├── docker/                            # Docker環境
 │   │   ├── mailpit/                         # メーラー
-│   │   │   └── Dockerfile                   # メーラー用Dockerfile
+│   │   │   └── Dockerfile                   # メーラーDockerfile
 │   │   ├── mysql/                           # データベース
-│   │   │   ├── Dockerfile                   # データベース用Dockerfile
-│   │   │   └── my.cnf                       # データベース用設定ファイル
+│   │   │   ├── Dockerfile                   # データベースDockerfile
+│   │   │   └── my.cnf                       # データベース設定ファイル
 │   │   ├── nginx/                           # ウェブサーバー
-│   │   │   ├── Dockerfile                   # ウェブサーバー用Dockerfile
-│   │   │   └── nginx.conf                   # ウェブサーバー用設定ファイル
+│   │   │   ├── Dockerfile                   # ウェブサーバーDockerfile
+│   │   │   └── nginx.conf                   # ウェブサーバー設定ファイル
 │   │   └── php/                             # プログラミング言語
-│   │       ├── Dockerfile                   # PHP用Dockerfile
-│   │       └── php.ini                      # PHP用設定ファイル
+│   │       ├── Dockerfile                   # PHPDockerfile
+│   │       └── php.ini                      # PHP設定ファイル
 │   ├── docker-compose.yml                 # Docker Composeファイル
 │   ├── .env                               # Docker環境変数
 │   └── Makefile                           # Makeコマンドファイル
 ├── SPECIFICATIONS/                      # 仕様書
 │   ├── ENV_OVERVIEW.md                    # 開発環境概要
 │   ├── ENV_PROCEDURES.md                  # 開発環境構築手順
-│   ├── DEV_BACKEND.md                     # バックエンド実装
-│   ├── DESIGN_TOKENS.md                   # デザイントークン仕様書
-│   └── DESIGN_UI.md                       # UIデザイン仕様書
+│   ├── DEV_BACKEND.md                     # バックエンド実装タスクリスト
+│   └── DEV_UI.md                          # UIデザインコーディング仕様書
 ├── README.md                            # 概要説明
 ├── .gitignore                           # Git設定
 └── .cursorrules                         # Cursor設定
@@ -67,7 +66,7 @@
 
 ## アプリケーション画面一覧
 
-開発するアプリケーションの画面一覧を以下に示す
+開発するアプリケーションの画面一覧を以下に示す。
 
 | ID | 画面名 | 画面説明 |
 | --- | --- | --- |
@@ -86,7 +85,7 @@
 | signup-complete | 新規ユーザー登録完了 | 新規ユーザーの登録完了画面 |
 | profile | ユーザープロフィール | ユーザー情報の表示画面 |
 
-開発するアプリケーションで扱うメールの一覧を以下に示す
+開発するアプリケーションで扱うメールテンプレートの一覧を以下に示す。
 
 | ID | メール名 | メール説明 |
 | --- | --- | --- |
@@ -97,7 +96,7 @@
 
 ## アプリケーション画面構成
 
-開発するアプリケーションの画面構成ならびに遷移を表した図を以下に示す
+開発するアプリケーションの画面構成ならびに遷移を表した図を以下に示す。
 
 ```mermaid
 flowchart TD
@@ -132,7 +131,7 @@ flowchart TD
 
 ### テーブル一覧
 
-開発するアプリケーションで使用するデータベースのテーブル一覧を以下に示す
+開発するアプリケーションで使用するデータベースのテーブル一覧を以下に示す。
 
 | ID | テーブル名 | テーブル説明 |
 | --- | --- | --- |
@@ -143,7 +142,7 @@ flowchart TD
 
 ### テーブル定義
 
-開発するアプリケーションで使用するデータベースのテーブル定義を以下に示す
+開発するアプリケーションで使用するデータベースのテーブル定義を以下に示す。
 
 ```mermaid
 erDiagram

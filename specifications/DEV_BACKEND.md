@@ -16,20 +16,21 @@
 
 ### 0.2 命名規則
 
-- マイグレーションのファイルパスは `backend/laravel/database/migrations/[YYYY_MM_DD_HHMMSS]_[操作種別]_[テーブル名]_table.php` とします
-- モデルのファイルパスは `backend/laravel/app/Models/[モデル名].php` とします
-- コントローラーのファイルパスは `backend/laravel/app/Http/Controllers/[コントローラー名].php` とします
-- シーダーのファイルパスは `backend/laravel/database/seeders/[シーダー名].php` とします
-- ビューのファイルパスは `backend/laravel/resources/views/[ディレクトリ名]/[ファイル名].blade.php` とし、ディレクトリ名は `components` と `layouts` と `pages` と `emails` の4つを用意し、用途に応じて格納するディレクトリを分けるようにします
-- モデルはアッパーケースで記載します
-- ビューファイルはケバブケースで記載します
-- ルーティングのパスはケバブケースで記載します
-- コントローラーはアッパーケースで記載します
-- シーダーはアッパーケースで記載します
-- マイグレーションファイルはスネークケースで記載します
-- クラスはアッパーケースで記載します
-- メソッドはキャメルケースで記載します
-- ルーティングのHTTPメソッドは、`GET` と `POST` に限定し、データ操作をできるようにルーティングやパスの命名規則で区別できるようにします
+- マイグレーションのファイルパスは `backend/laravel/database/migrations/[YYYY_MM_DD_HHMMSS]_[操作種別]_[テーブル名]_table.php` とします。
+- モデルのファイルパスは `backend/laravel/app/Models/[モデル名].php` とします。
+- コントローラーのファイルパスは `backend/laravel/app/Http/Controllers/[コントローラー名].php` とします。
+- シーダーのファイルパスは `backend/laravel/database/seeders/[シーダー名].php` とします。
+- ビューのファイルパスは `backend/laravel/resources/views/[ディレクトリ名]/[ファイル名].blade.php` とします。
+- ビューのファイルディレクトリ名は `components` と `layouts` と `pages` と `emails` の4つを用意し、用途に応じて格納するディレクトリを分けるようにします。
+- モデルはアッパーケースで記載します。
+- ビューファイルはケバブケースで記載します。
+- ルーティングのパスはケバブケースで記載します。
+- コントローラーはアッパーケースで記載します。
+- シーダーはアッパーケースで記載します。
+- マイグレーションファイルはスネークケースで記載します。
+- クラスはアッパーケースで記載します。
+- メソッドはキャメルケースで記載します。
+- ルーティングのHTTPメソッドは、`GET` と `POST` に限定し、データ操作をできるようにルーティングやパスの命名規則で区別できるようにします。
 
 ---
 
@@ -41,11 +42,11 @@
 
 下記のコンポーネントをBladeファイルで作成します。
 
-- 基本のレイアウトコンポーネントは `backend/laravel/resources/views/layouts/default.blade.php` とします
-- ヘッダーのコンポーネントは `backend/laravel/resources/views/components/header.blade.php` とします
-- フッターのコンポーネントは `backend/laravel/resources/views/components/footer.blade.php` とします
-- 共通メタタグのコンポーネントは `backend/laravel/resources/views/components/head.blade.php` とします
-- オフキャンバス要素のコンポーネントは `backend/laravel/resources/views/components/offcanvas.blade.php` とします
+- 基本のレイアウトコンポーネントは `backend/laravel/resources/views/layouts/default.blade.php` とします。
+- ヘッダーのコンポーネントは `backend/laravel/resources/views/components/header.blade.php` とします。
+- フッターのコンポーネントは `backend/laravel/resources/views/components/footer.blade.php` とします。
+- 共通メタタグのコンポーネントは `backend/laravel/resources/views/components/head.blade.php` とします。
+- オフキャンバス要素のコンポーネントは `backend/laravel/resources/views/components/offcanvas.blade.php` とします。
 
 共通パーツはレイアウトコンポーネントで読み込み、ページコンポーネントでは読み込まないようにします。
 
