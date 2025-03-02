@@ -9,3 +9,11 @@
 <meta name="description" content="{{ SITE_DESCRIPTION }}">
 <link rel="canonical" href="{{ SITE_URL }}">
 <title>{{ SITE_TITLE }}</title>
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "{{ SITE_TITLE }}",
+    "itemListElement": {{ LD_JSON_LIST }}
+  }
+</script>
