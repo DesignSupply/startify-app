@@ -1,21 +1,12 @@
-# 環境構築手順
-
+---
+title: 環境構築手順
+version: 1.0.0
+last_updated: 2025-03-03
+purpose: AI支援による開発環境構築のための仕様書
+target_readers: ウェブエンジニア（バックエンド、フロントエンド）、UIデザイナー
 ---
 
-## 0. Cursor Composerの準備
-
-### 0.1. .cursorrulesファイルの作成
-
-下記の場所にファイルを作成します
-
-- `/server/.cursorrules`
-
-### 0.2. プロジェクト仕様書の作成
-
-下記の場所にファイルを作成します
-
-- `/specifications/ENV_OVERVIEW.md`
-- `/specifications/ENV_PROCEDURES.md`
+# 環境構築手順
 
 ---
 
@@ -26,6 +17,24 @@
 下記の場所にファイルを作成します、`COMPOSE_PROJECT_NAME` とアプリケーション名、データベース接続情報と、CMSのログイン情報を環境変数として設定します。
 
 - `/server/.env`
+
+```env
+# Docker用環境変数ファイルのテンプレート例
+COMPOSE_PROJECT_NAME=startify-app
+
+APP_NAME=startify-app
+
+DB_HOST=localhost
+DB_PORT=3306
+DB_DATABASE=master
+DB_USERNAME=admin
+DB_PASSWORD=secret
+
+CMS_DATABASE=cms
+CMS_USERNAME=admin
+CMS_PASSWORD=password
+CMS_EMAIL=admin@example.com
+```
 
 ### 1.2. 各種イメージ用Dcokerfileの作成
 
@@ -70,10 +79,20 @@ make up
 
 Dockerコンテナー起動後、以下の方法で動作確認を行います。
 
-- 環境変数で設定した情報でローカル環境のデータベースに接続できることを確認します。
-- `/backend/_webroot/testing-app.php` を作成、`php_info()` 関数を使用し `http://localhost/testing-app.php` にアクセスして、PHPの情報が表示されることを確認します。
-- `/backend/_webroot/testing-smtp.php` を作成、`mail()` 関数を使用しメール送信のテスト処理を作成し `http://localhost/testing-smtp.php` にアクセスして、メール送信テスト用ファイルを使用して送信されることを確認します。
-- `http://localhost:8025/` にアクセスして、MailpitのWebメール画面が表示、ならびに送信されたテストメールの受信ができていることを確認します。
+- ローカル環境データベース接続
+  - 期待される結果: 
+    - 環境変数で設定した情報でローカル環境のデータベースに接続できる。
+- PHP詳細情報の表示
+  - 必要なタスク: 
+    - `php_info()` 関数を実装した、 `/backend/_webroot/testing-app.php` ファイルを作成する。
+  - 期待される結果: 
+    - `http://localhost/testing-app.php` にアクセスして、PHPの情報が表示される。
+- ローカル環境でのメール送受信
+  - 必要なタスク: 
+    - `mail()` 関数を使用しメール送信のテスト処理を実装した、`/backend/_webroot/testing-smtp.php` ファイルを作成する。
+  - 期待される結果: 
+    - `http://localhost/testing-smtp.php` にアクセスして、メール送信テスト用ファイルを使用して送信されている。
+    - `http://localhost:8025/` にアクセスして、MailpitのWebメール画面が表示され、送信されたテストメールの受信ができている。
 
 ---
 

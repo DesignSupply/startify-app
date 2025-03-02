@@ -1,0 +1,213 @@
+---
+title: バックエンド実装ルール（Laravel）
+version: 1.0.0
+last_updated: 2025-03-03
+purpose: AI支援による開発環境構築のための仕様書
+target_readers: ウェブエンジニア（バックエンド、フロントエンド）、UIデザイナー
+---
+
+# バックエンド実装ルール（Laravel）
+
+---
+
+## 1 実装手順
+
+各種機能の実装において下記の順番で進めていくことを基本とします。実装する上で不要な手順は省略します。
+
+1. マイグレーションファイルの作成
+2. モデルの作成
+3. ビューの作成
+4. ルーティングの作成
+5. コントローラー、その他処理クラスの作成
+6. シーダーの作成
+7. テストの作成・実施
+
+---
+
+## 2 命名規則
+
+- マイグレーションのファイルパスは `backend/laravel/database/migrations/[YYYY_MM_DD_HHMMSS]_[操作種別]_[テーブル名]_table.php` とします。
+- モデルのファイルパスは `backend/laravel/app/Models/[モデル名].php` とします。
+- コントローラーのファイルパスは `backend/laravel/app/Http/Controllers/[コントローラー名].php` とします。
+- シーダーのファイルパスは `backend/laravel/database/seeders/[シーダー名].php` とします。
+- ビューのファイルパスは `backend/laravel/resources/views/[ディレクトリ名]/[ファイル名].blade.php` とします。
+- ビューのファイルディレクトリ名は `components` と `layouts` と `pages` と `emails` の4つを用意し、用途に応じて格納するディレクトリを分けるようにします。
+- モデルはアッパーケースで記載します。
+- ビューファイルはケバブケースで記載します。
+- ルーティングのパスはケバブケースで記載します。
+- コントローラーはアッパーケースで記載します。
+- シーダーはアッパーケースで記載します。
+- マイグレーションファイルはスネークケースで記載します。
+- クラスはアッパーケースで記載します。
+- メソッドはキャメルケースで記載します。
+- ルーティングのHTTPメソッドは、`GET` と `POST` に限定し、データ操作をできるようにルーティングやパスの命名規則で区別できるようにします。
+
+### 2.1 命名規則の具体例
+
+| 種類 | 命名規則 | 例 |
+| --- | --- | --- |
+| モデル | アッパーケース | `User.php` |
+| コントローラー | アッパーケース + Controller | `UserController.php` |
+| ビューファイル | ケバブケース | `user-profile.blade.php` |
+| ルーティング | ケバブケース | `user-settings` |
+
+---
+
+## 3 HTTPメソッド・ルーティングの規則規則
+
+### 3.1 ルーティング規則例
+
+| 操作 | HTTPメソッド | URLパターン | アクション名 |
+| --- | --- | --- | --- |
+| 一覧表示 | GET | `/users` | index |
+| 詳細表示 | GET | `/users/{id}` | show |
+| 作成画面 | GET | `/users/create` | create |
+| 作成処理 | POST | `/users/store` | store |
+| 編集画面 | GET | `/users/{id}/edit` | edit |
+| 更新処理 | POST | `/users/{id}/update` | update |
+| 削除処理 | POST | `/users/{id}/delete` | destroy |
+
+---
+
+## 4. 標準ディレクトリ構造
+
+```
+/backend/laravel/
+├── app/
+│   ├── Models/                            # モデルクラス
+│   ├── Http/
+│   │   ├── Controllers                    # コントローラークラス
+│   │   ├── ...
+│   ├── Services/                          # ビジネスロジック
+│   ├── ...
+├── resources/
+│   ├── views/
+│   │   ├── components                     # コンポーネント
+│   │   ├── layouts                        # レイアウトテンプレート
+│   │   ├── pages                          # ページテンプレート
+│   │   └── emails                         # メールテンプレート
+│   ├── ...
+```
+
+---
+
+## 5. 標準実装パターン
+
+### 5.1 モデル
+
+```php
+class User extends Model
+{
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+}
+```
+
+### 5.2 コントローラー
+
+```php
+class UserController extends Controller
+{
+    public function index()
+    {
+        // 実装例
+    }
+}
+```
+
+### 5.1 ビュー
+
+全体レイアウト、ヘッダーやフッターなどの共通部分をレイアウトコンポーネントとして扱う。
+アプリケーションのデフォルトで用意されているBladeファイルは不要のため削除してから作業を進める。
+
+#### 5.1.1 レイアウト・コンポーネント
+
+- 基本のレイアウトコンポーネントは `backend/laravel/resources/views/layouts/default.blade.php` とします。
+- ヘッダーのコンポーネントは `backend/laravel/resources/views/components/header.blade.php` とします。
+- フッターのコンポーネントは `backend/laravel/resources/views/components/footer.blade.php` とします。
+- 共通メタタグのコンポーネントは `backend/laravel/resources/views/components/head.blade.php` とします。
+- オフキャンバス要素のコンポーネントは `backend/laravel/resources/views/components/offcanvas.blade.php` とします。
+
+**共通パーツはレイアウトコンポーネントで読み込み、ページコンポーネントでは読み込まないようにします。**
+
+```html
+<!-- backend/laravel/resources/views/layouts/default.blade.php -->
+<!DOCTYPE html>
+<html>
+    <head>
+        @include('components.head')
+        @yield('meta')
+        @yield('style')
+        @yield('script_head')
+    </head>
+    <body>
+        <noscript>※当ウェブサイトを快適に閲覧して頂くためjavascriptを有効にしてください</noscript>
+        <div class="app-layout">
+            @include('components.header')
+            @yield('content')
+            @include('components.footer')
+        </div>
+        @include('components.offcanvas')
+        @yield('script_body')
+    </body>
+</html>
+```
+
+**ページコンポーネントは下記の形を基本とし、ページ単位でのメタ設定やページ固有のスクリプト、スタイルが使えるようにします。**
+
+```php
+// backend/laravel/resources/views/pages/PAGENAME.blade.php
+@extends('layouts.default')
+
+@section('meta')
+@endsection
+
+@section('style')
+@endsection
+
+@section('script_head')
+@endsection
+
+@section('content')
+@endsection
+
+@section('script_body')
+@endsection
+```
+
+---
+
+## 6. コード品質基準
+
+- PSR-12コーディング規約に準拠
+- 複雑度（Cyclomatic Complexity）: 最大10
+- メソッド行数: 最大20行
+- クラス行数: 最大200行
+- コードカバレッジ: 最低80%
+
+---
+
+## 7. バリデーションルール
+
+| データ型 | 標準ルール | 例 |
+| --- | --- | --- |
+| メールアドレス | required\|email\|unique:users | `email@example.com` |
+| パスワード | required\|min:8\|regex:/^.*(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).*$/ | `Password123` |
+| 電話番号 | nullable\|regex:/^[0-9]{10,11}$/ | `09012345678` |
+
+---
+
+## 8. セキュリティガイドライン
+
+- すべてのユーザー入力はバリデーション必須
+- SQLインジェクション対策としてEloquentまたはクエリビルダーを使用
+- XSS対策として`{{ }}` エスケープ構文を使用
+- CSRFトークンを全POSTリクエストに付与

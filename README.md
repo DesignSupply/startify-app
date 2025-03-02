@@ -76,13 +76,14 @@ Cursor Composerを起動し、 `.cursorrules` ファイルを読み込みます�
 
 ##### 3.1 機能実装手順書の読み込み
 
-機能実装を進めるにあたって、まずは最初に、`/SPECIFICATIONS/DEV_BACKEND.md` ファイルなどの機能実装手順のドキュメントを読み込みます。下記のプロンプトを例に、指示を進めます。
+機能実装を進めるにあたって、まずは最初に、`/SPECIFICATIONS/DEV_BACKEND_RULES.md` や、`/SPECIFICATIONS/APP_OVERVIEW.md`ファイルなどの機能実装ルールやアプリケーション概要のドキュメントを読み込みます。下記のプロンプトを例に、指示を進めます。
 
 - Add Context
-  1. `/SPECIFICATIONS/DEV_BACKEND.md`
+  1. `/SPECIFICATIONS/DEV_BACKEND_RULES.md`
+  2. `/SPECIFICATIONS/APP_OVERVIEW.md`
 
 ```
-次に、機能実装の具体的な手順と、実装する機能の詳細が記載されたドキュメントを読み込み、これから実装するコードの参考とするために理解してください。この情報は、AIに指示を出す際のプロンプトの例です。指示をより正確に伝えるために、必要に応じて内容を確認し、理解を深めてください。
+次に、機能実装のルールと、実装するアプリケーションの概要が記載されたドキュメントを読み込み、これから実装するコードの参考とするために理解してください。この情報は、AIに指示を出す際のプロンプトの例です。指示をより正確に伝えるために、必要に応じて内容を確認し、理解を深めてください。
 ```
 
 ##### 3.2 実装する機能に必要なタスクの洗い出し
@@ -90,21 +91,23 @@ Cursor Composerを起動し、 `.cursorrules` ファイルを読み込みます�
 実装したい機能について、Cursor Composerにタスクを洗い出してもらいます。下記のプロンプトを例に指示を進めます。
 
 - Add Context
-  1. `/SPECIFICATIONS/DEV_BACKEND.md`
+  1. `/SPECIFICATIONS/DEV_BACKEND_RULES.md`
+  2. `/SPECIFICATIONS/APP_OVERVIEW.md`
 
 ```
 これから、＊＊＊＊＊の機能を実装します。まず、＊＊＊＊＊の機能を実装するために必要なタスクを洗い出してください。この情報は、AIに機能実装のコード生成を依頼する際のプロンプトの例です。タスクを明確にすることで、AIがより正確にコードを生成できるようにしてください。
 ```
 
-洗い出されたタスクを、`/SPECIFICATIONS/DEV_BACKEND.md` ファイルなどの機能実装手順のドキュメントに追記し、更新します。
+洗い出されたタスクを、`/SPECIFICATIONS/DEV_BACKEND_TASKS.md` ファイルなどの機能実装手順のドキュメントに追記し、更新します。
 
 ##### 3.3 コード生成
 
 タスクが追記され更新した機能実装手順のドキュメントを読み込み、Cursor Composerにコード生成を依頼します。下記のプロンプトを例に指示を進めます。タスクが複雑であったり多い場合には、タスクを分割して1つのタスクずつコードを生成することで進めやすくなります。
 
 - Add Context
-  1. `/SPECIFICATIONS/DEV_BACKEND.md`
-  2. その他生成するコードに関連するファイルなど
+  1. `/SPECIFICATIONS/DEV_BACKEND_RULES.md`
+  2. `/SPECIFICATIONS/DEV_BACKEND_TASKS.md`
+  3. その他生成するコードに関連するファイルなど
 
 ```
 提示されたタスクをドキュメントに追記しました、更新されたドキュメントを読み込み、機能実装を進めていきます。まず、＊＊＊＊＊の機能における＊＊＊＊＊のタスクに必要なコードを提示してください。このプロンプトは、AIに具体的なコード生成を依頼する際の例です。タスクを明確にすることで、AIがより正確にコードを生成できるようにしてください。
@@ -130,7 +133,7 @@ Cursor Composerを起動し、 `.cursorrules` ファイルを読み込みます�
 続いて、`/SPECIFICATIONS/` ディレクトリ配下にある各種ドキュメントを読み込みます。下記のプロンプトを例に、指示を進めます。
 
 - Add Context
-  1. `/SPECIFICATIONS/DEV_UI.md`
+  1. `/SPECIFICATIONS/APP_DESIGN.md`
   2. `/frontend/_design-tokens/color-scheme.yaml`
   3. `/frontend/_design-tokens/size-scale.yaml`
   4. `/frontend/_design-tokens/typography.yaml`
@@ -150,7 +153,7 @@ Cursor Composerを起動し、 `.cursorrules` ファイルを読み込みます�
 まずは、UIコンポーネントが配置されるエリアとなるベースレイアウトを作成します。下記のプロンプトを例に、指示を進めます。
 
 - Add Context
-  1. `/SPECIFICATIONS/DEV_UI.md`
+  1. `/SPECIFICATIONS/APP_DESIGN.md`
 
 ```
 これから、画面全体のレイアウトを作成します。ドキュメント内 `## 画面レイアウト` のセクションで定義されている指示に基づき、HTMLファイルを新規作成します。ドキュメントに記載されているコーディング方針のルールに沿って、まずは必要なコードを提示してください。このプロンプトは、AIに具体的なコード生成を依頼する際の例です。タスクを明確にすることで、AIがより正確にコードを生成できるようにしてください。
