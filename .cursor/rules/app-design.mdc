@@ -1,11 +1,8 @@
 ---
-title: アプリケーションデザインガイドライン
-version: 1.0.0
-last_updated: 2025-03-03
-purpose: AI支援による開発環境構築のための仕様書
-target_readers: ウェブエンジニア（バックエンド、フロントエンド）、UIデザイナー
+description: アプリケーションデザインガイドライン
+globs: frontend/_design-tokens/*.*, frontend/_ui/**/*.*
+alwaysApply: false
 ---
-
 # アプリケーションデザインガイドライン
 
 ---

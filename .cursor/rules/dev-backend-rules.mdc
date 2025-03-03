@@ -1,11 +1,8 @@
 ---
-title: バックエンド実装ルール（Laravel）
-version: 1.0.0
-last_updated: 2025-03-03
-purpose: AI支援による開発環境構築のための仕様書
-target_readers: ウェブエンジニア（バックエンド、フロントエンド）、UIデザイナー
+description: バックエンド実装ルール（Laravel）
+globs: backend/laravel/**/*.*
+alwaysApply: false
 ---
-
 # バックエンド実装ルール（Laravel）
 
 ---
