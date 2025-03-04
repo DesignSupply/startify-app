@@ -1,9 +1,13 @@
 ---
-description: 開発環境構築手順
-globs: server/**/*.*
-alwaysApply: false
+title: Docker開発環境構築手順
+id: docker_tasks
+version: 1.0.0
+last_updated: 2025-03-03
+purpose: AI支援による開発環境構築のための仕様書
+target_readers: ウェブエンジニア（バックエンド、フロントエンド）、UIデザイナー
 ---
-# 環境構築手順
+
+# Docker開発環境構築手順
 
 ---
 

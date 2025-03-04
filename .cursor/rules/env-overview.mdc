@@ -60,7 +60,6 @@ alwaysApply: false
 │   ├── .env                               # Docker環境変数
 │   └── Makefile                           # Makeコマンドファイル
 ├── specifications/                      # 仕様書・タスクリスト用ドキュメント
-│   └── DEV_BACKEND_TASKS.md               # バックエンド実装タスクリスト
 ├── .cursor/                             # Cursor設定ファイル
 │   └── rules/                             # Cursor Project Rules
 ├── README.md                            # 概要説明
@@ -72,12 +71,12 @@ alwaysApply: false
 
 1. `/backend/`
    - 用途: バックエンドアプリケーションのソースコード、およびwebコンテナードキュメントルート
-   - 主要フレームワーク
+   - プロジェクト
      - **Laravel**: ウェブアプリケーション
      - **WordPress**: CMS
 2. `/frontend/`
    - 用途: フロントエンドアプリケーションのソースコード、UIデザイン用コンポーネント、デザイントークン
-   - 主要フレームワーク
+   - プロジェクト
      - **Next.js**: フロントエンドアプリケーション
      - **Nuxt.js**: フロントエンドアプリケーション
      - **Astro**: 静的サイトジェネレーター
@@ -98,6 +97,8 @@ alwaysApply: false
      - **app**: プログラミング言語コンテナー / `PHP` イメージを使用
      - **db**: データベースサーバーコンテナー / `MariaDB` イメージを使用
      - **smtp**: SMTPサーバーコンテナー / `mailpit` イメージを使用
+4. `/specifications/`
+   - 用途: AI駆動開発用仕様書・タスクリスト
 
 ---
 

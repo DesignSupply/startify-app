@@ -16,25 +16,25 @@ alwaysApply: false
 
 1. カラースキーム
   - 用途: デザインテーマやアプリケーションのステータスを示す配色を定義
-  - ファイルパス: `frontend/_design-tokens/color-scheme.yaml`
+  - ファイルパス: [color-scheme.yaml](mdc:frontend/_design-tokens/color-scheme.yaml)
 2. サイズスケール
   - 用途: 要素の幅やサイズ、余白などのサイズを定義
-  - ファイルパス: `frontend/_design-tokens/size-scale.yaml`
+  - ファイルパス: [size-scale.yaml](mdc:frontend/_design-tokens/size-scale.yaml)
 3. タイポグラフィ
   - 用途: 書体や文字サイズ、ウエイトなどのフォントスタイルを定義
-  - ファイルパス: `frontend/_design-tokens/typography.yaml`
+  - ファイルパス: [typography.yaml](mdc:frontend/_design-tokens/typography.yaml)
 4. グリッドシステム
   - 用途: コンテンツ幅やグリッドレイアウトのグリッド数、余白などを定義
-  - ファイルパス: `frontend/_design-tokens/grid-system.yaml`
+  - ファイルパス: [grid-system.yaml](mdc:frontend/_design-tokens/grid-system.yaml)
 5. ドロップシャドウ
   - 用途: 要素のドロップシャドウの色やオフセットなどを定義
-  - ファイルパス: `frontend/_design-tokens/dropshadow.yaml`
+  - ファイルパス: [dropshadow.yaml](mdc:frontend/_design-tokens/dropshadow.yaml)
 6. コーナースタイル
   - 用途: 要素の角の丸みやコーナーの形状を定義
-  - ファイルパス: `frontend/_design-tokens/corner-style.yaml`
+  - ファイルパス: [corner-style.yaml](mdc:frontend/_design-tokens/corner-style.yaml)
 7. イージング
   - 用途: アニメーションのイージングを定義
-  - ファイルパス: `frontend/_design-tokens/easing.yaml`
+  - ファイルパス: [easing.yaml](mdc:frontend/_design-tokens/easing.yaml)
 
 ### 1.2. デザイントークン例
 
@@ -76,7 +76,7 @@ token-value:
 ### 2.1. テーマカラー
 
 テーマカラーはテーマにあわせて定義される配色で、デザイントークンとは別に定義されるものとし、ベースカラー、プライマリーカラー、セカンダリーカラー、アクセントカラーの4軸で配色を定義する。
-基本的には、`frontend/_design-tokens/theme-color.yaml` に定義されているカラースキームを使用することとする。
+基本的には、 [color-scheme.yaml](mdc:frontend/_design-tokens/color-scheme.yaml) に定義されているカラースキームを使用することとする。
 テーマカラーの指定がない場合、デフォルトではベースカラー、プライマリーカラー、セカンダリーカラー、アクセントカラーを以下のように定義する。
 
 - ベースカラー:
@@ -104,18 +104,18 @@ token-value:
 
 ## 3. 画面レイアウト
 
-新規作成する際の画面レイアウトは、`frontend/_ui/page.html` のHTML構造をベースに、下記のテンプレート用HTMLファイルの内容に沿って配置したものを基本とする。
+新規作成する際の画面レイアウトは、 [page.html](mdc:frontend/_ui/page.html) のHTML構造をベースに、下記のテンプレート用HTMLファイルの内容に沿って配置したものを基本とする。
 なお、以下のリストのネスト構造は、実際にコーディングを行うHTMLのネスト構造に対応するものとする。
 
 - head要素
-  - 共通メタ情報: `frontend/_ui/head/head.html`
-  - 画面固有メタ情報: `frontend/_ui/head/meta.html`
+  - 共通メタ情報: [head.html](mdc:frontend/_ui/head/head.html)
+  - 画面固有メタ情報: [meta.html](mdc:frontend/_ui/head/meta.html)
 - body要素
-  - レイアウトコンテナー: `frontend/_ui/layouts/layout.html`
-    - ヘッダーコンポーネント: `frontend/_ui/components/header.html`
-    - コンテンツコンポーネント: `frontend/_ui/components/main.html`
-    - フッターコンポーネント: `frontend/_ui/components/footer.html`
-  - オフキャンバスコンポーネント: `frontend/_ui/components/offcanvas.html`
+  - レイアウトコンテナー: [layout.html](mdc:frontend/_ui/layouts/layout.html)
+    - ヘッダーコンポーネント: [header.html](mdc:frontend/_ui/layouts/header.html)
+    - コンテンツコンポーネント: [main.html](mdc:frontend/_ui/layouts/main.html)
+    - フッターコンポーネント: [footer.html](mdc:frontend/_ui/layouts/footer.html)
+  - オフキャンバスコンポーネント: [offcanvas.html](mdc:frontend/_ui/layouts/offcanvas.html)
 
 上記で記載されている各種HTMLテンプレートファイルは、指示がない限りすべて使用するものとし、上記のHTML基本の画面レイアウトを構成するHTMLとする。
 
@@ -179,14 +179,14 @@ graph TD
 - HTMLのclass属性値は、ケバブケースで記載する。
 - テンプレート用HTMLファイルは、`frontend/_ui/layouts/` あるいは `frontend/_ui/components/` ディレクトリに配置され、コードの一貫性を保つため、例外を除き基本的にはこれらのHTMLファイルの中身をそのまま使用するようにします。
 - `frontend/_ui/layouts/` あるいは `frontend/_ui/components/` ディレクトリに配置されたHTMLファイルは、テンプレートとして使用される前提のフォーマットとなっており、`<!-- child components -->` というコメントが配置されている箇所に、子要素のとして別のテンプレート用HTMLファイルの中身が配置される想定とします。
-- `frontend/_ui/layouts/` と `frontend/_ui/components/` と `frontend/_ui/head/` ディレクトリに配置されたHTMLファイル、ならびにベースのHTMLである `frontend/_ui/page.html` については、**直接編集を加えずに記載されたHTMLの内容をコピーし、新規作成するHTMLファイル内に書き写していく**形でコーディングを進めていきます。
+- `frontend/_ui/layouts/` と `frontend/_ui/components/` と `frontend/_ui/head/` ディレクトリに配置されたHTMLファイル、ならびにベースのHTMLである [page.html](mdc:frontend/_ui/page.html) については、**直接編集を加えずに記載されたHTMLの内容をコピーし、新規作成するHTMLファイル内に書き写していく**形でコーディングを進めていきます。
 - `frontend/_ui/layouts/` および `frontend/_ui/components/` ディレクトリに配置されたHTMLファイルにおいて、あらかじめ設定されたclass名は削除、変更せずに残しておくものとする。
 - 新規作成するHTMLファイルは、`backend/_webroot/preview` ディレクトリ配下に配置します。
 
 #### 4.1.2. スタイルシートに関するルール
 
 - スタイルシートは別ファイルで管理せず、head要素内に、style要素を配置して管理し、1つのHTMLで完結させる形を基本とします。
-- スタイルリセット用のCSSは、 `frontend/_ui/layouts/head/head.html` のテンプレート内に用意されているものを使用します。
+- スタイルリセット用のCSSは、 [head.html](mdc:frontend/_ui/head/head.html) のテンプレート内に用意されているものを使用します。
 
 #### 4.1.3. レイアウトに関するルール
 

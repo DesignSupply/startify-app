@@ -127,11 +127,11 @@ class UserController extends Controller
 
 #### 5.1.1 レイアウト・コンポーネント
 
-- 基本のレイアウトコンポーネントは `backend/laravel/resources/views/layouts/default.blade.php` とします。
-- ヘッダーのコンポーネントは `backend/laravel/resources/views/components/header.blade.php` とします。
-- フッターのコンポーネントは `backend/laravel/resources/views/components/footer.blade.php` とします。
-- 共通メタタグのコンポーネントは `backend/laravel/resources/views/components/head.blade.php` とします。
-- オフキャンバス要素のコンポーネントは `backend/laravel/resources/views/components/offcanvas.blade.php` とします。
+- 基本のレイアウトコンポーネントは [default.blade.php](mdc:backend/laravel/resources/views/layouts/default.blade.php) とします。
+- ヘッダーのコンポーネントは [header.blade.php](mdc:backend/laravel/resources/views/components/header.blade.php) とします。
+- フッターのコンポーネントは [footer.blade.php](mdc:backend/laravel/resources/views/components/footer.blade.php) とします。
+- 共通メタタグのコンポーネントは [head.blade.php](mdc:backend/laravel/resources/views/components/head.blade.php) とします。
+- オフキャンバス要素のコンポーネントは [offcanvas.blade.php](mdc:backend/laravel/resources/views/components/offcanvas.blade.php) とします。
 
 **共通パーツはレイアウトコンポーネントで読み込み、ページコンポーネントでは読み込まないようにします。**
 

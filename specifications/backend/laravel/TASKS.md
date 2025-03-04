@@ -1,6 +1,6 @@
 ---
 title: バックエンド実装タスクリスト（Laravel）
-id: 1
+id: laravel_tasks
 version: 1.0.0
 last_updated: 2025-03-03
 purpose: AI支援による開発環境構築のための仕様書
