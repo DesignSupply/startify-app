@@ -13,7 +13,7 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 
 ## 1. API用ルーティングの追加
 
-API用ルーティングの追加を行い、`backend/laravel/app/bootstrap/app.php` を下記のように変更します。
+API用ルーティングの追加を行い、`/backend/laravel/app/bootstrap/app.php` を下記のように変更します。
 
 ```bash
 cd /server

@@ -18,7 +18,7 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 ユーザープロフィール画面のビューを作成します。
 
 - ビュー
-  - パス: `backend/laravel/resources/views/pages/profile/index.blade.php`
+  - パス: `/backend/laravel/resources/views/pages/profile/index.blade.php`
   - 機能仕様
     - 画面上にはユーザー名、メールアドレス、登録日、最終更新日が表組みで表示される
     - ログインユーザー自身以外のページでは、メールアドレス、登録日、最終更新日は出力しない
@@ -50,7 +50,7 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 
 - コントローラー
   - クラス: `ProfileController`
-  - パス: `backend/laravel/app/Http/Controllers/ProfileController.php`
+  - パス: `/backend/laravel/app/Http/Controllers/ProfileController.php`
   - メソッド: 
     - `index`
     - `redirect`

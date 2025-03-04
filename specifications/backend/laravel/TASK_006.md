@@ -18,10 +18,10 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 新規ユーザー登録画面のビューを作成します。
 
 - ビュー
-  - パス（メールアドレス確認）: `backend/laravel/resources/views/pages/signup/verify.blade.php`
-  - パス（メール送信完了・確認待ち）: `backend/laravel/resources/views/pages/signup/pending.blade.php`
-  - パス（新規登録フォーム）: `backend/laravel/resources/views/pages/signup/register.blade.php`
-  - パス（登録完了）: `backend/laravel/resources/views/pages/signup/complete.blade.php`
+  - パス（メールアドレス確認）: `/backend/laravel/resources/views/pages/signup/verify.blade.php`
+  - パス（メール送信完了・確認待ち）: `/backend/laravel/resources/views/pages/signup/pending.blade.php`
+  - パス（新規登録フォーム）: `/backend/laravel/resources/views/pages/signup/register.blade.php`
+  - パス（登録完了）: `/backend/laravel/resources/views/pages/signup/complete.blade.php`
 
 ---
 
@@ -30,7 +30,7 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 新規ユーザー登録のメールテンプレートを作成します。
 
 - メールテンプレート
-  - パス: `backend/laravel/resources/views/emails/signup-verify.blade.php`
+  - パス: `/backend/laravel/resources/views/emails/signup-verify.blade.php`
   - メール件名：新規ユーザー登録のお知らせ
 
 ---
@@ -77,7 +77,7 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 
 - 通知クラス
   - クラス: `SignUpNotification`
-  - パス: `backend/laravel/app/Notifications/SignUpNotification.php`
+  - パス: `/backend/laravel/app/Notifications/SignUpNotification.php`
 
 ---
 
@@ -87,7 +87,7 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 
 - コントローラー
   - クラス: `SignUpController`
-  - パス: `backend/laravel/app/Http/Controllers/SignUpController.php`
+  - パス: `/backend/laravel/app/Http/Controllers/SignUpController.php`
   - メソッド
     - `index`
     - `verifyEmail`
@@ -99,8 +99,8 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 
 メール送信やトークン生成に伴い下記Laravelの設定ファイルも必要に応じて修正します。
 
-- `backend/laravel/config/mail.php`
-- `backend/laravel/config/auth.php`
+- `/backend/laravel/config/mail.php`
+- `/backend/laravel/config/auth.php`
 
 ---
 

@@ -17,7 +17,7 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 
 ダッシュボード画面のベースHTMLを下記に作成します。
 
-- パス: `backend/_webroot/preview/index.html`
+- パス: `/backend/_webroot/preview/index.html`
 
 レイアウトは下記のように構成してください
 

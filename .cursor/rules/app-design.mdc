@@ -177,11 +177,11 @@ graph TD
 
 - HTML、CSS、JavaScriptファイルのコード内インデントは、2スペース（半角スペース2つ分）とする。
 - HTMLのclass属性値は、ケバブケースで記載する。
-- テンプレート用HTMLファイルは、`frontend/_ui/layouts/` あるいは `frontend/_ui/components/` ディレクトリに配置され、コードの一貫性を保つため、例外を除き基本的にはこれらのHTMLファイルの中身をそのまま使用するようにします。
-- `frontend/_ui/layouts/` あるいは `frontend/_ui/components/` ディレクトリに配置されたHTMLファイルは、テンプレートとして使用される前提のフォーマットとなっており、`<!-- child components -->` というコメントが配置されている箇所に、子要素のとして別のテンプレート用HTMLファイルの中身が配置される想定とします。
-- `frontend/_ui/layouts/` と `frontend/_ui/components/` と `frontend/_ui/head/` ディレクトリに配置されたHTMLファイル、ならびにベースのHTMLである [page.html](mdc:frontend/_ui/page.html) については、**直接編集を加えずに記載されたHTMLの内容をコピーし、新規作成するHTMLファイル内に書き写していく**形でコーディングを進めていきます。
-- `frontend/_ui/layouts/` および `frontend/_ui/components/` ディレクトリに配置されたHTMLファイルにおいて、あらかじめ設定されたclass名は削除、変更せずに残しておくものとする。
-- 新規作成するHTMLファイルは、`backend/_webroot/preview` ディレクトリ配下に配置します。
+- テンプレート用HTMLファイルは、`/frontend/_ui/layouts/` あるいは `/frontend/_ui/components/` ディレクトリに配置され、コードの一貫性を保つため、例外を除き基本的にはこれらのHTMLファイルの中身をそのまま使用するようにします。
+- `/frontend/_ui/layouts/` あるいは `/frontend/_ui/components/` ディレクトリに配置されたHTMLファイルは、テンプレートとして使用される前提のフォーマットとなっており、`<!-- child components -->` というコメントが配置されている箇所に、子要素のとして別のテンプレート用HTMLファイルの中身が配置される想定とします。
+- `/frontend/_ui/layouts/` と `/frontend/_ui/components/` と `/frontend/_ui/head/` ディレクトリに配置されたHTMLファイル、ならびにベースのHTMLである [page.html](mdc:frontend/_ui/page.html) については、**直接編集を加えずに記載されたHTMLの内容をコピーし、新規作成するHTMLファイル内に書き写していく**形でコーディングを進めていきます。
+- `/frontend/_ui/layouts/` および `/frontend/_ui/components/` ディレクトリに配置されたHTMLファイルにおいて、あらかじめ設定されたclass名は削除、変更せずに残しておくものとする。
+- 新規作成するHTMLファイルは、`/backend/_webroot/preview` ディレクトリ配下に配置します。
 
 #### 4.1.2. スタイルシートに関するルール
 

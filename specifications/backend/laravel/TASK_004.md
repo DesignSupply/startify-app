@@ -18,7 +18,7 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 マイグレーションファイルを作成、マイグレーションを実行しテーブルを作成します。
 
 - マイグレーション
-  - パス: `backend/laravel/database/migrations/[YYYY_MM_DD_HHMMSS]_create_admin_users_table.php`
+  - パス: `/backend/laravel/database/migrations/[YYYY_MM_DD_HHMMSS]_create_admin_users_table.php`
   - クラス: `CreateAdminUsersTable`
   - テーブル: `admin_users`
   - カラム
@@ -38,7 +38,7 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 
 - モデル
   - モデル: `AdminUser`
-  - パス: `backend/laravel/app/Models/AdminUser.php`
+  - パス: `/backend/laravel/app/Models/AdminUser.php`
   - クラス: `AdminUser`
   
 管理者ユーザーのモデル作成後 `config/auth.php` の `guards` と `providers` に `admin_users` の設定を追加します。
@@ -50,7 +50,7 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 管理者ログインフォームを表示させるページのビューを作成します。
 
 - ビュー
-  - パス: `backend/laravel/resources/views/pages/admin/index.blade.php`
+  - パス: `/backend/laravel/resources/views/pages/admin/index.blade.php`
 - 機能仕様
   - 画面上にはメールアドレスとパスワードを入力するフォームを表示します
   - 画面内にはログインボタンを設置し、ログインできるようにします
@@ -101,7 +101,7 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
   - クラス: `DashboardController`
   - メソッド: `index`
 - ビュー
-  - パス: `backend/laravel/resources/views/pages/admin/dashboard/index.blade.php`
+  - パス: `/backend/laravel/resources/views/pages/admin/dashboard/index.blade.php`
 - 機能仕様
   - 画面上には管理者用のダッシュボード画面を表示します
   - 画面内にはログアウトボタンを設置し、ログアウトできるようにします
@@ -131,13 +131,13 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 シーダーを実行し管理者ユーザーデータを作成、管理者ログインテストを行います。
 
 - シーダー
-  - パス: `backend/laravel/database/seeders/AdminUserSeeder.php`
+  - パス: `/backend/laravel/database/seeders/AdminUserSeeder.php`
   - クラス: `AdminUserSeeder`
 - テストユーザー
   - 名前: `管理者 太郎`
   - メールアドレス: `admin@example.com`
   - パスワード: `password`
 - 機能仕様
-  - シーダーは、`backend/laravel/database/seeders/DatabaseSeeder.php` のメソッドを使用し、一括で実行できるようにします
+  - シーダーは、`/backend/laravel/database/seeders/DatabaseSeeder.php` のメソッドを使用し、一括で実行できるようにします
 
 ---

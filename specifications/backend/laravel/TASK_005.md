@@ -20,7 +20,7 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 なお、一般ユーザー用のパスワードリセットトークン用テーブルは既存の `password_reset_tokens` テーブルを使用します。
 
 - マイグレーション（管理者用）
-  - パス: `backend/laravel/database/migrations/[YYYY_MM_DD_HHMMSS]_create_admin_password_reset_tokens_table.php`
+  - パス: `/backend/laravel/database/migrations/[YYYY_MM_DD_HHMMSS]_create_admin_password_reset_tokens_table.php`
   - クラス: `CreateAdminPasswordResetTokensTable`
   - テーブル: `admin_password_reset_tokens`
   - カラム
@@ -36,11 +36,11 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 
 - モデル（一般ユーザー）
   - モデル: `PasswordResetToken`
-  - パス: `backend/laravel/app/Models/PasswordResetToken.php`
+  - パス: `/backend/laravel/app/Models/PasswordResetToken.php`
   - クラス: `PasswordResetToken`
 - モデル（管理者ユーザー）
   - モデル: `AdminPasswordResetToken`
-  - パス: `backend/laravel/app/Models/AdminPasswordResetToken.php`
+  - パス: `/backend/laravel/app/Models/AdminPasswordResetToken.php`
   - クラス: `AdminPasswordResetToken`
 
 ---
@@ -50,11 +50,11 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 パスワードリセット用のビューを作成します。メールアドレス確認用フォーム画面と、パスワード再設定用フォーム画面を作成します。
 
 - ビュー（一般ユーザー）
-  - パス（メールアドレス確認）: `backend/laravel/resources/views/pages/password-forgot/index.blade.php`
-  - パス（パスワード再設定）: `backend/laravel/resources/views/pages/password-reset/index.blade.php`
+  - パス（メールアドレス確認）: `/backend/laravel/resources/views/pages/password-forgot/index.blade.php`
+  - パス（パスワード再設定）: `/backend/laravel/resources/views/pages/password-reset/index.blade.php`
 - ビュー（管理者ユーザー）
-  - パス（メールアドレス確認）: `backend/laravel/resources/views/pages/admin/password-forgot/index.blade.php`
-  - パス（パスワード再設定）: `backend/laravel/resources/views/pages/admin/password-reset/index.blade.php`
+  - パス（メールアドレス確認）: `/backend/laravel/resources/views/pages/admin/password-forgot/index.blade.php`
+  - パス（パスワード再設定）: `/backend/laravel/resources/views/pages/admin/password-reset/index.blade.php`
 - 機能仕様
   - メールアドレス確認用フォーム画面ではメールアドレスと入力するフォームを表示します
   - パスワード再設定用フォーム画面ではパスワードと入力するフォームを入力用と確認用の2つを表示し、同じ値であることを確認します
@@ -67,10 +67,10 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 パスワードリセット用の通知メールテンプレートを作成します。
 
 - メールテンプレート（一般ユーザー）
-  - パス: `backend/laravel/resources/views/emails/password-reset.blade.php`
+  - パス: `/backend/laravel/resources/views/emails/password-reset.blade.php`
   - メール件名：パスワードリセットのお知らせ
 - メールテンプレート（管理者ユーザー）
-  - パス: `backend/laravel/resources/views/emails/admin-password-reset.blade.php`
+  - パス: `/backend/laravel/resources/views/emails/admin-password-reset.blade.php`
   - メール件名：管理者パスワードリセットのお知らせ
 
 ---
@@ -122,10 +122,10 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 
 - 通知クラス（一般ユーザー）
   - クラス: `PasswordResetNotification`
-  - パス: `backend/laravel/app/Notifications/PasswordResetNotification.php`
+  - パス: `/backend/laravel/app/Notifications/PasswordResetNotification.php`
 - 通知クラス（管理者ユーザー）
   - クラス: `AdminPasswordResetNotification`
-  - パス: `backend/laravel/app/Notifications/AdminPasswordResetNotification.php`
+  - パス: `/backend/laravel/app/Notifications/AdminPasswordResetNotification.php`
 
 ---
 
@@ -136,34 +136,34 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 - コントローラー（一般ユーザー）
   - メールアドレス確認
     - クラス: `PasswordForgotController`
-    - パス: `backend/laravel/app/Http/Controllers/PasswordForgotController.php`
+    - パス: `/backend/laravel/app/Http/Controllers/PasswordForgotController.php`
     - メソッド
       - `index`
       - `sendMail`
   - パスワード再設定
     - クラス: `PasswordResetController`
-    - パス: `backend/laravel/app/Http/Controllers/PasswordResetController.php`
+    - パス: `/backend/laravel/app/Http/Controllers/PasswordResetController.php`
     - メソッド
       - `index`
       - `reset`
 - コントローラー（管理者ユーザー）
   - メールアドレス確認
     - クラス: `AdminPasswordForgotController`
-    - パス: `backend/laravel/app/Http/Controllers/AdminPasswordForgotController.php`
+    - パス: `/backend/laravel/app/Http/Controllers/AdminPasswordForgotController.php`
     - メソッド
       - `index`
       - `sendMail`
   - パスワード再設定
     - クラス: `AdminPasswordResetController`
-    - パス: `backend/laravel/app/Http/Controllers/AdminPasswordResetController.php`
+    - パス: `/backend/laravel/app/Http/Controllers/AdminPasswordResetController.php`
     - メソッド
       - `index`
       - `reset`
 
 メール送信やトークン生成に伴い下記Laravelの設定ファイルも必要に応じて修正します。
 
-- `backend/laravel/config/mail.php`
-- `backend/laravel/config/auth.php`
+- `/backend/laravel/config/mail.php`
+- `/backend/laravel/config/auth.php`
 
 ---
 
