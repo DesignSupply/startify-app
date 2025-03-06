@@ -43,7 +43,7 @@ Dockerコンテナーが起動後、Laravelのインストール・セットア�
 ```bash
 cd ./server
 
-# Laravelのインストール
+# Composerインストール
 make laravel-install
 
 # キー生成
@@ -83,14 +83,14 @@ make laravel-migrate
 これから、Dockerを使ったローカル開発環境の構築をします。まず、ローカル開発環境の構築に必要なタスクを洗い出してください。この情報は、AIに機能実装のコード生成を依頼する際のプロンプトの例です。タスクを明確にすることで、AIがより正確にコードを生成できるようにしてください。
 ```
 
-洗い出されたタスクを、`/specifications/server/[PROJECT_NAME]/****.md` ファイルなどの機能実装手順のドキュメントに追記し、更新します。
+洗い出されたタスクを、`/specifications/server/docker/[TASK_FILE_NAME].md` ファイルなどの機能実装手順のドキュメントに追記し、更新します。
 
 ##### 2.2 Dockerfileの作成、コンテナー起動
 
 タスクが追記された更新済みである機能実装手順のドキュメントを読み込み、Cursorにタスク作業を依頼します。下記のプロンプトを例に指示を進めます。タスクが複雑であったり多い場合には、タスクを分割して1つのタスクずつコードを生成することで進めやすくなります。
 
 - Add Context
-  1. `/specifications/server/[PROJECT_NAME]/****.md`
+  1. `/specifications/server/docker/[TASK_FILE_NAME].md`
 
 ```
 提示されたタスクをドキュメントに追記しました、更新されたドキュメントを読み込み、機能実装を進めていきます。まず、＊＊＊＊＊の作業タスクに必要なファイルならびにコードを提示してください。このプロンプトは、AIに具体的なコード生成を依頼する際の例です。タスクを明確にすることで、AIがより正確にコードを生成できるようにしてください。
@@ -120,14 +120,14 @@ make laravel-migrate
 これから、＊＊＊＊＊の機能を実装します。まず、＊＊＊＊＊の機能を実装するために必要なタスクを洗い出してください。この情報は、AIに機能実装のコード生成を依頼する際のプロンプトの例です。タスクを明確にすることで、AIがより正確にコードを生成できるようにしてください。
 ```
 
-洗い出されたタスクを、`/specifications/backend/[PROJECT_NAME]/****.md` ファイルなどの機能実装手順のドキュメントに追記し、更新します。
+洗い出されたタスクを、`/specifications/backend/[PROJECT_NAME]/[TASK_FILE_NAME].md` ファイルなどの機能実装手順のドキュメントに追記し、更新します。
 
 ##### 2.2 コード生成、機能実装
 
 タスクが追記された更新済みである機能実装手順のドキュメントを読み込み、Cursorにタスク作業を依頼します。下記のプロンプトを例に指示を進めます。タスクが複雑であったり多い場合には、タスクを分割して1つのタスクずつコードを生成することで進めやすくなります。
 
 - Add Context
-  1. `/specifications/backend/[PROJECT_NAME]/****.md`
+  1. `/specifications/backend/[PROJECT_NAME]/[TASK_FILE_NAME].md`
   2. その他生成するコードに関連するファイルなど
 
 ```
@@ -155,7 +155,7 @@ make laravel-migrate
 まずは、UIコンポーネントが配置されるエリアとなるベースレイアウトを作成します。下記のプロンプトを例に、指示を進めます。
 
 - Add Context
-  1. `/specifications/frontend/[PROJECT_NAME]/****.md`
+  1. `/specifications/frontend/[PROJECT_NAME]/[TASK_FILE_NAME].md`
   2. その他生成するコードに関連するファイルなど
 
 ```
@@ -167,7 +167,7 @@ make laravel-migrate
 画面の基本レイアウトができたら、UIコンポーネントを作成します。下記のプロンプトを例に、指示を進めます。
 
 - Add Context
-  1. `/specifications/frontend/[PROJECT_NAME]/****.md`
+  1. `/specifications/frontend/[PROJECT_NAME]/[TASK_FILE_NAME].md`
   2. その他生成するコードに関連するファイルなど
 
 ```
