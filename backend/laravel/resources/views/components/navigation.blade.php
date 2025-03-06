@@ -49,4 +49,5 @@
     )
         <a href="{{ route('signup') }}">新規ユーザー登録</a>
     @endif
+    <a href="{{ route('contact') }}">お問い合わせ</a>
 </nav>

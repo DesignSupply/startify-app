@@ -11,6 +11,22 @@ Route::namespace('App\Http\Controllers')->group(function () {
     Route::get('/signin', 'SignInController@index')->name('signin');
     Route::post('/signin/auth', 'SignInController@signIn')->name('signin.auth');
 
+    // コンタクトフォーム
+    Route::prefix('contact')->group(function () {
+
+        // 入力画面
+        Route::get('/', 'ContactController@index')->name('contact');
+        Route::post('/form', 'ContactController@form')->name('contact.form');
+
+        // 確認画面
+        Route::get('/confirm', 'ContactController@confirm')->name('contact.confirm');
+        Route::post('/send', 'ContactController@send')->name('contact.send');
+
+        // 完了画面
+        Route::get('/thanks', 'ContactController@thanks')->name('contact.thanks');
+
+    });
+
     // 未認証ルーティング
     Route::middleware('guest')->group(function () {
 
