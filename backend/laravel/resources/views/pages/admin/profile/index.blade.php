@@ -44,6 +44,13 @@
 
         </tbody>
     </table>
+
+    @if ($isOwn)
+        <a href="{{ route('admin.profile.edit', ['id' => $admin->id]) }}">
+            管理者プロフィール編集
+        </a>
+    @endif
+
     <a href="{{ route('admin.dashboard') }}" class="btn">ダッシュボードに戻る</a>
 </main>
 @endsection

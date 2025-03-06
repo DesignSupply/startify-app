@@ -100,6 +100,10 @@ Route::namespace('App\Http\Controllers')->group(function () {
                 Route::get('/', 'AdminProfileController@redirect')->name('admin.profile.redirect');
                 Route::get('/{id}', 'AdminProfileController@index')->name('admin.profile');
 
+                // プロフィール編集・更新
+                Route::get('/{id}/edit', 'AdminProfileController@edit')->name('admin.profile.edit');
+                Route::post('/{id}/update', 'AdminProfileController@update')->name('admin.profile.update');
+
             });
 
             // 管理者ログアウト
