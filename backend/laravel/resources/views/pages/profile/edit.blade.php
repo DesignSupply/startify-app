@@ -12,7 +12,7 @@
 @endsection
 
 @section('content')
-<main>
+<main class="app-main">
     <h1>プロフィール編集</h1>
 
     @foreach(['name', 'email', 'password', 'password_confirmation'] as $field)

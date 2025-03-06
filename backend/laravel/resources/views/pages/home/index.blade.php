@@ -19,11 +19,8 @@
         <p>{{ session('status') }}</p>
     @endif
 
-    @auth
-        <p>こんにちは、{{ $user->name }} さん</p>
-        <a href="{{ route('profile', $user->id) }}">プロフィール</a>
-    @endauth
-
+    <p>こんにちは、{{ $user->name }} さん</p>
+    <a href="{{ route('profile', $user->id) }}">プロフィール</a>
     <form method="POST" action="{{ route('signout') }}">
         @csrf
         <button type="submit">ログアウト</button>

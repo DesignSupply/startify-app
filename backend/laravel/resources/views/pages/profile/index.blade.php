@@ -46,11 +46,9 @@
     </table>
 
     @if ($isOwn)
-        <div>
-            <a href="{{ route('profile.edit', ['id' => $user->id]) }}">
-                プロフィールを編集
-            </a>
-        </div>
+        <a href="{{ route('profile.edit', ['id' => $user->id]) }}">
+            プロフィールを編集
+        </a>
     @endif
 
     <a href="{{ route('home') }}" class="btn">ホームに戻る</a>

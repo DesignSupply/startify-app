@@ -25,6 +25,9 @@ alwaysApply: false
 | signup-register | 新規ユーザー登録・ユーザー情報入力 | 新規ユーザー登録時のユーザー情報入力フォーム画面 |
 | signup-complete | 新規ユーザー登録完了 | 新規ユーザーの登録完了画面 |
 | profile | ユーザープロフィール | ユーザー情報の表示画面 |
+| profile-edit | ユーザープロフィール編集 | ユーザー情報を編集するフォーム画面 |
+| admin-profile | 管理者ユーザープロフィール | 管理者ユーザー情報の表示画面 |
+| admin-profile-edit | 管理者ユーザープロフィール編集 | 管理者ユーザー情報を編集するフォーム画面 |
 
 ---
 
@@ -65,6 +68,12 @@ flowchart TD
     signup-register --> signup-complete[新規ユーザー登録完了]
     home --> profile[ユーザープロフィール]
     profile --> home
+    profile --> profile-edit[ユーザープロフィール編集]
+    profile-edit -.-> |update| profile
+    dashboard --> admin-profile[管理者ユーザープロフィール]
+    admin-profile --> dashboard
+    admin-profile --> admin-profile-edit[管理者ユーザープロフィール編集]
+    admin-profile-edit -.-> |update| admin-profile
 ```
 
 ---
