@@ -52,8 +52,17 @@ Route::namespace('App\Http\Controllers')->group(function () {
         Route::get('/home', 'HomeController@index')->name('home');
 
         // ユーザープロフィール
-        Route::get('/profile', 'ProfileController@redirect')->name('profile.redirect');
-        Route::get('/profile/{id}', 'ProfileController@index')->name('profile');
+        Route::prefix('profile')->group(function () {
+
+            // プロフィール表示
+            Route::get('/', 'ProfileController@redirect')->name('profile.redirect');
+            Route::get('/{id}', 'ProfileController@index')->name('profile');
+
+            // プロフィール編集・更新
+            Route::get('/{id}/edit', 'ProfileController@edit')->name('profile.edit');
+            Route::post('/{id}/update', 'ProfileController@update')->name('profile.update');
+
+        });
 
         // ログアウト
         Route::post('/signout', 'SignOutController@signOut')->name('signout');

@@ -15,8 +15,8 @@
 <main class="app-main">
     <h1>プロフィール</h1>
 
-    @if (session('status'))
-        <p>{{ session('status') }}</p>
+    @if (session('status') || session('success'))
+        <p>{{ session('status') ?: session('success') }}</p>
     @endif
 
     <h2>ユーザー情報</h2>
@@ -44,6 +44,15 @@
 
         </tbody>
     </table>
+
+    @if ($isOwn)
+        <div>
+            <a href="{{ route('profile.edit', ['id' => $user->id]) }}">
+                プロフィールを編集
+            </a>
+        </div>
+    @endif
+
     <a href="{{ route('home') }}" class="btn">ホームに戻る</a>
 </main>
 @endsection
