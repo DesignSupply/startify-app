@@ -127,5 +127,4 @@ Route::namespace('App\Http\Controllers')->group(function () {
 
         });
     });
-
 });

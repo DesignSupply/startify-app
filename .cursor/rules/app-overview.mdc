@@ -28,6 +28,9 @@ alwaysApply: false
 | profile-edit | ユーザープロフィール編集 | ユーザー情報を編集するフォーム画面 |
 | admin-profile | 管理者ユーザープロフィール | 管理者ユーザー情報の表示画面 |
 | admin-profile-edit | 管理者ユーザープロフィール編集 | 管理者ユーザー情報を編集するフォーム画面 |
+| contact | お問い合わせ | お問い合わせフォームの入力画面 |
+| contact-confirm | お問い合わせ確認 | お問い合わせフォームの確認画面 |
+| contact-thanks | お問い合わせ完了 | お問い合わせフォームの送信完了画面 |
 
 ---
 
@@ -37,7 +40,8 @@ alwaysApply: false
 | --- | --- | --- |
 | mail-password-forgot | パスワードリセットメール | 一般ユーザーのパスワードリセット時に送信されるトークン付きリンクが記載されたメール |
 | mail-admin-password-forgot | 管理者パスワードリセットメール | 管理者ユーザーのパスワードリセット時に送信されるトークン付きリンクが記載されたメール |
-| mail-signup | 新規ユーザー登録メール | 新規ユーザー登録時に送信される確認用メール |
+| mail-contact-reply | お問い合わせ自動返信メール | お問い合わせフォーム利用者に向けたフォーム入力内容が記載された自動返信メール |
+| mail-contact-notification | お問い合わせ管理者通知メール | お問い合わせフォームの送信があったことを管理者に通知する入力内容が記載されたメール |
 
 ---
 
@@ -74,6 +78,13 @@ flowchart TD
     admin-profile --> dashboard
     admin-profile --> admin-profile-edit[管理者ユーザープロフィール編集]
     admin-profile-edit -.-> |update| admin-profile
+    frontpage --> contact[お問い合わせ]
+    contact --> contact-confirm[お問い合わせ確認]
+    contact-confirm -.-> |send-mail| mail-contact-notification(お問い合わせ管理者通知メール)
+    contact-confirm -.-> |send-mail| mail-contact-reply(お問い合わせ自動返信メール)
+    contact-confirm --> contact-thanks[お問い合わせ完了]
+    contact-thanks --> frontpage
+
 ```
 
 ---

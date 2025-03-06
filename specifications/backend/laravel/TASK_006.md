@@ -31,7 +31,8 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 
 - メールテンプレート
   - パス: `/backend/laravel/resources/views/emails/signup-verify.blade.php`
-  - メール件名：新規ユーザー登録のお知らせ
+  - メール件名: 新規ユーザー登録のお知らせ
+  - テンプレート形式: HTML
 
 ---
 

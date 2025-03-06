@@ -68,10 +68,12 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 
 - メールテンプレート（一般ユーザー）
   - パス: `/backend/laravel/resources/views/emails/password-reset.blade.php`
-  - メール件名：パスワードリセットのお知らせ
+  - メール件名: パスワードリセットのお知らせ
+  - テンプレート形式: HTML
 - メールテンプレート（管理者ユーザー）
   - パス: `/backend/laravel/resources/views/emails/admin-password-reset.blade.php`
-  - メール件名：管理者パスワードリセットのお知らせ
+  - メール件名: 管理者パスワードリセットのお知らせ
+  - テンプレート形式: HTML
 
 ---
 
