@@ -19,16 +19,12 @@
         <p>{{ session('status') }}</p>
     @endif
 
-    <div>
-        <p>ようこそ、{{ $admin->name }}さん</p>
-    </div>
-
-    <div>
-        <form method="POST" action="{{ route('admin.signout') }}">
-            @csrf
-            <button type="submit">管理者ログアウト</button>
-        </form>
-    </div>
+    <p>こんにちは、{{ $admin->name }}さん</p>
+    <a href="{{ route('admin.profile', $admin->id) }}">プロフィール</a>
+    <form method="POST" action="{{ route('admin.signout') }}">
+        @csrf
+        <button type="submit">管理者ログアウト</button>
+    </form>
 </main>
 @endsection
 

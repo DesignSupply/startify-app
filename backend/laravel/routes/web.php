@@ -93,6 +93,15 @@ Route::namespace('App\Http\Controllers')->group(function () {
             // 管理者ダッシュボード
             Route::get('/dashboard', 'DashboardController@index')->name('admin.dashboard');
 
+            // 管理者プロフィール
+            Route::prefix('profile')->group(function () {
+
+                // プロフィール表示
+                Route::get('/', 'AdminProfileController@redirect')->name('admin.profile.redirect');
+                Route::get('/{id}', 'AdminProfileController@index')->name('admin.profile');
+
+            });
+
             // 管理者ログアウト
             Route::post('/signout', 'AdminController@signOut')->name('admin.signout');
 

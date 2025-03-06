@@ -58,3 +58,9 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 `/specifications/backend/laravel/TASK_008.md` に記載されているタスクを順番に進めます。
 
 ---
+
+## 9. 管理者ユーザープロフィール画面の実装
+
+`/specifications/backend/laravel/TASK_009.md` に記載されているタスクを順番に進めます。
+
+---
