@@ -1,3 +1,6 @@
 # Laravel
 /storage
 /storage/app/public
+
+# WordPress
+/wordpress

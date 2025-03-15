@@ -9,7 +9,7 @@ RUN apt-get update && \
 	libzip-dev \
 	libicu-dev \
 	libonig-dev && \
-	docker-php-ext-install intl pdo_mysql zip bcmath && \
+	docker-php-ext-install intl pdo_mysql mysqli zip bcmath mbstring && \
 	apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Composerのインストール
