@@ -18,7 +18,7 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 - `/server/.env`
 
 ```env
-# Docker用環境変数ファイルのテンプレート例
+# Docker用環境変数ファイルのテンプレート例（Laravel）
 COMPOSE_PROJECT_NAME=startify-app
 
 APP_NAME=startify-app
@@ -28,11 +28,6 @@ DB_PORT=3306
 DB_DATABASE=master
 DB_USERNAME=admin
 DB_PASSWORD=secret
-
-CMS_DATABASE=cms
-CMS_USERNAME=admin
-CMS_PASSWORD=password
-CMS_EMAIL=admin@example.com
 ```
 
 ---

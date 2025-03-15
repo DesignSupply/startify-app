@@ -15,17 +15,20 @@ alwaysApply: false
 
 ```
 /                                      # 開発環境ルート
-├── backend/                             # バックエンド（appコンテナの/var/www/htmlマウントポイント）
-│   ├── _webroot/                          # 開発環境ローカルサーバードキュメントルート（webコンテナのドキュメントルート）
-│   │   ├── preview                          # プレビューテストディレクトリ
+├── /backend                             # バックエンド（appコンテナの/var/www/htmlマウントポイント）
+│   ├── /_webroot                          # 開発環境ローカルサーバードキュメントルート（webコンテナのドキュメントルート）
+│   │   ├── /preview                         # プレビューテストディレクトリ
 │   │   ├── testing-app.php                  # PHP情報表示確認用ファイル
 │   │   ├── testing-smtp.php                 # メール送受信テスト用ファイル
 │   │   ├── index.php                        # バックエンドアプリケーションエントリーポイントファイル
-│   │   └── storage                          # バックエンドファイルストレージシンボリックリンク
-│   ├── laravel/                           # Laravelプロジェクトルート
-│   └── wordpress/                         # WordPressプロジェクトルート
-├── frontend/                            # フロントエンド
-│   ├── _design-tokens/                    # デザイントークン
+│   │   ├── /cms                             # WordPressサイトURLディレクトリ
+│   │   │   └── index.php                      # WordPressサイトエントリーポイント
+│   │   ├── /storage                         # バックエンドファイルストレージシンボリックリンク
+│   │   └── /wordpress                       # WordPressコアファイルシンボリックリンク
+│   ├── /laravel                           # Laravelプロジェクトルート
+│   └── /wordpress                         # WordPressプロジェクトルート
+├── /frontend                            # フロントエンド
+│   ├── /_design-tokens                    # デザイントークン
 │   │   ├── color-scheme.yaml                # 配色用
 │   │   ├── size-scale.yaml                  # サイズ指定
 │   │   ├── typography.yaml                  # タイポグラフィ
@@ -33,35 +36,35 @@ alwaysApply: false
 │   │   ├── dropshadow.yaml                  # ドロップシャドウ
 │   │   ├── corner-style.yaml                # コーナースタイル
 │   │   └── easing.yaml                      # イージング
-│   ├── _ui/                               # UIコンポーネントHTMLテンプレート
-│   │   ├── components/                      # コンポーネント要素テンプレート
-│   │   ├── head/                            # head要素テンプレート
-│   │   ├── layouts/                         # レイアウト要素テンプレート
+│   ├── /_ui                               # UIコンポーネントHTMLテンプレート
+│   │   ├── /components                      # コンポーネント要素テンプレート
+│   │   ├── /head                            # head要素テンプレート
+│   │   ├── /layouts                         # レイアウト要素テンプレート
 │   │   └── page.html                        # ページテンプレート
-│   ├── next/                              # Next.jsプロジェクトルート
-│   ├── nuxt/                              # Nuxt.jsプロジェクトルート
-│   ├── astro/                             # Astroプロジェクトルート
-│   ├── vite/                              # Viteプロジェクトルート
-│   └── react-native/                      # ReactNativeプロジェクトルート
-├── server/                              # サーバー
-│   ├── docker/                            # Docker環境
-│   │   ├── mailpit/                         # SMTPサーバー
+│   ├── /next                              # Next.jsプロジェクトルート
+│   ├── /nuxt                              # Nuxt.jsプロジェクトルート
+│   ├── /astro                             # Astroプロジェクトルート
+│   ├── /vite                              # Viteプロジェクトルート
+│   └── /react-native                      # ReactNativeプロジェクトルート
+├── /server                              # サーバー
+│   ├── /docker                            # Docker環境
+│   │   ├── /mailpit                         # SMTPサーバー
 │   │   │   └── Dockerfile                   # SMTPサーバーDockerfile
-│   │   ├── mysql/                           # データベースサーバー
+│   │   ├── /mysql                           # データベースサーバー
 │   │   │   ├── Dockerfile                   # データベースサーバーDockerfile
 │   │   │   └── my.cnf                       # データベースサーバー設定ファイル
-│   │   ├── nginx/                           # ウェブサーバー
+│   │   ├── /nginx                           # ウェブサーバー
 │   │   │   ├── Dockerfile                   # ウェブサーバーDockerfile
 │   │   │   └── nginx.conf                   # ウェブサーバー設定ファイル
-│   │   └── php/                             # プログラミング言語
+│   │   └── /php                             # プログラミング言語
 │   │       ├── Dockerfile                   # PHPDockerfile
 │   │       └── php.ini                      # PHP設定ファイル
 │   ├── docker-compose.yml                 # Docker Composeファイル
 │   ├── .env                               # Docker環境変数
 │   └── Makefile                           # Makeコマンドファイル
-├── specifications/                      # 仕様書・タスクリスト用ドキュメント
-├── .cursor/                             # Cursor設定ファイル
-│   └── rules/                             # Cursor Project Rules
+├── /specifications                      # 仕様書・タスクリスト用ドキュメント
+├── /.cursor                             # Cursor設定ファイル
+│   └── /rules                             # Cursor Project Rules
 ├── README.md                            # 概要説明
 ├── .gitignore                           # Git設定
 └── .cursorrules                         # Cursor設定
