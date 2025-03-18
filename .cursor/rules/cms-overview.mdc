@@ -1,5 +1,5 @@
 ---
-description: 
+description: CMS概要
 globs: backend/wordpress/**/*.*
 alwaysApply: false
 ---
@@ -170,4 +170,3 @@ erDiagram
     wp_posts ||--o{ wp_term_relationships : "categorized_by"
     wp_terms ||--o{ wp_termmeta : "has"
 ```
-
