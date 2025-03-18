@@ -1,0 +1,172 @@
+---
+description: 
+globs: backend/wordpress/**/*.*
+alwaysApply: false
+---
+# CMS概要
+
+---
+
+## データベース
+
+### テーブル一覧
+
+| ID | テーブル名 | テーブル説明 |
+| --- | --- | --- |
+| wp_commentmeta | コメントメタデータ | コメントの追加情報を格納するテーブル |
+| wp_comments | コメント | 投稿に対するコメント情報を格納するテーブル |
+| wp_links | リンク | リンク情報を格納するテーブル |
+| wp_options | オプション | サイト設定情報を格納するテーブル |
+| wp_postmeta | 投稿メタデータ | 投稿の追加情報を格納するテーブル |
+| wp_posts | 投稿 | 投稿、固定ページ、メディアなどのコンテンツを格納するテーブル |
+| wp_term_relationships | タームリレーション | 投稿とタームの関連付けを格納するテーブル |
+| wp_term_taxonomy | タームタクソノミー | タームのタクソノミー情報を格納するテーブル |
+| wp_termmeta | タームメタデータ | タームの追加情報を格納するテーブル |
+| wp_terms | ターム | カテゴリーやタグなどのタームを格納するテーブル |
+| wp_usermeta | ユーザーメタデータ | ユーザーの追加情報を格納するテーブル |
+| wp_users | ユーザー | WordPressユーザー情報を格納するテーブル | 
+
+### テーブル定義
+
+```mermaid
+erDiagram
+    wp_posts {
+        bigint ID PK
+        bigint post_author
+        datetime post_date
+        datetime post_date_gmt
+        longtext post_content
+        text post_title
+        text post_excerpt
+        varchar post_status
+        varchar comment_status
+        varchar ping_status
+        varchar post_password
+        varchar post_name
+        text to_ping
+        text pinged
+        datetime post_modified
+        datetime post_modified_gmt
+        longtext post_content_filtered
+        bigint post_parent
+        varchar guid
+        int menu_order
+        varchar post_type
+        varchar post_mime_type
+        bigint comment_count
+    }
+
+    wp_users {
+        bigint ID PK
+        varchar user_login
+        varchar user_pass
+        varchar user_nicename
+        varchar user_email
+        varchar user_url
+        datetime user_registered
+        varchar user_activation_key
+        int user_status
+        varchar display_name
+    }
+
+    wp_comments {
+        bigint comment_ID PK
+        bigint comment_post_ID
+        tinytext comment_author
+        varchar comment_author_email
+        varchar comment_author_url
+        varchar comment_author_IP
+        datetime comment_date
+        datetime comment_date_gmt
+        text comment_content
+        int comment_karma
+        varchar comment_approved
+        varchar comment_agent
+        varchar comment_type
+        bigint comment_parent
+        bigint user_id
+    }
+
+    wp_options {
+        bigint option_id PK
+        varchar option_name UK
+        longtext option_value
+        varchar autoload
+    }
+
+    wp_terms {
+        bigint term_id PK
+        varchar name
+        varchar slug
+        bigint term_group
+    }
+
+    wp_term_taxonomy {
+        bigint term_taxonomy_id PK
+        bigint term_id
+        varchar taxonomy
+        longtext description
+        bigint parent
+        bigint count
+    }
+
+    wp_term_relationships {
+        bigint object_id PK
+        bigint term_taxonomy_id PK
+        int term_order
+    }
+
+    wp_postmeta {
+        bigint meta_id PK
+        bigint post_id
+        varchar meta_key
+        longtext meta_value
+    }
+
+    wp_commentmeta {
+        bigint meta_id PK
+        bigint comment_id
+        varchar meta_key
+        longtext meta_value
+    }
+
+    wp_usermeta {
+        bigint umeta_id PK
+        bigint user_id
+        varchar meta_key
+        longtext meta_value
+    }
+
+    wp_termmeta {
+        bigint meta_id PK
+        bigint term_id
+        varchar meta_key
+        longtext meta_value
+    }
+
+    wp_links {
+        bigint link_id PK
+        varchar link_url
+        varchar link_name
+        varchar link_image
+        varchar link_target
+        varchar link_description
+        varchar link_visible
+        bigint link_owner
+        int link_rating
+        datetime link_updated
+        varchar link_rel
+        mediumtext link_notes
+        varchar link_rss
+    }
+
+    wp_posts ||--o{ wp_postmeta : "has"
+    wp_posts ||--o{ wp_comments : "has"
+    wp_users ||--o{ wp_posts : "authors"
+    wp_users ||--o{ wp_usermeta : "has"
+    wp_comments ||--o{ wp_commentmeta : "has"
+    wp_terms ||--o{ wp_term_taxonomy : "has"
+    wp_term_taxonomy ||--o{ wp_term_relationships : "has"
+    wp_posts ||--o{ wp_term_relationships : "categorized_by"
+    wp_terms ||--o{ wp_termmeta : "has"
+```
