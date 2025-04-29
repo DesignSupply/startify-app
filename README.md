@@ -60,6 +60,8 @@ make laravel-storage-link-change
 make laravel-migrate
 ```
 
+http://localhost/ にアクセスすることでLaravelのアプリケーションフロントページが表示されます。
+
 ### 3. WordPressのインストール・セットアップ
 
 Dockerコンテナーが起動後、WordPressのインストール・セットアップを行います。
@@ -70,10 +72,11 @@ cd ./server
 # WordPressのインストール・セットアップ
 make wp-setup
 
-# シンボリックリンク・エントリーポイント設定
+# シンボリックリンク設定
 make wp-symlinks
-make wp-entrypoint
 ```
+
+http://cms.localhost/ にアクセスすることでWordPressのサイトトップページが表示されます。
 
 ---
 
