@@ -90,14 +90,14 @@ Dockerコンテナー起動後、以下の方法で動作確認を行います�
     - 環境変数で設定した情報でローカル環境のデータベースに接続できる。
 - PHP詳細情報の表示
   - 必要なタスク: 
-    - `php_info()` 関数を実装した、 `/backend/_webroot/testing-app.php` ファイルを作成する。
+    - `php_info()` 関数を実装した、 `/backend/_testing-webroot/testing-app.php` ファイルを作成する。
   - 期待される結果: 
-    - `http://localhost/testing-app.php` にアクセスして、PHPの情報が表示される。
+    - `http://testing.localhost/testing-app.php` にアクセスして、PHPの情報が表示される。
 - ローカル環境でのメール送受信
   - 必要なタスク: 
-    - `mail()` 関数を使用しメール送信のテスト処理を実装した、`/backend/_webroot/testing-smtp.php` ファイルを作成する。
+    - `mail()` 関数を使用しメール送信のテスト処理を実装した、`/backend/_testing-webroot/testing-smtp.php` ファイルを作成する。
   - 期待される結果: 
-    - `http://localhost/testing-smtp.php` にアクセスして、メール送信テスト用ファイルを使用して送信されている。
+    - `http://testing.localhost/testing-smtp.php` にアクセスして、メール送信テスト用ファイルを使用して送信されている。
     - `http://localhost:8025/` にアクセスして、MailpitのWebメール画面が表示され、送信されたテストメールの受信ができている。
 
 ---

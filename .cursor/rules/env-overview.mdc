@@ -18,15 +18,14 @@ alwaysApply: false
 ├── /backend                             # バックエンド（appコンテナの/var/www/htmlマウントポイント）
 │   ├── /_webroot                          # 開発環境ローカルサーバードキュメントルート（ホスト名:localhostのドキュメントルート）
 │   │   ├── index.php                        # バックエンドアプリケーションエントリーポイントファイル
-│   │   ├── /cms                             # WordPressサイトURLディレクトリ
-│   │   │   └── index.php                      # WordPressサイトエントリーポイント
-│   │   ├── /storage                         # バックエンドファイルストレージシンボリックリンク
-│   │   └── /wordpress                       # WordPressコアファイルシンボリックリンク
+│   │   └── /storage                         # バックエンドファイルストレージシンボリックリンク
 │   ├── /_cms-webroot                      # 開発環境ローカルサーバードキュメントルート（ホスト名:cms.localhostのドキュメントルート）
+│   │   ├── index.php                        # WordPressサイトエントリーポイント
+│   │   └── /wordpress                       # WordPressコアファイルシンボリックリンク
 │   ├── /_testing-webroot                  # 開発環境ローカルサーバードキュメントルート（ホスト名:testing.localhostのドキュメントルート）
 │   │   ├── testing-app.php                  # PHP情報表示確認用ファイル
 │   │   ├── testing-smtp.php                 # メール送受信テスト用ファイル
-│   │   ├── /preview                         # プレビューテストディレクトリ
+│   │   └── /preview                         # 静的HTMLプレビューテストディレクトリ
 │   ├── /laravel                           # Laravelプロジェクトルート
 │   └── /wordpress                         # WordPressプロジェクトルート
 ├── /frontend                            # フロントエンド

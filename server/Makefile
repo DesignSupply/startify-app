@@ -98,14 +98,10 @@ wp-update-db:
 wp-update-all: wp-update wp-update-db
 
 wp-symlinks:	
-	docker compose exec app bash -c "mkdir -p /var/www/html/_webroot/wordpress"
-	docker compose exec app bash -c "ln -sf /var/www/html/wordpress/* /var/www/html/_webroot/wordpress/"
+	docker compose exec app bash -c "mkdir -p /var/www/html/_cms-webroot/wordpress"
+	docker compose exec app bash -c "ln -sf /var/www/html/wordpress/* /var/www/html/_cms-webroot/wordpress/"
 
-wp-entrypoint:
-	docker compose exec app bash -c "mkdir -p /var/www/html/_webroot/cms"
-	docker compose exec app bash -c "echo '<?php define(\"WP_USE_THEMES\", true); require __DIR__ . \"/../wordpress/wp-blog-header.php\";' > /var/www/html/_webroot/cms/index.php"
-
-wp-setup: wp-download wp-config-create wp-db-create wp-install wp-update-all wp-symlinks wp-entrypoint
+wp-setup: wp-download wp-config-create wp-db-create wp-install wp-update-all wp-symlinks
 
 wp-plugin-install:
 	docker compose exec app wp plugin install ${PLUGIN} --allow-root --activate --path=/var/www/html/wordpress

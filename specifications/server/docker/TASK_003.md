@@ -41,8 +41,8 @@ WP_ADMIN_USERNAME=admin
 WP_ADMIN_PASSWORD=password
 WP_ADMIN_EMAIL=admin@example.com
 # Site
-WP_SITEURL=http://localhost/cms
-WP_HOME=http://localhost/wordpress
+WP_SITEURL=http://cms.localhost/wordpress
+WP_HOME=http://cms.localhost
 # Debug
 WP_DEBUG=true
 WP_DEBUG_LOG=true
@@ -75,19 +75,10 @@ cd /server
 make wp-symlinks
 ```
 
-### 3.2. エントリーポイントの作成
-
-WordPressのサイトURLとなるディレクトリにエントリーポイントのファイルを作成します。
-
-```bash
-cd /server
-make wp-entrypoint
-```
-
 ---
 
 ## 4. テスト・表示確認
 
-- `http://localhost/cms` にアクセスして、WordPressのサイトトップページが表示されることを確認します。
-- `http://localhost/wordpress/wp-admin` にアクセスして、WordPressの管理画面にログインができることを確認します。
+- `http://cms.localhost` にアクセスして、WordPressのサイトトップページが表示されることを確認します。
+- `http://cms.localhost/wordpress/wp-admin` にアクセスして、WordPressの管理画面にログインができることを確認します。
 - WordPressの管理画面内で投稿の公開、編集や削除、プラグインのインストールやアップデートができるかを確認します。
