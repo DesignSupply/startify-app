@@ -28,6 +28,10 @@ alwaysApply: false
 │   │   └── /preview                         # 静的HTMLプレビューテストディレクトリ
 │   ├── /laravel                           # Laravelプロジェクトルート
 │   └── /wordpress                         # WordPressプロジェクトルート
+│       ├── wp-content
+│           ├── themes
+│               ├── startify-classic-theme   # WordPressテーマ開発用クラッシックテーマ
+│               ├── …
 ├── /frontend                            # フロントエンド
 │   ├── /_design-tokens                    # デザイントークン
 │   │   ├── color-scheme.yaml                # 配色用

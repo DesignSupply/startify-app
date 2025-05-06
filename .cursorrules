@@ -111,7 +111,7 @@
 - PHP: ^8.3
 - MySQL(MariaDB): ^11.0
 - nginx: ^1.25.0
-- WordPress: ^6.3.0
+- WordPress: ^6.8.0
 
 ## フロントエンド
 - Next.js: ^14.0
