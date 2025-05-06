@@ -13,7 +13,8 @@
 
 # WordPress Themes (except custom themes)
 /wp-content/themes/*
-!/wp-content/themes/custom-theme/
+!/wp-content/themes/startify-classic-theme/
+# !/wp-content/themes/custom-theme/
 
 # WordPress Plugins (except custom plugins)
 /wp-content/plugins/*
