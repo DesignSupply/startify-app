@@ -1,0 +1,10 @@
+.next
+.vscode
+dist
+node_modules
+public
+out
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+bun.lockb 
