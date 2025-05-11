@@ -26,6 +26,12 @@ Startify-Appには、Webアプリケーション開発に必要な基本的な�
     - 非同期での投稿データ取得
     - WP REST APIの独自エンドポイント
     - その他汎用的に使えるコンポーネント
+- Next.js
+  - 各種リンター・フォーマッター
+  - 環境変数の使用
+  - TailwindCSSの使用
+  - Sassのコンパイル
+  - コンポーネント最適化
 
 ## 導入
 
@@ -82,9 +88,25 @@ make wp-symlinks
 
 http://cms.localhost/ にアクセスすることでWordPressのサイトトップページが表示されます。
 
+### 4. Next.jsのインストール（ローカル環境）
+
+ローカル環境にNode.jsをインストール後、各種モジュールのインストールを行います。
+
+```bash
+cd ./frontend/next
+
+# インストール
+npm install
+
+# ローカルサーバー起動
+npm run dev
+```
+
+http://localhost:3000/ にアクセスすることでNext.jsのアプリケーショントップページが表示されます。
+
 ---
 
-## AI駆動開発
+## AI駆動開発の例
 
 ここでは、Cursorを使用したAI駆動開発の方法を例にしています。
 

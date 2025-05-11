@@ -16,3 +16,9 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 `/specifications/frontend/next/TASK_001.md` に記載されているタスクを順番に進めます。
 
 ---
+
+## 2. プロジェクトディレクトリ再構成、共通コンポーネント作成
+
+`/specifications/frontend/next/TASK_002.md` に記載されているタスクを順番に進めます。
+
+---

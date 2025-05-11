@@ -1,0 +1,38 @@
+---
+description: 
+globs: frontend/next/**/*.*
+alwaysApply: false
+---
+# フロントエンド実装ルール（Next.js）
+
+---
+
+## 1. 標準ディレクトリ構造
+
+```
+/frontend/next
+├── /.next                          # Next.jsのビルド出力ディレクトリ
+├── /out                            # Next.jsの公開用ファイルディレクトリ
+├── /public                         # 静的アセットファイルディレクトリ
+│   ├── favicon.svg
+│   ├── /images
+├── /src                            # ソースコードディレクトリ
+│   ├── /app                        # App Router ルーティングディレクトリ
+│   │   ├── layout.tsx              # ルートレイアウトコンポーネント
+│   │   ├── page.tsx                # トップページコンポーネント
+│   │   ├── /[PAGE_NAME]            # 下層ページルーティングディレクトリ
+│   │   │   └── page.tsx            # 下層ページコンポーネント
+│   ├── /components                 # 共通コンポーネント
+│   │   ├── Header.tsx              # ヘッダーコンポーネント
+│   │   ├── Footer.tsx              # フッターコンポーネント
+│   ├── /features                   # ビジネスロジック処理
+│   ├── /hooks                      # カスタムフック
+│   ├── /utils                      # ユーティリティ関数
+│   ├── /contexts                   # コンテキスト
+│   ├── /providers                  # プロバイダー
+│   ├── /styles                     # スタイル
+│   │   ├── globals.css             # グローバルスタイル
+│   └── /types                      # 型定義
+```
+
+---
