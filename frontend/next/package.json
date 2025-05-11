@@ -13,8 +13,8 @@
     "fix": "npm run fix:style && npm run fix:markup",
     "fix:style": "stylelint \"src/**/*.{css,scss}\" --fix",
     "fix:markup": "markuplint --fix \"src/**/*.{jsx,tsx}\"",
-    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,json,md}\"",
-    "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx,css,json,md}\""
+    "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,scss,json,md}\"",
+    "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx,css,scss,json,md}\""
   },
   "dependencies": {
     "next": "15.3.2",
@@ -33,12 +33,16 @@
     "eslint-config-next": "15.3.2",
     "eslint-config-prettier": "^10.1.5",
     "markuplint": "^4.12.0",
+    "postcss-scss": "^4.0.9",
     "postcss-syntax": "^0.36.2",
     "prettier": "^3.5.3",
+    "sass": "^1.88.0",
     "stylelint": "^16.19.1",
     "stylelint-config-standard": "^38.0.0",
     "stylelint-config-tailwindcss": "^1.0.0",
     "stylelint-order": "^7.0.0",
+    "stylelint-scss": "^6.12.0",
+    "tailwind-merge": "^3.2.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

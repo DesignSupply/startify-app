@@ -274,3 +274,131 @@ APPURL=https://example.com
 
 NEXT_PUBLIC_APPURL=https://example.com
 ```
+
+---
+
+## 5. Sassのインストールと設定
+
+スタイルシートについてはオプションとしてSassを使えるようにします。TailwindCSSと併用して、より柔軟なスタイリングを可能にします。本プロジェクトではSCSS記法のみをサポートします。
+
+### 5.1 Sassのインストール
+
+1. 必要なパッケージのインストール
+
+```bash
+npm install -D sass
+```
+
+### 5.2 Next.jsの設定
+
+Next.jsはSassを自動的にサポートしているため、特別な設定は必要ありません。ただし、Sassコンパイルのオプションをカスタマイズする場合は、`next.config.mjs`に以下の設定を追加します。
+
+```bash
+cat > next.config.mjs << 'EOL'
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  sassOptions: {
+    includePaths: ['./src/styles'],
+  },
+};
+
+export default nextConfig;
+EOL
+```
+
+### 5.4 StyleLintのSassサポート追加
+
+StyleLintがSassファイルを適切に処理できるように設定を更新します。
+
+1. 必要なパッケージのインストール
+
+```bash
+npm install -D stylelint-scss postcss-scss
+```
+
+2. `stylelint.config.mjs`の更新
+
+```bash
+cat > stylelint.config.mjs << 'EOL'
+/** @type {import('stylelint').Config} */
+const config = {
+  extends: [
+    'stylelint-config-standard',
+    'stylelint-config-tailwindcss'
+  ],
+  plugins: [
+    'stylelint-order',
+    'stylelint-scss'
+  ],
+  overrides: [
+    {
+      files: ['**/*.scss'],
+      customSyntax: 'postcss-scss',
+      rules: {
+        'at-rule-no-unknown': null,
+        'scss/at-rule-no-unknown': [
+          true,
+          {
+            ignoreAtRules: [
+              'tailwind',
+              'apply',
+              'variants',
+              'responsive',
+              'screen',
+              'layer'
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  rules: {
+    'order/properties-alphabetical-order': true,
+    'selector-class-pattern': null,
+    'at-rule-no-unknown': [
+      true,
+      {
+        ignoreAtRules: [
+          'tailwind',
+          'apply',
+          'variants',
+          'responsive',
+          'screen',
+          'layer'
+        ]
+      }
+    ]
+  }
+};
+
+export default config;
+EOL
+```
+
+### 5.5 TailwindとSassの併用のベストプラクティス
+
+TailwindCSSとSassを効果的に組み合わせるためのガイドラインを示します。
+
+1. **Tailwindを優先する**:
+   - 基本的なレイアウトやスタイリングにはTailwindのユーティリティクラスを使用
+   - コンポーネントの基本構造はTailwindで構築
+
+2. **Sassの使用ケース**:
+   - 複雑なアニメーションや変数を用いた計算が必要な場合
+   - カスタムミックスインによる再利用可能なスタイルパターン
+   - Tailwindだけでは表現が難しい複雑なセレクターや入れ子構造
+   - グローバル変数やテーマ設定の一元管理
+
+3. **モジュールスコープの活用**:
+   - コンポーネント固有のスタイルには`.module.scss`を使用
+   - グローバルスタイルの衝突を防ぐ
+
+4. **tailwind-mergeの活用**:
+   - TailwindクラスとSCSSモジュールを適切にマージ
+   - クラス名の衝突を防ぐ
+
+```bash
+npm install -D tailwind-merge
+```
+
+---
