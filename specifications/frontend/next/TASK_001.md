@@ -244,3 +244,33 @@ package.jsonのスクリプトコマンドを下記のように変更します�
 ```
 
 ---
+
+## 4. 環境変数ファイルの作成
+
+プロジェクト内で環境変数を使えるようにします。下記の環境変数ファイルを作成します。
+
+- `.env.development` : 開発環境用の環境変数ファイル
+- `.env.production` : 本番環境用の環境変数ファイル
+- `.env.local` : 秘匿情報用の環境変数ファイル
+- `.env.example` : サンプル用の環境変数ファイル
+
+開発環境用と本番環境用のファイルには、それぞれアプリケーションのURLを変数として格納しておきます。
+`.env.example` についてはGitの追跡対象とします。
+
+```.env.development
+APPURL=http://localhost:3000
+
+NEXT_PUBLIC_APPURL=http://localhost:3000
+```
+
+```.env.production
+APPURL=https://example.com
+
+NEXT_PUBLIC_APPURL=https://example.com
+```
+
+```.env.example
+APPURL=https://example.com
+
+NEXT_PUBLIC_APPURL=https://example.com
+```
