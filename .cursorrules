@@ -104,7 +104,7 @@
 # 技術スタック
 
 ## コア技術
-- **AIモデル: Claude-3-Sonnet-20241022 (Anthropic Messages API 2023-06-01) ← バージョン変更禁止**
+- **AIモデル: Claude Sonnet 4 (Thinking)**
 
 ## バックエンド
 - Laravel: ^11.0
@@ -114,12 +114,12 @@
 - WordPress: ^6.8.0
 
 ## フロントエンド
-- Next.js: ^14.0
-- Tailwind CSS: ^3.4
-- TypeScript: ^5.3.3
+- Next.js: ^15.3.2
+- Tailwind CSS: ^4
+- TypeScript: ^5
 
 ## 開発ツール
-- Docker: ^27.0.0
+- Docker: ^27.10.0
 - docker-compose: ^2.31.0
 - Docker Desktop: ^4.0
 - Node.js: ^22.11.0
