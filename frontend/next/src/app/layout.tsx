@@ -4,6 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import OffCanvas from '@/components/OffCanvas';
 import { metaDefault } from '@/utils/meta';
+import { notoSansJP } from '@/utils/fonts';
 
 export const metadata: Metadata = metaDefault;
 export const viewport: Viewport = { 
@@ -20,7 +21,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body>
+      <body className={`${notoSansJP.variable}`}>
         <div className="app-layout">
           <Header />
           {children}

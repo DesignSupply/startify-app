@@ -28,3 +28,9 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 `/specifications/frontend/next/TASK_003.md` に記載されているタスクを順番に進めます。
 
 ---
+
+## 4. フォント最適化
+
+`/specifications/frontend/next/TASK_004.md` に記載されているタスクを順番に進めます。
+
+---
