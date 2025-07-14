@@ -46,3 +46,9 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 `/specifications/frontend/next/TASK_006.md` に記載されているタスクを順番に進めます。
 
 ---
+
+## 7. グーグルアナリティクス、アドセンス、サイトマップ導入
+
+`/specifications/frontend/next/TASK_007.md` に記載されているタスクを順番に進めます。
+
+---
