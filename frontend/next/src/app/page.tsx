@@ -10,7 +10,7 @@ export default function HomePage() {
   ];
 
   return (
-    <main>
+    <main className="app-main">
       <h1>トップページ</h1>
       <JsonLd jsonLd={jsonLdData} />
     </main>

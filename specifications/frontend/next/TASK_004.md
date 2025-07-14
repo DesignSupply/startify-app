@@ -146,4 +146,5 @@ export const customFont = localFont({
 使用する場合には、同様にルートレイアウトコンポーネント（`/frontend/next/src/app/layout.tsx`）でフォント設定をインポートします。
 
 ```
+
 ---

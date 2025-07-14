@@ -34,3 +34,9 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 `/specifications/frontend/next/TASK_004.md` に記載されているタスクを順番に進めます。
 
 ---
+
+## 5. 静的ルーティングページ、404エラーページ追加
+
+`/specifications/frontend/next/TASK_005.md` に記載されているタスクを順番に進めます。
+
+---

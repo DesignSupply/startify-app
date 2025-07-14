@@ -76,7 +76,7 @@ export default function RootLayout({
 ```tsx
 export default function Home() {
   return (
-    <main>
+    <main className="app-main">
       <h1>トップページ</h1>
     </main>
   );
