@@ -1,10 +1,9 @@
 import type { Viewport, Metadata } from 'next';
 import '@/styles/globals.css';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import OffCanvas from '@/components/OffCanvas';
+import Base from '@/components/Base';
 import { metaDefault } from '@/utils/meta';
 import { notoSansJP } from '@/utils/fonts';
+import SiteThemeProvider from '@/providers/SiteThemeProvider';
 
 export const metadata: Metadata = metaDefault;
 export const viewport: Viewport = { 
@@ -22,12 +21,9 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={`${notoSansJP.variable}`}>
-        <div className="app-layout">
-          <Header />
-          {children}
-          <Footer />
-        </div>
-        <OffCanvas />
+        <SiteThemeProvider>
+          <Base>{children}</Base>
+        </SiteThemeProvider>
       </body>
     </html>
   );

@@ -40,3 +40,9 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 `/specifications/frontend/next/TASK_005.md` に記載されているタスクを順番に進めます。
 
 ---
+
+## 6. グローバルステート管理（useContext）
+
+`/specifications/frontend/next/TASK_006.md` に記載されているタスクを順番に進めます。
+
+---
