@@ -12,14 +12,14 @@ export const metadata: Metadata = {
     description: metaDefault.openGraph?.description,
     siteName: metaDefault.openGraph?.siteName,
     locale: metaDefault.openGraph?.locale,
-    images: metaDefault.openGraph?.images
+    images: metaDefault.openGraph?.images,
   },
   twitter: {
     site: metaDefault.twitter?.site,
     title: `静的ルーティングページサンプル | ${process.env.APPNAME}`,
     description: metaDefault.twitter?.description,
-    images: metaDefault.twitter?.images
-  }
+    images: metaDefault.twitter?.images,
+  },
 };
 
 export default function ExamplePage() {
@@ -27,13 +27,13 @@ export default function ExamplePage() {
     {
       '@type': 'ListItem',
       position: 1,
-      item: { '@id': `${process.env.APPURL}`, name: 'HOME' }
+      item: { '@id': `${process.env.APPURL}`, name: 'HOME' },
     },
     {
       '@type': 'ListItem',
       position: 2,
-      item: { '@id': `${process.env.APPURL}/example`, name: '静的ルーティングページサンプル' }
-    }
+      item: { '@id': `${process.env.APPURL}/example`, name: '静的ルーティングページサンプル' },
+    },
   ];
 
   return (
@@ -42,4 +42,4 @@ export default function ExamplePage() {
       <JsonLd jsonLd={jsonLdData} />
     </main>
   );
-} 
+}

@@ -8,11 +8,11 @@ import { GoogleAnalytics } from '@next/third-parties/google';
 import GoogleAdsenseScript from '@/components/GoogleAdsenseScript';
 
 export const metadata: Metadata = metaDefault;
-export const viewport: Viewport = { 
+export const viewport: Viewport = {
   themeColor: '#000000',
   colorScheme: 'light dark',
   width: 'device-width',
-  initialScale: 1
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -27,12 +27,10 @@ export default function RootLayout({
           <Base>{children}</Base>
         </SiteThemeProvider>
       </body>
-      {process.env.NODE_ENV !== 'development' && 
-       process.env.GOOGLE_ANALYTICS_ID && (
+      {process.env.NODE_ENV !== 'development' && process.env.GOOGLE_ANALYTICS_ID && (
         <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_ID} />
       )}
-      {process.env.NODE_ENV !== 'development' && 
-       process.env.GOOGLE_ADSENSE_ID && (
+      {process.env.NODE_ENV !== 'development' && process.env.GOOGLE_ADSENSE_ID && (
         <GoogleAdsenseScript />
       )}
     </html>

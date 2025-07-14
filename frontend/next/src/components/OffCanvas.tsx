@@ -7,4 +7,4 @@ export default function OffCanvas() {
       <ThemeSwitch />
     </div>
   );
-} 
+}

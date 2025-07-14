@@ -17,7 +17,7 @@
   }
 } */
 
-body:has([data-theme="dark"]) {
+body:has([data-theme='dark']) {
   --background: #0a0a0a;
   --foreground: #ededed;
 }

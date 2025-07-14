@@ -7,7 +7,5 @@ export default function SiteThemeProvider({ children }: { children: React.ReactN
   const [state, setState] = useState<stateType>(defaultState);
   const contextValue = { state, setState };
 
-  return (
-    <SiteThemeContext.Provider value={contextValue}>{children}</SiteThemeContext.Provider>
-  );
-} 
+  return <SiteThemeContext.Provider value={contextValue}>{children}</SiteThemeContext.Provider>;
+}

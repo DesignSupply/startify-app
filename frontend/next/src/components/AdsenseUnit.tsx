@@ -17,7 +17,7 @@ declare global {
 export default function AdsenseUnit(props: propsType) {
   const didEffect = useRef(false);
   const currentPath = usePathname();
-  
+
   useEffect(() => {
     if (!didEffect.current) {
       didEffect.current = true;

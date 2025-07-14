@@ -13,4 +13,4 @@ export default function NotFound() {
       <p>お探しのページが見つかりません</p>
     </main>
   );
-} 
+}

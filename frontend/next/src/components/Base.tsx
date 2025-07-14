@@ -22,4 +22,4 @@ export default function Base({
       <OffCanvas />
     </div>
   );
-} 
+}

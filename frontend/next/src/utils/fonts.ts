@@ -6,7 +6,7 @@ export const notoSansJP = Noto_Sans_JP({
   variable: '--font-noto-sans-jp',
   weight: 'variable',
   display: 'swap',
-  preload: true
+  preload: true,
 });
 
 // export const customFont = localFont({
@@ -53,4 +53,4 @@ export const notoSansJP = Noto_Sans_JP({
 //       style: 'normal'
 //     }
 //   ]
-// }); 
+// });

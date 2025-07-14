@@ -7,19 +7,19 @@ export default function ThemeSwitch() {
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newTheme = event.target.value as stateType['currentTheme'];
-    setState(prev => ({
+    setState((prev) => ({
       ...prev,
-      currentTheme: newTheme
+      currentTheme: newTheme,
     }));
   };
 
   return (
     <>
       <label>
-        <input 
-          type="radio" 
-          name="theme" 
-          value="light" 
+        <input
+          type="radio"
+          name="theme"
+          value="light"
           aria-label="Light Mode"
           onChange={changeHandler}
           checked={state.currentTheme === 'light'}
@@ -27,11 +27,11 @@ export default function ThemeSwitch() {
         ライト
       </label>
       <label>
-        <input 
-          type="radio" 
-          name="theme" 
-          value="dark" 
-          aria-label="Dark Mode" 
+        <input
+          type="radio"
+          name="theme"
+          value="dark"
+          aria-label="Dark Mode"
           onChange={changeHandler}
           checked={state.currentTheme === 'dark'}
         />
@@ -39,4 +39,4 @@ export default function ThemeSwitch() {
       </label>
     </>
   );
-} 
+}
