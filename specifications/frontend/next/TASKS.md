@@ -22,3 +22,9 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 `/specifications/frontend/next/TASK_002.md` に記載されているタスクを順番に進めます。
 
 ---
+
+## 3. メタデータ設定
+
+`/specifications/frontend/next/TASK_003.md` に記載されているタスクを順番に進めます。
+
+---

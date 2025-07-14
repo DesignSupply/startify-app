@@ -1,6 +1,6 @@
 ---
 title: Next.jsアプリケーション開発タスクリスト:プロジェクトディレクトリ再構成、共通コンポーネント作成
-id: next_task_001
+id: next_task_002
 version: 1.0.0
 last_updated: 2025-03-03
 purpose: AI支援による開発環境構築のための仕様書
