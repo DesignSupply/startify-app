@@ -254,4 +254,14 @@ npm install next-sitemap
   ...
 ```
 
+サイトマップの設定ファイルを（`/frontend/next/next-sitemap.config.js`）作成します。
+
+```js
+/** @type {import('next-sitemap').IConfig} */
+module.exports = {
+  siteUrl: process.env.ENVURL || 'https://example.com', // 本番環境の公開ドメイン
+  generateRobotsTxt: false,
+}
+```
+
 ---
