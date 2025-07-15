@@ -52,3 +52,9 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 `/specifications/frontend/next/TASK_007.md` に記載されているタスクを順番に進めます。
 
 ---
+
+## 8. PWA対応
+
+`/specifications/frontend/next/TASK_008.md` に記載されているタスクを順番に進めます。
+
+---
