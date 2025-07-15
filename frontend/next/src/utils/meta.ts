@@ -301,7 +301,7 @@ export const metaDefault: Metadata = {
     site: '', // @X_USER_NAME
     title: `${process.env.APPNAME}`,
     description: `${process.env.APPDESCRIPTION}`,
-    images: [{ url: `/assets/images/icons/ogp.png` }],
+    images: [{ url: `/assets/images/ogp.png` }],
   },
   verification: {
     google: '',

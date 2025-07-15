@@ -15,7 +15,9 @@ alwaysApply: false
 ├── /out                            # Next.jsの公開用ファイルディレクトリ
 ├── /public                         # 静的アセットファイルディレクトリ
 │   ├── favicon.svg
-│   ├── /images
+│   ├── /assets
+│   │   ├── images
+│   │   ├── fonts
 ├── /src                            # ソースコードディレクトリ
 │   ├── /app                        # App Router ルーティングディレクトリ
 │   │   ├── layout.tsx              # ルートレイアウトコンポーネント

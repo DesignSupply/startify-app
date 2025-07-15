@@ -113,24 +113,24 @@ export default nextConfig;
   "description": "Startify-Appは、AI駆動の開発に対応するために設計されたウェブアプリケーション・ウェブサイトの開発環境です。",
   "icons": [
     {
-      "src": "/images/icons/_icon_192_maskable.png",
+      "src": "/assets/images/icons/_icon_192_maskable.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/images/icons/_icon_192_maskable.png",
+      "src": "/assets/images/icons/_icon_192_maskable.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "maskable",
       "background_color": "#ffffff"
     },
     {
-      "src": "/images/icons/_icon_512_maskable.png",
+      "src": "/assets/images/icons/_icon_512_maskable.png",
       "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "/images/icons/_icon_512_maskable.png",
+      "src": "/assets/images/icons/_icon_512_maskable.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable",
@@ -139,13 +139,13 @@ export default nextConfig;
   ],
   "screenshots": [
     {
-      "src": "/images/splashscreens/splashscreens_iphonexsmax_splash.png",
+      "src": "/assets/images/splashscreens/splashscreens_iphonexsmax_splash.png",
       "type": "image/png",
       "sizes": "1242x2688",
       "form_factor": "narrow"
     },
     {
-      "src": "/images/splashscreens/splashscreens_ipadpro2_splash.png",
+      "src": "/assets/images/splashscreens/splashscreens_ipadpro2_splash.png",
       "type": "image/png",
       "sizes": "2048x2732",
       "form_factor": "wide"
