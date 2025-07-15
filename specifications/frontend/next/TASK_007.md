@@ -25,6 +25,7 @@ npm install @next/third-parties@latest
 
 ```tsx
 import type { Viewport, Metadata } from 'next';
+import { Suspense } from 'react';
 import '@/styles/globals.css';
 import Base from '@/components/Base';
 import { metaDefault } from '@/utils/meta';
@@ -49,7 +50,9 @@ export default function RootLayout({
     <html lang="ja">
       <body className={`${notoSansJP.variable}`}>
         <SiteThemeProvider>
-          <Base>{children}</Base>
+          <Suspense>
+            <Base>{children}</Base>
+          </Suspense>
         </SiteThemeProvider>
       </body>
       {/* 追加 */}
@@ -106,6 +109,7 @@ GOOGLE_ADSENSE_ID=ca-pub-XXXXXXXXXX # 追加
 
 ```tsx
 import type { Viewport, Metadata } from 'next';
+import { Suspense } from 'react';
 import '@/styles/globals.css';
 import Base from '@/components/Base';
 import { metaDefault } from '@/utils/meta';
@@ -131,7 +135,9 @@ export default function RootLayout({
     <html lang="ja">
       <body className={`${notoSansJP.variable}`}>
         <SiteThemeProvider>
-          <Base>{children}</Base>
+          <Suspense>
+            <Base>{children}</Base>
+          </Suspense>
         </SiteThemeProvider>
       </body>
       {

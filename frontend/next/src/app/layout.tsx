@@ -1,4 +1,5 @@
 import type { Viewport, Metadata } from 'next';
+import { Suspense } from 'react';
 import '@/styles/globals.css';
 import Base from '@/components/Base';
 import { metaDefault } from '@/utils/meta';
@@ -24,7 +25,9 @@ export default function RootLayout({
     <html lang="ja">
       <body className={`${notoSansJP.variable}`}>
         <SiteThemeProvider>
-          <Base>{children}</Base>
+          <Suspense>
+            <Base>{children}</Base>
+          </Suspense>
         </SiteThemeProvider>
       </body>
       {process.env.NODE_ENV !== 'development' && process.env.GOOGLE_ANALYTICS_ID && (

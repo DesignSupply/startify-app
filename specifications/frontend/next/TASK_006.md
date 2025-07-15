@@ -124,10 +124,11 @@ export default function Base({
 
 ```
 
-ラッパーコンポーネント追加に伴い、ルートレイアウトコンポーネントを修正します。
+ラッパーコンポーネント追加に伴い、ルートレイアウトコンポーネントを修正します。ビルド時のレンダリングエラー対応も合わせて行います。
 
 ```tsx
 import type { Viewport, Metadata } from 'next';
+import { Suspense } from 'react';
 import '@/styles/globals.css';
 import Base from '@/components/Base';
 import { metaDefault } from '@/utils/meta';
@@ -151,7 +152,9 @@ export default function RootLayout({
     <html lang="ja">
       <body className={`${notoSansJP.variable}`}>
         <SiteThemeProvider>
-          <Base>{children}</Base>
+          <Suspense>
+            <Base>{children}</Base>
+          </Suspense>
         </SiteThemeProvider>
       </body>
     </html>
