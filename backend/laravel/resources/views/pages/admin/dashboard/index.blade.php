@@ -20,7 +20,10 @@
     @endif
 
     <p>こんにちは、{{ $admin->name }}さん</p>
-    <a href="{{ route('admin.profile', $admin->id) }}">プロフィール</a>
+    <a href="{{ route('admin.profile', $admin->id) }}">管理者プロフィール</a>
+    <br>
+    <a href="{{ route('admin.files.index') }}">ファイルアップロード一覧</a>
+    <br>
     <form method="POST" action="{{ route('admin.signout') }}">
         @csrf
         <button type="submit">管理者ログアウト</button>

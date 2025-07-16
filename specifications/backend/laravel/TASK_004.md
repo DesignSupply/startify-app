@@ -22,7 +22,7 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
   - クラス: `CreateAdminUsersTable`
   - テーブル: `admin_users`
   - カラム
-    - `id` / integer / primary key / auto increment
+    - `id` / big integer / primary key / auto increment / unsigned
     - `name` / string
     - `email` / string / unique
     - `email_verified_at` / timestamp / nullable

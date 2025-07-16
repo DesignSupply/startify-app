@@ -125,6 +125,29 @@ Route::namespace('App\Http\Controllers')->group(function () {
             // 管理者ログアウト
             Route::post('/signout', 'AdminController@signOut')->name('admin.signout');
 
+            // ファイルアップロード
+            Route::prefix('files')->group(function () {
+
+                // ファイル一覧
+                Route::get('/', 'AdminFilesController@index')->name('admin.files.index');
+
+                // ファイルアップロード
+                Route::get('/create', 'AdminFilesController@create')->name('admin.files.create');
+                Route::post('/store', 'AdminFilesController@store')->name('admin.files.store');
+
+                // ファイル詳細
+                Route::get('/{id}', 'AdminFilesController@show')->name('admin.files.show');
+
+                // ファイル編集・削除
+                Route::get('/{id}/edit', 'AdminFilesController@edit')->name('admin.files.edit');
+                Route::post('/{id}/update', 'AdminFilesController@update')->name('admin.files.update');
+                Route::post('/{id}/delete', 'AdminFilesController@destroy')->name('admin.files.destroy');
+
+                // ファイルダウンロード
+                Route::get('/{id}/download', 'AdminFilesController@download')->name('admin.files.download');
+
+            });
+
         });
     });
 });

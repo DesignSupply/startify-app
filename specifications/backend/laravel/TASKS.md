@@ -76,3 +76,9 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 `/specifications/backend/laravel/TASK_011.md` に記載されているタスクを順番に進めます。
 
 ---
+
+## 12. ファイルアップロード機能の実装
+
+`/specifications/backend/laravel/TASK_012.md` に記載されているタスクを順番に進めます。
+
+---
