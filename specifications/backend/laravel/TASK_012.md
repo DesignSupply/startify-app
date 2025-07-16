@@ -40,14 +40,35 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 
 ---
 
-## 2. ファイルアップロードのモデルを作成
+## 2. ファイルアップロードのモデル・ヘルパー・サービスを作成
 
-ファイルアップロードのモデルを作成します。
+ファイルアップロードのモデル・ヘルパー・サービスを作成します。
 
 - モデル
   - モデル: `UploadedFile`
   - パス: `/backend/laravel/app/Models/UploadedFile.php`
   - クラス: `UploadedFile`
+  - 機能仕様
+    - データベースとの関連処理（リレーション）
+    - アクセサー（`getHumanFileSizeAttribute`）
+    - 簡単な状態判定メソッド（`isImage`、`isPreviewable`）
+    - サービスクラスの呼び出し用のメソッド（`generateThumbnail`）
+
+- ヘルパー
+  - クラス: `UploadedFileHelper`
+  - パス: `/backend/laravel/app/Helpers/UploadedFileHelper.php`
+  - 機能仕様
+    - ファイルサイズのフォーマット処理
+    - ファイル拡張子の判定処理（画像、プレビュー可能）
+    - 汎用的なファイル関連のヘルパー処理
+
+- サービス
+  - クラス: `UploadedFileService`
+  - パス: `/backend/laravel/app/Services/UploadedFileService.php`
+  - 機能仕様
+    - 画像サムネイル生成処理
+    - ファイル削除処理（ストレージとデータベースの両方）
+    - 複雑なファイル操作に関するビジネスロジック
 
 ファイルアップロードのモデル作成後、`config/filesystems.php` にある `uploads` の設定で、ファイルの保存先が `storage/app/private/uploads/` になるよう設定し、ファイルへの直接アクセスを制限します。
 

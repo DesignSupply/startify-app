@@ -3,12 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
+use App\Helpers\UploadedFileHelper;
 
 class UploadedFile extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'filename',
         'stored_filename',
@@ -17,7 +21,7 @@ class UploadedFile extends Model
         'file_size',
         'file_extension',
         'uploaded_by',
-        'description',
+        'description'
     ];
 
     public function uploader()
@@ -27,55 +31,22 @@ class UploadedFile extends Model
 
     public function getHumanFileSizeAttribute()
     {
-        return $this->formatBytes($this->file_size);
-    }
-
-    private function formatBytes($bytes, $precision = 2)
-    {
-        $units = array('B', 'KB', 'MB', 'GB', 'TB');
-
-        for ($i = 0; $bytes > 1024 && $i < count($units) - 1; $i++) {
-            $bytes /= 1024;
-        }
-
-        return round($bytes, $precision) . ' ' . $units[$i];
+        return UploadedFileHelper::formatBytes($this->file_size);
     }
 
     public function isImage()
     {
-        return in_array($this->file_extension, ['jpg', 'jpeg', 'png', 'gif', 'svg', 'webp']);
+        return UploadedFileHelper::isImageExtension($this->file_extension);
     }
 
     public function isPreviewable()
     {
-        return $this->isImage() || in_array($this->file_extension, ['txt', 'md', 'csv', 'pdf']);
+        return UploadedFileHelper::isPreviewableExtension($this->file_extension);
     }
 
+    // モデルが持つのは適切なメソッド（サービスクラスの呼び出しの糖衣構文）
     public function generateThumbnail($width = 300)
     {
-        if (!$this->isImage()) {
-            return null;
-        }
-
-        try {
-            // ストレージからファイルを読み込み
-            $fileContent = Storage::disk('uploads')->get($this->file_path);
-
-            // ImageManagerを初期化
-            $manager = new ImageManager(new Driver());
-
-            // 画像を読み込み
-            $image = $manager->read($fileContent);
-
-            // 幅を300pxにリサイズ（アスペクト比維持）
-            $image->scaleDown($width, null);
-
-            // base64エンコードして返す
-            return 'data:' . $this->mime_type . ';base64,' . base64_encode($image->encode());
-
-                } catch (\Exception $e) {
-            // エラーが発生した場合はnullを返す
-            return null;
-        }
+        return app(\App\Services\UploadedFileService::class)->generateThumbnail($this, $width);
     }
 }
