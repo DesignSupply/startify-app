@@ -61,7 +61,13 @@ class AdminFilesController extends Controller
     {
         $file = UploadedFile::with('uploader')->findOrFail($id);
 
-        return view('pages.admin.files.show', compact('file'));
+        // 画像の場合はサムネイルを生成
+        $thumbnail = null;
+        if ($file->isImage()) {
+            $thumbnail = $file->generateThumbnail();
+        }
+
+        return view('pages.admin.files.show', compact('file', 'thumbnail'));
     }
 
     public function edit($id)

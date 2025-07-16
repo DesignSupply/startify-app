@@ -19,8 +19,7 @@ class FileUploadRequest extends FormRequest
                 'required',
                 'file',
                 'max:10240', // 10MB
-                'mimes:jpg,jpeg,png,gif,webp,pdf,txt,csv,doc,docx,xls,xlsx,ppt,pptx,mp4',
-                'mimetypes:image/jpeg,image/png,image/gif,image/webp,application/pdf,text/plain,text/csv,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,application/vnd.ms-powerpoint,application/vnd.openxmlformats-officedocument.presentationml.presentation,video/mp4'
+                'mimes:jpg,jpeg,png,gif,webp,pdf,csv,doc,docx,xls,xlsx,ppt,pptx,mp4',
             ],
             'description' => 'nullable|string|max:1000',
         ];

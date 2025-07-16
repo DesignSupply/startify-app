@@ -8,8 +8,13 @@ RUN apt-get update && \
 	unzip \
 	libzip-dev \
 	libicu-dev \
-	libonig-dev && \
-	docker-php-ext-install intl pdo_mysql mysqli zip bcmath mbstring && \
+	libonig-dev \
+	libfreetype6-dev \
+	libjpeg62-turbo-dev \
+	libpng-dev \
+	libgd-dev && \
+	docker-php-ext-configure gd --with-freetype --with-jpeg && \
+	docker-php-ext-install intl pdo_mysql mysqli zip bcmath mbstring gd && \
 	apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Composerのインストール

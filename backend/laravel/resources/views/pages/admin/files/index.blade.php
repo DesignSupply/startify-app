@@ -22,6 +22,7 @@
     <a href="{{ route('admin.files.create') }}">新規ファイルアップロード</a>
 
     @if ($files->count() > 0)
+
         <table>
             <thead>
                 <tr>
@@ -32,6 +33,7 @@
                 </tr>
             </thead>
             <tbody>
+
                 @foreach ($files as $file)
                     <tr>
                         <td>
@@ -44,8 +46,10 @@
                         <td>{{ $file->uploader->name }}</td>
                     </tr>
                 @endforeach
+
             </tbody>
         </table>
+
     @else
         <p>アップロードされたファイルはありません。</p>
     @endif

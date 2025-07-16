@@ -42,25 +42,25 @@
     </table>
 
     <form method="POST" action="{{ route('admin.files.update', ['id' => $file->id]) }}">
+
         @csrf
 
         <div>
             <label for="description">ファイル説明</label>
             <textarea id="description" name="description" rows="4">{{ old('description', $file->description) }}</textarea>
         </div>
-
         <div>
             <button type="submit">更新</button>
             <a href="{{ route('admin.files.show', ['id' => $file->id]) }}">戻る</a>
         </div>
     </form>
 
-    <h2>ファイル削除</h2>
     <form method="POST" action="{{ route('admin.files.destroy', ['id' => $file->id]) }}" onsubmit="return confirm('本当に削除しますか？');">
-        @csrf
-        <button type="submit" style="background-color: red; color: white;">ファイルを削除</button>
-    </form>
 
+        @csrf
+
+        <button type="submit">ファイルを削除</button>
+    </form>
     <a href="{{ route('admin.files.show', ['id' => $file->id]) }}">詳細画面に戻る</a>
 </main>
 @endsection
