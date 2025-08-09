@@ -1,11 +1,12 @@
-import "../scss/style.scss";
-import $ from "jquery";
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "../tsx/App";
+import '../styles/tailwind.css';
+import '../scss/style.scss';
+import $ from 'jquery';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from '../tsx/App';
 
 // React
-ReactDOM.createRoot(document.getElementById("app") as HTMLElement).render(
+ReactDOM.createRoot(document.getElementById('app') as HTMLElement).render(
   <React.StrictMode>
     <App />
   </React.StrictMode>
@@ -13,5 +14,5 @@ ReactDOM.createRoot(document.getElementById("app") as HTMLElement).render(
 
 // jQuery
 $(function () {
-  console.log("jQuery is ready.");
+  console.log('jQuery is ready.');
 });

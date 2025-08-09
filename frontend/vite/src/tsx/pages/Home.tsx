@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 
-const Home = (): JSX.Element => {
+const Home = (): React.JSX.Element => {
   return (
     <>
       <h1>Current page：Home</h1>

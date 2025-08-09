@@ -2,7 +2,7 @@ interface propsInterface {
   message: string;
 }
 
-const ExampleComponent = (props: propsInterface): JSX.Element => {
+const ExampleComponent = (props: propsInterface): React.JSX.Element => {
   return (
     <>
       <p>{props.message}</p>
