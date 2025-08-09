@@ -24,7 +24,6 @@
     "src/**/*.jsx", 
     "src/**/*.vue",
     "types/**/*.d.ts",
-    "vite.config.ts",
     "postcss.config.mjs",
     "tailwind.config.mjs",
   ],
