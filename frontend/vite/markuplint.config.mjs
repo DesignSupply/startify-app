@@ -1,0 +1,32 @@
+export default {
+  extends: ['markuplint:recommended'],
+  parser: {
+    '.mustache$|.hbs$': '@markuplint/mustache-parser',
+    '.tsx$': '@markuplint/jsx-parser',
+    '.vue$': '@markuplint/vue-parser',
+    '.pug$': '@markuplint/pug-parser',
+  },
+  specs: {
+    '.tsx$': '@markuplint/react-spec',
+    '.vue$': '@markuplint/vue-spec',
+  },
+  rules: {
+    'character-reference': false,
+    'permitted-contents': false,
+    'required-h1': false,
+  },
+  nodeRules: [
+    {
+      selector: 'head',
+      rules: {
+        'required-element': {
+          options: {
+            ignoreHasMutableContents: true,
+          },
+        },
+      },
+    },
+  ],
+};
+
+
