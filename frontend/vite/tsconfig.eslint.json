@@ -1,7 +1,15 @@
 {
   "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "target": "ESNext",
+    "types": ["node", "vite/client"],
+    "skipLibCheck": true
+  },
   "include": [
     "src/**/*",
+    "types/**/*.d.ts",
     "vite.config.ts",
     "postcss.config.mjs",
     "tailwind.config.mjs",

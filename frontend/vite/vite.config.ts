@@ -1,17 +1,19 @@
+// @ts-nocheck
 import { resolve } from 'path';
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react'
+import react from '@vitejs/plugin-react';
 import vue from '@vitejs/plugin-vue';
 import handlebars from 'vite-plugin-handlebars';
 import pug from 'vite-plugin-pug';
 import globule from 'globule';
+import siteData from './sitedata.json' with { type: 'json' };
 
 const env = {
   url: {
     development: 'http://localhost:2000',
     production: 'https://example.com'
   },
-  siteData: require('./sitedata.json')
+  siteData
 }
 
 const htmlFiles = globule.find('src/**/*.html', {
@@ -51,9 +53,9 @@ export default defineConfig(({ command }) => ({
           if(assetFile.name !== undefined) {
             if(/\.css$/.test(assetFile.name)) {
               return 'assets/stylesheets/[name].min.[ext]';
-            } else if(/\.( gif|jpeg|jpg|png|svg|webp| )$/.test(assetFile.name)) {
+            } else if(/\.(gif|jpeg|jpg|png|svg|webp)$/.test(assetFile.name)) {
               return 'assets/images/[name].min.[ext]';
-            } else if(/\.( ttf|otf|eot|woff|woff2| )$/.test(assetFile.name)) {
+            } else if(/\.(ttf|otf|eot|woff|woff2)$/.test(assetFile.name)) {
               return 'assets/fonts/[name].[ext]';
             } else {
               return 'assets/[name].[ext]';

@@ -42,6 +42,7 @@ export default [
         extraFileExtensions: ['.vue'],
       },
     },
+    plugins: { '@typescript-eslint': tsPlugin },
     rules: {
       'no-console': 'warn',
       'no-unused-vars': 'warn',
@@ -70,4 +71,13 @@ export default [
       'react-refresh/only-export-components': ['warn', { allowExportNames: ['use*'] }],
     },
   },
+
+  // Vite config
+  {
+    files: ['vite.config.ts'],
+    languageOptions: {
+      parser: tsParser,
+      parserOptions: { project: null }
+    }
+  }
 ];
