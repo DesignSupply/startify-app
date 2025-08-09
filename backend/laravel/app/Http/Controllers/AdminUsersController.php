@@ -74,7 +74,7 @@ class AdminUsersController extends Controller
 
         $user->save();
 
-        return redirect()->route('admin.users.index')
+        return redirect()->route('admin.users.show', ['id' => $user->id])
             ->with('status', 'ユーザー情報を更新しました。');
     }
 
