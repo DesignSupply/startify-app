@@ -15,7 +15,7 @@ export default [
       parser: vueParser,
       parserOptions: {
         parser: tsParser,
-        project: ['./tsconfig.json'],
+        project: ['./tsconfig.eslint.json'],
         tsconfigRootDir: new URL('.', import.meta.url),
         ecmaVersion: 'latest',
         sourceType: 'module',
@@ -36,7 +36,7 @@ export default [
     languageOptions: {
       parser: tsParser,
       parserOptions: {
-        project: ['./tsconfig.json'],
+        project: ['./tsconfig.eslint.json'],
         tsconfigRootDir: new URL('.', import.meta.url),
         ecmaVersion: 'latest',
         sourceType: 'module',

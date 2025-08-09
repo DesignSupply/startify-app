@@ -8,7 +8,7 @@ import globule from 'globule';
 
 const env = {
   url: {
-    development: 'http:localhost',
+    development: 'http://localhost:2000',
     production: 'https://example.com'
   },
   siteData: require('./sitedata.json')
@@ -22,9 +22,9 @@ const htmlFiles = globule.find('src/**/*.html', {
 });
 
 const multiPageObject = Object.fromEntries(htmlFiles.map((path) => {
-  return [
-    path.split('/').slice(-1)[0].replace('.html', ''), resolve(__dirname, path)
-  ]
+  const relativePath = path.replace('src/', '');
+  const key = relativePath.replace(/\//g, '-').replace('.html', '');
+  return [key, resolve(__dirname, path)];
 }));
 
 // @ts-ignore

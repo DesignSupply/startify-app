@@ -3,11 +3,9 @@ import cssDeclarationSorter from 'css-declaration-sorter';
 import tailwindcss from 'tailwindcss';
 
 export default {
-  plugins: {
-    autoprefixer: autoprefixer(),
-    'css-declaration-sorter': cssDeclarationSorter({ order: 'smacss' }),
-    tailwindcss: tailwindcss(),
-  },
+  plugins: [
+    tailwindcss({ config: './tailwind.config.mjs' }),
+    autoprefixer(),
+    cssDeclarationSorter({ order: 'smacss' }),
+  ],
 };
-
-
