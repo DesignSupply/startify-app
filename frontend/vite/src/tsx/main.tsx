@@ -1,4 +1,4 @@
-import "../scss/main.scss";
+import "../scss/style.scss";
 import $ from "jquery";
 import React from "react";
 import ReactDOM from "react-dom/client";

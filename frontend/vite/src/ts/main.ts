@@ -1,4 +1,4 @@
-import "../scss/main.scss";
+import "../scss/style.scss";
 import $ from "jquery";
 import { createApp } from "vue";
 import { createPinia } from "pinia";

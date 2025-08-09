@@ -1,9 +1,9 @@
 {
-  "name": "Startify4",
-  "short_name": "Startify4",
+  "name": "Startify-App",
+  "short_name": "Startify-App",
   "theme_color": "#000000",
   "background_color": "#ffffff",
   "display": "browser",
   "scope": "/",
-  "start_url": "https://github.com/DesignSupply/startify4"
+  "start_url": "https://github.com/DesignSupply/startify-app"
 }
