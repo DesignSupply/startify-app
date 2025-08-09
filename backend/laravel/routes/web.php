@@ -148,6 +148,40 @@ Route::namespace('App\Http\Controllers')->group(function () {
 
             });
 
+            // 一般ユーザー管理
+            Route::prefix('users')->group(function () {
+
+                // 一覧
+                Route::get('/', 'AdminUsersController@index')
+                    ->name('admin.users.index');
+
+                // 詳細
+                Route::get('/{id}', 'AdminUsersController@show')
+                    ->whereNumber('id')
+                    ->name('admin.users.show');
+
+                // 編集
+                Route::get('/{id}/edit', 'AdminUsersController@edit')
+                    ->whereNumber('id')
+                    ->name('admin.users.edit');
+
+                // 更新
+                Route::post('/{id}/update', 'AdminUsersController@update')
+                    ->whereNumber('id')
+                    ->name('admin.users.update');
+
+                // 削除（論理）
+                Route::post('/{id}/delete', 'AdminUsersController@destroy')
+                    ->whereNumber('id')
+                    ->name('admin.users.destroy');
+
+                // 復元
+                Route::post('/{id}/restore', 'AdminUsersController@restore')
+                    ->whereNumber('id')
+                    ->name('admin.users.restore');
+
+            });
+
         });
     });
 });

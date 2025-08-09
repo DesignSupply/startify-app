@@ -37,5 +37,22 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'is_deleted' => 'boolean',
     ];
+
+    /**
+     * Scope: Only active (not logically deleted) users.
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('is_deleted', false);
+    }
+
+    /**
+     * Scope: Only logically deleted users.
+     */
+    public function scopeOnlyDeleted($query)
+    {
+        return $query->where('is_deleted', true);
+    }
 }

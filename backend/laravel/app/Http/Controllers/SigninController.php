@@ -25,6 +25,13 @@ class SignInController extends Controller
             ]);
         }
 
+        // 削除ユーザーの場合
+        if ($user->is_deleted) {
+            return redirect()->route('signin')->withErrors([
+                'email' => 'このアカウントは削除されています。',
+            ]);
+        }
+
         // パスワードの確認
         if (!Auth::attempt($credentials)) {
             return redirect()->route('signin')->withErrors([

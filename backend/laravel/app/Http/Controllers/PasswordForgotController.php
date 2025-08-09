@@ -31,6 +31,13 @@ class PasswordForgotController extends Controller
             ]);
         }
 
+        // 削除ユーザーの場合
+        if ($user->is_deleted) {
+            return back()->withErrors([
+                'email' => '削除済みアカウントのパスワードリセットはできません',
+            ]);
+        }
+
         try {
             // パスワードリセットトークンの生成
             $token = Password::createToken($user);
