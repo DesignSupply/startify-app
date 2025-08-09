@@ -8,9 +8,9 @@ export default [
   // Ignore common output dirs
   { ignores: ['**/node_modules/**', '**/dist/**', '**/build/**'] },
 
-  // Vue / Common TS(JS) files (no React rules here)
+  // Common TS/JS (no React/Vue specific rules)
   {
-    files: ['**/*.{ts,js,vue}'],
+    files: ['**/*.{ts,js}'],
     languageOptions: {
       parser: vueParser,
       parserOptions: {
@@ -19,10 +19,29 @@ export default [
         tsconfigRootDir: new URL('.', import.meta.url),
         ecmaVersion: 'latest',
         sourceType: 'module',
-        extraFileExtensions: ['.vue'],
       },
     },
     plugins: { '@typescript-eslint': tsPlugin },
+    rules: {
+      'no-console': 'warn',
+      'no-unused-vars': 'warn',
+      '@typescript-eslint/ban-ts-comment': 'warn',
+    },
+  },
+
+  // Vue SFC (lint without TS project to avoid type-aware errors)
+  {
+    files: ['**/*.vue'],
+    languageOptions: {
+      parser: vueParser,
+      parserOptions: {
+        parser: tsParser,
+        project: null,
+        ecmaVersion: 'latest',
+        sourceType: 'module',
+        extraFileExtensions: ['.vue'],
+      },
+    },
     rules: {
       'no-console': 'warn',
       'no-unused-vars': 'warn',
