@@ -1,0 +1,37 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "lib": ["ESNext", "DOM"],
+    "moduleResolution": "Node",
+    "strict": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "noEmit": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitReturns": false,
+    "skipLibCheck": true,
+    "jsx": "react-jsx",
+    "allowJs": true
+  },
+  "include": [
+    "src/**/*.ts", 
+    "src/**/*.js", 
+    "src/**/*.tsx",
+    "src/**/*.jsx", 
+    "src/**/*.vue",
+    "types/**/*.d.ts",
+    "vite.config.ts",
+    "postcss.config.cjs",
+    "tailwind.config.js",
+  ],
+  "exclude": [
+    "node_modules"
+  ],
+  "references": [
+    { "path": "./tsconfig.node.json" }
+  ]
+}

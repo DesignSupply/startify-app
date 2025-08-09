@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="ja" data-theme="light">
+  <head>
+    <pug src="./pug/components/head.pug" />
+    <pug src="./pug/meta/index.pug" />
+  </head>
+  <body class="page-home-body">
+    <noscript>※当ウェブサイトを快適に閲覧していただくためjavascriptを有効にしてください</noscript>
+    <div class="l-base">
+      <pug src="./pug/components/header.pug" />
+      <pug src="./pug/index.pug" />
+      <pug src="./pug/components/footer.pug" />
+    </div>
+    <!-- base end -->
+    <pug src="./pug/components/external.pug" />
+    <pug src="./pug/components/body-script.pug" />
+    <!-- use Vue.js -->
+    <!-- <script type="module" src="./ts/main.ts"></script> -->
+    <!-- use React -->
+    <script type="module" src="./tsx/main.tsx"></script>
+  </body>
+</html>

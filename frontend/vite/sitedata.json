@@ -1,0 +1,24 @@
+{
+  "siteName": "サンプルサイト",
+  "siteUrl": "https://example.com",
+  "pageMeta": {
+    "/index.html": {
+      "id": 1,
+      "name": "home",
+      "title": "トップページ",
+      "description": "サイトのトップページです",
+      "ogpImage": "/public/images/icon/ogp_default.jpg",
+      "type": "website",
+      "path": "/"
+    },
+    "/page1.html": {
+      "id": 2,
+      "name": "page1",
+      "title": "ページ1｜サンプルサイト",
+      "description": "ページ1の説明文です",
+      "ogpImage": "/public/images/icon/ogp_default.jpg",
+      "type": "article",
+      "path": "/page1.html"
+    }
+  }
+}

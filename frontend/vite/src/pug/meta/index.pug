@@ -1,0 +1,31 @@
+block variables  
+  //- ページ固有設定用の変数
+  - var page = '/index.html'
+
+// ページ固有設定メタデータ
+meta(property='og:title' content=pageMeta[page]['title'])
+meta(property='og:description' content=pageMeta[page]['description'])
+meta(property='og:url' content=envUrl + pageMeta[page]['path'])
+meta(property='og:type' content=pageMeta[page]['type'])
+meta(property='og:image' content=envUrl + pageMeta[page]['ogpImage'])
+meta(name='twitter:title' content=pageMeta[page]['title'])
+meta(name='twitter:description' content=pageMeta[page]['description'])
+meta(name='twitter:url' content=envUrl + pageMeta[page]['path'])
+meta(name='description' content=pageMeta[page]['description'])
+link(rel='canonical' href=envUrl + pageMeta[page]['path'])
+title !{pageMeta[page]['title']} 
+script(type="application/ld+json").
+  {
+    "@context": "http://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { 
+        "@type": "ListItem", 
+        "position": 1, 
+        "item": { 
+          "@id": "!{envUrl}/", 
+          "name": "HOME" 
+        } 
+      }
+    ]
+  }
