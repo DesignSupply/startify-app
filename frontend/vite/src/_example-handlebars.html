@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html lang="ja" data-theme="light">
-  <head>{{> head }} {{> meta }}
+  <head>
+    {{> head }} {{> meta }}
     <script type="application/ld+json">
       {
         "@context": "http://schema.org",
         "@type": "BreadcrumbList",
-        "itemListElement": [{ "@type": "ListItem", "position": 1, "item": { "@id": "{{envUrl}}", "name": "HOME" } }]
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "item": { "@id": "{{envUrl}}", "name": "HOME" }
+          }
+        ]
       }
     </script>
   </head>
   <body class="page-home-body">
-    <noscript>※当ウェブサイトを快適に閲覧していただくためjavascriptを有効にしてください</noscript>
+    <noscript
+      >※当ウェブサイトを快適に閲覧していただくためjavascriptを有効にしてください</noscript
+    >
     <div class="l-base">{{> header }} {{> index }} {{> footer }}</div>
     <!-- base end -->
     {{> external }} {{> 'body-scripts' }}

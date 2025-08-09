@@ -25,8 +25,8 @@
     "src/**/*.vue",
     "types/**/*.d.ts",
     "vite.config.ts",
-    "postcss.config.cjs",
-    "tailwind.config.js",
+    "postcss.config.mjs",
+    "tailwind.config.mjs",
   ],
   "exclude": [
     "node_modules"

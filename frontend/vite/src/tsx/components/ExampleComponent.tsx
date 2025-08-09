@@ -1,5 +1,5 @@
 interface propsInterface {
-  message: string
+  message: string;
 }
 
 const ExampleComponent = (props: propsInterface): JSX.Element => {
@@ -7,7 +7,7 @@ const ExampleComponent = (props: propsInterface): JSX.Element => {
     <>
       <p>{props.message}</p>
     </>
-  )
-}
+  );
+};
 
 export default ExampleComponent;

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 const props = defineProps({
-  message: String
+  message: String,
 });
 </script>
 

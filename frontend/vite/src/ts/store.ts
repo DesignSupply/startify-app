@@ -1,15 +1,15 @@
-import { defineStore } from 'pinia';
+import { defineStore } from "pinia";
 
-export const useStore = defineStore('sample-store', {
+export const useStore = defineStore("sample-store", {
   state: () => ({
-    message: 'Hello World'
+    message: "Hello World",
   }),
   actions: {
     updateMessage(payload: string) {
       this.message = payload;
-    }
+    },
   },
   getters: {
-    getMessage: (state) => state.message
-  }
+    getMessage: (state) => state.message,
+  },
 });
