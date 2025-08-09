@@ -32,6 +32,9 @@ alwaysApply: false
 | admin-files-create | 管理者ファイル登録 | 管理者ユーザーがファイルをアップロードするフォーム画面 |
 | admin-files-show | 管理者ファイル詳細 | 管理者ユーザーがアップロードしたファイルの詳細画面 |
 | admin-files-edit | 管理者ファイル編集 | 管理者ユーザーがアップロードしたファイルの編集フォーム画面 |
+| admin-users | 一般ユーザー一覧 | 作成済みの一般ユーザー情報の一覧画面 |
+| admin-users-show | 一般ユーザー詳細 | 作成済みの一般ユーザー情報の詳細画面 |
+| admin-users-edit | 一般ユーザー編集 | 作成済みの一般ユーザー情報の編集フォーム画面 |
 | contact | お問い合わせ | お問い合わせフォームの入力画面 |
 | contact-confirm | お問い合わせ確認 | お問い合わせフォームの確認画面 |
 | contact-thanks | お問い合わせ完了 | お問い合わせフォームの送信完了画面 |
@@ -83,6 +86,7 @@ flowchart TD
     admin-profile --> admin-profile-edit["管理者ユーザープロフィール編集"]
     admin-profile-edit -.-> |update| admin-profile
     dashboard --> admin-files["管理者ファイル一覧"]
+    dashboard --> admin-users["一般ユーザー一覧"]
     admin-files --> dashboard
     admin-files --> admin-files-create["管理者ファイル登録"]
     admin-files-create --> admin-files-show["管理者ファイル詳細"]
@@ -91,6 +95,13 @@ flowchart TD
     admin-files-show --> admin-files-edit["管理者ファイル編集"]
     admin-files-edit -.-> |update| admin-files-show
     admin-files-edit -.-> |delete| admin-files
+    admin-users --> dashboard
+    admin-users --> admin-users-show["一般ユーザー詳細"]
+    admin-users-show --> admin-users-edit["一般ユーザー編集"]
+    admin-users-show --> admin-users
+    admin-users-edit -.-> |update| admin-users-show
+    admin-users-edit -.-> |delete| admin-users
+    admin-users-edit -.-> |restore| admin-users
     frontpage --> contact["お問い合わせ"]
     contact --> contact-confirm["お問い合わせ確認"]
     contact-confirm -.-> |send-mail| mail-contact-notification("お問い合わせ管理者通知メール")
@@ -125,6 +136,8 @@ erDiagram
         timestamp email_verified_at
         varchar password
         varchar remember_token
+        boolean is_deleted
+        timestamp deleted_at
         timestamp created_at
         timestamp updated_at
     }
