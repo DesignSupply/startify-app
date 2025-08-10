@@ -20,7 +20,7 @@ const routes = createBrowserRouter([
 let didEffect = false;
 
 const App = (): React.JSX.Element => {  
-  const [text, setText] = useState('ExampleComponent');
+  const [text, setText] = useState('ExampleComponent (React)');
   const [context, setContext] = useState(storeData);
   console.log(`React is ready. ${context.message}`);
   useEffect(() => {

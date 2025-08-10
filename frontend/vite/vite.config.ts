@@ -5,6 +5,7 @@ import react from '@vitejs/plugin-react';
 import vue from '@vitejs/plugin-vue';
 import handlebars from 'vite-plugin-handlebars';
 import pug from 'vite-plugin-pug';
+import glsl from 'vite-plugin-glsl';
 import globule from 'globule';
 import siteData from './sitedata.json' with { type: 'json' };
 
@@ -97,6 +98,16 @@ export default defineConfig(({ command }) => ({
       pageMeta: env.siteData.pageMeta
     }),
     react(),
-    vue()
+    vue(),
+    glsl({
+      include: [
+        'src/glsl/**/*.glsl',
+        'src/glsl/**/*.wgsl',
+        'src/glsl/**/*.vert',
+        'src/glsl/**/*.frag',
+        'src/glsl/**/*.vs',
+        'src/glsl/**/*.fs',
+      ]
+    })
   ]
 }));

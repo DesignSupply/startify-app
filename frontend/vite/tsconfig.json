@@ -14,7 +14,11 @@
     "noUnusedParameters": false,
     "noImplicitReturns": false,
     "skipLibCheck": true,
-    "types": ["node", "vite/client"],
+    "types": [
+      "node", 
+      "vite/client",
+      "vite-plugin-glsl/ext"
+    ],
     "jsx": "react-jsx",
     "allowJs": true,
     "allowImportingTsExtensions": true

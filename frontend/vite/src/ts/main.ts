@@ -46,11 +46,20 @@ $(function () {
 });
 
 // Vue.js
-if (document.querySelector('#app-vue')) {
-  import('../ts/vue');
-}
+import('../ts/vue');
 
 // React
-if (document.querySelector('#app-react')) {
-  import('../tsx/react');
-}
+import('../tsx/react');
+
+// WebGL(Three.js)
+import WebGL from '../ts/three';
+window.addEventListener('DOMContentLoaded', async () => {
+  const webGLElement = document.querySelector<HTMLElement>('#app-three');
+  if (!webGLElement) return;
+  const webGLInstance = new WebGL(webGLElement, {
+    width: webGLElement.clientWidth,
+    height: webGLElement.clientHeight,
+  });
+  await webGLInstance.load();
+  webGLInstance.render();
+}, false);
