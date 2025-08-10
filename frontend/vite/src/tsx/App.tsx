@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useState, useContext, useEffect, useRef } from 'react';
 import ExampleComponent from './components/ExampleComponent';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './pages/Home';
@@ -17,11 +17,15 @@ const routes = createBrowserRouter([
   }
 ]);
 
-const App = (): React.JSX.Element => {
+let didEffect = false;
+
+const App = (): React.JSX.Element => {  
   const [text, setText] = useState('ExampleComponent');
   const [context, setContext] = useState(storeData);
   console.log(`React is ready. ${context.message}`);
   useEffect(() => {
+    if (import.meta.env.DEV && didEffect) return;
+    didEffect = true;
     setContext({ message: 'state updated' });
   }, []);
   return (
