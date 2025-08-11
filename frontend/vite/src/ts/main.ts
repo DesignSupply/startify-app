@@ -28,7 +28,7 @@ gsap.fromTo('.js-gsap-animation', {
 });
 
 // Swiper
-const swiper = new Swiper('.swiper', {
+const swiper = new Swiper('.js-swiper', {
   modules: [Navigation, Pagination],
   navigation: {
     nextEl: '.swiper-button-next',
