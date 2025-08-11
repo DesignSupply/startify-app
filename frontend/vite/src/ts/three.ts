@@ -92,7 +92,7 @@ class WebGL {
   directionalLight: THREE.DirectionalLight;
   ambientLight: THREE.AmbientLight;
   spotLight: THREE.SpotLight;
-  material: THREE.MeshPhongMaterial;
+  material: THREE.ShaderMaterial;
   geometry: THREE.BoxGeometry;
   mesh: THREE.Mesh;
   group: THREE.Group;
@@ -187,7 +187,20 @@ class WebGL {
     this.spotLight.shadow.focus = 1.0;
 
     // material
-    this.material = new THREE.MeshPhongMaterial(WebGL.MATERIAL_SETTINGS);
+    this.material = new THREE.ShaderMaterial({
+      uniforms: {
+        u_texture: { value: null },
+        u_center: { value: new THREE.Vector2(0.5, 0.5) },
+        u_radius: { value: 0.2 },
+        u_feather: { value: 0.4 },
+      },
+      vertexShader: vertexShader,
+      fragmentShader: fragmentShader,
+      wireframe: WebGL.MATERIAL_SETTINGS.wireframe,
+      transparent: WebGL.MATERIAL_SETTINGS.transparent,
+      // opacity: WebGL.MATERIAL_SETTINGS.opacity,
+      side: WebGL.MATERIAL_SETTINGS.side,
+    });
 
     // geometry
     this.geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
@@ -294,18 +307,16 @@ class WebGL {
       );
       // this.raycaster.setFromCamera(new THREE.Vector2(normalizedDeviceCoordinateX, normalizedDeviceCoordinateY), this.orthographicCamera);
       const intersectedResults = this.raycaster.intersectObjects(this.group.children, true);
-      this.group.children.forEach((childMesh) => {
-        if (childMesh instanceof THREE.Mesh) {
-          (childMesh.material as THREE.MeshPhongMaterial).color.set(WebGL.MATERIAL_SETTINGS.color);
-        }
-      });
       if (intersectedResults.length > 0) {
-        const intersectedObject = intersectedResults[0].object;
-        if (intersectedObject instanceof THREE.Mesh) {
-          const meshMaterial = intersectedObject.material as THREE.MeshPhongMaterial;
-          meshMaterial.color.set(0xff0000);
-          meshMaterial.needsUpdate = true;
-        }
+        const hit = intersectedResults[0];
+        console.log('raycaster hit', {
+          name: hit.object.name,
+          uuid: hit.object.uuid,
+          point: hit.point,
+          distance: hit.distance,
+        });
+      } else {
+        console.log('raycaster no hit');
       }
     }
     resizeHandler();
@@ -326,10 +337,10 @@ class WebGL {
     folderPerspectiveCamera.add(this.perspectiveCamera, 'fov', 5, 60, 1).name('fov').onFinishChange(() => {
       this.perspectiveCamera.updateProjectionMatrix();
     });
-    const folderOrthographicCamera = this.gui.addFolder('Orthographic Camera');
-    folderOrthographicCamera.add(this.orthographicCamera.position, 'x', -20, 20, 0.1).name('position X');
-    folderOrthographicCamera.add(this.orthographicCamera.position, 'y', -20, 20, 0.1).name('position Y');
-    folderOrthographicCamera.add(this.orthographicCamera.position, 'z', -20, 20, 0.1).name('position Z');
+    // const folderOrthographicCamera = this.gui.addFolder('Orthographic Camera');
+    // folderOrthographicCamera.add(this.orthographicCamera.position, 'x', -20, 20, 0.1).name('position X');
+    // folderOrthographicCamera.add(this.orthographicCamera.position, 'y', -20, 20, 0.1).name('position Y');
+    // folderOrthographicCamera.add(this.orthographicCamera.position, 'z', -20, 20, 0.1).name('position Z');
 
   }
 
@@ -339,7 +350,7 @@ class WebGL {
     // texture image loading
     const texture = await new THREE.TextureLoader().loadAsync(textureImage);
     texture.colorSpace = THREE.SRGBColorSpace; // three r150+ 推奨
-    this.material.map = texture;
+    this.material.uniforms.u_texture.value = texture;
     this.material.needsUpdate = true;
 
     // 3D Model loading
@@ -360,11 +371,11 @@ class WebGL {
     // console.log(time);
 
     // renderer render
-    // this.renderer.render(this.scene, this.perspectiveCamera);
+    this.renderer.render(this.scene, this.perspectiveCamera);
     // this.renderer.render(this.scene, this.orthographicCamera);
 
     // effect composer render
-    this.effectComposer.render();
+    // this.effectComposer.render();
 
     this.stats.update();
   }
