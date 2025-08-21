@@ -14,7 +14,6 @@ import textureImage from '../images/webgl_texture_image.jpg';
 
 // webGL class
 class WebGL {
-
   static CAMERA_SCALE = 1.0;
 
   static CAMERA_SETTINGS = {
@@ -24,37 +23,37 @@ class WebGL {
       near: 0.1,
       far: 100,
       position: new THREE.Vector3(6.0, 3.5, 6.0),
-      lookAt: new THREE.Vector3(0, 0, 0), // center of the scene
+      lookAt: new THREE.Vector3(0, 0, 0) // center of the scene
     },
     orthographic: {
-      left: (WebGL.CAMERA_SCALE * window.innerWidth / window.innerHeight) * -1,
-      right: WebGL.CAMERA_SCALE * window.innerWidth / window.innerHeight,
+      left: ((WebGL.CAMERA_SCALE * window.innerWidth) / window.innerHeight) * -1,
+      right: (WebGL.CAMERA_SCALE * window.innerWidth) / window.innerHeight,
       top: WebGL.CAMERA_SCALE,
       bottom: WebGL.CAMERA_SCALE * -1,
       near: 0.1,
       far: 100.0,
       position: new THREE.Vector3(10.0, 10.0, 10.0),
-      lookAt: new THREE.Vector3(0, 0, 0), // center of the scene
+      lookAt: new THREE.Vector3(0, 0, 0) // center of the scene
     }
-  }
+  };
 
   static RENDERER_SETTINGS = {
     clearColor: 0x666666,
     alpha: 1.0,
     width: window.innerWidth,
     height: window.innerHeight,
-    pixelRatio: window.devicePixelRatio,
-  }
+    pixelRatio: window.devicePixelRatio
+  };
 
   static LIGHT_SETTINGS = {
     directionalLight: {
       color: 0xffffff,
       intensity: 1.0,
-      position: new THREE.Vector3(-1.0, 1.0, 4.0),
+      position: new THREE.Vector3(-1.0, 1.0, 4.0)
     },
     ambientLight: {
       color: 0xffffff,
-      intensity: 0.5,
+      intensity: 0.5
     },
     spotLight: {
       color: 0xffff00,
@@ -63,27 +62,27 @@ class WebGL {
       angle: Math.PI / 2,
       penumbra: 0.5,
       decay: 2.0,
-      position: new THREE.Vector3(3.0, 3.0, 3.0),
-    },
-  }
+      position: new THREE.Vector3(3.0, 3.0, 3.0)
+    }
+  };
 
   static MATERIAL_SETTINGS = {
     color: 0x0ae0ce,
     wireframe: false,
     transparent: false,
     // opacity: 0.5,
-    side: THREE.FrontSide, // THREE.DoubleSide, THREE.FrontSide, THREE.BackSide
-  }
+    side: THREE.FrontSide // THREE.DoubleSide, THREE.FrontSide, THREE.BackSide
+  };
 
   static AXES_SETTINGS = {
-    size: 10.0,
-  }
+    size: 10.0
+  };
 
   static FOG_SETTINGS = {
     color: 0xffffff,
     near: 0.1,
-    far: 30,
-  }
+    far: 30
+  };
 
   renderer: THREE.WebGLRenderer;
   scene: THREE.Scene;
@@ -113,16 +112,17 @@ class WebGL {
   stats: Stats;
   gui: GUI;
 
-
-  constructor(webGLElement: HTMLElement, options: {
-    width: number;
-    height: number;
-  }) {
-
+  constructor(
+    webGLElement: HTMLElement,
+    options: {
+      width: number;
+      height: number;
+    }
+  ) {
     // settings override
     WebGL.CAMERA_SETTINGS.perspective.aspect = options.width / options.height;
-    WebGL.CAMERA_SETTINGS.orthographic.left = (WebGL.CAMERA_SCALE * options.width / options.height) * -1;
-    WebGL.CAMERA_SETTINGS.orthographic.right = WebGL.CAMERA_SCALE * options.width / options.height;
+    WebGL.CAMERA_SETTINGS.orthographic.left = ((WebGL.CAMERA_SCALE * options.width) / options.height) * -1;
+    WebGL.CAMERA_SETTINGS.orthographic.right = (WebGL.CAMERA_SCALE * options.width) / options.height;
     WebGL.RENDERER_SETTINGS.width = options.width;
     WebGL.RENDERER_SETTINGS.height = options.height;
 
@@ -144,7 +144,7 @@ class WebGL {
     );
     this.perspectiveCamera.position.copy(WebGL.CAMERA_SETTINGS.perspective.position);
     this.perspectiveCamera.lookAt(WebGL.CAMERA_SETTINGS.perspective.lookAt);
-    
+
     // orthographic camera
     this.orthographicCamera = new THREE.OrthographicCamera(
       WebGL.CAMERA_SETTINGS.orthographic.left,
@@ -192,14 +192,14 @@ class WebGL {
         u_texture: { value: null },
         u_center: { value: new THREE.Vector2(0.5, 0.5) },
         u_radius: { value: 0.2 },
-        u_feather: { value: 0.4 },
+        u_feather: { value: 0.4 }
       },
       vertexShader: vertexShader,
       fragmentShader: fragmentShader,
       wireframe: WebGL.MATERIAL_SETTINGS.wireframe,
       transparent: WebGL.MATERIAL_SETTINGS.transparent,
       // opacity: WebGL.MATERIAL_SETTINGS.opacity,
-      side: WebGL.MATERIAL_SETTINGS.side,
+      side: WebGL.MATERIAL_SETTINGS.side
     });
 
     // geometry
@@ -209,7 +209,7 @@ class WebGL {
     this.mesh = new THREE.Mesh(this.geometry, this.material);
     this.group = new THREE.Group();
     this.group.position.set(0, 0.5, 0);
-    this.group.add(this.mesh); 
+    this.group.add(this.mesh);
 
     // axes helper
     this.axesHelper = new THREE.AxesHelper(WebGL.AXES_SETTINGS.size);
@@ -228,11 +228,7 @@ class WebGL {
     this.model = new THREE.Group();
 
     // fog
-    this.fog = new THREE.Fog(
-      WebGL.FOG_SETTINGS.color,
-      WebGL.FOG_SETTINGS.near,
-      WebGL.FOG_SETTINGS.far
-    );
+    this.fog = new THREE.Fog(WebGL.FOG_SETTINGS.color, WebGL.FOG_SETTINGS.near, WebGL.FOG_SETTINGS.far);
 
     // raycaster
     this.raycaster = new THREE.Raycaster();
@@ -260,7 +256,7 @@ class WebGL {
     this.dotScreenPass = new DotScreenPass();
     this.effectComposer.addPass(this.dotScreenPass);
 
-    // controls 
+    // controls
     this.controls = new OrbitControls(this.perspectiveCamera, this.renderer.domElement);
     // this.controls = new OrbitControls(this.orthographicCamera, this.renderer.domElement);
 
@@ -273,7 +269,7 @@ class WebGL {
     // event handler
     const resizeHandler = () => {
       const host = this.renderer.domElement.parentElement ?? this.renderer.domElement;
-      const width  = Math.max(1, Math.floor(host.clientWidth  || window.innerWidth));
+      const width = Math.max(1, Math.floor(host.clientWidth || window.innerWidth));
       const height = Math.max(1, Math.floor(host.clientHeight || window.innerHeight));
       const dpr = Math.min(2, window.devicePixelRatio || 1);
       // renderer & composer resize
@@ -284,19 +280,21 @@ class WebGL {
       this.perspectiveCamera.aspect = width / height;
       this.perspectiveCamera.updateProjectionMatrix();
       // orthographic camera
-      this.orthographicCamera.left   = -(WebGL.CAMERA_SCALE * width / height);
-      this.orthographicCamera.right  =  (WebGL.CAMERA_SCALE * width / height);
-      this.orthographicCamera.top    =   WebGL.CAMERA_SCALE;
-      this.orthographicCamera.bottom =  -WebGL.CAMERA_SCALE;
+      this.orthographicCamera.left = -((WebGL.CAMERA_SCALE * width) / height);
+      this.orthographicCamera.right = (WebGL.CAMERA_SCALE * width) / height;
+      this.orthographicCamera.top = WebGL.CAMERA_SCALE;
+      this.orthographicCamera.bottom = -WebGL.CAMERA_SCALE;
       this.orthographicCamera.updateProjectionMatrix();
-    }
+    };
     const clickHandler = (event: MouseEvent) => {
       const renderingCanvas = this.renderer.domElement;
       const canvasClientRect = renderingCanvas.getBoundingClientRect();
       // canvas外は無視
       const isPointerInsideCanvas =
-        event.clientX >= canvasClientRect.left && event.clientX <= canvasClientRect.right &&
-        event.clientY >= canvasClientRect.top && event.clientY <= canvasClientRect.bottom;
+        event.clientX >= canvasClientRect.left &&
+        event.clientX <= canvasClientRect.right &&
+        event.clientY >= canvasClientRect.top &&
+        event.clientY <= canvasClientRect.bottom;
       if (!isPointerInsideCanvas) return;
       // canvas座標をNDCへ正規化（-1 ～ 1）
       const normalizedDeviceCoordinateX = ((event.clientX - canvasClientRect.left) / canvasClientRect.width) * 2 - 1;
@@ -313,12 +311,12 @@ class WebGL {
           name: hit.object.name,
           uuid: hit.object.uuid,
           point: hit.point,
-          distance: hit.distance,
+          distance: hit.distance
         });
       } else {
         console.log('raycaster no hit');
       }
-    }
+    };
     resizeHandler();
     window.addEventListener('resize', resizeHandler, false);
     this.renderer.domElement.addEventListener('click', clickHandler, false);
@@ -334,19 +332,20 @@ class WebGL {
     folderPerspectiveCamera.add(this.perspectiveCamera.position, 'x', -20, 20, 0.1).name('position X');
     folderPerspectiveCamera.add(this.perspectiveCamera.position, 'y', -20, 20, 0.1).name('position Y');
     folderPerspectiveCamera.add(this.perspectiveCamera.position, 'z', -20, 20, 0.1).name('position Z');
-    folderPerspectiveCamera.add(this.perspectiveCamera, 'fov', 5, 60, 1).name('fov').onFinishChange(() => {
-      this.perspectiveCamera.updateProjectionMatrix();
-    });
+    folderPerspectiveCamera
+      .add(this.perspectiveCamera, 'fov', 5, 60, 1)
+      .name('fov')
+      .onFinishChange(() => {
+        this.perspectiveCamera.updateProjectionMatrix();
+      });
     // const folderOrthographicCamera = this.gui.addFolder('Orthographic Camera');
     // folderOrthographicCamera.add(this.orthographicCamera.position, 'x', -20, 20, 0.1).name('position X');
     // folderOrthographicCamera.add(this.orthographicCamera.position, 'y', -20, 20, 0.1).name('position Y');
     // folderOrthographicCamera.add(this.orthographicCamera.position, 'z', -20, 20, 0.1).name('position Z');
-
   }
 
   // assets loading
   async load() {
-
     // texture image loading
     const texture = await new THREE.TextureLoader().loadAsync(textureImage);
     texture.colorSpace = THREE.SRGBColorSpace; // three r150+ 推奨
@@ -358,7 +357,6 @@ class WebGL {
     // this.gltfLoader.load(glbPath, (gltf) => {
     //   this.model.add(gltf.scene);
     // });
-
   }
 
   // rendering DOM
@@ -379,7 +377,6 @@ class WebGL {
 
     this.stats.update();
   }
-
 }
 
 export default WebGL;

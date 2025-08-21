@@ -13,7 +13,7 @@
     "lint:style": "stylelint src/**/*.{css,scss,vue,ts,tsx}",
     "lint:es": "eslint src/**/*.{vue,ts,tsx}",
     "lint:html": "markuplint src/**/*.{html,hbs,vue,pug,tsx}",
-    "format": "prettier --write 'src/**/*.{ts,tsx,js,json,md,html,vue,hbs}' 'dist/**/*.html'"
+    "format": "prettier --write 'src/**/*.{ts,tsx,js,json,md,html,vue,hbs}' 'dist/**/*.html' --ignore-path .prettierignore"
   },
   "devDependencies": {
     "@markuplint/jsx-parser": "^4.7.19",
