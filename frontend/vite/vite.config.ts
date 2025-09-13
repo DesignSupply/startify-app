@@ -7,7 +7,7 @@ import handlebars from 'vite-plugin-handlebars';
 import pug from 'vite-plugin-pug';
 import glsl from 'vite-plugin-glsl';
 import globule from 'globule';
-import siteData from './sitedata.json' with { type: 'json' };
+import siteData from './sitedata.mjs';
 
 const env = {
   url: {

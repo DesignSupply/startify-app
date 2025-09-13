@@ -14,6 +14,10 @@ const routes = createBrowserRouter([
   {
     path: '/',
     element: <Home />
+  },
+  {
+    path: '*',
+    element: <Home /> // fallback
   }
 ]);
 
