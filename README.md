@@ -123,6 +123,22 @@ npm run dev
 
 http://localhost:3000/ にアクセスすることでNext.jsのアプリケーショントップページが表示されます。
 
+### 5. Vite環境での静的コーディング
+
+ローカル環境にNode.jsをインストール後、Viteのコーディング環境を構築します。
+
+```bash
+cd ./frontend/vite
+
+# インストール
+npm install
+
+# ローカルサーバー起動
+npm run dev
+```
+
+http://localhost:2000/ でローカルサーバーが起動します。
+
 ---
 
 ## アプリケーション要件
