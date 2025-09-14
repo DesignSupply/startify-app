@@ -3,6 +3,7 @@ import tsParser from '@typescript-eslint/parser';
 import tsPlugin from '@typescript-eslint/eslint-plugin';
 import reactHooks from 'eslint-plugin-react-hooks';
 import reactRefresh from 'eslint-plugin-react-refresh';
+import { fileURLToPath } from 'node:url';
 
 export default [
   // Ignore common output dirs
@@ -16,7 +17,7 @@ export default [
       parserOptions: {
         parser: tsParser,
         project: ['./tsconfig.eslint.json'],
-        tsconfigRootDir: new URL('.', import.meta.url),
+        tsconfigRootDir: fileURLToPath(new URL('.', import.meta.url)),
         ecmaVersion: 'latest',
         sourceType: 'module',
       },
@@ -57,7 +58,7 @@ export default [
       parser: tsParser,
       parserOptions: {
         project: ['./tsconfig.eslint.json'],
-        tsconfigRootDir: new URL('.', import.meta.url),
+        tsconfigRootDir: fileURLToPath(new URL('.', import.meta.url)),
         ecmaVersion: 'latest',
         sourceType: 'module',
         ecmaFeatures: { jsx: true },

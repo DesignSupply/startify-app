@@ -9,6 +9,6 @@
     "types": ["react", "react-dom"]
   },
   "extends": "astro/tsconfigs/strict",
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.astro", "src/**/*.vue"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.astro", "src/**/*.vue", "src/**/*.d.ts"],
   "exclude": []
 }

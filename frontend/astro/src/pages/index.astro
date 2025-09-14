@@ -1,7 +1,6 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import siteData from '../../siteData.mjs';
-import AppReact from '@/components/react/AppReact.tsx';
 
 const pageId = 'home',
   pageMeta = siteData[pageId],
@@ -33,8 +32,8 @@ const pageId = 'home',
           <div class="l-inner">
             <div class="__block-1">
               <h2>トップページ</h2>
-              <AppReact client:load />
-              <div id="vue_app"></div>
+              <div id="app-react"></div>
+              <div id="app-vue"></div>
             </div>
           </div>
         </div>

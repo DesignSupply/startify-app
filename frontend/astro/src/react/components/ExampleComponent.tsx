@@ -1,4 +1,4 @@
-import { useSomeContext } from '@/components/react/AppReact';
+import { useSomeContext } from '@/react/App';
 
 type propsType = {
   message: string;
@@ -6,7 +6,6 @@ type propsType = {
 
 const ExampleComponent = (props: propsType) => {
   const context = useSomeContext();
-  console.log(context?.message);
   return (
     <>
       <p>{props.message}</p>
