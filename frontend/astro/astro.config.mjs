@@ -63,7 +63,7 @@ export default defineConfig({
   ],
   markdown: {
     syntaxHighlight: 'shiki',
-    gfm: false,
+    gfm: true,
     remarkPlugins: [],
     rehypePlugins: [],
     remarkRehype: {}
