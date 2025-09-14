@@ -1,9 +1,10 @@
-import { Link } from 'react-router-dom';
+import { useMatches } from 'react-router-dom';
 
-const Home = (): React.JSX.Element => {
+const Home = () => {
+  const name = (useMatches().at(-1)?.handle as { name: string }).name;
   return (
     <>
-      <h1>Current page is Home (React Router)</h1>
+      <h1>Current page is {name} (React Router)</h1>
     </>
   );
 };
