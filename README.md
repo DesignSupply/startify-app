@@ -51,6 +51,15 @@ Startify-Appには、Webアプリケーション開発およびWebサイト制�
   - 各種ライブラリのサンプルコード
   - WebGL（Three.js）サンプルコード
   - GLSLシェーダー対応
+- Astro
+  - 各種リンター・フォーマッター
+  - React、Vue.jsの使用
+  - TailwindCSSの使用
+  - Sassのコンパイル
+  - マルチページビルト対応
+  - メタデータの一元管理
+  - markdownのコンテンツ管理と動的ページ生成
+  - 各種ライブラリのサンプルコード
 
 ## 導入
 
@@ -129,6 +138,22 @@ http://localhost:3000/ にアクセスすることでNext.jsのアプリケー�
 
 ```bash
 cd ./frontend/vite
+
+# インストール
+npm install
+
+# ローカルサーバー起動
+npm run dev
+```
+
+http://localhost:2000/ でローカルサーバーが起動します。
+
+### 6. Astro環境での静的コーディング
+
+ローカル環境にNode.jsをインストール後、Astroのコーディング環境を構築します。
+
+```bash
+cd ./frontend/astro
 
 # インストール
 npm install
