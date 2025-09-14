@@ -7,6 +7,5 @@ export default {
   trailingComma: 'none',
   semi: true,
   arrowParens: 'always',
+  plugins: ['prettier-plugin-astro']
 };
-
-

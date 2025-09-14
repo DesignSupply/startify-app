@@ -24,16 +24,16 @@ if (reactRoot) {
 
     // router
     const router = createBrowserRouter([
-      { 
-        path: '/', 
+      {
+        path: '/',
         id: 'Home',
         element: React.createElement(Home),
         handle: {
           name: 'Home'
         }
       },
-      { 
-        path: '*', 
+      {
+        path: '*',
         id: 'NotFound',
         element: React.createElement(Home),
         handle: {
@@ -47,14 +47,16 @@ if (reactRoot) {
       const [message, setMessage] = useState('Hello World');
       const store = useMemo(() => ({ message, updateMessage: setMessage }), [message]);
       return store;
-    }
+    };
 
     // provider & app component
     const Provider = () => {
       return React.createElement(
         storeContext.Provider,
         { value: useStore() },
-        React.createElement(React.Fragment, null,
+        React.createElement(
+          React.Fragment,
+          null,
           React.createElement(RouterProvider, { router }),
           React.createElement(App)
         )

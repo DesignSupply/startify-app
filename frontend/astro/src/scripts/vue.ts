@@ -10,16 +10,16 @@ if (vueRoot) {
 
     // store
     const store = defineStore('useStore', {
-      state: () => ({ 
-        message: 'Hello World' 
+      state: () => ({
+        message: 'Hello World'
       }),
-      actions: { 
-        updateMessage(payload: string) { 
-          this.message = payload; 
-        } 
+      actions: {
+        updateMessage(payload: string) {
+          this.message = payload;
+        }
       },
-      getters: { 
-        getMessage: (s) => s.message 
+      getters: {
+        getMessage: (s) => s.message
       }
     });
 
@@ -27,10 +27,10 @@ if (vueRoot) {
     const router = createRouter({
       history: createWebHistory(),
       routes: [
-        { 
-          path: '/', 
-          name: 'Home', 
-          component: Home 
+        {
+          path: '/',
+          name: 'Home',
+          component: Home
         }
       ]
     });

@@ -4,5 +4,3 @@ declare module '/@react-refresh' {
   };
   export default RefreshRuntime;
 }
-
-
