@@ -21,7 +21,22 @@
     ],
     "jsx": "react-jsx",
     "allowJs": true,
-    "allowImportingTsExtensions": true
+    "allowImportingTsExtensions": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ],
+      "@/react/*": [
+        "src/tsx/*"
+      ],
+      "@/vue/*": [
+        "src/vue/*"
+      ],
+      "@/types/*": [
+        "src/types/*"
+      ]
+    }
   },
   "include": [
     "src/**/*.ts", 
@@ -31,7 +46,7 @@
     "src/**/*.vue",
     "types/**/*.d.ts",
     "postcss.config.mjs",
-    "tailwind.config.mjs",
+    "tailwind.config.mjs", "src/types/vue-store.ts",
   ],
   "exclude": [
     "node_modules"

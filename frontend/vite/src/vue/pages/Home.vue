@@ -4,5 +4,5 @@ const route = useRoute();
 </script>
 
 <template>
-  <h1>Current page：{{ route.name }}</h1>
+  <h1>Current page is {{ route.name }} (Vue Router)</h1>
 </template>

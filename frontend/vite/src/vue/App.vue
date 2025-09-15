@@ -1,13 +1,17 @@
 <script lang="ts" setup>
-import { reactive } from 'vue';
-import { useStore } from '../ts/store';
-import ExampleComponent from './components/ExampleComponent.vue';
-const store = useStore();
+import { reactive, onMounted, inject } from 'vue';
+import ExampleComponent from '@/vue/components/ExampleComponent.vue';
+import { useStoreKey } from '@/types/vue-store';
+import type { storeType } from '@/types/vue-store';
+const store = inject<storeType>(useStoreKey);
+store?.updateMessage('state updated.');
 const data = reactive({
-  text: 'ExampleComponent (Vue.js)'
+  text: 'This is ExampleComponent (Vue.js)'
 });
-store.updateMessage('state updated');
-console.log(`Vue.js is ready. ${store.message}`);
+onMounted(() => {
+  // eslint-disable-next-line no-console
+  console.log(`Vue.js is ready. ${store?.message}`);
+});
 </script>
 
 <template>

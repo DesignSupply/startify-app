@@ -128,12 +128,14 @@ class WebGL {
 
     // renderer
     this.renderer = new THREE.WebGLRenderer();
-    this.renderer.setSize(WebGL.RENDERER_SETTINGS.width, WebGL.RENDERER_SETTINGS.height);
+    this.renderer.setSize(WebGL.RENDERER_SETTINGS.width, WebGL.RENDERER_SETTINGS.height, false);
     this.renderer.setPixelRatio(WebGL.RENDERER_SETTINGS.pixelRatio);
     this.renderer.setClearColor(WebGL.RENDERER_SETTINGS.clearColor);
     this.renderer.setClearAlpha(WebGL.RENDERER_SETTINGS.alpha);
     this.renderer.shadowMap.enabled = true;
     webGLElement.appendChild(this.renderer.domElement);
+    this.renderer.domElement.style.width = '100%';
+    this.renderer.domElement.style.height = '100%';
 
     // perspective camera
     this.perspectiveCamera = new THREE.PerspectiveCamera(
@@ -274,7 +276,9 @@ class WebGL {
       const dpr = Math.min(2, window.devicePixelRatio || 1);
       // renderer & composer resize
       this.renderer.setPixelRatio(dpr);
-      this.renderer.setSize(width, height, true);
+      this.renderer.setSize(width, height, false);
+      this.renderer.domElement.style.width = '100%';
+      this.renderer.domElement.style.height = '100%';
       this.effectComposer.setSize(width, height);
       // perspective camera
       this.perspectiveCamera.aspect = width / height;
@@ -319,6 +323,11 @@ class WebGL {
     };
     resizeHandler();
     window.addEventListener('resize', resizeHandler, false);
+    const hostElement = this.renderer.domElement.parentElement ?? this.renderer.domElement;
+    const resizeObserver = new ResizeObserver(() => {
+      resizeHandler();
+    });
+    resizeObserver.observe(hostElement);
     this.renderer.domElement.addEventListener('click', clickHandler, false);
 
     // stats

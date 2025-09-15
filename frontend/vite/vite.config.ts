@@ -67,6 +67,11 @@ export default defineConfig(({ command }) => ({
     }
   },
   resolve: {
+    alias: [
+      { find: '@/react', replacement: resolve(__dirname, 'src/tsx') },
+      { find: '@/vue', replacement: resolve(__dirname, 'src/vue') },
+      { find: '@', replacement: resolve(__dirname, 'src') }
+    ],
     extensions: [
       '.mjs', '.js', '.mts', '.ts', '.jsx', '.tsx', '.json', '.vue'
     ]

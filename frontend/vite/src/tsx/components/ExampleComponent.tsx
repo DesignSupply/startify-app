@@ -1,8 +1,8 @@
-interface propsInterface {
+type propsType = {
   message: string;
-}
+};
 
-const ExampleComponent = (props: propsInterface): React.JSX.Element => {
+const ExampleComponent = (props: propsType) => {
   return (
     <>
       <p>{props.message}</p>

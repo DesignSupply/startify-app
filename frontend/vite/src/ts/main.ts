@@ -50,10 +50,10 @@ $(function () {
 });
 
 // Vue.js
-import('../ts/vue');
+import('./vue');
 
 // React
-import('../tsx/react');
+import('./react');
 
 // WebGL(Three.js)
 import WebGL from '../ts/three';

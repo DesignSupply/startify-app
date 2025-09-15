@@ -1,50 +1,25 @@
-import React, { createContext, useState, useContext, useEffect, useRef } from 'react';
-import ExampleComponent from './components/ExampleComponent';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import Home from './pages/Home';
+import { useEffect, useState, useContext, useRef } from 'react';
+import ExampleComponent from '@/react/components/ExampleComponent';
+import { storeContext } from '@/react/storeContext';
 
-// store
-const storeData = {
-  message: 'Hello World'
-};
-const Context = createContext<{ message: string } | null>(null);
+const App = () => {
+  const store = useContext(storeContext)!;
+  const [text, setText] = useState('This is ExampleComponent (React)');
+  const didEffect = useRef(false);
 
-// route
-const routes = createBrowserRouter([
-  {
-    path: '/',
-    element: <Home />
-  },
-  {
-    path: '*',
-    element: <Home /> // fallback
-  }
-]);
-
-let didEffect = false;
-
-const App = (): React.JSX.Element => {
-  const [text, setText] = useState('ExampleComponent (React)');
-  const [context, setContext] = useState(storeData);
-  console.log(`React is ready. ${context.message}`);
   useEffect(() => {
-    if (import.meta.env.DEV && didEffect) return;
-    didEffect = true;
-    setContext({ message: 'state updated' });
+    if (import.meta.env.DEV && didEffect.current) return;
+    didEffect.current = true;
+    store?.updateMessage('state updated.');
+    console.log('React is ready. state updated.');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
   return (
     <>
-      <Context.Provider value={context}>
-        <RouterProvider router={routes} />
-        <ExampleComponent message={text} />
-      </Context.Provider>
+      <ExampleComponent message={text} />
     </>
   );
 };
-
-// eslint-disable-next-line react-refresh/only-export-components
-export function useSampleContext() {
-  return useContext(Context);
-}
 
 export default App;
