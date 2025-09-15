@@ -12,12 +12,14 @@ type frontmatterType = {
 };
 
 export async function getStaticPaths() {
-  const postData: MarkdownInstance<frontmatterType>[] = await Astro.glob<frontmatterType>('@/content/posts/*.md');
-  return postData.map((post) => ({ params: { id: Number(post.frontmatter.id) } }));
+  const modules = import.meta.glob('@/content/posts/*.md', { eager: true });
+  const posts = Object.values(modules) as unknown as MarkdownInstance<frontmatterType>[];
+  return posts.map((post) => ({ params: { id: Number(post.frontmatter.id) } }));
 }
 
 const { id } = Astro.params;
-const allPosts: MarkdownInstance<frontmatterType>[] = await Astro.glob<frontmatterType>('@/content/posts/*.md');
+const allModules = import.meta.glob('@/content/posts/*.md', { eager: true });
+const allPosts = Object.values(allModules) as unknown as MarkdownInstance<frontmatterType>[];
 const currentPost = allPosts.find((post) => Number(post.frontmatter.id) === Number(id));
 if (!currentPost) {
   throw new Error(`Post not found: ${id}`);
