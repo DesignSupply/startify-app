@@ -13,6 +13,7 @@ Startify-Appには、Webアプリケーション開発およびWebサイト制�
   - PHP
   - MySQL(MariaDB)
   - Mailpit
+  - SSL証明書対応 ※ホストOS側でインストール要
 - Laravel
   - 管理者権限のユーザーロール
   - 自動返信メール対応のコンタクトフォーム
