@@ -56,7 +56,7 @@ WP_DEBUG_DISPLAY=false
 Dockerコンテナー内でWordPressのインストールを行います、WordPressインストール後にマウントされた `/backend/wordpress` ディレクトリ配下にソースコードが同期されていることを確認します。
 
 ```bash
-cd /server
+cd ./server
 make wp-setup
 ```
 
@@ -71,7 +71,7 @@ WordPressはドキュメントルート外にインストールされる構成�
 WordPressのインストールディレクトリ用のシンボリックリンクを、ドキュメントルート配下に作成します。
 
 ```bash
-cd /server
+cd ./server
 make wp-symlinks
 ```
 

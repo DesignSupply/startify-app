@@ -16,7 +16,7 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 Dockerコンテナー内でLaravelのインストールを行います、Laravelインストール後にマウントされた `/backend/laravel` ディレクトリ配下にソースコードが同期されていることを確認します。
 
 ```bash
-cd /server
+cd ./server
 make laravel-install
 ```
 
@@ -27,7 +27,7 @@ make laravel-install
 Dockerで使用している環境変数を `/backend/laravel/.env` ファイルに反映し、キーを生成します。
 
 ```bash
-cd /server
+cd ./server
 make laravel-keygen
 ```
 
@@ -38,7 +38,7 @@ make laravel-keygen
 下記のコマンドでデータベースの作成、マイグレーションを行います。
 
 ```bash
-cd /server
+cd ./server
 make laravel-migrate
 ```
 
@@ -51,14 +51,14 @@ make laravel-migrate
 ストレージのシンボリックリンクを作成します。
 
 ```bash
-cd /server
+cd ./server
 make laravel-storage-link
 ```
 
 アプリケーションのルートディレクトリがドキュメントルートより上の階層にある場合にはシンボリックリンクの場所を変更します。
 
 ```bash
-cd /server
+cd ./server
 make laravel-storage-link-change
 ```
 
@@ -79,7 +79,7 @@ make laravel-storage-link-change
 ## 6. テスト・表示確認
 
 ```bash
-cd /server
+cd ./server
 make laravel-test
 ```
 

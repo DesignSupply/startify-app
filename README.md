@@ -71,9 +71,16 @@ Startify-Appには、Webアプリケーション開発およびWebサイト制�
 用意された各種Dockerfileを使用してDockerコンテナーを起動します。
 
 ```bash
-cd ./server
+# 証明書が必要な場合にはホストOSでインストール
+brew install mkcert
+mkcert -install
+cd ./server/docker/nginx
+mkdir -p certs
+cd certs
+mkcert localhost cms.localhost testing.localhost api.localhost
 
 # ビルド
+cd ../../..
 make build
 
 # コンテナーの起動

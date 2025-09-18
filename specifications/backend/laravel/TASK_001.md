@@ -16,7 +16,7 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 API用ルーティングの追加を行い、`/backend/laravel/app/bootstrap/app.php` を下記のように変更します。
 
 ```bash
-cd /server
+cd ./server
 docker compose exec app bash -c "cd /var/www/html/laravel && php artisan install:api"
 ```
 
@@ -46,7 +46,7 @@ return Application::configure(basePath: dirname(__DIR__))
 設定後はキャッシュをクリアして変更を反映させます。
 
 ```bash
-cd /server
+cd ./server
 make laravel-cache-clear
 make laravel-config-clear
 ```

@@ -74,7 +74,7 @@ DB_PASSWORD=secret
 下記のコマンドでDockerイメージのビルド、コンテナーの起動を行います。
 
 ```bash
-cd /server
+cd ./server
 make build
 make up
 ```

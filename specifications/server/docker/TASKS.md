@@ -28,3 +28,9 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 `/specifications/server/docker/TASK_003.md` に記載されているタスクを順番に進めます。
 
 ---
+
+## 4. SSL証明書導入
+
+`/specifications/server/docker/TASK_004.md` に記載されているタスクを順番に進めます。
+
+---

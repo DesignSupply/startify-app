@@ -1,0 +1,3 @@
+# SSL certs (do not commit private keys)
+/docker/nginx/certs/*
+!/docker/nginx/certs/.gitkeep
