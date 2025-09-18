@@ -159,3 +159,17 @@ graph LR
 - [ ] フロントエンド開発サーバーが起動するか
 
 ---
+
+## 各種ホスト名
+
+- バックエンド
+  - `https://localhost` : Laravelアプリケーション
+  - `https://cms.localhost` : CMS（WordPress）
+  - `https://testing.localhost` : テスト環境用
+  - `https://api.localhost` : Laravel API用
+  - `http://localhost:8025/` : Mailpit ウェブメール
+- フロントエンド
+  - `http://localhost:3000` : Next.js開発サーバー
+  - `http://localhost:2000` : Astro、Vite環境開発サーバー
+
+---
