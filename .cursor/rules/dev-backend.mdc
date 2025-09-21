@@ -208,3 +208,54 @@ class UserController extends Controller
 - SQLインジェクション対策としてEloquentまたはクエリビルダーを使用
 - XSS対策として`{{ }}` エスケープ構文を使用
 - CSRFトークンを全POSTリクエストに付与
+
+---
+
+## 9. API設計
+
+### 9.1 基本方針（認証）
+
+- 認証方式: JWT（Split Tokens）
+  - Access Token: 短寿命（デフォルト15分）。クライアントは `Authorization: Bearer <token>` で送信
+  - Refresh Token: 長寿命（デフォルト14日）。`HttpOnly; Secure; SameSite=None; Path=/api/v1/auth; Domain=<ENV>` のCookieで配布
+- ルーティング/バージョニング: `/api/v1`
+- デプロイ例: 開発 `https://api.localhost`、本番 `https://api.example.com`
+
+### 9.2 エンドポイント
+
+- 共通
+  - Base URL: `/api/v1`
+  - Headers: `Content-Type: application/json`, `Accept: application/json`
+  - 認可: `me` は `jwt` ミドルウェア必須、`refresh/logout` は Refresh Cookie 必須
+  - レート制限: `login`/`refresh` = 5 req/min
+
+### 9.3 セキュリティ・CORS
+
+- JWT署名: RS256、検証クレーム: `iss`, `sub`, `exp`, `nbf`, `jti`
+- Cookie属性: `HttpOnly; Secure; SameSite=None; Path=/api/v1/auth; Domain=<ENV>`
+- CORS: `config/cors.php`
+  - `paths: ['api/*']`
+  - `allowed_origins`: ENV `CORS_ALLOWED_ORIGINS`（カンマ区切り）
+  - `supports_credentials: true`（`Access-Control-Allow-Origin: *` は不可）
+
+### 9.4 トークン管理/DB
+
+- テーブル: `refresh_tokens`
+  - 主なカラム: `id(uuid)`, `user_id`, `token_hash(char64)`, `ip`, `ua`, `revoked_at`, `expires_at`, `timestamps`
+  - 仕様: RefreshはDB保存、`refresh`時にローテーションし旧レコードは `revoked_at` を付与
+- クリーンアップ: Artisan `tokens:prune`（保持日数 `REFRESH_TOKENS_RETAIN_DAYS`、日次スケジュール）
+
+### 9.5 環境変数
+
+- `JWT_PRIVATE_KEY_PATH`, `JWT_PUBLIC_KEY_PATH`
+- `JWT_ACCESS_TTL`, `JWT_REFRESH_TTL`
+- `REFRESH_COOKIE_DOMAIN`
+- `CORS_ALLOWED_ORIGINS`
+- `REFRESH_TOKENS_RETAIN_DAYS`
+
+### 9.6 テスト運用メモ
+
+- Postman: Cookie Jar 有効、HTTPS必須、`credentials: include`（Cookie送信時）
+- 代表シナリオ: `login → me → refresh → me → logout → me(401)`
+
+---

@@ -24,6 +24,8 @@ Startify-Appには、Webアプリケーション開発およびWebサイト制�
   - 【管理者ユーザー向け】
     - サムネイル出力対応のファイルアップロード
     - 一般ユーザー管理（編集・削除・復元）
+  - 【API】
+    - JWTログイン認証（一般ユーザー）
 - WordPress
   - クラシックテーマ
     - カスタム投稿・カスタム分類機能追加
@@ -114,7 +116,7 @@ make laravel-seed
 
 http://localhost/ にアクセスすることでLaravelのアプリケーションフロントページが表示されます。
 
-また、認証APIを使用する場合にはキーペアを生成します。
+また、認証APIを使用する場合にはSSLに対応させるためキーペアを生成します。
 
 ```bash
 docker compose exec app bash -lc "mkdir -p /var/www/html/laravel/storage/keys && \

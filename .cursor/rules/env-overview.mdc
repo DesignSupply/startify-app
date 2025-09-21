@@ -59,6 +59,9 @@ alwaysApply: false
 │   │   │   ├── Dockerfile                   # データベースサーバーDockerfile
 │   │   │   └── my.cnf                       # データベースサーバー設定ファイル
 │   │   ├── /nginx                           # ウェブサーバー
+│   │   │   ├── certs                        # SSL証明書
+│   │   │   │   ├── localhost+[n].pem          # 証明書（mkcert生成、Git追跡対象外）
+│   │   │   │   └── localhost+[n]-key.pem      # 秘密鍵（mkcert生成、Git追跡対象外）
 │   │   │   ├── Dockerfile                   # ウェブサーバーDockerfile
 │   │   │   └── nginx.conf                   # ウェブサーバー設定ファイル
 │   │   └── /php                             # プログラミング言語
@@ -138,6 +141,32 @@ graph LR
     app --> smtp
     web --> app
 ```
+
+---
+
+### ローカルSSL/HTTPS構成（mkcert）
+
+- 概要
+  - `localhost` / `cms.localhost` / `testing.localhost` / `api.localhost` を HTTPS 対応
+  - 証明書格納: `/server/docker/nginx/certs`
+  - 詳細手順: `/specifications/server/docker/TASK_004.md`
+- 証明書作成（ホストOS）
+  - 事前: `mkcert -install`（Firefox利用時は `brew install nss` 後に再実行）
+  - 生成: `mkcert localhost cms.localhost testing.localhost api.localhost`
+  - 生成物: `localhost+3.pem` / `localhost+3-key.pem` を `/server/docker/nginx/certs/` へ配置
+- docker-compose（web）
+  - ポート: `443:443` を公開
+  - ボリューム: `./docker/nginx/certs:/etc/nginx/certs:ro`
+- Nginx設定
+  - httpブロック: `ssl_protocols TLSv1.2 TLSv1.3; ssl_prefer_server_ciphers on; ssl_session_cache shared:SSL:10m;`
+  - サーバーブロック（各ホスト）
+    - 80→443 リダイレクト: `return 301 https://$host$request_uri;`
+    - 443: `ssl_certificate /etc/nginx/certs/localhost+3.pem;` / `ssl_certificate_key /etc/nginx/certs/localhost+3-key.pem;`
+- Git管理
+  - 証明書はGit除外（`/server/docker/nginx/certs/*` を `.gitignore` 登録、`.gitkeep` を除外解除）
+- 動作確認
+  - ブラウザで `https://localhost/`, `https://cms.localhost/`, `https://testing.localhost/`, `https://api.localhost/` へアクセス
+  - 80番アクセスは自動でHTTPSへリダイレクトされる
 
 ---
 
