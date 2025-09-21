@@ -107,9 +107,20 @@ make laravel-storage-link-change
 
 # マイグレーション
 make laravel-migrate
+
+# シーダー実行
+make laravel-seed
 ```
 
 http://localhost/ にアクセスすることでLaravelのアプリケーションフロントページが表示されます。
+
+また、認証APIを使用する場合にはキーペアを生成します。
+
+```bash
+docker compose exec app bash -lc "mkdir -p /var/www/html/laravel/storage/keys && \
+  openssl genrsa -out /var/www/html/laravel/storage/keys/jwtRS256.key 4096 && \
+  openssl rsa -in /var/www/html/laravel/storage/keys/jwtRS256.key -pubout -out /var/www/html/laravel/storage/keys/jwtRS256.key.pub"
+```
 
 ### 3. WordPressのインストール・セットアップ
 

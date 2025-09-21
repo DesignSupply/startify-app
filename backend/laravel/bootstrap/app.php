@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Console\Scheduling\Schedule;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -18,6 +19,15 @@ return Application::configure(basePath: dirname(__DIR__))
             return $request->is('admin*') ? '/admin' : '/signin';
         });
 
+        // ルートミドルウェアのエイリアス登録（jwt）
+        $middleware->alias([
+            'jwt' => \App\Http\Middleware\JwtAuthenticate::class,
+        ]);
+
+    })
+    ->withSchedule(function (Schedule $schedule) {
+        // 毎日 00:00 にトークンクリーンアップを実行
+        $schedule->command('tokens:prune')->dailyAt('00:00');
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //

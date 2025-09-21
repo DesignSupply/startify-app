@@ -88,3 +88,9 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 `/specifications/backend/laravel/TASK_013.md` に記載されているタスクを順番に進めます。
 
 ---
+
+## 14. ログイン認証APIの実装
+
+`/specifications/backend/laravel/TASK_014.md` に記載されているタスクを順番に進めます。
+
+---
