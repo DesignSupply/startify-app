@@ -23,7 +23,7 @@ class AuthController extends Controller
 
         $user = User::where('email', $validated['email'])->first();
         if (!$user || !Hash::check($validated['password'], $user->password)) {
-            return response()->json(['code' => 'invalid_credentials', 'message' => 'Invalid email or password'], 401);
+            return response()->json(['code' => 'invalid_credentials', 'message' => 'メールアドレスまたはパスワードが無効です'], 401);
         }
 
         $accessToken = $this->createAccessToken($user);
@@ -41,29 +41,29 @@ class AuthController extends Controller
     {
         $cookieVal = $request->cookies->get('refresh_token');
         if (!$cookieVal) {
-            return response()->json(['code' => 'refresh_missing', 'message' => 'Refresh token missing'], 401);
+            return response()->json(['code' => 'refresh_missing', 'message' => 'リフレッシュトークンがありません'], 401);
         }
 
         [$tokenId, $secret] = $this->splitRefreshValue($cookieVal);
         if (!$tokenId || !$secret) {
-            return response()->json(['code' => 'refresh_invalid', 'message' => 'Invalid refresh token'], 401);
+            return response()->json(['code' => 'refresh_invalid', 'message' => 'リフレッシュトークンが無効です'], 401);
         }
 
         $token = RefreshToken::query()->where('id', $tokenId)->first();
         if (!$token) {
-            return response()->json(['code' => 'refresh_invalid', 'message' => 'Invalid refresh token'], 401);
+            return response()->json(['code' => 'refresh_invalid', 'message' => 'リフレッシュトークンが無効です'], 401);
         }
 
         // validate hash, expiry, revoked
         $expected = hash('sha256', $cookieVal);
         $expired = $token->expires_at && $token->expires_at->isPast();
         if (!hash_equals($token->token_hash, $expected) || $token->revoked_at || $expired) {
-            return response()->json(['code' => 'refresh_invalid', 'message' => 'Invalid refresh token'], 401);
+            return response()->json(['code' => 'refresh_invalid', 'message' => 'リフレッシュトークンが無効です'], 401);
         }
 
         $user = User::find($token->user_id);
         if (!$user) {
-            return response()->json(['code' => 'user_not_found', 'message' => 'User not found'], 404);
+            return response()->json(['code' => 'user_not_found', 'message' => 'ユーザーが見つかりません'], 404);
         }
 
         // rotate: revoke old and issue new
@@ -108,11 +108,11 @@ class AuthController extends Controller
     {
         $userId = $request->attributes->get('jwt_sub');
         if (!$userId) {
-            return response()->json(['code' => 'token_invalid', 'message' => 'Invalid token'], 401);
+            return response()->json(['code' => 'token_invalid', 'message' => 'トークンが無効です'], 401);
         }
         $user = User::find($userId);
         if (!$user) {
-            return response()->json(['code' => 'user_not_found', 'message' => 'User not found'], 404);
+            return response()->json(['code' => 'user_not_found', 'message' => 'ユーザーが見つかりません'], 404);
         }
 
         return response()->json([
