@@ -192,6 +192,15 @@ erDiagram
         timestamp updated_at
     }
 
+    sessions {
+        varchar id PK
+        bigint user_id
+        varchar ip_address
+        text user_agent
+        longtext payload
+        integer last_activity
+    }
+
     refresh_tokens {
         uuid id PK
         bigint user_id
@@ -207,5 +216,6 @@ erDiagram
     users ||--o{ password_reset_tokens : "resets"
     admin_users ||--o{ admin_password_reset_tokens : "resets"
     admin_users ||--o{ uploaded_files : "uploads"
+    users ||--o{ sessions : "sessions"
     users ||--o{ refresh_tokens : "refreshes"
 ```
