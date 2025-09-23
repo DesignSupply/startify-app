@@ -5,6 +5,7 @@ import Base from '@/components/Base';
 import { metaDefault } from '@/utils/meta';
 import { notoSansJP } from '@/utils/fonts';
 import SiteThemeProvider from '@/providers/SiteThemeProvider';
+import ReactQueryProvider from '@/providers/ReactQueryProvider';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import GoogleAdsenseScript from '@/components/GoogleAdsenseScript';
 
@@ -25,9 +26,11 @@ export default function RootLayout({
     <html lang="ja">
       <body className={`${notoSansJP.variable}`}>
         <SiteThemeProvider>
-          <Suspense>
-            <Base>{children}</Base>
-          </Suspense>
+          <ReactQueryProvider>
+            <Suspense>
+              <Base>{children}</Base>
+            </Suspense>
+          </ReactQueryProvider>
         </SiteThemeProvider>
       </body>
       {process.env.NODE_ENV !== 'development' && process.env.GOOGLE_ANALYTICS_ID && (
