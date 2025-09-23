@@ -9,6 +9,8 @@ export async function login(params: LoginParams): Promise<LoginResponse> {
   const res = await apiFetch<LoginResponse>('/auth/login', {
     method: 'POST',
     body: params,
+    // 必須: クロスサイトでSet-Cookieを受け取るため
+    withCredentials: true,
   });
   setAccessToken(res.access_token);
   return res;

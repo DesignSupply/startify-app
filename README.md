@@ -10,10 +10,11 @@ Startify-Appには、Webアプリケーション開発およびWebサイト制�
 
 - Docker
   - Nginx
+    - SSL証明書対応 ※ホストOS側でインストール要
   - PHP
   - MySQL(MariaDB)
   - Mailpit
-  - SSL証明書対応 ※ホストOS側でインストール要
+    - ウェブメール画面（localhost:8025）
 - Laravel
   - 管理者権限のユーザーロール
   - 自動返信メール対応のコンタクトフォーム

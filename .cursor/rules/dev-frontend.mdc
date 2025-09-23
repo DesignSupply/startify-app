@@ -22,19 +22,31 @@ alwaysApply: false
 │   ├── /app                        # App Router ルーティングディレクトリ
 │   │   ├── layout.tsx              # ルートレイアウトコンポーネント
 │   │   ├── page.tsx                # トップページコンポーネント
-│   │   ├── /[PAGE_NAME]            # 下層ページルーティングディレクトリ
+│   │   ├── /[ROUTE_SEGMENT]        # 下層ページルーティングディレクトリ
 │   │   │   └── page.tsx            # 下層ページコンポーネント
+│   │   ├── /(auth)                 # 認証ルーティンググループ
+│   │   │   ├── layout.tsx          # 認証ルーティングルートレイアウトコンポーネント
+│   │   │   ├── /[ROUTE_SEGMENT]    # 認証ルーティング下層ページルーティングディレクトリ
+│   │   │   │   └── page.tsx        # 認証ルーティング下層ページコンポーネント
 │   ├── /components                 # 共通コンポーネント
 │   │   ├── Header.tsx              # ヘッダーコンポーネント
 │   │   ├── Footer.tsx              # フッターコンポーネント
+│   │   ├── [DOMAIN]                # ドメイン（機能）単位のコンポーネント
 │   ├── /features                   # ビジネスロジック処理
+│   │   ├── [DOMAIN]                # ドメイン（機能）単位の処理
 │   ├── /hooks                      # カスタムフック
+│   │   ├── common                  # 共通フック処理
+│   │   ├── [DOMAIN]              　# ドメイン固有フック
 │   ├── /utils                      # ユーティリティ関数
+│   ├── /helpers                    # ヘルパー関数
 │   ├── /contexts                   # コンテキスト
 │   ├── /providers                  # プロバイダー
 │   ├── /styles                     # スタイル
 │   │   ├── globals.css             # グローバルスタイル
 │   └── /types                      # 型定義
 ```
+
+**備考**
+`/frontend/next/src/features/` 、`/frontend/next/src/hooks/` 、`/frontend/next/src/components/` 配下はドメインごとにディレクトリで分けるようにする
 
 ---

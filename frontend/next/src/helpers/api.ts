@@ -14,6 +14,18 @@ type ApiOptions = {
 
 const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL ?? '';
 
+// Single-flight refresh control
+let refreshPromise: Promise<boolean> | null = null;
+
+async function ensureRefreshOnce(): Promise<boolean> {
+  if (!refreshPromise) {
+    refreshPromise = tryRefreshToken().finally(() => {
+      refreshPromise = null;
+    });
+  }
+  return refreshPromise;
+}
+
 export async function apiFetch<T>(path: string, options: ApiOptions = {}): Promise<T> {
   const {
     method = 'GET',
@@ -51,7 +63,7 @@ export async function apiFetch<T>(path: string, options: ApiOptions = {}): Promi
 
   // 401 auto refresh (one-shot)
   if (autoRefresh && res.status === 401 && !isAuthRoute(path)) {
-    const refreshed = await tryRefreshToken();
+    const refreshed = await ensureRefreshOnce();
     if (refreshed) {
       const retryRes = await fetch(url, initWithNewToken(init));
       return parseJson<T>(retryRes);
