@@ -8,8 +8,8 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
 
 const schema = z.object({
-  email: z.string().email(),
-  password: z.string().min(8),
+  email: z.string({ required_error: 'メールは必須です' }).email('メール形式が正しくありません'),
+  password: z.string({ required_error: 'パスワードは必須です' }).min(8, { message: '8文字以上で入力してください' }),
 });
 
 type FormValues = z.infer<typeof schema>;
