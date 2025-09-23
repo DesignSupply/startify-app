@@ -42,6 +42,7 @@ export async function apiFetch<T>(path: string, options: ApiOptions = {}): Promi
   const baseHeaders: Record<string, string> = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
+    'X-Requested-With': 'XMLHttpRequest',
     ...headers,
   };
 
@@ -90,7 +91,7 @@ async function tryRefreshToken(): Promise<boolean> {
     const res = await fetch(`${baseURL}/auth/refresh`, {
       method: 'POST',
       credentials: 'include',
-      headers: { 'Accept': 'application/json' },
+      headers: { 'Accept': 'application/json', 'X-Requested-With': 'XMLHttpRequest' },
     });
     if (!res.ok) {
       clearAccessToken();

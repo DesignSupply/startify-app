@@ -58,6 +58,7 @@ API使用時のラッパー処理を `/frontend/next/src/helpers/api.ts` に作�
 - `withCredentials: true` の時だけ `credentials: 'include'`（デフォルトはfalse）
 - `autoRefresh: true` の時だけ401→refresh→1回だけリトライ（login/refresh/logoutは除外、デフォルトはfalse）
 - メソッドはGETとPOSTのジェネリクス型
+- CSRF対策としてリクエストヘッダーに `X-Requested-With: XMLHttpRequest` の常時追加
 
 アクセストークン用のストア関数を `/frontend/next/src/helpers/storeAccessToken.ts` に作成します。
 

@@ -22,6 +22,7 @@ return Application::configure(basePath: dirname(__DIR__))
         // ルートミドルウェアのエイリアス登録（jwt）
         $middleware->alias([
             'jwt' => \App\Http\Middleware\JwtAuthenticate::class,
+            'api.guard' => \App\Http\Middleware\VerifyApiRequestGuard::class,
         ]);
 
     })

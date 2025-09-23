@@ -31,9 +31,16 @@ class AuthController extends Controller
 
         $domain = env('REFRESH_COOKIE_DOMAIN', $request->getHost());
 
-        return response()
-            ->json(['access_token' => $accessToken])
+        $response = response()->json(['access_token' => $accessToken])
             ->cookie('refresh_token', $refreshTokenValue, (int) env('JWT_REFRESH_TTL', 20160), '/api/v1/auth', $domain, true, true, false, 'None');
+
+        if (env('ENABLE_REFRESH_CSRF', false)) {
+            $csrf = bin2hex(random_bytes(16));
+            // SameSite=None は Secure 必須
+            $response->cookie('refresh_csrf', $csrf, (int) env('JWT_REFRESH_TTL', 20160), '/api/v1/auth', $domain, true, false, false, 'None');
+        }
+
+        return $response;
     }
 
     // リフレッシュトークン再発行
@@ -75,9 +82,16 @@ class AuthController extends Controller
 
         $domain = env('REFRESH_COOKIE_DOMAIN', $request->getHost());
 
-        return response()
-            ->json(['access_token' => $accessToken])
+        $response = response()->json(['access_token' => $accessToken])
             ->cookie('refresh_token', $newRefreshValue, (int) env('JWT_REFRESH_TTL', 20160), '/api/v1/auth', $domain, true, true, false, 'None');
+
+        if (env('ENABLE_REFRESH_CSRF', false)) {
+            $csrf = bin2hex(random_bytes(16));
+            // SameSite=None は Secure 必須
+            $response->cookie('refresh_csrf', $csrf, (int) env('JWT_REFRESH_TTL', 20160), '/api/v1/auth', $domain, true, false, false, 'None');
+        }
+
+        return $response;
     }
 
     // ログアウト
@@ -98,9 +112,15 @@ class AuthController extends Controller
 
         // delete cookie
         $domain = env('REFRESH_COOKIE_DOMAIN', $request->getHost());
-        return response()
-            ->noContent()
+        $response = response()->noContent()
             ->cookie('refresh_token', '', -1, '/api/v1/auth', $domain, true, true, false, 'None');
+
+        if (env('ENABLE_REFRESH_CSRF', false)) {
+            // 削除も発行時と同一属性（Secure含む）で
+            $response->cookie('refresh_csrf', '', -1, '/api/v1/auth', $domain, true, false, false, 'None');
+        }
+
+        return $response;
     }
 
     // JWT検証

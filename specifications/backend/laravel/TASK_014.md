@@ -216,6 +216,25 @@ JWT_REFRESH_TTL=20160
 
 ---
 
-## 9. ログイン認証APIのテスト
+## 9. CSRF対策用のミドルウェア追加
+
+APIへのリクエストに対して検証するためのミドルウェアを作成します。
+
+- ミドルウェア
+  - クラス: `VerifyApiRequestGuard`
+  - パス: `/backend/laravel/app/Http/Middleware/VerifyApiRequestGuard.php`
+  - 機能仕様
+    - Origin/Referer許可: ヘッダーOriginもしくはRefererのホストがALLOWED_ORIGINSに含まれること
+    - X-Requested-Withの検証: XMLHttpRequestを必須に
+    - Double Submit Cookie（refresh/logout時のみ）
+      - Cookie: refresh_csrf（HttpOnly=false, Secure, SameSite=None, Path=/api/v1/auth）
+      - ヘッダー: X-CSRF-Tokenと一致検証（hash_equals）
+    - refresh_csrf Cookieの属性でSecureを必須とする
+    - Origin/Referer検証でOriginヘッダーを厳密照合（完全一致、ポート含む）。Originがない場合のみRefererから「scheme://host[:port]」を再構成して照合。
+  - APIのルーティングで `login` 、`refresh` 、`logout` は `VerifyApiRequestGuard` のミドルウェアを通すようにする
+
+---
+
+## 10. ログイン認証APIのテスト
 
 ---

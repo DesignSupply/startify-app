@@ -10,13 +10,13 @@ Route::namespace('App\Http\Controllers\Api')->group(function () {
         Route::prefix('auth')->group(function () {
 
             // ログイン
-            Route::post('/login', 'AuthController@login')->middleware('throttle:login')->name('api.v1.auth.login');
+            Route::post('/login', 'AuthController@login')->middleware(['throttle:login','api.guard'])->name('api.v1.auth.login');
 
             // リフレッシュトークン再発行（credentials: include）
-            Route::post('/refresh', 'AuthController@refresh')->middleware('throttle:refresh')->name('api.v1.auth.refresh');
+            Route::post('/refresh', 'AuthController@refresh')->middleware(['throttle:refresh','api.guard'])->name('api.v1.auth.refresh');
 
             // ログアウト（credentials: include）
-            Route::post('/logout', 'AuthController@logout')->name('api.v1.auth.logout');
+            Route::post('/logout', 'AuthController@logout')->middleware('api.guard')->name('api.v1.auth.logout');
 
             // JWT検証（jwtミドルウェア適用）
             Route::get('/me', 'AuthController@me')->middleware('jwt')->name('api.v1.auth.me');
