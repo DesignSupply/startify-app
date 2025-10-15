@@ -8,12 +8,21 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 import Stats from 'stats.js';
 import GUI from 'lil-gui';
-import fragmentShader from '../glsl/main.frag';
-import vertexShader from '../glsl/main.vert';
-import textureImage from '../images/webgl_texture_image.jpg';
+import fragmentShader from '../glsl/main.frag?raw';
+import vertexShader from '../glsl/main.vert?raw';
+import textureImageUrl from '../images/webgl_texture_image.jpg?url';
 
 // webGL class
+// ライフサイクル設計メモ:
+// - constructorは最小限に保つ: ここで非同期・DOM副作用・グローバルイベント登録・ループ開始は行わない。
+// - initialize()はThree.jsオブジェクトの生成とシーングラフの組み立て（純同期・非DOM）に限定する。
+// - load()はテクスチャ/モデル等の非同期I/O用。constructorでは絶対に行わない。
+// - start()/stop()でrequestAnimationFrameレンダーループを制御する。
+// - dispose()でリスナー/オブザーバの解除とGPUリソースのdisposeを実施する。
+// - DOM操作/イベント登録はattachやbindEvents相当の段階に切り出し、確実に取り外せるようにする。
+// - ReactのStrictMode（開発時）はconstructorが二度呼ばれる場合があるため、副作用はconstructorに置かない。
 class WebGL {
+
   static CAMERA_SCALE = 1.0;
 
   static CAMERA_SETTINGS = {
@@ -84,33 +93,98 @@ class WebGL {
     far: 30
   };
 
-  renderer: THREE.WebGLRenderer;
-  scene: THREE.Scene;
-  perspectiveCamera: THREE.PerspectiveCamera;
-  orthographicCamera: THREE.OrthographicCamera;
-  directionalLight: THREE.DirectionalLight;
-  ambientLight: THREE.AmbientLight;
-  spotLight: THREE.SpotLight;
-  material: THREE.ShaderMaterial;
-  geometry: THREE.BoxGeometry;
-  mesh: THREE.Mesh;
-  group: THREE.Group;
-  spotLightHelper: THREE.SpotLightHelper;
-  axesHelper: THREE.AxesHelper;
-  textureLoader: THREE.TextureLoader;
-  fog: THREE.Fog;
-  effectComposer: EffectComposer;
-  renderPass: RenderPass;
-  glitchPass: GlitchPass;
-  dotScreenPass: DotScreenPass;
-  controls: OrbitControls;
-  gltfLoader: GLTFLoader;
-  dracoLoader: DRACOLoader;
-  model: THREE.Group;
-  raycaster: THREE.Raycaster;
-  clock: THREE.Clock;
-  stats: Stats;
-  gui: GUI;
+  // event handler
+  private resizeHandler = (appWidth?: number, appHeight?: number) => {
+    const host = this.webGLElement ?? this.renderer!.domElement.parentElement ?? this.renderer!.domElement;
+    const width = Math.max(1, Math.floor(appWidth || host.clientWidth || window.innerWidth));
+    const height = Math.max(1, Math.floor(appHeight || host.clientHeight || window.innerHeight));
+    if (this.lastSize && this.lastSize.width === width && this.lastSize.height === height) return;
+    const dpr = Math.min(2, window.devicePixelRatio || 1);
+    // renderer & composer resize
+    this.renderer!.setPixelRatio(dpr);
+    this.renderer!.setSize(width, height, false);
+    this.effectComposer!.setSize(width, height);
+    // perspective camera
+    this.perspectiveCamera!.aspect = width / height;
+    this.perspectiveCamera!.updateProjectionMatrix();
+    // orthographic camera
+    this.orthographicCamera!.left = -((WebGL.CAMERA_SCALE * width) / height);
+    this.orthographicCamera!.right = (WebGL.CAMERA_SCALE * width) / height;
+    this.orthographicCamera!.top = WebGL.CAMERA_SCALE;
+    this.orthographicCamera!.bottom = -WebGL.CAMERA_SCALE;
+    this.orthographicCamera!.updateProjectionMatrix();
+    this.lastSize = { width, height };
+  };
+
+  private clickHandler = (event: MouseEvent) => {
+    const renderingCanvas = this.renderer!.domElement;
+    const canvasClientRect = renderingCanvas.getBoundingClientRect();
+    // canvas外は無視
+    const isPointerInsideCanvas =
+      event.clientX >= canvasClientRect.left &&
+      event.clientX <= canvasClientRect.right &&
+      event.clientY >= canvasClientRect.top &&
+      event.clientY <= canvasClientRect.bottom;
+    if (!isPointerInsideCanvas) return;
+    // canvas座標をNDCへ正規化（-1 ～ 1）
+    const normalizedDeviceCoordinateX = ((event.clientX - canvasClientRect.left) / canvasClientRect.width) * 2 - 1;
+    const normalizedDeviceCoordinateY = -((event.clientY - canvasClientRect.top) / canvasClientRect.height) * 2 + 1;
+    this.raycaster!.setFromCamera(
+      new THREE.Vector2(normalizedDeviceCoordinateX, normalizedDeviceCoordinateY),
+      this.perspectiveCamera!
+    );
+    // this.raycaster.setFromCamera(new THREE.Vector2(normalizedDeviceCoordinateX, normalizedDeviceCoordinateY), this.orthographicCamera);
+    const intersectedResults = this.raycaster!.intersectObjects(this.group!.children, true);
+    if (intersectedResults.length > 0) {
+      const hit = intersectedResults[0];
+      console.log('raycaster hit', {
+        name: hit.object.name,
+        uuid: hit.object.uuid,
+        point: hit.point,
+        distance: hit.distance
+      });
+    } else {
+      console.log('raycaster no hit');
+    }
+  };
+
+  private requestAnimationFrameId?: number | null;
+
+  private onResize = () => this.resizeHandler();
+  
+  private lastSize?: { width: number; height: number };
+
+  initializeWidth: number;
+  initializeHeight: number;
+  webGLElement: HTMLElement;
+  renderer?: THREE.WebGLRenderer;
+  scene?: THREE.Scene;
+  perspectiveCamera?: THREE.PerspectiveCamera;
+  orthographicCamera?: THREE.OrthographicCamera;
+  directionalLight?: THREE.DirectionalLight;
+  ambientLight?: THREE.AmbientLight;
+  spotLight?: THREE.SpotLight;
+  material?: THREE.ShaderMaterial;
+  geometry?: THREE.BoxGeometry;
+  mesh?: THREE.Mesh;
+  group?: THREE.Group;
+  spotLightHelper?: THREE.SpotLightHelper;
+  axesHelper?: THREE.AxesHelper;
+  textureLoader?: THREE.TextureLoader;
+  fog?: THREE.Fog;
+  effectComposer?: EffectComposer;
+  renderPass?: RenderPass;
+  glitchPass?: GlitchPass;
+  dotScreenPass?: DotScreenPass;
+  controls?: OrbitControls;
+  gltfLoader?: GLTFLoader;
+  dracoLoader?: DRACOLoader;
+  model?: THREE.Group;
+  raycaster?: THREE.Raycaster;
+  clock?: THREE.Clock;
+  stats?: Stats;
+  gui?: GUI;
+  resizeObserver?: ResizeObserver;
 
   constructor(
     webGLElement: HTMLElement,
@@ -119,28 +193,34 @@ class WebGL {
       height: number;
     }
   ) {
-    // settings override
-    WebGL.CAMERA_SETTINGS.perspective.aspect = options.width / options.height;
-    WebGL.CAMERA_SETTINGS.orthographic.left = ((WebGL.CAMERA_SCALE * options.width) / options.height) * -1;
-    WebGL.CAMERA_SETTINGS.orthographic.right = (WebGL.CAMERA_SCALE * options.width) / options.height;
-    WebGL.RENDERER_SETTINGS.width = options.width;
-    WebGL.RENDERER_SETTINGS.height = options.height;
+
+    // app settings override
+    this.initializeWidth = options.width;
+    this.initializeHeight = options.height;
+    this.webGLElement = webGLElement;
+
+  }
+
+  // 1. initialize
+  initialize() {
+    
+    // instance settings (do not mutate static defaults)
+    const initWidth = this.initializeWidth;
+    const initHeight = this.initializeHeight;
+    const initAspect = initWidth / initHeight;
 
     // renderer
     this.renderer = new THREE.WebGLRenderer();
-    this.renderer.setSize(WebGL.RENDERER_SETTINGS.width, WebGL.RENDERER_SETTINGS.height, false);
+    this.renderer.setSize(initWidth, initHeight);
     this.renderer.setPixelRatio(WebGL.RENDERER_SETTINGS.pixelRatio);
     this.renderer.setClearColor(WebGL.RENDERER_SETTINGS.clearColor);
     this.renderer.setClearAlpha(WebGL.RENDERER_SETTINGS.alpha);
     this.renderer.shadowMap.enabled = true;
-    webGLElement.appendChild(this.renderer.domElement);
-    this.renderer.domElement.style.width = '100%';
-    this.renderer.domElement.style.height = '100%';
 
     // perspective camera
     this.perspectiveCamera = new THREE.PerspectiveCamera(
       WebGL.CAMERA_SETTINGS.perspective.fov,
-      WebGL.CAMERA_SETTINGS.perspective.aspect,
+      initAspect,
       WebGL.CAMERA_SETTINGS.perspective.near,
       WebGL.CAMERA_SETTINGS.perspective.far
     );
@@ -149,10 +229,10 @@ class WebGL {
 
     // orthographic camera
     this.orthographicCamera = new THREE.OrthographicCamera(
-      WebGL.CAMERA_SETTINGS.orthographic.left,
-      WebGL.CAMERA_SETTINGS.orthographic.right,
-      WebGL.CAMERA_SETTINGS.orthographic.top,
-      WebGL.CAMERA_SETTINGS.orthographic.bottom,
+      -((WebGL.CAMERA_SCALE * initWidth) / initHeight),
+      (WebGL.CAMERA_SCALE * initWidth) / initHeight,
+      WebGL.CAMERA_SCALE,
+      -WebGL.CAMERA_SCALE,
       WebGL.CAMERA_SETTINGS.orthographic.near,
       WebGL.CAMERA_SETTINGS.orthographic.far
     );
@@ -258,7 +338,7 @@ class WebGL {
     this.dotScreenPass = new DotScreenPass();
     this.effectComposer.addPass(this.dotScreenPass);
 
-    // controls
+    // controls。
     this.controls = new OrbitControls(this.perspectiveCamera, this.renderer.domElement);
     // this.controls = new OrbitControls(this.orthographicCamera, this.renderer.domElement);
 
@@ -268,98 +348,24 @@ class WebGL {
     // binding
     this.render = this.render.bind(this);
 
-    // event handler
-    const resizeHandler = () => {
-      const host = this.renderer.domElement.parentElement ?? this.renderer.domElement;
-      const width = Math.max(1, Math.floor(host.clientWidth || window.innerWidth));
-      const height = Math.max(1, Math.floor(host.clientHeight || window.innerHeight));
-      const dpr = Math.min(2, window.devicePixelRatio || 1);
-      // renderer & composer resize
-      this.renderer.setPixelRatio(dpr);
-      this.renderer.setSize(width, height, false);
-      this.renderer.domElement.style.width = '100%';
-      this.renderer.domElement.style.height = '100%';
-      this.effectComposer.setSize(width, height);
-      // perspective camera
-      this.perspectiveCamera.aspect = width / height;
-      this.perspectiveCamera.updateProjectionMatrix();
-      // orthographic camera
-      this.orthographicCamera.left = -((WebGL.CAMERA_SCALE * width) / height);
-      this.orthographicCamera.right = (WebGL.CAMERA_SCALE * width) / height;
-      this.orthographicCamera.top = WebGL.CAMERA_SCALE;
-      this.orthographicCamera.bottom = -WebGL.CAMERA_SCALE;
-      this.orthographicCamera.updateProjectionMatrix();
-    };
-    const clickHandler = (event: MouseEvent) => {
-      const renderingCanvas = this.renderer.domElement;
-      const canvasClientRect = renderingCanvas.getBoundingClientRect();
-      // canvas外は無視
-      const isPointerInsideCanvas =
-        event.clientX >= canvasClientRect.left &&
-        event.clientX <= canvasClientRect.right &&
-        event.clientY >= canvasClientRect.top &&
-        event.clientY <= canvasClientRect.bottom;
-      if (!isPointerInsideCanvas) return;
-      // canvas座標をNDCへ正規化（-1 ～ 1）
-      const normalizedDeviceCoordinateX = ((event.clientX - canvasClientRect.left) / canvasClientRect.width) * 2 - 1;
-      const normalizedDeviceCoordinateY = -((event.clientY - canvasClientRect.top) / canvasClientRect.height) * 2 + 1;
-      this.raycaster.setFromCamera(
-        new THREE.Vector2(normalizedDeviceCoordinateX, normalizedDeviceCoordinateY),
-        this.perspectiveCamera
-      );
-      // this.raycaster.setFromCamera(new THREE.Vector2(normalizedDeviceCoordinateX, normalizedDeviceCoordinateY), this.orthographicCamera);
-      const intersectedResults = this.raycaster.intersectObjects(this.group.children, true);
-      if (intersectedResults.length > 0) {
-        const hit = intersectedResults[0];
-        console.log('raycaster hit', {
-          name: hit.object.name,
-          uuid: hit.object.uuid,
-          point: hit.point,
-          distance: hit.distance
-        });
-      } else {
-        console.log('raycaster no hit');
-      }
-    };
-    resizeHandler();
-    window.addEventListener('resize', resizeHandler, false);
-    const hostElement = this.renderer.domElement.parentElement ?? this.renderer.domElement;
-    const resizeObserver = new ResizeObserver(() => {
-      resizeHandler();
-    });
-    resizeObserver.observe(hostElement);
-    this.renderer.domElement.addEventListener('click', clickHandler, false);
-
     // stats
     this.stats = new Stats();
     this.stats.showPanel(0);
-    webGLElement.appendChild(this.stats.dom);
 
     // gui
     this.gui = new GUI();
-    const folderPerspectiveCamera = this.gui.addFolder('Perspective Camera');
-    folderPerspectiveCamera.add(this.perspectiveCamera.position, 'x', -20, 20, 0.1).name('position X');
-    folderPerspectiveCamera.add(this.perspectiveCamera.position, 'y', -20, 20, 0.1).name('position Y');
-    folderPerspectiveCamera.add(this.perspectiveCamera.position, 'z', -20, 20, 0.1).name('position Z');
-    folderPerspectiveCamera
-      .add(this.perspectiveCamera, 'fov', 5, 60, 1)
-      .name('fov')
-      .onFinishChange(() => {
-        this.perspectiveCamera.updateProjectionMatrix();
-      });
-    // const folderOrthographicCamera = this.gui.addFolder('Orthographic Camera');
-    // folderOrthographicCamera.add(this.orthographicCamera.position, 'x', -20, 20, 0.1).name('position X');
-    // folderOrthographicCamera.add(this.orthographicCamera.position, 'y', -20, 20, 0.1).name('position Y');
-    // folderOrthographicCamera.add(this.orthographicCamera.position, 'z', -20, 20, 0.1).name('position Z');
+    
+    // initialized resize
+    this.resizeHandler(this.initializeWidth, this.initializeHeight);
   }
 
-  // assets loading
+  // 2. assets loading
   async load() {
     // texture image loading
-    const texture = await new THREE.TextureLoader().loadAsync(textureImage);
+    const texture = await new THREE.TextureLoader().loadAsync(textureImageUrl);
     texture.colorSpace = THREE.SRGBColorSpace; // three r150+ 推奨
-    this.material.uniforms.u_texture.value = texture;
-    this.material.needsUpdate = true;
+    this.material!.uniforms.u_texture.value = texture;
+    this.material!.needsUpdate = true;
 
     // 3D Model loading
     // const glbPath = '../models/sample.glb';
@@ -368,24 +374,117 @@ class WebGL {
     // });
   }
 
-  // rendering DOM
+  // 3. rendering DOM  
   render() {
-    requestAnimationFrame(this.render);
-    this.controls.update();
+
+    // controls update
+    this.controls!.update();
 
     // elapsed time
     // const time = this.clock.getElapsedTime();
     // console.log(time);
 
     // renderer render
-    this.renderer.render(this.scene, this.perspectiveCamera);
+    this.renderer!.render(this.scene!, this.perspectiveCamera!);
     // this.renderer.render(this.scene, this.orthographicCamera);
 
     // effect composer render
     // this.effectComposer.render();
 
-    this.stats.update();
+    // stats update
+    this.stats!.update();
   }
+
+  // 4. start
+  start() {
+    
+    const loop = () => {
+      this.render();
+      this.requestAnimationFrameId = requestAnimationFrame(loop);
+    };
+    loop();
+
+  }
+
+  // 5. stop
+  stop() {
+    
+    cancelAnimationFrame(this.requestAnimationFrameId!);
+    this.requestAnimationFrameId = null;
+    
+  }
+
+  // 6. attach
+  attach() {
+  
+    // bind events
+    window.addEventListener('resize', this.onResize, false);
+    this.resizeObserver = new ResizeObserver((entries) => {
+      const rect = entries[0].contentRect;
+      this.resizeHandler(Math.floor(rect.width) || 0, Math.floor(rect.height) || 0);
+    });
+    // 監視対象はホスト要素に固定（canvasは監視しない）
+    this.resizeObserver.observe(this.webGLElement);
+    this.renderer!.domElement.addEventListener('click', this.clickHandler, false);
+
+    // renderer
+    this.webGLElement.appendChild(this.renderer!.domElement);
+    this.renderer!.domElement.style.width = '100%';
+    this.renderer!.domElement.style.height = '100%';
+
+    // stats
+    this.webGLElement.appendChild(this.stats!.dom);
+
+    // gui
+    const folderPerspectiveCamera = this.gui!.addFolder('Perspective Camera');
+    folderPerspectiveCamera.add(this.perspectiveCamera!.position, 'x', -20, 20, 0.1).name('position X');
+    folderPerspectiveCamera.add(this.perspectiveCamera!.position, 'y', -20, 20, 0.1).name('position Y');
+    folderPerspectiveCamera.add(this.perspectiveCamera!.position, 'z', -20, 20, 0.1).name('position Z');
+    folderPerspectiveCamera
+      .add(this.perspectiveCamera!, 'fov', 5, 60, 1)
+      .name('fov')
+      .onFinishChange(() => {
+        this.perspectiveCamera!.updateProjectionMatrix();
+      });
+    // const folderOrthographicCamera = this.gui.addFolder('Orthographic Camera');
+    // folderOrthographicCamera.add(this.orthographicCamera.position, 'x', -20, 20, 0.1).name('position X');
+    // folderOrthographicCamera.add(this.orthographicCamera.position, 'y', -20, 20, 0.1).name('position Y');
+    // folderOrthographicCamera.add(this.orthographicCamera.position, 'z', -20, 20, 0.1).name('position Z');
+
+    this.resizeHandler();
+
+  }
+
+  // 7. dispose
+  dispose() {
+
+    this.stop();
+
+    // unbind events
+    window.removeEventListener('resize', this.onResize, false);
+    if (this.renderer) {
+      this.renderer.domElement.removeEventListener('click', this.clickHandler, false);
+    }
+    this.resizeObserver?.disconnect();
+    this.resizeObserver = undefined;
+
+    this.gui?.destroy();
+    if (this.stats?.dom && this.stats.dom.parentElement) {
+      this.stats.dom.parentElement.removeChild(this.stats.dom);
+    }
+
+    this.renderer?.dispose();
+    this.controls?.dispose();
+  
+  }
+
+  // 8. resize
+  resize(width: number, height: number) {
+
+    this.resizeHandler(width, height);
+
+  }
+
 }
 
 export default WebGL;

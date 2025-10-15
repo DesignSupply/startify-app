@@ -66,8 +66,10 @@ window.addEventListener(
       width: webGLElement.clientWidth,
       height: webGLElement.clientHeight
     });
+    webGLInstance.initialize();
+    webGLInstance.attach();
     await webGLInstance.load();
-    webGLInstance.render();
+    webGLInstance.start();
   },
   false
 );
