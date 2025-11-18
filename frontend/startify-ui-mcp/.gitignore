@@ -1,0 +1,33 @@
+# Project-scoped ignores for frontend/startify-ui-mcp
+
+# OS/Editor
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+
+# Build outputs and caches
+dist/
+build/
+.vite/
+.astro/
+.next/
+out/
+
+# TypeScript
+*.tsbuildinfo
+
+# Env files (keep examples tracked elsewhere)
+.env
+.env.local
+.env.development.local
+.env.production.local
+.env.test.local

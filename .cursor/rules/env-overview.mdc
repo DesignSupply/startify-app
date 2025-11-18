@@ -50,7 +50,8 @@ alwaysApply: false
 │   ├── /nuxt                              # Nuxt.jsプロジェクトルート
 │   ├── /astro                             # Astroプロジェクトルート
 │   ├── /vite                              # Viteプロジェクトルート
-│   └── /react-native                      # ReactNativeプロジェクトルート
+│   ├── /react-native                      # ReactNativeプロジェクトルート
+│   └── /startify-ui-mcp                   # Startify-UIのMCPサーバーワークスペース
 ├── /server                              # サーバー
 │   ├── /docker                            # Docker環境
 │   │   ├── /mailpit                         # SMTPサーバー
@@ -93,6 +94,7 @@ alwaysApply: false
      - **Astro**: 静的サイトジェネレーター
      - **Vite**: フロントエンドビルドツール
      - **React Native**: モバイルアプリケーションフレームワーク
+     - **MCP(Startify-UI)**: Startify-UIのMCPサーバーワークスペース
    - デザイントークン
      - **color-scheme**: 配色
      - **size-scale**: サイズ

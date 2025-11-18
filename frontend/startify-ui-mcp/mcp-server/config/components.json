@@ -1,0 +1,16 @@
+[
+  {
+    "id": "button",
+    "name": "Button",
+    "category": "forms",
+    "variants": ["primary", "secondary", "link"],
+    "description": "Startify-UI button component"
+  },
+  {
+    "id": "alert",
+    "name": "Alert",
+    "category": "feedback",
+    "variants": ["info", "success", "warning", "danger"],
+    "description": "Startify-UI alert component"
+  }
+]
