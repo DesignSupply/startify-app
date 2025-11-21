@@ -1,0 +1,323 @@
+version: 1
+color-scheme:
+  palette:
+    red:
+      label: { en: 'Red', ja: 'レッド' }
+      scale: 
+        0: { oklch: 'oklch(95.00% 0.0500 25.00)', hex: '#ffe2de' }
+        1: { oklch: 'oklch(93.51% 0.1045 25.00)', hex: '#ffcfc7' }
+        2: { oklch: 'oklch(88.39% 0.1711 25.00)', hex: '#ffa89f' }
+        3: { oklch: 'oklch(79.77% 0.2214 25.00)', hex: '#ff7672' }
+        4: { oklch: 'oklch(68.52% 0.2400 25.00)', hex: '#ff4047' }
+        5: { oklch: 'oklch(56.05% 0.2318 25.00)', hex: '#dc0023' }
+        6: { oklch: 'oklch(43.99% 0.2087 25.00)', hex: '#a80003' }
+        7: { oklch: 'oklch(33.95% 0.1752 25.00)', hex: '#7a0000' }
+        8: { oklch: 'oklch(27.32% 0.1382 25.00)', hex: '#590000' }
+        9: { oklch: 'oklch(25.00% 0.1100 25.00)', hex: '#490003' }
+    orange:
+      label: { en: 'Orange', ja: 'オレンジ' }
+      scale: 
+        0: { oklch: 'oklch(95.00% 0.0500 47.50)', hex: '#ffe5d3' }
+        1: { oklch: 'oklch(93.51% 0.1045 47.50)', hex: '#ffd5ae' }
+        2: { oklch: 'oklch(88.39% 0.1711 47.50)', hex: '#ffb270' }
+        3: { oklch: 'oklch(79.77% 0.2214 47.50)', hex: '#ff8502' }
+        4: { oklch: 'oklch(68.52% 0.2400 47.50)', hex: '#ff5500' }
+        5: { oklch: 'oklch(56.05% 0.2318 47.50)', hex: '#d72600' }
+        6: { oklch: 'oklch(43.99% 0.2087 47.50)', hex: '#a40000' }
+        7: { oklch: 'oklch(33.95% 0.1752 47.50)', hex: '#770000' }
+        8: { oklch: 'oklch(27.32% 0.1382 47.50)', hex: '#560000' }
+        9: { oklch: 'oklch(25.00% 0.1100 47.50)', hex: '#470200' }
+    orange-yellow:
+      label: { en: 'Orange Yellow', ja: 'オレンジイエロー' }
+      scale: 
+        0: { oklch: 'oklch(95.00% 0.0500 80.00)', hex: '#ffecca' }
+        1: { oklch: 'oklch(93.51% 0.1045 80.00)', hex: '#ffe298' }
+        2: { oklch: 'oklch(88.39% 0.1711 80.00)', hex: '#ffca36' }
+        3: { oklch: 'oklch(79.77% 0.2214 80.00)', hex: '#ffa700' }
+        4: { oklch: 'oklch(68.52% 0.2400 80.00)', hex: '#e47f00' }
+        5: { oklch: 'oklch(56.05% 0.2318 80.00)', hex: '#b85800' }
+        6: { oklch: 'oklch(43.99% 0.2087 80.00)', hex: '#8b3700' }
+        7: { oklch: 'oklch(33.95% 0.1752 80.00)', hex: '#632000' }
+        8: { oklch: 'oklch(27.32% 0.1382 80.00)', hex: '#481600' }
+        9: { oklch: 'oklch(25.00% 0.1100 80.00)', hex: '#3b1600' }
+    yellow:
+      label: { en: 'Yellow', ja: 'イエロー' }
+      scale: 
+        0: { oklch: 'oklch(95.00% 0.0500 97.50)', hex: '#f7efca' }
+        1: { oklch: 'oklch(93.51% 0.1045 97.50)', hex: '#fceb99' }
+        2: { oklch: 'oklch(88.39% 0.1711 97.50)', hex: '#f8d835' }
+        3: { oklch: 'oklch(79.77% 0.2214 97.50)', hex: '#e5ba00' }
+        4: { oklch: 'oklch(68.52% 0.2400 97.50)', hex: '#c49400' }
+        5: { oklch: 'oklch(56.05% 0.2318 97.50)', hex: '#9b6d00' }
+        6: { oklch: 'oklch(43.99% 0.2087 97.50)', hex: '#734b00' }
+        7: { oklch: 'oklch(33.95% 0.1752 97.50)', hex: '#523100' }
+        8: { oklch: 'oklch(27.32% 0.1382 97.50)', hex: '#3b2200' }
+        9: { oklch: 'oklch(25.00% 0.1100 97.50)', hex: '#311e00' }
+    yellow-green:
+      label: { en: 'Yellow Green', ja: 'イエローグリーン' }
+      scale: 
+        0: { oklch: 'oklch(95.00% 0.0500 115.00)', hex: '#edf3cd' }
+        1: { oklch: 'oklch(93.51% 0.1045 115.00)', hex: '#e7f2a1' }
+        2: { oklch: 'oklch(88.39% 0.1711 115.00)', hex: '#d6e550' }
+        3: { oklch: 'oklch(79.77% 0.2214 115.00)', hex: '#bbcb00' }
+        4: { oklch: 'oklch(68.52% 0.2400 115.00)', hex: '#99a600' }
+        5: { oklch: 'oklch(56.05% 0.2318 115.00)', hex: '#757f00' }
+        6: { oklch: 'oklch(43.99% 0.2087 115.00)', hex: '#535a00' }
+        7: { oklch: 'oklch(33.95% 0.1752 115.00)', hex: '#393d00' }
+        8: { oklch: 'oklch(27.32% 0.1382 115.00)', hex: '#282b00' }
+        9: { oklch: 'oklch(25.00% 0.1100 115.00)', hex: '#222500' }
+    green:
+      label: { en: 'Green', ja: 'グリーン' }
+      scale: 
+        0: { oklch: 'oklch(95.00% 0.0500 140.00)', hex: '#ddf7d8' }
+        1: { oklch: 'oklch(93.51% 0.1045 140.00)', hex: '#c5fbb9' }
+        2: { oklch: 'oklch(88.39% 0.1711 140.00)', hex: '#98f485' }
+        3: { oklch: 'oklch(79.77% 0.2214 140.00)', hex: '#61dd43' }
+        4: { oklch: 'oklch(68.52% 0.2400 140.00)', hex: '#23ba00' }
+        5: { oklch: 'oklch(56.05% 0.2318 140.00)', hex: '#009100' }
+        6: { oklch: 'oklch(43.99% 0.2087 140.00)', hex: '#006a00' }
+        7: { oklch: 'oklch(33.95% 0.1752 140.00)', hex: '#004a00' }
+        8: { oklch: 'oklch(27.32% 0.1382 140.00)', hex: '#003400' }
+        9: { oklch: 'oklch(25.00% 0.1100 140.00)', hex: '#002c00' }
+    teal:
+      label: { en: 'Teal', ja: 'ティール' }
+      scale: 
+        0: { oklch: 'oklch(95.00% 0.0500 177.50)', hex: '#ccfaee' }
+        1: { oklch: 'oklch(93.51% 0.1045 177.50)', hex: '#98ffe9' }
+        2: { oklch: 'oklch(88.39% 0.1711 177.50)', hex: '#00fdd8' }
+        3: { oklch: 'oklch(79.77% 0.2214 177.50)', hex: '#00e8bb' }
+        4: { oklch: 'oklch(68.52% 0.2400 177.50)', hex: '#00c598' }
+        5: { oklch: 'oklch(56.05% 0.2318 177.50)', hex: '#009b73' }
+        6: { oklch: 'oklch(43.99% 0.2087 177.50)', hex: '#007251' }
+        7: { oklch: 'oklch(33.95% 0.1752 177.50)', hex: '#005037' }
+        8: { oklch: 'oklch(27.32% 0.1382 177.50)', hex: '#003926' }
+        9: { oklch: 'oklch(25.00% 0.1100 177.50)', hex: '#003021' }
+    cyan:
+      label: { en: 'Cyan', ja: 'シアン' }
+      scale: 
+        0: { oklch: 'oklch(95.00% 0.0500 195.00)', hex: '#c9faf9' }
+        1: { oklch: 'oklch(93.51% 0.1045 195.00)', hex: '#8effff' }
+        2: { oklch: 'oklch(88.39% 0.1711 195.00)', hex: '#00fafb' }
+        3: { oklch: 'oklch(79.77% 0.2214 195.00)', hex: '#00e5e8' }
+        4: { oklch: 'oklch(68.52% 0.2400 195.00)', hex: '#00c1c7' }
+        5: { oklch: 'oklch(56.05% 0.2318 195.00)', hex: '#00979e' }
+        6: { oklch: 'oklch(43.99% 0.2087 195.00)', hex: '#006f75' }
+        7: { oklch: 'oklch(33.95% 0.1752 195.00)', hex: '#004d53' }
+        8: { oklch: 'oklch(27.32% 0.1382 195.00)', hex: '#00373c' }
+        9: { oklch: 'oklch(25.00% 0.1100 195.00)', hex: '#002f32' }
+    light-blue:
+      label: { en: 'Light Blue', ja: 'ライトブルー' }
+      scale: 
+        0: { oklch: 'oklch(95.00% 0.0500 217.50)', hex: '#caf7ff' }
+        1: { oklch: 'oklch(93.51% 0.1045 217.50)', hex: '#93fbff' }
+        2: { oklch: 'oklch(88.39% 0.1711 217.50)', hex: '#00f2ff' }
+        3: { oklch: 'oklch(79.77% 0.2214 217.50)', hex: '#00daff' }
+        4: { oklch: 'oklch(68.52% 0.2400 217.50)', hex: '#00b6f9' }
+        5: { oklch: 'oklch(56.05% 0.2318 217.50)', hex: '#008ccb' }
+        6: { oklch: 'oklch(43.99% 0.2087 217.50)', hex: '#00659c' }
+        7: { oklch: 'oklch(33.95% 0.1752 217.50)', hex: '#004571' }
+        8: { oklch: 'oklch(27.32% 0.1382 217.50)', hex: '#003152' }
+        9: { oklch: 'oklch(25.00% 0.1100 217.50)', hex: '#002a43' }
+    blue:
+      label: { en: 'Blue', ja: 'ブルー' }
+      scale: 
+        0: { oklch: 'oklch(95.00% 0.0500 252.50)', hex: '#d7f1ff' }
+        1: { oklch: 'oklch(93.51% 0.1045 252.50)', hex: '#b7eeff' }
+        2: { oklch: 'oklch(88.39% 0.1711 252.50)', hex: '#80deff' }
+        3: { oklch: 'oklch(79.77% 0.2214 252.50)', hex: '#34bfff' }
+        4: { oklch: 'oklch(68.52% 0.2400 252.50)', hex: '#0097ff' }
+        5: { oklch: 'oklch(56.05% 0.2318 252.50)', hex: '#006ff5' }
+        6: { oklch: 'oklch(43.99% 0.2087 252.50)', hex: '#004abf' }
+        7: { oklch: 'oklch(33.95% 0.1752 252.50)', hex: '#002f8d' }
+        8: { oklch: 'oklch(27.32% 0.1382 252.50)', hex: '#002167' }
+        9: { oklch: 'oklch(25.00% 0.1100 252.50)', hex: '#001f53' }
+    blue-violet:
+      label: { en: 'Blue Violet', ja: 'ブルーバイオレット' }
+      scale: 
+        0: { oklch: 'oklch(95.00% 0.0500 272.50)', hex: '#e3edff' }
+        1: { oklch: 'oklch(93.51% 0.1045 272.50)', hex: '#d1e6ff' }
+        2: { oklch: 'oklch(88.39% 0.1711 272.50)', hex: '#b3cfff' }
+        3: { oklch: 'oklch(79.77% 0.2214 272.50)', hex: '#8facff' }
+        4: { oklch: 'oklch(68.52% 0.2400 272.50)', hex: '#6d84ff' }
+        5: { oklch: 'oklch(56.05% 0.2318 272.50)', hex: '#4e5bf9' }
+        6: { oklch: 'oklch(43.99% 0.2087 272.50)', hex: '#3438c2' }
+        7: { oklch: 'oklch(33.95% 0.1752 272.50)', hex: '#21208f' }
+        8: { oklch: 'oklch(27.32% 0.1382 272.50)', hex: '#161669' }
+        9: { oklch: 'oklch(25.00% 0.1100 272.50)', hex: '#131755' }
+    violet:
+      label: { en: 'Violet', ja: 'バイオレット' }
+      scale: 
+        0: { oklch: 'oklch(95.00% 0.0500 282.50)', hex: '#e9ebff' }
+        1: { oklch: 'oklch(93.51% 0.1045 282.50)', hex: '#dee1ff' }
+        2: { oklch: 'oklch(88.39% 0.1711 282.50)', hex: '#c9c8ff' }
+        3: { oklch: 'oklch(79.77% 0.2214 282.50)', hex: '#aca3ff' }
+        4: { oklch: 'oklch(68.52% 0.2400 282.50)', hex: '#8b7aff' }
+        5: { oklch: 'oklch(56.05% 0.2318 282.50)', hex: '#6952f4' }
+        6: { oklch: 'oklch(43.99% 0.2087 282.50)', hex: '#4b2fbe' }
+        7: { oklch: 'oklch(33.95% 0.1752 282.50)', hex: '#33188d' }
+        8: { oklch: 'oklch(27.32% 0.1382 282.50)', hex: '#231067' }
+        9: { oklch: 'oklch(25.00% 0.1100 282.50)', hex: '#1e1353' }
+    purple:
+      label: { en: 'Purple', ja: 'パープル' }
+      scale: 
+        0: { oklch: 'oklch(95.00% 0.0500 300.00)', hex: '#f3e8ff' }
+        1: { oklch: 'oklch(93.51% 0.1045 300.00)', hex: '#f4daff' }
+        2: { oklch: 'oklch(88.39% 0.1711 300.00)', hex: '#ebbdff' }
+        3: { oklch: 'oklch(79.77% 0.2214 300.00)', hex: '#d595ff' }
+        4: { oklch: 'oklch(68.52% 0.2400 300.00)', hex: '#b46aff' }
+        5: { oklch: 'oklch(56.05% 0.2318 300.00)', hex: '#8d41e4' }
+        6: { oklch: 'oklch(43.99% 0.2087 300.00)', hex: '#681eb1' }
+        7: { oklch: 'oklch(33.95% 0.1752 300.00)', hex: '#490682' }
+        8: { oklch: 'oklch(27.32% 0.1382 300.00)', hex: '#34055e' }
+        9: { oklch: 'oklch(25.00% 0.1100 300.00)', hex: '#2b0c4d' }
+    magenta:
+      label: { en: 'Magenta', ja: 'マゼンタ' }
+      scale: 
+        0: { oklch: 'oklch(95.00% 0.0500 325.00)', hex: '#ffe4ff' }
+        1: { oklch: 'oklch(93.51% 0.1045 325.00)', hex: '#ffd2ff' }
+        2: { oklch: 'oklch(88.39% 0.1711 325.00)', hex: '#ffafff' }
+        3: { oklch: 'oklch(79.77% 0.2214 325.00)', hex: '#ff82ff' }
+        4: { oklch: 'oklch(68.52% 0.2400 325.00)', hex: '#df54e9' }
+        5: { oklch: 'oklch(56.05% 0.2318 325.00)', hex: '#b32abd' }
+        6: { oklch: 'oklch(43.99% 0.2087 325.00)', hex: '#86008f' }
+        7: { oklch: 'oklch(33.95% 0.1752 325.00)', hex: '#600067' }
+        8: { oklch: 'oklch(27.32% 0.1382 325.00)', hex: '#45004b' }
+        9: { oklch: 'oklch(25.00% 0.1100 325.00)', hex: '#39033d' }
+    pink:
+      label: { en: 'Pink', ja: 'ピンク' }
+      scale: 
+        0: { oklch: 'oklch(95.00% 0.0500 352.50)', hex: '#ffe1f2' }
+        1: { oklch: 'oklch(93.51% 0.1045 352.50)', hex: '#ffcdf0' }
+        2: { oklch: 'oklch(88.39% 0.1711 352.50)', hex: '#ffa6e4' }
+        3: { oklch: 'oklch(79.77% 0.2214 352.50)', hex: '#ff75cb' }
+        4: { oklch: 'oklch(68.52% 0.2400 352.50)', hex: '#ff41a8' }
+        5: { oklch: 'oklch(56.05% 0.2318 352.50)', hex: '#cf0082' }
+        6: { oklch: 'oklch(43.99% 0.2087 352.50)', hex: '#9d005d' }
+        7: { oklch: 'oklch(33.95% 0.1752 352.50)', hex: '#720040' }
+        8: { oklch: 'oklch(27.32% 0.1382 352.50)', hex: '#52002e' }
+        9: { oklch: 'oklch(25.00% 0.1100 352.50)', hex: '#440027' }
+    pink-red:
+      label: { en: 'Pink Red', ja: 'ピンクレッド' }
+      scale: 
+        0: { oklch: 'oklch(95.00% 0.0500 9.50)', hex: '#ffe1e7' }
+        1: { oklch: 'oklch(93.51% 0.1045 9.50)', hex: '#ffcdda' }
+        2: { oklch: 'oklch(88.39% 0.1711 9.50)', hex: '#ffa5c0' }
+        3: { oklch: 'oklch(79.77% 0.2214 9.50)', hex: '#ff729e' }
+        4: { oklch: 'oklch(68.52% 0.2400 9.50)', hex: '#ff3b7a' }
+        5: { oklch: 'oklch(56.05% 0.2318 9.50)', hex: '#d90057' }
+        6: { oklch: 'oklch(43.99% 0.2087 9.50)', hex: '#a50039' }
+        7: { oklch: 'oklch(33.95% 0.1752 9.50)', hex: '#780024' }
+        8: { oklch: 'oklch(27.32% 0.1382 9.50)', hex: '#570018' }
+        9: { oklch: 'oklch(25.00% 0.1100 9.50)', hex: '#480016' }
+  gray:
+    cool:
+      label: { en: 'Gray Cool', ja: 'クールグレー' }
+      scale: 
+        0: { oklch: 'oklch(95.00% 0.0044 257.42)', hex: '#edeff1' }
+        1: { oklch: 'oklch(93.51% 0.0114 257.42)', hex: '#e5eaf1' }
+        2: { oklch: 'oklch(88.39% 0.0201 257.42)', hex: '#d1dae6' }
+        3: { oklch: 'oklch(79.77% 0.0266 257.42)', hex: '#b3bece' }
+        4: { oklch: 'oklch(68.52% 0.0290 257.42)', hex: '#8f9bac' }
+        5: { oklch: 'oklch(56.05% 0.0274 257.42)', hex: '#6b7585' }
+        6: { oklch: 'oklch(43.99% 0.0231 257.42)', hex: '#4b535f' }
+        7: { oklch: 'oklch(33.95% 0.0167 257.42)', hex: '#323841' }
+        8: { oklch: 'oklch(27.32% 0.0097 257.42)', hex: '#24272c' }
+        9: { oklch: 'oklch(25.00% 0.0044 257.42)', hex: '#202224' }
+    warm:
+      label: { en: 'Gray Warm', ja: 'ウォームグレー' }
+      scale: 
+        0: { oklch: 'oklch(95.00% 0.0013 58.07)', hex: '#efeeee' }
+        1: { oklch: 'oklch(93.51% 0.0043 58.07)', hex: '#ece9e7' }
+        2: { oklch: 'oklch(88.39% 0.0079 58.07)', hex: '#ddd8d4' }
+        3: { oklch: 'oklch(79.77% 0.0106 58.07)', hex: '#c2bbb7' }
+        4: { oklch: 'oklch(68.52% 0.0116 58.07)', hex: '#a09893' }
+        5: { oklch: 'oklch(56.05% 0.0111 58.07)', hex: '#7a736e' }
+        6: { oklch: 'oklch(43.99% 0.0098 58.07)', hex: '#57514d' }
+        7: { oklch: 'oklch(33.95% 0.0079 58.07)', hex: '#3b3734' }
+        8: { oklch: 'oklch(27.32% 0.0058 58.07)', hex: '#292724' }
+        9: { oklch: 'oklch(25.00% 0.0041 58.07)', hex: '#232120' }
+    mono:
+      label: { en: 'Gray Mono', ja: 'モノクロームグレー' }
+      scale: 
+        0: { oklch: 'oklch(95.00% 0.0000 0)', hex: '#eeeeee' }
+        1: { oklch: 'oklch(93.51% 0.0000 0)', hex: '#e9e9e9' }
+        2: { oklch: 'oklch(88.39% 0.0000 0)', hex: '#d9d9d9' }
+        3: { oklch: 'oklch(79.77% 0.0000 0)', hex: '#bdbdbd' }
+        4: { oklch: 'oklch(68.52% 0.0000 0)', hex: '#9a9a9a' }
+        5: { oklch: 'oklch(56.05% 0.0000 0)', hex: '#747474' }
+        6: { oklch: 'oklch(43.99% 0.0000 0)', hex: '#525252' }
+        7: { oklch: 'oklch(33.95% 0.0000 0)', hex: '#383838' }
+        8: { oklch: 'oklch(27.32% 0.0000 0)', hex: '#272727' }
+        9: { oklch: 'oklch(25.00% 0.0000 0)', hex: '#222222' }
+  status:
+    error:
+      label: { en: 'Error', ja: 'エラー・禁止' }
+      scale: 
+        0: 'color-mix(in srgb, #ff0011 15%, white)'
+        1: 'color-mix(in srgb, #ff0011 30%, white)'
+        2: 'color-mix(in srgb, #ff0011 45%, white)'
+        3: 'color-mix(in srgb, #ff0011 60%, white)'
+        4: '#ff0011'
+        5: 'color-mix(in srgb, #ff0011 75%, black)'
+        6: 'color-mix(in srgb, #ff0011 60%, black)'
+        7: 'color-mix(in srgb, #ff0011 45%, black)'
+        8: 'color-mix(in srgb, #ff0011 30%, black)'
+        9: 'color-mix(in srgb, #ff0011 15%, black)'
+    warning:
+      label: { en: 'Warning', ja: '注意・警告' }
+      scale: 
+        0: 'color-mix(in srgb, #ffbb00 15%, white)'
+        1: 'color-mix(in srgb, #ffbb00 30%, white)'
+        2: 'color-mix(in srgb, #ffbb00 45%, white)'
+        3: 'color-mix(in srgb, #ffbb00 60%, white)'
+        4: '#ffbb00'
+        5: 'color-mix(in srgb, #ffbb00 75%, black)'
+        6: 'color-mix(in srgb, #ffbb00 60%, black)'
+        7: 'color-mix(in srgb, #ffbb00 45%, black)'
+        8: 'color-mix(in srgb, #ffbb00 30%, black)'
+        9: 'color-mix(in srgb, #ffbb00 15%, black)'
+    success:
+      label: { en: 'Success', ja: '成功・許可・完了' }
+      scale: 
+        0: 'color-mix(in srgb, #00cc44 15%, white)'
+        1: 'color-mix(in srgb, #00cc44 30%, white)'
+        2: 'color-mix(in srgb, #00cc44 45%, white)'
+        3: 'color-mix(in srgb, #00cc44 60%, white)'
+        4: '#00cc44'
+        5: 'color-mix(in srgb, #00cc44 75%, black)'
+        6: 'color-mix(in srgb, #00cc44 60%, black)'
+        7: 'color-mix(in srgb, #00cc44 45%, black)'
+        8: 'color-mix(in srgb, #00cc44 30%, black)'
+        9: 'color-mix(in srgb, #00cc44 15%, black)'
+    info:
+      label: { en: 'Info', ja: '通知・進行中' }
+      scale: 
+        0: 'color-mix(in srgb, #00ccff 15%, white)'
+        1: 'color-mix(in srgb, #00ccff 30%, white)'
+        2: 'color-mix(in srgb, #00ccff 45%, white)'
+        3: 'color-mix(in srgb, #00ccff 60%, white)'
+        4: '#00ccff'
+        5: 'color-mix(in srgb, #00ccff 75%, black)'
+        6: 'color-mix(in srgb, #00ccff 60%, black)'
+        7: 'color-mix(in srgb, #00ccff 45%, black)'
+        8: 'color-mix(in srgb, #00ccff 30%, black)'
+        9: 'color-mix(in srgb, #00ccff 15%, black)'
+    negative:
+      label: { en: 'Negative', ja: '中止・終了' }
+      scale: 
+        0: 'color-mix(in srgb, #aaaaaa 15%, white)'
+        1: 'color-mix(in srgb, #aaaaaa 30%, white)'
+        2: 'color-mix(in srgb, #aaaaaa 45%, white)'
+        3: 'color-mix(in srgb, #aaaaaa 60%, white)'
+        4: '#aaaaaa'
+        5: 'color-mix(in srgb, #aaaaaa 75%, black)'
+        6: 'color-mix(in srgb, #aaaaaa 60%, black)'
+        7: 'color-mix(in srgb, #aaaaaa 45%, black)'
+        8: 'color-mix(in srgb, #aaaaaa 30%, black)'
+        9: 'color-mix(in srgb, #aaaaaa 15%, black)'
+  white:
+    label: { en: 'White', ja: 'ホワイト' }
+    color: { oklch: 'oklch(100.00% 0.0000 0)', hex: '#ffffff' }
+  black:
+    label: { en: 'Black', ja: 'ブラック' }
+    color: { oklch: 'oklch(0.00% 0.0000 0)', hex: '#000000' }

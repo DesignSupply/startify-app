@@ -1,0 +1,41 @@
+version: 1
+dropshadow:
+  type:
+    - 'element'
+    - 'text'
+    - 'filter'
+  direction:
+    bottom-right: { light: 'top-left', shadow: 'bottom-right' }
+    bottom-center: { light: 'top-center', shadow: 'bottom-center' }
+    bottom-left: { light: 'top-right', shadow: 'bottom-left' }
+  elevation:
+    level0:
+      name: 'none'
+      offset: 0
+      blur: '2px'
+      spread: '1px'
+      color: 'rgb(0 0 0 / 40%)'
+    level1:
+      name: 'low'
+      offset: '1px'
+      blur: '6px'
+      spread: 0
+      color: 'rgb(0 0 0 / 35%)'
+    level2:
+      name: 'medium'
+      offset: '3px'
+      blur: '10px'
+      spread: 0
+      color: 'rgb(0 0 0 / 30%)'
+    level3:
+      name: 'high'
+      offset: '5px'
+      blur: '14px'
+      spread: 0
+      color: 'rgb(0 0 0 / 25%)'
+    level4:
+      name: 'highest'
+      offset: '7px'
+      blur: '18px'
+      spread: 0
+      color: 'rgb(0 0 0 / 20%)'

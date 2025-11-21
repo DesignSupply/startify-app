@@ -1,0 +1,72 @@
+- id: 'button'
+  name: 'Button'
+  category: 'forms'
+  description: 'Startify-UI button component'
+  baseClass: 'su-button'
+  htmlElements: ['button', 'input', 'a']
+  defaults:
+    element: 'button'
+    formType: 'button'
+    type: 'primary'
+    size: 'default'
+    display: 'default'
+    shape: 'rounded'
+  variants:
+    type:
+      primary:   { classNames: ['su-button-primary'] }
+      secondary: { classNames: ['su-button-secondary'] }
+      fill:      { classNames: ['su-button-fill'] }
+      outline:   { classNames: ['su-button-outline'] }
+    size:
+      small:     { classNames: ['su-button-size-small'] }
+      large:     { classNames: ['su-button-size-large'] }
+    display:
+      block:     { classNames: ['su-button-display-block'] }
+    shape:
+      square:    { classNames: ['su-button-shape-square'] }
+      pill:      { classNames: ['su-button-shape-pill'] }
+  attributes:
+    role: 'button'
+  elementAttributes:
+    button:
+      type: 'button'
+      role: 'button'
+    a:
+      role: 'button'
+      href: '#'
+      tabindex: 0
+    input:
+      type: 'button'
+  props:
+    disabled:
+      classNames: ['su-button-state-disabled']
+      elementAttributes:
+        button:
+          disabled: true
+          aria-disabled: 'true'
+        a:
+          aria-disabled: 'true'
+          tabindex: -1
+        input:
+          disabled: true
+          aria-disabled: 'true'
+    formType:
+      button:
+        elementAttributes:
+          button:
+            type: 'button'
+          input:
+            type: 'button'
+      submit:
+        elementAttributes:
+          button:
+            type: 'submit'
+          input:
+            type: 'submit'
+      reset:
+        elementAttributes:
+          button:
+            type: 'reset'
+          input:
+            type: 'reset'
+      

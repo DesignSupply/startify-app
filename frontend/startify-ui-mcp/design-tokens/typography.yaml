@@ -1,0 +1,63 @@
+version: 1
+typography:
+  family:
+    sans-serif:
+      - 'Noto Sans JP Variable'
+      - 'sans-serif'
+    serif:
+      - 'Noto Serif JP Variable'
+      - 'serif'
+    monospace:
+      - 'M PLUS 1 Code Variable'
+      - 'monospace'
+  size:
+    3s: { px: 10, rem: 0.625 }
+    2s: { px: 12, rem: 0.75 }
+    s: { px: 14, rem: 0.875 }
+    r: { px: 16, rem: 1 }
+    m: { px: 18, rem: 1.125 }
+    l: { px: 20, rem: 1.25 }
+    2l: { px: 24, rem: 1.5 }
+    3l: { px: 28, rem: 1.75 }
+    4l: { px: 32, rem: 2 }
+    5l: { px: 48, rem: 3 }
+    6l: { px: 64, rem: 4 }
+  weight:
+    thin: 100
+    extra-light: 200
+    light: 300
+    normal: 400
+    medium: 500
+    semi-bold: 600
+    bold: 700
+    extra-bold: 800
+    black: 900
+  style:
+    normal: 'normal'
+    plain: 'none'
+    underline: 'underline'
+    strike: 'line-through'
+    italic: 'italic'
+    lower: 'lowercase'
+    upper: 'uppercase'
+    capital: 'capitalize'
+  leading:
+    '100': 1
+    '125': 1.25
+    '150': 1.5
+    '175': 1.75
+    '200': 2
+    '225': 2.25
+    '250': 2.5
+  tracking:
+    '0': { default: 0, expanded: 0, condensed: 0 }
+    '1/40': { default: '0.025em', expanded: '0.025em', condensed: '-0.025em' }
+    '1/36': { default: '0.02777em', expanded: '0.02777em', condensed: '-0.02777em' }
+    '1/32': { default: '0.03125em', expanded: '0.03125em', condensed: '-0.03125em' }
+    '1/28': { default: '0.03571em', expanded: '0.03571em', condensed: '-0.03571em' }
+    '1/24': { default: '0.04166em', expanded: '0.04166em', condensed: '-0.04166em' }
+    '1/20': { default: '0.05em', expanded: '0.05em', condensed: '-0.05em' }
+    '1/16': { default: '0.0625em', expanded: '0.0625em', condensed: '-0.0625em' }
+    '1/12': { default: '0.08333em', expanded: '0.08333em', condensed: '-0.08333em' }
+    '1/8': { default: '0.125em', expanded: '0.125em', condensed: '-0.125em' }
+    '1/4': { default: '0.25em', expanded: '0.25em', condensed: '-0.25em' }

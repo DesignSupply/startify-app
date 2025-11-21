@@ -1,10 +1,10 @@
-token-name: corner-style
-token-value:
+version: 1
+corner-style:
   round:
     shape:
       square: 0
-      pill: "99em"
-      circle: "50%"
+      pill: '99em'
+      circle: '50%'
     radius:
       5s: { px: 4, rem: 0.25 }
       4s: { px: 8, rem: 0.5 }

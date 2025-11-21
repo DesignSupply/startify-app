@@ -35,7 +35,7 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 
 ---
 
-## 5. MCPメソッド実装: get_tokens（/frontend/_design-tokens の解決）
+## 5. MCPメソッド実装: get_tokens（デザイントークンの取得）
 
 `/specifications/frontend/startify-ui-mcp/TASK_005.md` に記載されているタスクを順番に進めます。
 

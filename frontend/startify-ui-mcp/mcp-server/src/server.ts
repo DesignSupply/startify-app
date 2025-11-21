@@ -34,3 +34,23 @@ main().catch((err) => {
 // //    return { ok: true, data: components };
 // //  }
 // // });
+
+// --- get_tokens tool (skeleton) ---
+// import { loadDesignTokens } from './lib/tokens.js';
+// // server.on('tools/call', async ({ name }) => {
+// //   if (name === 'get_tokens') {
+// //     const tokens = loadDesignTokens(process.cwd());
+// //     return { ok: true, data: tokens };
+// //   }
+// // });
+
+// --- generate_page tool (skeleton) ---
+// import { loadDesignTokens } from './lib/tokens.js';
+// import { generatePage } from './lib/generator.js';
+// // server.on('tools/call', async ({ name, arguments: args }) => {
+// //   if (name === 'generate_page') {
+// //     const tokens = loadDesignTokens(process.cwd());
+// //     const html = generatePage(args as any, tokens);
+// //     return { ok: true, data: { html } };
+// //   }
+// // });
