@@ -2,6 +2,7 @@ import { fileURLToPath } from 'node:url';
 import { dirname } from 'node:path';
 import { Server } from '@modelcontextprotocol/sdk/server'; // 実装は後続タスクで追加
 import { loadComponents } from './lib/components.js';
+import { createLogger } from './lib/logger.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -12,13 +13,20 @@ async function main(): Promise<void> {
 	// server.registerTool(...);
 	// await server.start();
 
-	console.log('[MCP] Startify-UI MCP server bootstrap ready.');
-	console.log(`[MCP] entry: ${__dirname}`);
-	console.log('[MCP] components:', loadComponents(process.cwd()).length);
+	const log = createLogger('[MCP]');
+	log.info('Startify-UI MCP server bootstrap ready.');
+	log.debug(`entry: ${__dirname}`);
+	try {
+		const count = loadComponents(process.cwd()).length;
+		log.info('components count:', count);
+	} catch (e) {
+		log.warn('failed to load components list (will continue):', e);
+	}
 }
 
 main().catch((err) => {
-	console.error('[MCP] Fatal error:', err);
+	const log = createLogger('[MCP]');
+	log.error('Fatal error:', err);
 	process.exit(1);
 });
 

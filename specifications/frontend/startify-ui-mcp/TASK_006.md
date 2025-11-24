@@ -47,7 +47,7 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 
 ```html
 <h1>サンプルページ</h1>
-<button class="su-button su-button-primary" type="button" role="button">プライマリーボタン</button>
+<button class="su-button-primary" type="button" role="button">プライマリーボタン</button>
 ```
 
 ### 2.3. 基本ルール

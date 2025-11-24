@@ -1,5 +1,5 @@
 import { readFileSync } from 'node:fs';
-import { resolve } from 'node:path';
+import { resolve, isAbsolute } from 'node:path';
 import { parse } from 'yaml';
 
 export type Component = {
@@ -11,7 +11,11 @@ export type Component = {
 };
 
 export function loadComponents(baseDir: string = process.cwd()): Component[] {
-	const file = resolve(baseDir, 'config', 'components.yaml');
+	// 環境変数で上書き可能: STARTIFY_COMPONENTS_FILE
+	const overridePath = process.env.STARTIFY_COMPONENTS_FILE;
+	const file = overridePath
+		? (isAbsolute(overridePath) ? overridePath : resolve(baseDir, overridePath))
+		: resolve(baseDir, 'config', 'components.yaml');
 	const raw = readFileSync(file, 'utf-8');
 	const data = parse(raw);
 	if (!Array.isArray(data)) {
