@@ -11,9 +11,9 @@
   function register_script() {
     if(!is_admin()) {
       wp_deregister_script('jquery');
-      wp_enqueue_script('main-js', get_template_directory_uri().'/assets/js/main.min.js', array(), null, 'all');
-      wp_enqueue_script('ajax-loading-js', get_template_directory_uri().'/plugins/ajax-loading/post.js', array(), null, 'all');
-      wp_enqueue_script('ajax-post-js', get_template_directory_uri().'/plugins/ajax-post/post.js', array(), null, 'all');
+      wp_enqueue_script_module('main-js', get_template_directory_uri().'/assets/js/main.min.js', array(), null);
+      wp_enqueue_script('ajax-loading-js', get_template_directory_uri().'/plugins/ajax-loading/post.js', array(), null, array());
+      wp_enqueue_script('ajax-post-js', get_template_directory_uri().'/plugins/ajax-post/post.js', array(), null, array());
     }
   }
   add_action('wp_enqueue_scripts', 'register_script');
@@ -21,7 +21,7 @@
   // 管理画面カスタマイズ
   function custom_login_page() {
     wp_enqueue_style('login-customize-css', get_template_directory_uri().'/functions/login/customize.css', array(), null, 'all');
-    wp_enqueue_script('login-customize-js', get_template_directory_uri().'/functions/login/customize.js', array(), null, 'all');
+    wp_enqueue_script('login-customize-js', get_template_directory_uri().'/functions/login/customize.js', array(), null, array());
   }
   add_action('login_enqueue_scripts', 'custom_login_page');
 
