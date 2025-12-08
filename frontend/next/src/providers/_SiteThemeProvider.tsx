@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { SiteThemeContext, defaultState, stateType } from '@/contexts/siteThemeContext';
+import { SiteThemeContext, defaultState, stateType } from '@/contexts/_siteThemeContext';
 
 export default function SiteThemeProvider({ children }: { children: React.ReactNode }) {
   const [state, setState] = useState<stateType>(defaultState);

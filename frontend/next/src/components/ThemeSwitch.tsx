@@ -1,16 +1,18 @@
 'use client';
 
-import { useSiteThemeContext, stateType } from '@/contexts/siteThemeContext';
+import { useSiteThemeStore, type ThemeMode } from '@/stores/siteThemeStore';
+// import { useSiteThemeContext, stateType } from '@/contexts/siteThemeContext'; // context
 
 export default function ThemeSwitch() {
-  const { state, setState } = useSiteThemeContext();
+  const theme = useSiteThemeStore((state) => state.currentTheme);
+  const setTheme = useSiteThemeStore((state) => state.setTheme);
+  // const { state, setState } = useSiteThemeContext(); // context
 
   const changeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const newTheme = event.target.value as stateType['currentTheme'];
-    setState((prev) => ({
-      ...prev,
-      currentTheme: newTheme,
-    }));
+    const newTheme = event.target.value as ThemeMode;
+    setTheme(newTheme);
+    // const legacyTheme = event.target.value as stateType['currentTheme']; // context
+    // setState((prev) => ({ ...prev, currentTheme: legacyTheme })); // context
   };
 
   return (
@@ -22,9 +24,10 @@ export default function ThemeSwitch() {
           value="light"
           aria-label="Light Mode"
           onChange={changeHandler}
-          checked={state.currentTheme === 'light'}
+          checked={theme === 'light'}
         />
         ライト
+        {/* context: checked={state.currentTheme === 'light'} */}
       </label>
       <label>
         <input
@@ -33,9 +36,10 @@ export default function ThemeSwitch() {
           value="dark"
           aria-label="Dark Mode"
           onChange={changeHandler}
-          checked={state.currentTheme === 'dark'}
+          checked={theme === 'dark'}
         />
         ダーク
+        {/* context: checked={state.currentTheme === 'dark'} */}
       </label>
     </>
   );

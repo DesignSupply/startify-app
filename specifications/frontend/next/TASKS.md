@@ -64,3 +64,9 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 `/specifications/frontend/next/TASK_009.md` に記載されているタスクを順番に進めます。
 
 ---
+
+## 10. グローバルステート管理のライブラリ移行（Zustand）
+
+`/specifications/frontend/next/TASK_010.md` に記載されているタスクを順番に進めます。
+
+---
