@@ -1,6 +1,11 @@
-header.l-header
-  section.l-wrapper
-    div.l-container
-      div.l-inner
-        div.__block-1
-// header end
+mixin header(currentPage)
+  header.l-header
+    section.l-wrapper
+      div.l-container
+        div.l-inner
+          div.__block-1
+            if currentPage === 'home'
+              h1 #{currentPage}
+            else
+              div #{currentPage}
+  // header end

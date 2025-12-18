@@ -1,20 +1,28 @@
 block variables  
   - var pageName = 'home'
 
-main.l-main.p-page.p-front-page
-  article.p-section-01
-    section.l-wrapper
-      div.l-container
-        div.l-inner
-          div.__block-1
-            div#app-react
-            div#app-vue
-            div#app-three(style="width: 600px; height: 300px; max-width: 100%;")
-  // section 01 end
-  aside.l-aside
-    section.l-wrapper
-      div.l-container
-        div.l-inner
-          div.__block-1
-  // aside end
-// main end
+div.l-base
+  include ../pug/components/header.pug
+  +header(pageName)
+  main.l-main.p-page.p-front-page
+    article.p-section-01
+      section.l-wrapper
+        div.l-container
+          div.l-inner
+            div.__block-1
+              div#app-react
+              div#app-vue
+              div#app-three(style="width: 600px; height: 300px; max-width: 100%;")
+    // section 01 end
+    aside.l-aside
+      section.l-wrapper
+        div.l-container
+          div.l-inner
+            div.__block-1
+    // aside end
+  // main end
+  include ../pug/components/footer.pug
+  +footer(pageName)
+// l-base end
+include ../pug/components/offcanvas.pug
+include ../pug/components/body-script.pug
