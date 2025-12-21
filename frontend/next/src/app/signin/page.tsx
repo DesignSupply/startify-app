@@ -1,8 +1,15 @@
+'use client';
+
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 import SigninForm from '@/components/auth/SigninForm';
 import JsonLd from '@/components/JsonLd';
+import { useMeQuery } from '@/hooks/auth/useAuth';
 
 export default function SigninPage() {
+  const router = useRouter();
+  const { data, isLoading, isError } = useMeQuery();
   const jsonLdData = [
     {
       '@type': 'ListItem',
@@ -15,6 +22,12 @@ export default function SigninPage() {
       item: { '@id': `${process.env.APPURL}/signin`, name: 'ログイン' },
     },
   ];
+
+  useEffect(() => {
+    if (data && !isLoading && !isError) {
+      router.replace('/dashboard');
+    }
+  }, [data, isLoading, isError, router]);
 
   return (
     <main className="app-main">
