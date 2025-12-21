@@ -1,5 +1,3 @@
-'use client';
-
 export type propsType = {
   jsonLd: {
     '@type': string;
@@ -21,6 +19,7 @@ export default function JsonLd(props: propsType) {
   return (
     <>
       <script
+        suppressHydrationWarning
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonData) }}
       />
