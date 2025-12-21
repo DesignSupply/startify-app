@@ -12,7 +12,7 @@ type ApiOptions = {
   headers?: Record<string, string>;
 };
 
-const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL ?? '';
+export const baseURL = process.env.NEXT_PUBLIC_API_BASE_URL ?? '';
 
 // Single-flight refresh control
 let refreshPromise: Promise<boolean> | null = null;

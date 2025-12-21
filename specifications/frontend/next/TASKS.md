@@ -70,3 +70,9 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 `/specifications/frontend/next/TASK_010.md` に記載されているタスクを順番に進めます。
 
 ---
+
+## 11. APIデータのキャッシュ・同期ステート管理（ReactQuery）
+
+`/specifications/frontend/next/TASK_011.md` に記載されているタスクを順番に進めます。
+
+---
