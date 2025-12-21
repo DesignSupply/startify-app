@@ -108,4 +108,33 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 
 ## 5. Vitestによるモックデータ取得テスト
 
+### 5.1. 導入とディレクトリ構成
+
+`Vitest + React Testing Library + jsdom` の構成を活用する。`frontend/next/src/hooks/posts/__tests__/` に `usePostsQuery.spec.ts` / `usePostQuery.spec.ts` を置き、`QueryClientProvider` をラップした `renderHook` ユーティリティや `vi.stubGlobal('fetch', ...)` で `public/mock/posts.json` を返すmockを整備する。
+
+### 5.2. `usePostsQuery` の検証
+
+- `queryKey: ['posts']`、`staleTime: 10_000`、`cacheTime: 5 * 60_000` を `QueryClient` で確認し、一覧キャッシュが `setQueryData` によって保持されることや `isStale` の挙動をチェックする。
+- 正常データでは `result.current.data`、`postsSchema.safeParse` エラー時には `result.current.error` に遷移することをテスト。
+- `ReactQueryProvider` 由来の `defaultOptions`（`refetchOnWindowFocus: false` など）や `select` 内の `postSchema.parse` が想定どおり動作することを `vi.spyOn` などで確認。
+
+### 5.3. `usePostQuery(id)` の検証
+
+- `queryKey: ['posts', id]`、`enabled: Boolean(id)`、`staleTime: 0`、`cacheTime: 60_000` がそれぞれ反映されているかをテスト。
+- `postSchema.parse` でvalidationエラーが起きるケースを作成し、React Queryが `error` 状態になることを確認。
+- `invalidateQueries(['posts'])` によって一覧キャッシュと連携できることも検証。
+
+### 5.4. `helpers/api` + mock 切り替えの検証
+
+- `MOCK_POSTS_PATH` / `USE_MOCK_POSTS` フラグでmockのURLが選ばれること、`baseURL`（`helpers/api.ts` からexport）を通じて `fetch` が構築されていることを `vi.spyOn` で確認。
+- `NEXT_PUBLIC_API_BASE_URL` をテスト内で切り替えて `apiFetch` が想定どおりのURLを叩くこと、認証ヘッダーが付与されることも併せてチェックする。
+
+### 5.5. テストコマンド
+
+`package.json` に `test:posts`（`vitest run src/hooks/posts/__tests__`）や `test:posts:watch` を追加し、`TASK_011` に関するテストだけを実行できるようにする。CIでは `npm run test:posts` を `test:auth` と併用してAPI周りの挙動を監視。
+
+### 5.6. 文書化と今後
+
+このセクションで検証する期待値（`posts.json` のSchema、`queryKey`、`staleTime`/`cacheTime`、Zodバリデーション）を `TASK_011` に箇条書きで残し、一覧／詳細コンポーネントの実装者が参照できるようにする。テスト追加時は `TASK_011` を更新し、検証対象と目的を明示する。
+
 ---

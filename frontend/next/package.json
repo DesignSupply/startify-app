@@ -16,7 +16,9 @@
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,scss,json,md}\"",
     "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx,css,scss,json,md}\"",
     "test:auth": "vitest run src/hooks/auth/__tests__/ src/components/auth/__tests__",
-    "test:auth:watch": "vitest --watch src/hooks/auth/__tests__/ src/components/auth/__tests__"
+    "test:auth:watch": "vitest --watch src/hooks/auth/__tests__/ src/components/auth/__tests__",
+    "test:posts": "vitest run src/hooks/posts/__tests__",
+    "test:posts:watch": "vitest --watch src/hooks/posts/__tests__"
   },
   "dependencies": {
     "@hookform/resolvers": "5.2.2",
