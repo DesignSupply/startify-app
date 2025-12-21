@@ -126,4 +126,59 @@ React Query用のフック処理を `/frontend/next/src/hooks/auth/useAuth.ts` �
 
 ## 6. 認証APIのログイン機能のテスト
 
+### 6.1. 導入とディレクトリ構成
+
+VitestおよびReact Testing Libraryをテストランナー／ヘルパーとして導入する。まだ未インストールなので `npm install -D vitest @testing-library/react @testing-library/jest-dom jsdom` などで依存を追加する。
+
+```bash
+cd ./frontend/next
+npm install -D vitest @testing-library/react @testing-library/jest-dom jsdom
+```
+
+テストは `frontend/next/src/hooks/auth/__tests__/` や `frontend/next/src/components/auth/__tests__/` といったドメインごとの `__tests__` ディレクトリを作り、その配下に `useAuth.spec.ts` / `SigninForm.spec.tsx` を置く。
+
+### 6.2. Vitest 設定と jsdom
+
+テストを実行するには `vitest.config.ts` を用意し、`@` エイリアスと `jsdom` 環境を明示する。`vitest.config.ts` および `package.json` の `devDependencies` に次のような記述例を追加することで、Next.jsのパス解決やDOMベースのテストが安定する。
+
+```ts
+import { defineConfig } from 'vitest/config';
+import { fileURLToPath } from 'node:url';
+
+export default defineConfig({
+  resolve: {
+    alias: {
+      '@': fileURLToPath(new URL('./src', import.meta.url)),
+    },
+  },
+  test: {
+    environment: 'jsdom',
+  },
+});
+```
+
+`jsdom` を依存に含めておくことでReact Testing LibraryやReactコンポーネントを直接レンダリングしたテストを `npm run test:auth` で実行した際に `document` が定義されていないエラーを予防できる。
+
+### 6.3. フックの検証
+
+`useAuth` 系フックについては `vi.mock('@/features/auth/apiAuth')` を使って `login`/`me`/`logout` をスタブしたうえで、`useMeQuery` の401→`refresh` の流れ、`useLoginMutation` の`invalidateQueries(ME_KEY)`、`useLogoutMutation` で `clearAccessToken` と `invalidateQueries` が呼ばれることを確認する。
+
+### 6.4. UI コンポーネントの検証
+
+`SigninForm` は「React Testing Library」でレンダリングし、フォーム入力 → `mutateAsync` 呼び出し → `router.replace` / エラーメッセージ表示までの一連をテストする。`zod` スキーマのバリデーションメッセージも `rtl` で表示されるかを確認するとより厳密。
+
+### 6.5. 実装と並行する方針
+
+以降の機能においてもテストコードは実装と並行して書き進め、同じVitest＋RTL構成を共有する。テスト内では`vi.stubGlobal('fetch', …)`を使ってモックJSONを返すケースなども想定する。
+
+### 6.6. テストコマンドの追加
+
+`frontend/next` に対してnpm scriptを追加し、Vitestの実行環境を簡単に起動できるようにする。たとえば、「package.json」の「scripts」に
+
+```json
+"test:auth": "vitest run frontend/next/src/hooks/auth/__tests__ frontend/next/src/components/auth/__tests__"
+```
+
+を追加し、認証周りのテストだけをトリガーするようにする。ローカルでwatch版を入れたい場合は「test:auth:watch」に「vitest --watch」を設定し、CIでは「npm run test:auth」を「backend」/「frontend」のlint/formatと組み合わせて実行することで認証APIの振る舞いを自動で監視できる。
+
 ---
