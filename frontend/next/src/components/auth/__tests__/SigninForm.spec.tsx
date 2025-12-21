@@ -1,12 +1,12 @@
 'use client';
 
-import React from 'react';
-
 /**
  * SigninForm のテスト:
  * - 必須項目を空で送信するとバリデーションエラーが表示される
  * - 正常入力で useLoginMutation が呼ばれ、/dashboard にリダイレクトされる
  */
+
+import React from 'react';
 import { fireEvent, render, screen, waitFor, cleanup } from '@testing-library/react';
 import { describe, expect, it, vi, beforeEach, afterEach, MockedFunction } from 'vitest';
 import SigninForm from '../SigninForm';
