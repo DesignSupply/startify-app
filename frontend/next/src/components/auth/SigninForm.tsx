@@ -1,18 +1,14 @@
 'use client';
 
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useLoginMutation } from '@/hooks/auth/useAuth';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useState } from 'react';
+import { z } from 'zod';
+import { signinSchema } from '@/schemas/auth';
 
-const schema = z.object({
-  email: z.string({ required_error: 'メールは必須です' }).email('メール形式が正しくありません'),
-  password: z.string({ required_error: 'パスワードは必須です' }).min(8, { message: '8文字以上で入力してください' }),
-});
-
-type FormValues = z.infer<typeof schema>;
+type FormValues = z.infer<typeof signinSchema>;
 
 export default function SigninForm() {
   const router = useRouter();
@@ -22,7 +18,7 @@ export default function SigninForm() {
   const [apiError, setApiError] = useState<string | null>(null);
 
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(signinSchema),
     mode: 'onSubmit',
   });
 
