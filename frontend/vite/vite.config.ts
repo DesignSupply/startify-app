@@ -92,7 +92,10 @@ export default defineConfig(({ command }) => ({
       partialDirectory: [
         resolve(__dirname, 'src/hbs'),
         resolve(__dirname, 'src/hbs/components'),
-      ]
+      ],
+      helpers: {
+        equal: (a, b) => a === b,
+      }
     }),
     pug({
       localImports: true

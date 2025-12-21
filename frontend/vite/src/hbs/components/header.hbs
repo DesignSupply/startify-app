@@ -3,6 +3,11 @@
     <div class='l-container'>
       <div class='l-inner'>
         <div class='__block-1'>
+          {{#if (equal pageName 'home')}}
+            <h1>{{pageName}}</h1>
+          {{else}}
+            <div>{{pageName}}</div>
+          {{/if}}
         </div>
       </div>
     </div>
