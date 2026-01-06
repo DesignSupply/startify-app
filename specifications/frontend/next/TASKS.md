@@ -76,3 +76,9 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 `/specifications/frontend/next/TASK_011.md` に記載されているタスクを順番に進めます。
 
 ---
+
+## 12. APIデータのページ展開と動的ルーティングページ作成
+
+`/specifications/frontend/next/TASK_012.md` に記載されているタスクを順番に進めます。
+
+---

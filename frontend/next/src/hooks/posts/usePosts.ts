@@ -1,15 +1,13 @@
 'use client';
 
 import { useQuery } from '@tanstack/react-query';
+import type { UseQueryOptions } from '@tanstack/react-query';
 import { Post, PostListResponse } from '@/types/posts';
 import { postSchema, postsSchema } from '@/schemas/posts';
 import { apiFetch, baseURL } from '@/helpers/api';
+import { USE_MOCK_POSTS, MOCK_POSTS_PATH, PRODUCTION_POSTS_PATH } from '@/features/posts/mockConfig';
 
 const POSTS_QUERY_KEY = ['posts'] as const;
-
-const MOCK_POSTS_PATH = '/mock/posts.json';
-const PRODUCTION_POSTS_PATH = '/api/v1/posts';
-const USE_MOCK_POSTS = true;
 
 async function fetchPosts(): Promise<PostListResponse> {
   const fallbackOrigin = typeof window !== 'undefined' ? window.location.origin : '';
@@ -31,7 +29,9 @@ export function usePostsQuery() {
   });
 }
 
-export function usePostQuery(id?: Post['id']) {
+type PostQueryOptions = Omit<UseQueryOptions<Post>, 'queryKey' | 'queryFn'>;
+
+export function usePostQuery(id?: Post['id'], options?: PostQueryOptions) {
   return useQuery<Post>({
     queryKey: [...POSTS_QUERY_KEY, id],
     enabled: Boolean(id),
@@ -48,5 +48,6 @@ export function usePostQuery(id?: Post['id']) {
       return parsed.data;
     },
     staleTime: 0,
+    ...options,
   });
 }

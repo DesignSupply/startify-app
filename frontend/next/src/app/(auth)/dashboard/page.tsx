@@ -8,6 +8,8 @@ export default function DashboardPage() {
       <DashboardContents />
       <br />
       <Link href={'/'}>トップページへ</Link>
+      <br />
+      <Link href={'/posts'}>投稿一覧へ</Link>
     </main>
   );
 }
