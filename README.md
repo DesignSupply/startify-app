@@ -35,19 +35,21 @@ Startify-Appには、Webアプリケーション開発およびWebサイト制�
     - WP REST APIの独自エンドポイント
     - その他汎用的に使えるコンポーネント
 - Next.js
-  - 各種リンター・フォーマッター
-  - 環境変数の使用
+  - リンター／フォーマッター
+  - 環境変数のサンプル設定
   - TailwindCSSの使用
   - Sassのコンパイル
   - UIコンポーネント最適化
-  - メタデータ最適化
-  - フォント最適化
-  - フォーム処理・バリデーション（React Hook Form、Zod）
-  - UIグローバルステート管理（Zustand）
+  - メタデータ最適化（matadata API）
+  - フォント最適化（next/font）
   - サイトマップ出力
   - PWA対応
-  - 認証APIを使ったログインフォームと認証ルーティング
-  - モックJSONのデータ取得と動的ルーティングページのサンプル
+  - 【サンプル機能一覧】
+    - ユニットテスト（Vitest, React Testing Library）
+    - フォーム処理・バリデーション（React Hook Form、Zod）
+    - UIグローバルステート管理（Zustand）
+    - 認証APIを使ったログインフォームと認証ルーティング（バックエンド:Laravel）
+    - モックJSONのデータ取得と動的ルーティングページ
 - Vite
   - 各種リンター・フォーマッター
   - React、Vue.jsの使用
