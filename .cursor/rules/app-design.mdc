@@ -1,8 +1,9 @@
 ---
 description: アプリケーションデザインガイドライン
-globs: frontend/_design-tokens/*.*, frontend/_ui/**/*.*
+globs: frontend/_design-tokens/*.*, frontend/ui/**/*.*
 alwaysApply: false
 ---
+
 # アプリケーションデザインガイドライン
 
 ---
@@ -104,20 +105,7 @@ token-value:
 
 ## 3. 画面レイアウト
 
-新規作成する際の画面レイアウトは、 [page.html](mdc:frontend/_ui/page.html) のHTML構造をベースに、下記のテンプレート用HTMLファイルの内容に沿って配置したものを基本とする。
-なお、以下のリストのネスト構造は、実際にコーディングを行うHTMLのネスト構造に対応するものとする。
-
-- head要素
-  - 共通メタ情報: [head.html](mdc:frontend/_ui/head/head.html)
-  - 画面固有メタ情報: [meta.html](mdc:frontend/_ui/head/meta.html)
-- body要素
-  - レイアウトコンテナー: [layout.html](mdc:frontend/_ui/layouts/layout.html)
-    - ヘッダーコンポーネント: [header.html](mdc:frontend/_ui/layouts/header.html)
-    - コンテンツコンポーネント: [main.html](mdc:frontend/_ui/layouts/main.html)
-    - フッターコンポーネント: [footer.html](mdc:frontend/_ui/layouts/footer.html)
-  - オフキャンバスコンポーネント: [offcanvas.html](mdc:frontend/_ui/layouts/offcanvas.html)
-
-上記で記載されている各種HTMLテンプレートファイルは、指示がない限りすべて使用するものとし、上記のHTML基本の画面レイアウトを構成するHTMLとする。
+新規作成する際の画面レイアウトは、 下記のHTML構造をベースに配置したものを基本とする。
 
 ### 3.1. 基本レイアウト構造
 
@@ -126,45 +114,30 @@ token-value:
 <html>
   <head>
 
-    <!-- frontend/_ui/head/head.html -->
     <meta charset="UTF-8">
 
-    <!-- frontend/_ui/head/meta.html -->
+    <!-- include head component -->
+    <!-- include meta component -->
+
     <title>ページタイトル</title>
 
   </head>
   <body>
-
-    <!-- frontend/_ui/layouts/layout.html -->
+    
     <div class="l-layout">
 
-      <!-- frontend/_ui/components/header.html -->
       <header class="l-header">...</header>
       
-      <!-- frontend/_ui/components/main.html -->
       <main class="l-main">...</main>
       
-      <!-- frontend/_ui/components/footer.html -->
       <footer class="l-footer">...</footer>
 
     </div>
 
-    <!-- frontend/_ui/components/offcanvas.html -->
     <div class="l-offcanvas">...</div>
 
   </body>
 </html>
-```
-
-### 3.2. コンポーネント階層構造
-
-```mermaid
-graph TD
-    A[page.html] --> B[layout.html]
-    A --> F[offcanvas.html]
-    B --> C[header.html]
-    B --> D[main.html]
-    B --> E[footer.html]
 ```
 
 ---
@@ -177,16 +150,9 @@ graph TD
 
 - HTML、CSS、JavaScriptファイルのコード内インデントは、2スペース（半角スペース2つ分）とする。
 - HTMLのclass属性値は、ケバブケースで記載する。
-- テンプレート用HTMLファイルは、`/frontend/_ui/layouts/` あるいは `/frontend/_ui/components/` ディレクトリに配置され、コードの一貫性を保つため、例外を除き基本的にはこれらのHTMLファイルの中身をそのまま使用するようにします。
-- `/frontend/_ui/layouts/` あるいは `/frontend/_ui/components/` ディレクトリに配置されたHTMLファイルは、テンプレートとして使用される前提のフォーマットとなっており、`<!-- child components -->` というコメントが配置されている箇所に、子要素のとして別のテンプレート用HTMLファイルの中身が配置される想定とします。
-- `/frontend/_ui/layouts/` と `/frontend/_ui/components/` と `/frontend/_ui/head/` ディレクトリに配置されたHTMLファイル、ならびにベースのHTMLである [page.html](mdc:frontend/_ui/page.html) については、**直接編集を加えずに記載されたHTMLの内容をコピーし、新規作成するHTMLファイル内に書き写していく**形でコーディングを進めていきます。
-- `/frontend/_ui/layouts/` および `/frontend/_ui/components/` ディレクトリに配置されたHTMLファイルにおいて、あらかじめ設定されたclass名は削除、変更せずに残しておくものとする。
-- 新規作成するHTMLファイルは、`/backend/_webroot/preview` ディレクトリ配下に配置します。
 
 #### 4.1.2. スタイルシートに関するルール
 
-- スタイルシートは別ファイルで管理せず、head要素内に、style要素を配置して管理し、1つのHTMLで完結させる形を基本とします。
-- スタイルリセット用のCSSは、 [head.html](mdc:frontend/_ui/head/head.html) のテンプレート内に用意されているものを使用します。
 
 #### 4.1.3. レイアウトに関するルール
 
@@ -221,8 +187,8 @@ graph TD
 
 | プレフィックス | 用途 | 例 | 備考 |
 | --- | --- | --- | --- |
-| l- | レイアウト | l-container | `/frontend/_ui/layouts/` ディレクトリ配下のテンプレートで使用 |
-| c- | コンポーネント | c-button | `/frontend/_ui/components/` ディレクトリ配下のテンプレートで使用 |
+| l- | レイアウト | l-container | 各ページ共通となるレイアウト用の要素で使用 |
+| c- | コンポーネント | c-button | コンポーネントとして再利用される要素で使用 |
 | u- | ユーティリティ | u-margin-top | CSSのスタイルを適用するユーティリティ用 |
 | js- | JavaScript用フック | js-modal-trigger | JavaScriptの処理内でのDOM参照用 |
 

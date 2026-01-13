@@ -41,15 +41,15 @@ alwaysApply: false
 │   │   ├── dropshadow.yaml                  # ドロップシャドウ
 │   │   ├── corner-style.yaml                # コーナースタイル
 │   │   └── easing.yaml                      # イージング
-│   ├── /_ui                               # UIコンポーネントHTMLテンプレート
-│   │   ├── /components                      # コンポーネント要素テンプレート
-│   │   ├── /head                            # head要素テンプレート
-│   │   ├── /layouts                         # レイアウト要素テンプレート
-│   │   └── page.html                        # ページテンプレート
 │   ├── /next                              # Next.jsプロジェクトルート
 │   ├── /nuxt                              # Nuxt.jsプロジェクトルート
 │   ├── /astro                             # Astroプロジェクトルート
 │   ├── /vite                              # Viteプロジェクトルート
+│   ├── /ui                                # UIコンポーネント用ディレクトリ
+│   │   ├── /components                      # コンポーネントテンプレート
+│   │   ├── /.storybook                      # Storybook設定ファイル用ディレクトリ
+│   │   ├── /stories                         # ストーリーファイル用ディレクトリ
+│   │   └── /styles                          # UIコンポーネント用スタイルシートディレクトリ
 │   └── /react-native                      # ReactNativeプロジェクトルート
 ├── /server                              # サーバー
 │   ├── /docker                            # Docker環境
@@ -93,6 +93,8 @@ alwaysApply: false
      - **Astro**: 静的サイトジェネレーター
      - **Vite**: フロントエンドビルドツール
      - **React Native**: モバイルアプリケーションフレームワーク
+   - UI
+     - **Storybook**: UIコンポーネント管理ツール
    - デザイントークン
      - **color-scheme**: 配色
      - **size-scale**: サイズ
