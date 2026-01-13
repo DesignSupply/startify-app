@@ -72,6 +72,8 @@ Startify-Appには、Webアプリケーション開発およびWebサイト制�
   - 各種ライブラリのサンプルコード
   - WebGL（Three.js）サンプルコード
   - GLSLシェーダー対応
+- Storybook
+  - 各種UIコンポーネントのデザイン管理・テスト
 
 ## 導入
 
@@ -162,7 +164,7 @@ npm run dev
 
 http://localhost:3000/ にアクセスすることでNext.jsのアプリケーショントップページが表示されます。
 
-### 5. Vite環境での静的コーディング
+### 5. Vite環境の静的コーディング環境構築
 
 ローカル環境にNode.jsをインストール後、Viteのコーディング環境を構築します。
 
@@ -178,7 +180,7 @@ npm run dev
 
 http://localhost:2000/ でローカルサーバーが起動します。
 
-### 6. Astro環境での静的コーディング
+### 6. Astro環境の静的コーディング環境構築
 
 ローカル環境にNode.jsをインストール後、Astroのコーディング環境を構築します。
 
@@ -193,6 +195,22 @@ npm run dev
 ```
 
 http://localhost:2000/ でローカルサーバーが起動します。
+
+### 7. StorybookのUIコンポーネント管理
+
+ローカル環境にNode.jsをインストール後、StorybookのUIコンポーネント管理環境を構築します。
+
+```bash
+cd ./frontend/ui
+
+# インストール
+npm install
+
+# ローカルサーバー起動
+npm run storybook
+```
+
+http://localhost:6006/ でローカルサーバーが起動します。
 
 ---
 
