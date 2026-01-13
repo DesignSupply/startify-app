@@ -13,6 +13,13 @@ const meta: Meta<typeof Button> = {
     display: 'inline',
     shape: 'rounded',
     state: 'normal',
+    color: 'default',
+  },
+  argTypes: {
+    color: {
+      control: 'select',
+      options: ['default', 'red', 'orange', 'orange-yellow', 'yellow', 'yellow-green', 'green', 'teal', 'cyan', 'light-blue', 'blue', 'blue-violet', 'violet', 'purple', 'magenta', 'pink', 'pink-red'],
+    },
   },
   parameters: {
     layout: 'padded',

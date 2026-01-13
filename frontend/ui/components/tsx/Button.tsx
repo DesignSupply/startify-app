@@ -6,6 +6,7 @@ type Size = 'small' | 'default' | 'large';
 type Display = 'block' | 'inline';
 type Shape = 'square' | 'rounded' | 'pill';
 type State = 'normal' | 'hover' | 'active' | 'focus' | 'disabled';
+type Color = 'default' | 'red' | 'orange' | 'orange-yellow' | 'yellow' | 'yellow-green' | 'green' | 'teal' | 'cyan' | 'light-blue' | 'blue' | 'blue-violet' | 'violet' | 'purple' | 'magenta' | 'pink' | 'pink-red';
 
 type BaseProps = {
   htmlElement?: HtmlElement;
@@ -14,6 +15,7 @@ type BaseProps = {
   display?: Display;
   shape?: Shape;
   state?: State;
+  color?: Color;
   className?: string;
   children?: React.ReactNode;
 };
@@ -35,6 +37,7 @@ export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Bu
       display = 'inline',
       shape = 'rounded',
       state = 'normal',
+      color = 'default',
       className = '',
       children,
       ...rest
@@ -44,11 +47,11 @@ export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Bu
     const isAnchor = htmlElement === 'a';
     const isDisabled = state === 'disabled';
     const classes = [
-      `su-button-${variant}`,
-      `su-button-size-${size}`,
+      color !== 'default' ? variant === 'primary' ? `su-button-fill-${color}` : `su-button-outline-${color}` : `su-button-${variant}`,
+      size !== 'default' ? `su-button-size-${size}` : '',
       display === 'inline' ? '' : 'su-button-display-block',
       `su-button-shape-${shape}`,
-      `su-button-state-${state}`,
+      state !== 'normal' ? `su-button-state-${state}` : '',
       className,
     ]
       .filter(Boolean)
