@@ -21,6 +21,8 @@
 
     <p>こんにちは、{{ $user->name }} さん</p>
     <a href="{{ route('profile', $user->id) }}">プロフィール</a>
+    <br>
+    <a href="{{ route('posts.index') }}">投稿一覧</a>
     <form method="POST" action="{{ route('signout') }}">
         @csrf
         <button type="submit">ログアウト</button>

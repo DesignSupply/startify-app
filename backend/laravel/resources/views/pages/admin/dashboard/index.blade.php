@@ -26,6 +26,12 @@
     <br>
     <a href="{{ route('admin.users.index') }}">一般ユーザー一覧</a>
     <br>
+    <a href="{{ route('posts.index') }}">投稿一覧</a>
+    <br>
+    <a href="{{ route('categories.index') }}">カテゴリ一覧</a>
+    <br>
+    <a href="{{ route('tags.index') }}">タグ一覧</a>
+    <br>
     <form method="POST" action="{{ route('admin.signout') }}">
         @csrf
         <button type="submit">管理者ログアウト</button>

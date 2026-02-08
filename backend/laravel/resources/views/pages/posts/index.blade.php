@@ -6,6 +6,11 @@
 @endsection
 
 @section('style')
+<style>
+    nav svg {
+        width: 1rem;
+    }
+</style>
 @endsection
 
 @section('script_head')
@@ -63,6 +68,12 @@
     @else
         <p>投稿が存在しません。</p>
     @endif
+
+    @auth('admin')
+        <a href="{{ route('admin.dashboard') }}">管理者ダッシュボードに戻る</a>
+    @else
+        <a href="{{ route('home') }}">ホームに戻る</a>
+    @endauth
 </main>
 @endsection
 

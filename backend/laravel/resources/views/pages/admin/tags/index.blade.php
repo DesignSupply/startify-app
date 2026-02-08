@@ -55,6 +55,8 @@
     @else
         <p>タグが存在しません。</p>
     @endif
+
+    <a href="{{ route('admin.dashboard') }}">管理者ダッシュボードに戻る</a>
 </main>
 @endsection
 
