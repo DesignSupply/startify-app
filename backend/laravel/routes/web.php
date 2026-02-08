@@ -80,6 +80,19 @@ Route::namespace('App\Http\Controllers')->group(function () {
 
         });
 
+        // 投稿閲覧（一般ユーザー + 管理者）
+        Route::prefix('posts')->group(function () {
+
+            // 一覧
+            Route::get('/', 'PostController@index')->name('posts.index');
+
+            // 詳細
+            Route::get('/{id}', 'PostController@show')
+                ->whereNumber('id')
+                ->name('posts.show');
+
+        });
+
         // ログアウト
         Route::post('/signout', 'SignOutController@signOut')->name('signout');
 
@@ -179,6 +192,99 @@ Route::namespace('App\Http\Controllers')->group(function () {
                 Route::post('/{id}/restore', 'AdminUsersController@restore')
                     ->whereNumber('id')
                     ->name('admin.users.restore');
+
+            });
+
+            // 投稿管理
+            Route::prefix('posts')->group(function () {
+
+                // 作成
+                Route::get('/create', 'PostController@create')->name('posts.create');
+                Route::post('/store', 'PostController@store')->name('posts.store');
+
+                // 編集
+                Route::get('/{id}/edit', 'PostController@edit')
+                    ->whereNumber('id')
+                    ->name('posts.edit');
+
+                // 更新
+                Route::post('/{id}/update', 'PostController@update')
+                    ->whereNumber('id')
+                    ->name('posts.update');
+
+                // 削除（論理）
+                Route::post('/{id}/delete', 'PostController@destroy')
+                    ->whereNumber('id')
+                    ->name('posts.destroy');
+
+                // 復元
+                Route::post('/{id}/restore', 'PostController@restore')
+                    ->whereNumber('id')
+                    ->name('posts.restore');
+
+            });
+
+            // カテゴリ管理
+            Route::prefix('categories')->group(function () {
+
+                // 一覧
+                Route::get('/', 'CategoryController@index')->name('categories.index');
+
+                // 作成
+                Route::get('/create', 'CategoryController@create')->name('categories.create');
+                Route::post('/store', 'CategoryController@store')->name('categories.store');
+
+                // 編集
+                Route::get('/{id}/edit', 'CategoryController@edit')
+                    ->whereNumber('id')
+                    ->name('categories.edit');
+
+                // 更新
+                Route::post('/{id}/update', 'CategoryController@update')
+                    ->whereNumber('id')
+                    ->name('categories.update');
+
+                // 削除（論理）
+                Route::post('/{id}/delete', 'CategoryController@destroy')
+                    ->whereNumber('id')
+                    ->name('categories.destroy');
+
+                // 復元
+                Route::post('/{id}/restore', 'CategoryController@restore')
+                    ->whereNumber('id')
+                    ->name('categories.restore');
+
+            });
+
+            // タグ管理
+            Route::prefix('tags')->group(function () {
+
+                // 一覧
+                Route::get('/', 'TagController@index')->name('tags.index');
+
+                // 作成
+                Route::get('/create', 'TagController@create')->name('tags.create');
+                Route::post('/store', 'TagController@store')->name('tags.store');
+
+                // 編集
+                Route::get('/{id}/edit', 'TagController@edit')
+                    ->whereNumber('id')
+                    ->name('tags.edit');
+
+                // 更新
+                Route::post('/{id}/update', 'TagController@update')
+                    ->whereNumber('id')
+                    ->name('tags.update');
+
+                // 削除（論理）
+                Route::post('/{id}/delete', 'TagController@destroy')
+                    ->whereNumber('id')
+                    ->name('tags.destroy');
+
+                // 復元
+                Route::post('/{id}/restore', 'TagController@restore')
+                    ->whereNumber('id')
+                    ->name('tags.restore');
 
             });
 
