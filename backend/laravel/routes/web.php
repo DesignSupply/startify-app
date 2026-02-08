@@ -80,19 +80,6 @@ Route::namespace('App\Http\Controllers')->group(function () {
 
         });
 
-        // 投稿閲覧（一般ユーザー + 管理者）
-        Route::prefix('posts')->group(function () {
-
-            // 一覧
-            Route::get('/', 'PostController@index')->name('posts.index');
-
-            // 詳細
-            Route::get('/{id}', 'PostController@show')
-                ->whereNumber('id')
-                ->name('posts.show');
-
-        });
-
         // ログアウト
         Route::post('/signout', 'SignOutController@signOut')->name('signout');
 
@@ -290,4 +277,22 @@ Route::namespace('App\Http\Controllers')->group(function () {
 
         });
     });
+
+    // 一般ユーザー・管理者共通認証ルーティング
+    Route::middleware('auth.any')->group(function () {
+
+        // 投稿閲覧
+        Route::prefix('posts')->group(function () {
+
+            // 一覧
+            Route::get('/', 'PostController@index')->name('posts.index');
+
+            // 詳細
+            Route::get('/{id}', 'PostController@show')
+                ->whereNumber('id')
+                ->name('posts.show');
+
+        });
+    });
+
 });

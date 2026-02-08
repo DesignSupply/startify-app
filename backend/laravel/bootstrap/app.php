@@ -19,10 +19,11 @@ return Application::configure(basePath: dirname(__DIR__))
             return $request->is('admin*') ? '/admin' : '/signin';
         });
 
-        // ルートミドルウェアのエイリアス登録（jwt）
+        // ルートミドルウェアのエイリアス登録
         $middleware->alias([
             'jwt' => \App\Http\Middleware\JwtAuthenticate::class,
             'api.guard' => \App\Http\Middleware\VerifyApiRequestGuard::class,
+            'auth.any' => \App\Http\Middleware\AuthenticateAny::class,
         ]);
 
     })
