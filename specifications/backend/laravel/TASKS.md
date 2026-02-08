@@ -94,3 +94,9 @@ target_readers: ウェブエンジニア（バックエンド、フロントエ�
 `/specifications/backend/laravel/TASK_014.md` に記載されているタスクを順番に進めます。
 
 ---
+
+## 15. 汎用投稿CMS機能の実装
+
+`/specifications/backend/laravel/TASK_015.md` に記載されているタスクを順番に進めます。
+
+---
