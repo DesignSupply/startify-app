@@ -38,6 +38,16 @@ alwaysApply: false
 | contact | お問い合わせ | お問い合わせフォームの入力画面 |
 | contact-confirm | お問い合わせ確認 | お問い合わせフォームの確認画面 |
 | contact-thanks | お問い合わせ完了 | お問い合わせフォームの送信完了画面 |
+| posts | 汎用投稿一覧 | 汎用投稿の一覧表示画面（一般ユーザー + 管理者） |
+| posts-show | 汎用投稿詳細 | 汎用投稿の詳細表示画面（一般ユーザー + 管理者） |
+| admin-posts-create | 汎用投稿作成 | 管理者が新規汎用投稿を作成するフォーム画面 |
+| admin-posts-edit | 汎用投稿編集 | 管理者が汎用投稿を編集するフォーム画面 |
+| admin-categories | カテゴリ一覧 | 汎用投稿カテゴリの一覧表示画面（管理者専用） |
+| admin-categories-create | カテゴリ作成 | 管理者が汎用投稿カテゴリを作成するフォーム画面 |
+| admin-categories-edit | カテゴリ編集 | 管理者が汎用投稿カテゴリを編集するフォーム画面 |
+| admin-tags | タグ一覧 | 汎用投稿タグの一覧表示画面（管理者専用） |
+| admin-tags-create | タグ作成 | 管理者が汎用投稿タグを作成するフォーム画面 |
+| admin-tags-edit | タグ編集 | 管理者が汎用投稿タグを編集するフォーム画面 |
 
 ---
 
@@ -119,6 +129,36 @@ flowchart TD
     contact-confirm -.-> |send-mail| mail-contact-reply("お問い合わせ自動返信メール")
     contact-confirm --> contact-thanks["お問い合わせ完了"]
     contact-thanks --> frontpage
+    home --> posts["汎用投稿一覧"]
+    dashboard --> posts
+    posts --> home
+    posts --> dashboard
+    posts --> posts-show["汎用投稿詳細"]
+    posts-show --> posts
+    posts --> admin-posts-create["汎用投稿作成"]
+    admin-posts-create -.-> |store| posts
+    posts-show --> admin-posts-edit["汎用投稿編集"]
+    admin-posts-edit -.-> |update| posts
+    admin-posts-edit -.-> |delete| posts
+    admin-posts-edit -.-> |restore| posts
+    admin-posts-edit --> posts-show
+    admin-posts-edit --> posts
+    dashboard --> admin-categories["カテゴリ一覧"]
+    admin-categories --> dashboard
+    admin-categories --> admin-categories-create["カテゴリ作成"]
+    admin-categories-create -.-> |store| admin-categories
+    admin-categories --> admin-categories-edit["カテゴリ編集"]
+    admin-categories-edit -.-> |update| admin-categories
+    admin-categories-edit -.-> |delete| admin-categories
+    admin-categories-edit -.-> |restore| admin-categories
+    dashboard --> admin-tags["タグ一覧"]
+    admin-tags --> dashboard
+    admin-tags --> admin-tags-create["タグ作成"]
+    admin-tags-create -.-> |store| admin-tags
+    admin-tags --> admin-tags-edit["タグ編集"]
+    admin-tags-edit -.-> |update| admin-tags
+    admin-tags-edit -.-> |delete| admin-tags
+    admin-tags-edit -.-> |restore| admin-tags
 
 ```
 
@@ -137,6 +177,11 @@ flowchart TD
 | admin_password_reset_tokens | 管理者パスワードリセットトークン | 管理者ユーザーのパスワードリセットトークン情報のテーブル |
 | refresh_tokens | リフレッシュトークン | JWTのリフレッシュトークンを保存・管理するテーブル |
 | uploaded_files | アップロードファイル | 管理者ユーザーがアップロードしたファイル情報のテーブル |
+| posts | 汎用投稿 | 汎用投稿のタイトル、本文、公開日時などを管理するテーブル |
+| categories | カテゴリ | 汎用投稿カテゴリの名前とスラッグを管理するテーブル |
+| tags | タグ | 汎用投稿タグの名前とスラッグを管理するテーブル |
+| category_post | カテゴリ投稿中間 | 汎用投稿とカテゴリの多対多リレーションを管理する中間テーブル |
+| post_tag | 投稿タグ中間 | 汎用投稿とタグの多対多リレーションを管理する中間テーブル |
 
 ### テーブル定義
 
@@ -213,9 +258,55 @@ erDiagram
         timestamp updated_at
     }
 
+    posts {
+        bigint id PK
+        bigint admin_user_id FK
+        varchar title
+        text body
+        varchar author
+        timestamp published_at
+        boolean is_deleted
+        timestamp deleted_at
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    categories {
+        bigint id PK
+        varchar name
+        varchar slug UK
+        boolean is_deleted
+        timestamp deleted_at
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    tags {
+        bigint id PK
+        varchar name
+        varchar slug UK
+        boolean is_deleted
+        timestamp deleted_at
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    category_post {
+        bigint category_id PK,FK
+        bigint post_id PK,FK
+    }
+
+    post_tag {
+        bigint post_id PK,FK
+        bigint tag_id PK,FK
+    }
+
     users ||--o{ password_reset_tokens : "resets"
     admin_users ||--o{ admin_password_reset_tokens : "resets"
     admin_users ||--o{ uploaded_files : "uploads"
     users ||--o{ sessions : "sessions"
     users ||--o{ refresh_tokens : "refreshes"
+    admin_users ||--o{ posts : "creates"
+    posts }o--o{ categories : "has"
+    posts }o--o{ tags : "has"
 ```
