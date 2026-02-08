@@ -13,7 +13,13 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::orderBy('published_at', 'desc')->paginate(10);
+        // 管理者ログインがある場合はすべての投稿を表示
+        // 一般ユーザーのみの場合は削除済みでない投稿のみ表示
+        if (Auth::guard('admin')->check()) {
+            $posts = Post::orderBy('published_at', 'desc')->paginate(10);
+        } else {
+            $posts = Post::active()->orderBy('published_at', 'desc')->paginate(10);
+        }
 
         return view('pages.posts.index', [
             'posts' => $posts,
@@ -22,7 +28,13 @@ class PostController extends Controller
 
     public function show($id)
     {
-        $post = Post::with(['categories', 'tags'])->findOrFail($id);
+        // 管理者ログインがある場合はすべての投稿を表示
+        // 一般ユーザーのみの場合は削除済みでない投稿のみ表示
+        if (Auth::guard('admin')->check()) {
+            $post = Post::with(['categories', 'tags'])->findOrFail($id);
+        } else {
+            $post = Post::active()->with(['categories', 'tags'])->findOrFail($id);
+        }
 
         return view('pages.posts.show', [
             'post' => $post,
