@@ -45,7 +45,7 @@
     } else if(is_page() || is_singular()){
       return esc_url(get_the_permalink());
     } else {
-      return (is_ssl() ? 'https://' : 'http://').$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+      return esc_url(home_url(add_query_arg(array(), $wp->request)));
     }
   }
 
