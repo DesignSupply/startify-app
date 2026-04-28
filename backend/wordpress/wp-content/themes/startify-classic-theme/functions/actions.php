@@ -3,7 +3,7 @@
   // StyleSheet読み込み
   function register_stylesheet() {
     wp_enqueue_style('style-css', get_template_directory_uri().'/style.css', array(), null, 'all');
-    wp_enqueue_style('main-css', get_template_directory_uri().'/assets/css/main.min.css', array(), null, 'all');
+    wp_enqueue_style('theme-default-css', get_template_directory_uri().'/assets/css/style.min.css', array(), null, 'all');
   }
   add_action('wp_enqueue_scripts', 'register_stylesheet');
 
