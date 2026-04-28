@@ -135,11 +135,13 @@
   }
   add_action('wp_footer', 'body_close_insert');
 
-  // グローバルスタイルCSSの削除
-  function remove_my_global_styles() {
-    wp_dequeue_style('global-styles');
+  // グローバルスタイルCSSの削除（クラシックテーマのみ）
+  if ( !wp_is_block_theme() ) {
+    function remove_my_global_styles() {
+      wp_dequeue_style('global-styles');
+    }
+    add_action('wp_enqueue_scripts', 'remove_my_global_styles');
   }
-  add_action('wp_enqueue_scripts', 'remove_my_global_styles');
 
   // recentcomments用インラインスタイル削除
   function remove_recent_comments_style() {
