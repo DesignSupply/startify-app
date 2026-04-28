@@ -28,14 +28,3 @@
 <link rel="icon" sizes="192x192" href="************************">
 <link rel="icon" href="favicon.ico">
 <!-- meta common end -->
-<meta name="description" content="<?php echo esc_attr(seo_meta_description()); ?>">
-<meta name="twitter:title" content="<?php echo esc_attr(seo_meta_title()); ?>">
-<meta name="twitter:description" content="<?php echo esc_attr(seo_meta_description()); ?>">
-<meta name="twitter:url" content="<?php echo esc_url(seo_meta_url()); ?>">
-<meta property="og:title" content="<?php echo esc_attr(seo_meta_title()); ?>">
-<meta property="og:description" content="<?php echo esc_attr(seo_meta_description()); ?>">
-<meta property="og:url" content="<?php echo esc_url(seo_meta_url()); ?>">
-<meta property="og:type" content="<?php echo esc_attr(seo_meta_type()); ?>">
-<meta property="og:image" content="<?php echo esc_url(seo_meta_ogp()); ?>">
-<link rel="canonical" href="<?php echo esc_url(seo_meta_url()); ?>">
-<!-- meta seo end -->
