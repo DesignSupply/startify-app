@@ -10,7 +10,6 @@
   // JavaScript読み込み（管理画面を除く）
   function register_script() {
     if(!is_admin()) {
-      wp_deregister_script('jquery');
       wp_enqueue_script_module('main-js', get_template_directory_uri().'/assets/js/main.min.js', array(), null);
       wp_enqueue_script('ajax-loading-js', get_template_directory_uri().'/plugins/ajax-loading/post.js', array(), null, array());
       wp_enqueue_script('ajax-post-js', get_template_directory_uri().'/plugins/ajax-post/post.js', array(), null, array());
