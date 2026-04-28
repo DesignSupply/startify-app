@@ -1,0 +1,102 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "appearanceTools": false,
+    "useRootPaddingAwareAlignments": false,
+    "color": {
+      "background": true,
+      "custom": true,
+      "customDuotone": false,
+      "customGradient": false,
+      "defaultDuotone": false,
+      "defaultGradients": false,
+      "defaultPalette": false,
+      "duotone": [],
+      "gradients": [],
+      "link": false,
+      "palette": [],
+      "text": true
+    },
+    "typography": {
+      "customFontSize": true,
+      "defaultFontSizes": false,
+      "dropCap": false,
+      "fluid": false,
+      "fontFamilies": [],
+      "fontSizes": [],
+      "lineHeight": false
+    },
+    "spacing": {
+      "blockGap": null,
+      "customSpacingSize": false,
+      "defaultSpacingSizes": false,
+      "margin": false,
+      "padding": false,
+      "spacingSizes": [],
+      "units": ["px", "%", "em", "rem", "vw", "vh"]
+    },
+    "layout": {
+      "contentSize": "1440px",
+      "wideSize": "1440px"
+    },
+    "custom": {},
+    "blocks": {}
+  },
+  "styles": {
+    "color": {},
+    "typography": {},
+    "spacing": {},
+    "blocks": {},
+    "elements": {}
+  },
+  "customTemplates": [],
+  "templateParts": [
+    {
+      "name": "header",
+      "title": "Header",
+      "area": "header"
+    },
+    {
+      "name": "footer",
+      "title": "Footer",
+      "area": "footer"
+    },
+    {
+      "name": "sidebar",
+      "title": "Sidebar",
+      "area": "uncategorized"
+    },
+    {
+      "name": "page-header",
+      "title": "Page Header",
+      "area": "uncategorized"
+    },
+    {
+      "name": "breadcrumb",
+      "title": "Breadcrumb",
+      "area": "uncategorized"
+    },
+    {
+      "name": "post-meta",
+      "title": "Post Meta",
+      "area": "uncategorized"
+    },
+    {
+      "name": "content-single",
+      "title": "Content Single",
+      "area": "uncategorized"
+    },
+    {
+      "name": "content-page",
+      "title": "Content Page",
+      "area": "uncategorized"
+    },
+    {
+      "name": "pager",
+      "title": "Pager",
+      "area": "uncategorized"
+    }
+  ],
+  "patterns": []
+}
