@@ -1,0 +1,32 @@
+<!-- wp:template-part {"slug":"header"} /-->
+<!-- wp:group {"tagName":"main","layout":{"type":"default"}} -->
+<main class="wp-block-group">
+  <!-- wp:template-part {"slug":"page-header"} /-->
+  <!-- wp:group {"tagName":"article","layout":{"type":"default"}} -->
+  <article class="wp-block-group">
+    <!-- wp:group {"tagName":"section","layout":{"type":"default"}} -->
+    <section class="wp-block-group">
+      <!-- wp:group {"layout":{"type":"default"}} -->
+      <div class="wp-block-group">
+        <!-- wp:heading {"level":1} -->
+        <h1 class="wp-block-heading">ページコンテンツ（シングルページ）</h1>
+        <!-- /wp:heading -->
+        <!-- シングルページ メインループ start -->
+        <!-- wp:post-password-form /-->
+        <!-- wp:template-part {"slug":"content-single"} /-->
+        <!-- wp:pattern {"slug":"startify-block-theme/share-buttons"} /-->
+        <!-- wp:template-part {"slug":"pager"} /-->
+        <!-- wp:pattern {"slug":"startify-block-theme/comment-list"} /-->
+        <!-- wp:pattern {"slug":"startify-block-theme/comment-form"} /-->
+        <!-- シングルページ メインループ end -->
+      </div>
+      <!-- /wp:group -->
+    </section>
+    <!-- /wp:group -->
+  </article>
+  <!-- /wp:group -->
+  <!-- wp:template-part {"slug":"sidebar"} /-->
+</main>
+<!-- /wp:group -->
+<!-- wp:template-part {"slug":"breadcrumb"} /-->
+<!-- wp:template-part {"slug":"footer"} /-->
