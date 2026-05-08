@@ -2,7 +2,7 @@
 
   // 各種フック処理
   require_once(dirname(__FILE__).'/functions/actions.php');
-  require_once(dirname(__FILE__).'/functions/filters.php');
+  require_once(dirname(__FILE__).'/functions/filters.php'); 
 
   // 投稿データ・クエリ操作
   require_once(dirname(__FILE__).'/functions/models.php');
@@ -24,5 +24,10 @@
 
   // Ajax処理
   require_once(dirname(__FILE__).'/functions/ajax.php');
+
+  // ショートコード定義（ブロックテーマ有効時のみ）
+  if(wp_is_block_theme()) {
+    require_once(dirname(__FILE__).'/functions/shortcodes.php');
+  }
 
 ?>

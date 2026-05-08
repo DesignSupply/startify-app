@@ -78,11 +78,6 @@
       "area": "uncategorized"
     },
     {
-      "name": "post-meta",
-      "title": "Post Meta",
-      "area": "uncategorized"
-    },
-    {
       "name": "content-single",
       "title": "Content Single",
       "area": "uncategorized"
@@ -90,6 +85,11 @@
     {
       "name": "content-page",
       "title": "Content Page",
+      "area": "uncategorized"
+    },
+    {
+      "name": "pagination",
+      "title": "Pagination",
       "area": "uncategorized"
     },
     {
