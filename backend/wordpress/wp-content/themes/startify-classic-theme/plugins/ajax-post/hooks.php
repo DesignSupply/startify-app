@@ -12,7 +12,7 @@
 
   // ログインユーザー用
   function ajax_post() {
-    check_ajax_referer('ajax_nonce_action', 'nonce', ture);
+    check_ajax_referer('ajax_nonce_action', 'nonce', true);
     echo json_encode(
       array(
         'post_id'=>isset($_POST['post_id']) ? $_POST['post_id'] : null,
@@ -24,7 +24,7 @@
 
   // 非ログインユーザー用
   function ajax_post_nopriv() {
-    check_ajax_referer('ajax_nonce_action', 'nonce', ture);
+    check_ajax_referer('ajax_nonce_action', 'nonce', true);
     echo json_encode(
       array(
         'post_id'=>isset($_POST['post_id']) ? $_POST['post_id'] : null,
