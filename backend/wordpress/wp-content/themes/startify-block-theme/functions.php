@@ -25,9 +25,18 @@
   // Ajax処理
   require_once(dirname(__FILE__).'/functions/ajax.php');
 
-  // ショートコード定義（ブロックテーマ有効時のみ）
   if(wp_is_block_theme()) {
-    require_once(dirname(__FILE__).'/functions/shortcodes.php');
+
+    // テンプレートヘルパー・クエリ（ブロックテーマ有効時のみ）
+    foreach(glob(dirname(__FILE__).'/functions/template-helpers/*.php') as $file) {
+      require_once($file);
+    }
+
+    // サブクエリ用ゲッター関数
+    foreach(glob(dirname(__FILE__).'/functions/queries/*.php') as $file) {
+      require_once($file);
+    }
+
   }
 
 ?>
