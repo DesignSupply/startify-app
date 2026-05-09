@@ -36,7 +36,7 @@ server-smtp:
 
 # Laravel
 laravel-install:
-	docker compose exec app bash -c "cd /var/www/html && composer create-project --prefer-dist laravel/laravel laravel"
+	docker compose exec app bash -c "cd /var/www/html/laravel && composer install"
 
 laravel-keygen:
 	docker compose exec app bash -c "cd /var/www/html/laravel && cp .env.example .env && php artisan key:generate"
