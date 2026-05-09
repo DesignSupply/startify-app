@@ -21,6 +21,9 @@
 /wp-content/plugins/*
 !/wp-content/plugins/custom-plugin/
 
+# WordPress must use Plugins (except must use plugins)
+!/wp-content/mu-plugins/
+
 # WordPress Uploads
 /wp-content/uploads/
 
