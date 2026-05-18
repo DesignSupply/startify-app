@@ -44,7 +44,7 @@ export default defineConfig(({ command }) => ({
     assetsDir: 'assets',
     assetsInlineLimit: 0,
     cssCodeSplit: false,
-    sourcemap: true,
+    sourcemap: false,
     rollupOptions: {
       input: multiPageObject,
       output: {
