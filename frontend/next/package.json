@@ -2,10 +2,17 @@
   "name": "next",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "22.11.0"
+  },
+  "packageManager": "npm@10.8.2",
   "scripts": {
     "dev": "next dev --turbo",
     "build": "next build && next-sitemap",
     "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run test:auth && npm run test:posts",
+    "check": "npm run lint && npm run typecheck && npm run test",
     "lint": "npm run lint:script && npm run lint:style && npm run lint:markup",
     "lint:script": "next lint",
     "lint:style": "stylelint \"src/**/*.{css,scss}\"",
@@ -24,7 +31,7 @@
     "@hookform/resolvers": "5.2.2",
     "@next/third-parties": "^15.3.5",
     "@tanstack/react-query": "5.90.1",
-    "next": "15.3.2",
+    "next": "15.5.22",
     "next-pwa": "^5.6.0",
     "next-sitemap": "^4.2.3",
     "react": "^19.0.0",
@@ -45,8 +52,9 @@
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
-    "eslint-config-next": "15.3.2",
+    "eslint-config-next": "15.5.22",
     "eslint-config-prettier": "^10.1.5",
+    "jsdom": "^21.1.2",
     "markuplint": "^4.12.0",
     "postcss-scss": "^4.0.9",
     "postcss-syntax": "^0.36.2",
@@ -60,7 +68,6 @@
     "tailwind-merge": "^3.2.0",
     "tailwindcss": "^4",
     "typescript": "^5",
-    "vitest": "^4.0.16",
-    "jsdom": "^21.1.2"
+    "vitest": "^4.0.16"
   }
 }
