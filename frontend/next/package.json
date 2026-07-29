@@ -14,7 +14,7 @@
     "test": "npm run test:auth && npm run test:posts",
     "check": "npm run lint && npm run typecheck && npm run test",
     "lint": "npm run lint:script && npm run lint:style && npm run lint:markup",
-    "lint:script": "next lint",
+    "lint:script": "eslint src",
     "lint:style": "stylelint \"src/**/*.{css,scss}\"",
     "lint:markup": "markuplint \"src/**/*.{jsx,tsx}\"",
     "fix": "npm run fix:style && npm run fix:markup",
