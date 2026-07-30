@@ -152,19 +152,53 @@ http://cms.localhost/ にアクセスすることでWordPressのサイトトッ�
 
 ### 4. Next.jsのインストール（ローカル環境）
 
-ローカル環境にNode.jsをインストール後、各種モジュールのインストールを行います。
+Node.jsのバージョンは `frontend/.nvmrc` で `22.12.0` に固定しています（`engines.node` は `>=22.12.0 <23`）。npmは `10.8.2` を使用します。
+
+```bash
+cd ./frontend
+nvm use
+
+cd next
+npm ci
+npm run check
+npm run build
+```
+
+初回セットアップ時や、Next.jsなどの依存パッケージと `package-lock.json` が更新された直後は、古い依存関係が残らないように `npm ci` を実行してください。`npm ci` は既存の `node_modules` を削除し、`package-lock.json` に記録されたバージョンをクリーンインストールします。依存関係に変更がない通常の開発では毎回実行する必要はなく、`npm run dev` から開始できます。
+
+ローカル開発サーバー起動:
+
+```bash
+cd ./frontend/next
+npm run dev
+```
+
+品質チェック用スクリプト:
+
+- `npm run typecheck` — TypeScript型チェック
+- `npm run test` — Vitestテスト一式
+- `npm run check` — lint・型チェック・テストの一括実行
+
+http://localhost:3000/ にアクセスすることでNext.jsのアプリケーショントップページが表示されます。
+
+Cloudflare Workers Static Assets（SSR／OpenNext ではなく Static Export の `out/` を配信）:
 
 ```bash
 cd ./frontend/next
 
-# インストール
-npm install
+# Static Export 成果物の生成
+npm run build:cf
 
-# ローカルサーバー起動
-npm run dev
+# Cloudflare 本番相当のローカルプレビュー（Wrangler）
+npm run preview:cf
+
+# Cloudflare へのデプロイ（要 Cloudflare 認証）
+npm run deploy:cf
 ```
 
-http://localhost:3000/ にアクセスすることでNext.jsのアプリケーショントップページが表示されます。
+- 日常開発は `npm run dev` を使用する
+- `out/` は生成物のため Git 管理対象外
+- `deploy:cf` は Wrangler の Cloudflare 認証が必要
 
 ### 5. Vite環境の静的コーディング環境構築
 
@@ -221,7 +255,7 @@ http://localhost:6006/ でローカルサーバーが起動します。
 - Docker: ^27.10.0
 - docker-compose: ^2.31.0
 - Docker Desktop: ^4.0
-- Node.js: ^22.11.0
+- Node.js: ^22.12.0
 - npm: ^10.8.2
 
 ---

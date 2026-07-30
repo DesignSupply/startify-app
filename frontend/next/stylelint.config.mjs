@@ -42,7 +42,8 @@ const config = {
           'variants',
           'responsive',
           'screen',
-          'layer'
+          'layer',
+          'theme'
         ]
       }
     ]
