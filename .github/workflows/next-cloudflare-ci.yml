@@ -31,6 +31,15 @@ jobs:
         working-directory: frontend/next
     env:
       CI: true
+      APPURL: https://example.com
+      APPNAME: Startify-App
+      APPDESCRIPTION: Startify-App CI build
+      APPAUTHOR: DesignSupply.LLC
+      NEXT_PUBLIC_APPURL: https://example.com
+      NEXT_PUBLIC_APPNAME: Startify-App
+      NEXT_PUBLIC_APPDESCRIPTION: Startify-App CI build
+      NEXT_PUBLIC_APPAUTHOR: DesignSupply.LLC
+      NEXT_PUBLIC_API_BASE_URL: https://api.example.com/api/v1
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
