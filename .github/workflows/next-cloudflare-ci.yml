@@ -1,0 +1,71 @@
+name: Next.js Cloudflare CI
+
+on:
+  pull_request:
+    paths:
+      - 'frontend/next/**'
+      - 'frontend/.nvmrc'
+      - '.github/workflows/next-cloudflare-ci.yml'
+  push:
+    branches:
+      - main
+    paths:
+      - 'frontend/next/**'
+      - 'frontend/.nvmrc'
+      - '.github/workflows/next-cloudflare-ci.yml'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Lint, build, and Wrangler dry-run
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    defaults:
+      run:
+        working-directory: frontend/next
+    env:
+      CI: true
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Setup Node.js
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: frontend/.nvmrc
+          cache: npm
+          cache-dependency-path: frontend/next/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run quality checks
+        run: npm run check
+
+      - name: Build static export for Cloudflare
+        run: npm run build:cf
+
+      - name: Verify static export artifacts
+        run: |
+          test -f out/index.html
+          test -f out/404.html
+          test -f out/example/index.html
+          test -f out/signin/index.html
+          test -f out/dashboard/index.html
+          test -f out/posts/index.html
+          test -f out/posts/1/index.html
+          test -f out/sitemap.xml
+          test -f out/sw.js
+          test -f out/offline.html
+          find out/_next/static -type f -print -quit | grep -q .
+
+      - name: Validate Wrangler configuration (dry-run)
+        run: npx --no-install wrangler deploy --dry-run
