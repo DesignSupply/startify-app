@@ -77,4 +77,4 @@ jobs:
           find out/_next/static -type f -print -quit | grep -q .
 
       - name: Validate Wrangler configuration (dry-run)
-        run: npx --no-install wrangler deploy --dry-run
+        run: npx --no-install wrangler deploy --dry-run --env=""
