@@ -2,15 +2,17 @@
 
 import Script from 'next/script';
 
-export default function GoogleAdsenseScript() {
+type GoogleAdsenseScriptProps = {
+  clientId: string;
+};
+
+export default function GoogleAdsenseScript({ clientId }: GoogleAdsenseScriptProps) {
   return (
-    <>
-      <Script
-        async
-        src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${process.env.GOOGLE_ADSENSE_ID}`}
-        crossOrigin="anonymous"
-        strategy="afterInteractive"
-      />
-    </>
+    <Script
+      async
+      src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${clientId}`}
+      crossOrigin="anonymous"
+      strategy="afterInteractive"
+    />
   );
 }

@@ -40,6 +40,7 @@ jobs:
       NEXT_PUBLIC_APPDESCRIPTION: Startify-App CI build
       NEXT_PUBLIC_APPAUTHOR: DesignSupply.LLC
       NEXT_PUBLIC_API_BASE_URL: https://api.example.com/api/v1
+      NEXT_PUBLIC_DEPLOY_ENV: production
     steps:
       - name: Checkout repository
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1

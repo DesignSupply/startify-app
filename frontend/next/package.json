@@ -18,7 +18,7 @@
     "deploy:cf:staging": "npm run build:cf:staging && wrangler deploy --env staging",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "test": "npm run test:auth && npm run test:posts",
+    "test": "npm run test:auth && npm run test:posts && npm run test:googleTags",
     "check": "npm run lint && npm run typecheck && npm run test",
     "lint": "npm run lint:script && npm run lint:style && npm run lint:markup",
     "lint:script": "eslint src",
@@ -32,6 +32,7 @@
     "test:auth": "vitest run src/hooks/auth/__tests__/ src/components/auth/__tests__",
     "test:auth:watch": "vitest --watch src/hooks/auth/__tests__/ src/components/auth/__tests__",
     "test:posts": "vitest run src/hooks/posts/__tests__",
+    "test:googleTags": "vitest run src/utils/__tests__",
     "test:posts:watch": "vitest --watch src/hooks/posts/__tests__"
   },
   "dependencies": {

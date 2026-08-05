@@ -8,6 +8,12 @@ import { notoSansJP } from '@/utils/fonts';
 import ReactQueryProvider from '@/providers/ReactQueryProvider';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import GoogleAdsenseScript from '@/components/GoogleAdsenseScript';
+import {
+  getGoogleAdsenseId,
+  getGoogleAnalyticsId,
+  isGoogleAdsenseEnabled,
+  isGoogleAnalyticsEnabled,
+} from '@/utils/googleTags';
 
 export const metadata: Metadata = metaDefault;
 export const viewport: Viewport = {
@@ -22,6 +28,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const gaId = getGoogleAnalyticsId();
+  const adsenseId = getGoogleAdsenseId();
+  const showGoogleAnalytics = isGoogleAnalyticsEnabled(gaId);
+  const showGoogleAdsense = isGoogleAdsenseEnabled(adsenseId);
+
   return (
     <html lang="ja">
       <body className={`${notoSansJP.variable}`}>
@@ -33,12 +44,8 @@ export default function RootLayout({
         </ReactQueryProvider>
         {/* </SiteThemeProvider> */} {/* context */}
       </body>
-      {process.env.NODE_ENV !== 'development' && process.env.GOOGLE_ANALYTICS_ID && (
-        <GoogleAnalytics gaId={process.env.GOOGLE_ANALYTICS_ID} />
-      )}
-      {process.env.NODE_ENV !== 'development' && process.env.GOOGLE_ADSENSE_ID && (
-        <GoogleAdsenseScript />
-      )}
+      {showGoogleAnalytics && gaId && <GoogleAnalytics gaId={gaId} />}
+      {showGoogleAdsense && adsenseId && <GoogleAdsenseScript clientId={adsenseId} />}
     </html>
   );
 }
