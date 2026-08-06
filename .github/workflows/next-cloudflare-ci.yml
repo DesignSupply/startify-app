@@ -6,6 +6,7 @@ on:
       - 'frontend/next/**'
       - 'frontend/.nvmrc'
       - '.github/workflows/next-cloudflare-ci.yml'
+      - '.github/workflows/next-cloudflare-staging.yml'
   push:
     branches:
       - main
@@ -13,6 +14,7 @@ on:
       - 'frontend/next/**'
       - 'frontend/.nvmrc'
       - '.github/workflows/next-cloudflare-ci.yml'
+      - '.github/workflows/next-cloudflare-staging.yml'
 
 permissions:
   contents: read
