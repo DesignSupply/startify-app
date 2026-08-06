@@ -168,7 +168,7 @@ npm run build
 
 #### Cloudflare Workers Static Assets 対応
 
-Next.jsは **Static Export** 構成で、生成物 `out/` を **Cloudflare Workers Static Assets** へ配信します（OpenNext／SSRは対象外）。Development／Staging／Productionの環境区分と詳細な設定・運用手順は、仕様書 [`specifications/cloudflare/next-static-deployment.md`](specifications/cloudflare/next-static-deployment.md) を参照してください。
+Next.jsは **Static Export** 構成で、生成物 `out/` を **Cloudflare Workers Static Assets** へ配信します（OpenNext／SSRは対象外）。Development／Staging／Productionの環境区分と詳細な設定・運用手順は、仕様書 [`specifications/infrastructure/cloudflare/next-static-deployment.md`](specifications/infrastructure/cloudflare/next-static-deployment.md) を参照してください。
 
 **通常開発**
 
@@ -210,7 +210,7 @@ npm run deploy:cf:staging
 - Stagingデプロイは `main` へマージ時にGitHub Actionsから自動実行される
 - GitHub Actions画面から手動再デプロイも可能（`workflow_dispatch`）
 - Productionデプロイの自動化は未実装（現状はローカルから `npm run deploy:cf` のみ）
-- 詳細は [`specifications/cloudflare/next-static-deployment.md`](specifications/cloudflare/next-static-deployment.md) を参照
+- 詳細は [`specifications/infrastructure/cloudflare/next-static-deployment.md`](specifications/infrastructure/cloudflare/next-static-deployment.md) を参照
 
 ### 5. Vite環境の静的コーディング環境構築
 

@@ -535,6 +535,300 @@ Workflowはデプロイ前に失敗する。Production相当のGoogleタグを�
 
 ---
 
+## 18. Production展開チェックリスト
+
+Production Workflowは **ボイラープレートには未実装** です。本章は、案件導入時にStaging構成を参照してProduction環境へ展開するためのチェックリストです。
+
+### 方針
+
+- 実装・検証済みの **Staging Workflow**（`.github/workflows/next-cloudflare-staging.yml`）を正本とし、案件ごとにProduction用へ展開する
+- 本番ドメイン、Cloudflare Account ID、Worker名などの **実値をボイラープレートへ固定しない**
+- 最初は **手動実行・承認付き** で検証する
+- **動作確認前に自動 Production デプロイを有効にしない**
+- StagingとProductionの **認証情報（API Token 等）を分離** する
+
+---
+
+### 18.1 案件固有のProduction構成を決定
+
+案件開始時に、以下を決定・記録する。
+
+- [ ] 本番ドメインを決定（例: `https://www.example.com`）
+- [ ] Cloudflareアカウントを決定（案件ごとに分離）
+- [ ] Production Worker名を決定（例: `client-app-next`）
+- [ ] 本番アプリURLを決定（例: `https://www.example.com`）
+- [ ] 本番API URLを決定（例: `https://api.example.com/api/v1`）
+- [ ] Productionデプロイを手動承認にするか決定
+- [ ] デプロイ担当者・承認者を決定
+- [ ] ロールバック方法を決定
+- [ ] Google Analytics／AdSenseの利用有無を決定
+
+Startify AppのStaging Worker名をProduction名の固定値として推奨しない。案件ごとにWorker名とドメインを設計する。
+
+---
+
+### 18.2 Cloudflare Productionリソース
+
+- Production専用Workerを使用する
+- Staging WorkerとProduction Workerを **分離** する
+- Production専用API Tokenを発行する
+- Staging用API TokenをProductionへ **流用しない**
+- **Global API Key** は使用しない
+- API Tokenの対象を **案件の Cloudflare アカウントだけ** に制限する
+- 基本権限は **`Workers Scripts: Edit`**
+- 独自ドメインやDNS設定は、必要な権限をCIトークンへ安易に追加せず、**Cloudflare ダッシュボードから別途設定** する方法を優先する
+- 追加権限が必要な場合は、用途を確認して **最小権限** で追加する
+- Production Tokenの **失効・ローテーション手順** を決める
+
+Cloudflare API Token、Account ID、ドメインの実値は本ドキュメントに記載しない。
+
+---
+
+### 18.3 GitHub Environment `production`
+
+案件リポジトリでGitHub Environmentを作成する。
+
+```text
+GitHub
+→ Settings
+→ Environments
+→ New environment
+→ production
+```
+
+#### 推奨設定
+
+| 項目 | 推奨 |
+|---|---|
+| Environment 名 | `production` |
+| Deployment branches | `main` のみ |
+| Required reviewers | 利用可能なら設定 |
+| Prevent self-review | 複数人運用で利用可能なら検討 |
+| Wait timer | 必要な案件だけ設定 |
+| 管理者による保護ルール回避 | 案件ポリシーに合わせて決定 |
+
+GitHubプランやリポジトリの公開範囲により、利用できる保護ルールが異なる。案件開始時に利用可能な機能を確認する。
+
+---
+
+### 18.4 Production SecretとVariables
+
+Production用GitHub Environmentへ、SecretとVariablesを分けて登録する。
+
+#### Environment Secret
+
+```text
+CLOUDFLARE_API_TOKEN
+```
+
+#### Environment Variables
+
+```text
+CLOUDFLARE_ACCOUNT_ID
+APPURL
+APPNAME
+APPDESCRIPTION
+APPAUTHOR
+NEXT_PUBLIC_APPURL
+NEXT_PUBLIC_APPNAME
+NEXT_PUBLIC_APPDESCRIPTION
+NEXT_PUBLIC_APPAUTHOR
+NEXT_PUBLIC_API_BASE_URL
+NEXT_PUBLIC_DEPLOY_ENV
+NEXT_PUBLIC_GOOGLE_ANALYTICS_ID
+NEXT_PUBLIC_GOOGLE_ADSENSE_ID
+```
+
+#### 設定上の注意
+
+- `NEXT_PUBLIC_DEPLOY_ENV` は **`production`** を設定する
+- `APPURL` と `NEXT_PUBLIC_APPURL` には **本番 URL** を設定する（例: `https://www.example.com`）
+- `NEXT_PUBLIC_API_BASE_URL` には **本番 API URL** を設定する（例: `https://api.example.com/api/v1`）
+- Google IDは **使用する案件だけ** 設定する
+- `NEXT_PUBLIC_*` はブラウザへ公開される
+- 秘密情報をVariablesや `NEXT_PUBLIC_*` へ入れない
+- API Tokenは **Secret** へ登録する
+- Account IDは **Variable** へ登録する
+- VariablesはSecretのように **ログで自動マスクされない**
+- Stagingの値をそのままコピーせず、**本番値を 1 件ずつ確認** する
+
+---
+
+### 18.5 Production Workflowの作成方針
+
+Production用Workflowは、Staging Workflowを **参照** して案件用に新規作成する。
+
+- 参照元: `.github/workflows/next-cloudflare-staging.yml`
+- 新規ファイル例: `.github/workflows/next-cloudflare-production.yml`
+- `environment: production`
+- **初期トリガーは `workflow_dispatch` のみ** とする
+- **`pull_request` から Production へデプロイしない**
+- **動作確認前に `push` トリガーを追加しない**
+- `permissions: contents: read`
+- Actionsの **コミット SHA 固定** を維持する
+- `persist-credentials: false`
+- 実行フロー（Stagingと同様の考え方）:
+  1. `npm ci`
+  2. 必須Variables／Secretを検証
+  3. `NEXT_PUBLIC_DEPLOY_ENV=production` を検証
+  4. `npm run check`
+  5. Production Static Exportを生成
+  6. 成果物を検証
+  7. WranglerでProduction相当へデプロイ
+  8. Cleanupを `if: always()` で実行
+- Production Secretを **必要な Step 以外へ広く渡さない**
+
+#### Production 向け Wrangler 実行
+
+現在のボイラープレート実装では、Wrangler **トップレベル設定** がProduction相当です。
+
+```bash
+npx --no-install wrangler deploy --env=""
+```
+
+案件で `wrangler.jsonc` の環境構成を変更した場合は、**その案件の `wrangler.jsonc` を正本** とする。
+
+#### Staging Workflow からの変更が必要な項目
+
+Staging Workflowを単純にコピーしただけでは完成しない。案件用に以下を変更する。
+
+- Workflow名
+- Job名
+- GitHub Environment（`production`）
+- concurrency group
+- 環境判定（`NEXT_PUBLIC_DEPLOY_ENV=production`）
+- ビルド用Variables
+- Wrangler環境指定（`--env=""` 等）
+- デプロイ先Worker
+- Cleanup対象ファイル
+- pathsフィルター（自動デプロイを有効化する場合）
+- Production承認ルール
+
+**完全な Production Workflow の YAML は本ドキュメントに記載しない**（未検証コードを完成例として提示しないため）。
+
+---
+
+### 18.6 Productionビルドと環境変数ファイル
+
+現在のボイラープレートでは、以下が **Production 相当** のコマンドです。
+
+```bash
+npm run build:cf
+npm run preview:cf
+npm run deploy:cf
+```
+
+| コマンド | 役割 |
+|---|---|
+| `build:cf` | 通常の Static Export（`npm run build` のエイリアス） |
+| `preview:cf` | ビルド後、Wrangler トップレベル設定でローカルプレビュー（`--env=""`） |
+| `deploy:cf` | ビルド後、Wrangler トップレベル設定へ **実デプロイ**（`--env=""`） |
+
+#### 補足
+
+- **Production 自動デプロイは現在未実装**
+- `.env.production` は **Git 管理対象外**
+- GitHub ActionsではProduction Variablesを **Job 環境変数** として渡す
+- API Tokenを `.env.production` や `.env.local` へ **保存しない**
+
+#### 注意: `.env.production` の存在確認ガード
+
+現在の `build:cf` には、Stagingの `prebuild:cf:staging` のような **`.env.production` 存在確認ガードはない**。ローカルProductionビルドでは `.env.production` またはシェル環境変数を各自が用意する。
+
+Production Workflowを実装する際は、Stagingと同様に **必須 Variables を明示的に検証** し、不足時にデプロイ前に失敗させることを推奨する。
+
+---
+
+### 18.7 Stagingで確認したコミットのProduction昇格
+
+- Productionへ出す前に、**Staging で同じコードを確認** する
+- デプロイ対象の **Git コミット SHA を記録** する
+- Production実行時に **対象 SHA を確認** する
+- `main` が更新されている場合、**未確認の新しいコミット** を誤ってProductionへ出さない
+- 初期運用では、Staging確認後にProductionデプロイまで **`main` を更新しない** 方法でもよい
+- より厳密な運用では、確認済みコミットへの **Git tag**、**release**、または **検証済み成果物の昇格** を検討する
+- 「Stagingで確認したソース」と「Productionへ配信したソース」が **一致することを記録** する
+
+成果物昇格やRelease Workflowは **ボイラープレートに未実装** です。実装済みのような書き方をしない。
+
+---
+
+### 18.8 初回Productionデプロイ
+
+- [ ] Production Workflowを **`workflow_dispatch`** で起動
+- [ ] 対象ブランチ／**コミット SHA** を確認
+- [ ] Required reviewerの **承認** を確認（設定している場合）
+- [ ] `npm ci` 成功
+- [ ] 品質確認（`npm run check`）成功
+- [ ] Static Export成功
+- [ ] 成果物検証成功
+- [ ] Production Workerへのデプロイ成功
+- [ ] Workflowログに **Secret が出ていない**
+- [ ] **Production 以外の Worker**（Staging等）を上書きしていない
+
+独自ドメイン接続前に `workers.dev` URLで検証するかどうかは、**案件方針に合わせて決定** する。
+
+---
+
+### 18.9 独自ドメインと公開確認
+
+- [ ] Cloudflareへ対象ドメインを追加
+- [ ] DNS／ネームサーバー設定を確認
+- [ ] Production Workerへ **Custom Domain** または **Route** を設定
+- [ ] HTTPS／SSL証明書を確認
+- [ ] `www` あり／なしの **正規 URL** を決定
+- [ ] HTTPからHTTPSへのリダイレクトを確認
+- [ ] 非正規ホストから正規ホストへのリダイレクトを確認
+- [ ] 末尾スラッシュの挙動を確認（`html_handling: auto-trailing-slash`）
+- [ ] canonical URLを確認
+- [ ] OGP URLを確認
+- [ ] sitemap URLを確認
+- [ ] robots設定を確認
+- [ ] PWA Service Workerのscopeを確認
+- [ ] 404レスポンスを確認
+- [ ] API接続先を確認
+- [ ] CORS／Cookie／認証条件を確認
+- [ ] Google Analytics／AdSenseが **Production だけで有効** になることを確認
+
+Custom DomainとRouteのどちらを使うかは **案件構成に応じて選択** し、ボイラープレートで固定しない。
+
+---
+
+### 18.10 ロールバックと運用
+
+- 直前に動作確認済みの **Git コミット SHA** を記録する
+- 問題発生時は、**既知の正常なコミットから再ビルド・再デプロイ** する方法を基本とする
+- 未検証の `wrangler rollback` コマンドを **手順として固定しない**
+- Cloudflare側のVersion／Deployment機能を利用する場合は、**案件で挙動を検証してから** 採用する
+- ロールバック後に **本番 URL、主要ページ、API、Google タグ** を再確認する
+- GitHub Actionsの **Deployment 履歴** を確認する
+- API Tokenの **有効期限・ローテーション・失効手順** を管理する
+- 担当者変更時に **GitHub Environment と Cloudflare 権限** を見直す
+- Production Workflowの変更も **PR レビュー対象** とする
+
+---
+
+### 18.11 Production展開完了条件
+
+案件のProduction対応が完了したと判断する条件は、以下のとおりです。
+
+- [ ] Production Workflowが手動実行で成功
+- [ ] Required reviewer、または案件で定めた承認手順を確認
+- [ ] Staging確認済みコミットとProductionへデプロイしたコミットが一致
+- [ ] 本番独自ドメインで表示可能
+- [ ] HTTPS、リダイレクト、404レスポンスが正常
+- [ ] canonical、OGP、sitemapが本番URLを参照
+- [ ] API接続、CORS、Cookie、認証が正常
+- [ ] Google Analytics／AdSenseが案件要件どおりに動作
+- [ ] Secret、API Token、環境変数の実値がログやリポジトリへ漏れていない
+- [ ] ロールバック手順を確認
+- [ ] 運用担当者とAPI Token管理方法を記録
+- [ ] Production自動デプロイを有効化するか判断
+
+上記をすべて確認するまでは、Production対応を完了扱いにしないでください。Production自動デプロイは必須ではありません。自動デプロイを採用しない案件では、手動承認Workflowを正式な運用経路として問題ありません。案件の運用要件に応じて、チェック項目を追加しても構いません。
+
+---
+
 ## 将来項目
 
 以下は **未実装** です。本仕様書の対象外として扱ってください。
