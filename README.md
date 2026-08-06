@@ -166,39 +166,51 @@ npm run build
 
 初回セットアップ時や、Next.jsなどの依存パッケージと `package-lock.json` が更新された直後は、古い依存関係が残らないように `npm ci` を実行してください。`npm ci` は既存の `node_modules` を削除し、`package-lock.json` に記録されたバージョンをクリーンインストールします。依存関係に変更がない通常の開発では毎回実行する必要はなく、`npm run dev` から開始できます。
 
-ローカル開発サーバー起動:
+#### Cloudflare Workers Static Assets 対応
+
+Next.jsは **Static Export** 構成で、生成物 `out/` を **Cloudflare Workers Static Assets** へ配信します（OpenNext／SSRは対象外）。Development／Staging／Productionの環境区分と詳細な設定・運用手順は、仕様書 [`specifications/cloudflare/next-static-deployment.md`](specifications/cloudflare/next-static-deployment.md) を参照してください。
+
+**通常開発**
 
 ```bash
 cd ./frontend/next
 npm run dev
 ```
 
-品質チェック用スクリプト:
-
-- `npm run typecheck` — TypeScript型チェック
-- `npm run test` — Vitestテスト一式
-- `npm run check` — lint・型チェック・テストの一括実行
-
 http://localhost:3000/ にアクセスすることでNext.jsのアプリケーショントップページが表示されます。
 
-Cloudflare Workers Static Assets（SSR／OpenNextではなくStatic Exportの `out/` を配信）:
+**品質確認**
 
 ```bash
-cd ./frontend/next
+npm run check
+```
 
-# Static Export 成果物の生成
+`npm run check` はlint・型チェック・テストの一括実行です。個別実行する場合は `npm run typecheck` や `npm run test` も利用できます。
+
+**Production相当のStatic Export**
+
+```bash
 npm run build:cf
-
-# Cloudflare 本番相当のローカルプレビュー（Wrangler）
 npm run preview:cf
-
-# Cloudflare へのデプロイ（要 Cloudflare 認証）
 npm run deploy:cf
 ```
 
+**Staging**
+
+```bash
+npm run build:cf:staging
+npm run preview:cf:staging
+npm run deploy:cf:staging
+```
+
 - 日常開発は `npm run dev` を使用する
+- Cloudflare互換性確認はWranglerプレビュー（`preview:cf` / `preview:cf:staging`）を使用する
 - `out/` は生成物のためGit管理対象外
-- `deploy:cf` はWranglerのCloudflare認証が必要
+- `.env.staging` はGit管理対象外（ローカルStagingビルド・デプロイ用）
+- Stagingデプロイは `main` へマージ時にGitHub Actionsから自動実行される
+- GitHub Actions画面から手動再デプロイも可能（`workflow_dispatch`）
+- Productionデプロイの自動化は未実装（現状はローカルから `npm run deploy:cf` のみ）
+- 詳細は [`specifications/cloudflare/next-static-deployment.md`](specifications/cloudflare/next-static-deployment.md) を参照
 
 ### 5. Vite環境の静的コーディング環境構築
 
