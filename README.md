@@ -181,7 +181,7 @@ npm run dev
 
 http://localhost:3000/ にアクセスすることでNext.jsのアプリケーショントップページが表示されます。
 
-Cloudflare Workers Static Assets（SSR／OpenNext ではなく Static Export の `out/` を配信）:
+Cloudflare Workers Static Assets（SSR／OpenNextではなくStatic Exportの `out/` を配信）:
 
 ```bash
 cd ./frontend/next
@@ -197,8 +197,8 @@ npm run deploy:cf
 ```
 
 - 日常開発は `npm run dev` を使用する
-- `out/` は生成物のため Git 管理対象外
-- `deploy:cf` は Wrangler の Cloudflare 認証が必要
+- `out/` は生成物のためGit管理対象外
+- `deploy:cf` はWranglerのCloudflare認証が必要
 
 ### 5. Vite環境の静的コーディング環境構築
 
