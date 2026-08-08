@@ -1,7 +1,7 @@
 import fs from 'fs/promises';
 import path from 'path';
 import { notFound } from 'next/navigation';
-import PostDetail from '@/components/posts/PostDetail';
+import PostDetailPageContent from './_content';
 import { Post } from '@/types/posts';
 import { postsSchema } from '@/schemas/posts';
 import { USE_MOCK_POSTS, MOCK_POSTS_PATH } from '@/features/posts/mockConfig';
@@ -46,5 +46,9 @@ export default async function PostDetailPage({
   if (!post) {
     notFound();
   }
-  return <PostDetail initialPost={post} />;
+  return (
+    <main className="app-main">
+      <PostDetailPageContent initialPost={post} />
+    </main>
+  );
 }

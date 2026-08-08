@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
+import ExamplePageContent from './_content';
 import JsonLd from '@/components/JsonLd';
 import { metaDefault } from '@/utils/meta';
 
@@ -39,8 +39,7 @@ export default function ExamplePage() {
 
   return (
     <main className="app-main">
-      <h1>静的ルーティングページサンプル</h1>
-      <Link href={'/'}>トップページへ</Link>
+      <ExamplePageContent />
       <JsonLd jsonLd={jsonLdData} />
     </main>
   );

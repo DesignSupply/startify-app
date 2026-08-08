@@ -1,28 +1,16 @@
+import { buildBreadcrumbListJsonLd, serializeJsonLd, type JsonLdListItem } from '@/utils/jsonLd';
+
 export type propsType = {
-  jsonLd: {
-    '@type': string;
-    position: number;
-    item: {
-      '@id': string;
-      name: string;
-    };
-  }[];
+  jsonLd: JsonLdListItem[];
 };
 
 export default function JsonLd(props: propsType) {
-  const jsonData = {
-    '@context': 'http://schema.org',
-    '@type': 'BreadcrumbList',
-    itemListElement: props.jsonLd,
-  };
+  const jsonData = buildBreadcrumbListJsonLd(props.jsonLd);
 
   return (
-    <>
-      <script
-        suppressHydrationWarning
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonData) }}
-      />
-    </>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: serializeJsonLd(jsonData) }}
+    />
   );
 }

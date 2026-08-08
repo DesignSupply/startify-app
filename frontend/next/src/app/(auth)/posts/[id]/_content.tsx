@@ -5,11 +5,11 @@ import Article from '@/components/posts/Article';
 import { Post } from '@/types/posts';
 import { usePostQuery } from '@/hooks/posts/usePosts';
 
-type PostDetailProps = {
+type PostDetailPageContentProps = {
   initialPost: Post;
 };
 
-export default function PostDetail({ initialPost }: PostDetailProps) {
+export default function PostDetailPageContent({ initialPost }: PostDetailPageContentProps) {
   const { data: post, isLoading, isError, error } = usePostQuery(initialPost.id, {
     initialData: initialPost,
   });
