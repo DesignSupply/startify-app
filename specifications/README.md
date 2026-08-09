@@ -69,7 +69,7 @@ related_paths:
 
 | 領域 | 文書 | 状態 |
 | --- | --- | --- |
-| Next.js／Cloudflare | [Next.js Static Export — Cloudflare Workers Static Assets デプロイ仕様](infrastructure/cloudflare/next-static-deployment.md) | `current`（暫定）。現在の設定、CI、Staging運用を記録。Front Matterは今後追加予定 |
+| Next.js／Cloudflare | [Next.js Static Export — Cloudflare Workers Static Assets デプロイ仕様](infrastructure/cloudflare/next-static-deployment.md) | `current`。現在の設定、CI、Staging運用を記録 |
 
 ### 移行対象
 

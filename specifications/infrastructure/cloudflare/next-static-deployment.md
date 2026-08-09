@@ -1,6 +1,18 @@
+---
+title: Next.js Static Export — Cloudflare Workers Static Assets デプロイ仕様
+status: current
+last_updated: 2026-08-09
+related_paths:
+  - frontend/next/package.json
+  - frontend/next/next.config.mjs
+  - frontend/next/wrangler.jsonc
+  - .github/workflows/next-cloudflare-ci.yml
+  - .github/workflows/next-cloudflare-staging.yml
+---
+
 # Next.js Static Export — Cloudflare Workers Static Assets デプロイ仕様
 
-Startify AppにおけるNext.jsのCloudflare配信構成・設定・運用手順をまとめた仕様書です。実装済みのStaging環境を正本とし、ボイラープレートとして再利用できる形で記載しています。
+Startify-AppにおけるNext.jsのCloudflare配信構成・設定・運用手順をまとめた仕様書です。実装済みのStaging環境を正本とし、ボイラープレートとして再利用できる形で記載しています。
 
 ---
 
@@ -563,7 +575,7 @@ Production Workflowは **ボイラープレートには未実装** です。本�
 - [ ] ロールバック方法を決定
 - [ ] Google Analytics／AdSenseの利用有無を決定
 
-Startify AppのStaging Worker名をProduction名の固定値として推奨しない。案件ごとにWorker名とドメインを設計する。
+Startify-AppのStaging Worker名をProduction名の固定値として推奨しない。案件ごとにWorker名とドメインを設計する。
 
 ---
 
