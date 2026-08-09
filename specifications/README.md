@@ -69,6 +69,7 @@ related_paths:
 
 | 領域 | 文書 | 状態 |
 | --- | --- | --- |
+| Next.js | [Next.jsアプリケーション アーキテクチャ仕様](frontend/next/architecture.md) | `current`。実行環境、Static Export、ルーティング、コンポーネント境界を記録 |
 | Next.js／Cloudflare | [Next.js Static Export — Cloudflare Workers Static Assets デプロイ仕様](infrastructure/cloudflare/next-static-deployment.md) | `current`。現在の設定、CI、Staging運用を記録 |
 
 ### 移行対象
