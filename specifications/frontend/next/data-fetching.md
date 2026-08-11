@@ -211,8 +211,6 @@ npm run build:cf
 
 本書は、次の既存資料から設計意図を抽出し、現在のコード、設定、テストと照合して再構成しています。
 
-- `specifications/frontend/next/TASK_011.md`
-- `specifications/frontend/next/TASK_012.md`
 - `.cursor/rules/dev-frontend.mdc`
 
-これらはドキュメント移行が完了するまで設計意図の確認に使用しますが、現在仕様としては本書と現在の実装を優先します。
+この資料はドキュメント移行が完了するまで設計意図の確認に使用しますが、現在仕様としては本書と現在の実装を優先します。

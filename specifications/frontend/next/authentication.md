@@ -255,7 +255,6 @@ login → me → Access Token失効 → refresh → me → logout → me（401�
 
 本書は、次の既存資料から設計意図を抽出し、現在のコード、設定、テストと照合して再構成しています。
 
-- `specifications/frontend/next/TASK_009.md`
 - `specifications/backend/laravel/TASK_014.md`
 - `.cursor/rules/dev-backend.mdc`
 

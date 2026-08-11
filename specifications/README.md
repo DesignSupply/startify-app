@@ -82,7 +82,6 @@ related_paths:
 | --- | --- | --- |
 | Laravel | `backend/laravel/TASKS.md`、`backend/laravel/TASK_*.md` | 実装済み機能の作業手順。現在仕様を抽出後にArchive予定 |
 | WordPress | `backend/wordpress/TASKS.md` | 未整理のタスクリスト。現在のテーマ実装を基に仕様化予定 |
-| Next.js | `frontend/next/TASKS.md`、`frontend/next/TASK_*.md` | 実装手順と旧方式を含む。現在の実装と照合後にArchive予定 |
 | Docker | `server/docker/TASKS.md`、`server/docker/TASK_*.md` | 環境構築手順。現在のCompose、Makefile、Nginx設定と照合後に再編予定 |
 
 ## 参照と更新の手順
@@ -141,7 +140,6 @@ specifications/
 │       └── next-static-deployment.md
 └── archive/
     ├── backend/laravel/
-    ├── frontend/next/
     └── server/docker/
 ```
 

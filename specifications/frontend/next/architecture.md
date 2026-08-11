@@ -257,17 +257,5 @@ Cloudflareへの実デプロイは通常のコード検証に含めません。W
 本書は、次の既存資料から設計意図を抽出し、現在のコードと設定に合わせて再構成しています。
 
 - `.cursor/rules/dev-frontend.mdc`
-- `specifications/frontend/next/TASK_001.md`
-- `specifications/frontend/next/TASK_002.md`
-- `specifications/frontend/next/TASK_003.md`
-- `specifications/frontend/next/TASK_004.md`
-- `specifications/frontend/next/TASK_005.md`
-- `specifications/frontend/next/TASK_006.md`
-- `specifications/frontend/next/TASK_007.md`
-- `specifications/frontend/next/TASK_008.md`
-- `specifications/frontend/next/TASK_009.md`
-- `specifications/frontend/next/TASK_010.md`
-- `specifications/frontend/next/TASK_011.md`
-- `specifications/frontend/next/TASK_012.md`
 
-これらはドキュメント移行が完了するまで設計意図の確認に使用しますが、現在仕様としては本書と現在の実装を優先します。
+この資料はドキュメント移行が完了するまで設計意図の確認に使用しますが、現在仕様としては本書と現在の実装を優先します。
