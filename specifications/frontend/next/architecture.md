@@ -32,7 +32,7 @@ Startify-AppのNext.jsアプリケーションにおける、現在の実行環�
 | Next.js | `15.5.22`、App Router |
 | React | `19` |
 | 言語 | TypeScript、`strict: true` |
-| スタイル | Tailwind CSS 4、Sass、グローバルCSS |
+| スタイル | グローバルCSS。Tailwind CSS 4は設定済みだがUtility Class未使用、Sassは設定済みだがSCSS未使用 |
 | UI状態 | Zustand |
 | API・サーバー状態 | TanStack Query |
 | スキーマ・フォーム検証 | Zod、React Hook Form |
@@ -168,7 +168,22 @@ ThemeはGlobal UI Stateの現在の実装例です。
 - ページを再読み込みするとModule Stateが再初期化され、`light` に戻る
 - Theme切り替えは現在、自動テストの対象外
 
-## 7. ディレクトリ責務
+## 7. Stylingの現在構成
+
+現在の画面Styleは `src/styles/globals.css` のグローバルCSSで実装します。Theme用のCSS Variableと、`data-theme` に応じたLight・Darkの値を定義しています。
+
+Tailwind CSS 4は依存関係とPostCSS Pluginを導入済みで、StylelintもTailwindのAt-ruleを許可します。ただし、現在は次の状態です。
+
+- `globals.css` の `@import 'tailwindcss'` はコメントアウトされている
+- `@theme inline` はTheme用CSS Variableの定義に使用している
+- 現在のTSXではTailwind Utility Classを使用していない
+- `tailwind-merge` は依存関係にあるが、現在のコードから使用していない
+
+Sassは依存関係へ導入し、`next.config.mjs` の `sassOptions.includePaths` に `src/styles` を指定しています。StylelintはSCSS用ParserとRuleを設定済みですが、現在の `src/` にはSCSS FileとCSS Modulesがありません。
+
+旧TASKにある「Tailwindを優先し、必要に応じてSassを使用する」という方針は、現在の実装規約として確定していません。新しいStyling方式を導入または統一する場合は、グローバルCSS、Tailwind Utility、CSS Modules、Sassの責務と共存方法を別途決定し、使用する方式に合わせて設定と本書を更新します。
+
+## 8. ディレクトリ責務
 
 `frontend/next/src/` 配下の主な責務は次のとおりです。
 
@@ -190,7 +205,7 @@ ThemeはGlobal UI Stateの現在の実装例です。
 
 TypeScriptの内部参照には、`tsconfig.json` で定義した `@/*` から `src/*` へのパスエイリアスを使用します。
 
-## 8. 環境変数
+## 9. 環境変数
 
 環境変数の名前とサンプル値は `frontend/next/.env.example` で管理します。実値を含む `.env*` はGit管理対象外です。
 
@@ -202,7 +217,7 @@ TypeScriptの内部参照には、`tsconfig.json` で定義した `@/*` から `
 
 環境別のファイルとCloudflare Workflowへの値の渡し方は、Cloudflareデプロイ仕様を参照してください。
 
-## 9. 実装時の規約
+## 10. 実装時の規約
 
 - 新しいルートはServer Componentを基本とし、クライアント処理だけを分離する
 - ルート固有のClient Componentは、現在の構成に合わせて同じルート配下へ置く
@@ -213,7 +228,7 @@ TypeScriptの内部参照には、`tsconfig.json` で定義した `@/*` から `
 - Static Exportで利用できないNext.js機能を導入しない
 - 生成物や環境変数の実値をGitへ追加しない
 
-## 10. 検証
+## 11. 検証
 
 コマンドは `frontend/next/` で実行します。
 
@@ -237,7 +252,7 @@ npm run build:cf
 
 Cloudflareへの実デプロイは通常のコード検証に含めません。Wranglerプレビューやデプロイが必要な場合は、Cloudflareデプロイ仕様の環境別手順にしたがってください。
 
-## 11. 移行元資料
+## 12. 移行元資料
 
 本書は、次の既存資料から設計意図を抽出し、現在のコードと設定に合わせて再構成しています。
 
