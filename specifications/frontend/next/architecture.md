@@ -1,7 +1,7 @@
 ---
 title: Next.jsアプリケーション アーキテクチャ仕様
 status: current
-last_updated: 2026-08-10
+last_updated: 2026-08-11
 related_paths:
   - frontend/.nvmrc
   - frontend/next/package.json
@@ -116,7 +116,59 @@ TanStack Queryの `QueryClient` は `src/providers/ReactQueryProvider.tsx` で�
 
 新しい実装からこれらへ依存しないでください。
 
-## 6. ディレクトリ責務
+## 6. 状態管理の使い分け
+
+状態は、その責務と共有範囲に応じて管理方法を選択します。
+
+| 状態の種類 | 管理方法 | 現在の例 |
+| --- | --- | --- |
+| Component内で完結する一時状態 | React Local State | Form送信時のAPI Error |
+| Form入力とValidation | React Hook FormとZod | Signin Form |
+| URL共有、Reload、戻る・進むに対応する状態 | Next.js RouterとSearch Params | 投稿一覧の `page`、Signinの `next` |
+| 複数の離れたUIで共有するClient State | Zustand | Light・Dark Theme |
+| API由来でCache、同期、再取得するServer State | TanStack Query | 認証済みUser、投稿一覧・詳細 |
+| Access Token | 認証仕様で定めるModule Memory | `storeAccessToken.ts` |
+
+状態管理では次を原則とします。
+
+- 単一Component内で完結する状態を必要以上にGlobal Stateへ昇格しない
+- APIレスポンスをZustandへ複製せず、TanStack Queryを正本とする
+- URLとして共有・復元すべき状態をStoreだけで管理しない
+- 同じ状態を複数の仕組みへ重複保存しない
+- Access TokenをZustand、TanStack Query、Web Storageへ保存しない
+- 新しい状態を追加する前に、所有者、共有範囲、永続化、再取得の要否を確認する
+
+認証状態とAccess Tokenの詳細は[Next.jsアプリケーション 認証仕様](authentication.md)、投稿Queryの詳細は[Next.jsアプリケーション データ取得・投稿表示仕様](data-fetching.md)を参照してください。
+
+### React Contextの扱い
+
+アプリケーション独自の共有UI状態には原則としてZustandを使用し、状態管理を目的とした独自React Contextは新設しません。
+
+React Contextは全面的に禁止せず、次の場合に利用を検討できます。
+
+- 外部LibraryがProviderを必要とする
+- 特定のComponent Tree内だけへ設定や依存関係を渡す
+- 複数のScopeまたはStore Instanceを明示的に分離する
+
+独自Contextを採用する場合は、Props、Composition、Local State、ZustandではなくContextが必要な理由を確認します。更新頻度の高いGlobal Stateを、Context Valueへまとめて配置しません。
+
+TanStack Queryの `QueryClientProvider` のようにLibraryが提供するContextは、そのLibraryの仕様にしたがって使用します。旧Theme Contextは移行記録であり、新しい実装から利用しません。
+
+### Theme Stateの現在実装
+
+ThemeはGlobal UI Stateの現在の実装例です。
+
+- `src/stores/siteThemeStore.ts` が `light` と `dark` を管理する
+- 初期値は `light`
+- `ThemeSwitch` がZustandの `setTheme()` を呼び出す
+- `ThemeSwitch` は `OffCanvas` 内に配置する
+- `Base` が現在値を `data-theme` 属性へ反映する
+- `globals.css` が `body:has([data-theme='dark'])` でColor Variableを切り替える
+- System Themeとの同期、永続化、Zustand Devtoolsは使用しない
+- ページを再読み込みするとModule Stateが再初期化され、`light` に戻る
+- Theme切り替えは現在、自動テストの対象外
+
+## 7. ディレクトリ責務
 
 `frontend/next/src/` 配下の主な責務は次のとおりです。
 
@@ -138,7 +190,7 @@ TanStack Queryの `QueryClient` は `src/providers/ReactQueryProvider.tsx` で�
 
 TypeScriptの内部参照には、`tsconfig.json` で定義した `@/*` から `src/*` へのパスエイリアスを使用します。
 
-## 7. 環境変数
+## 8. 環境変数
 
 環境変数の名前とサンプル値は `frontend/next/.env.example` で管理します。実値を含む `.env*` はGit管理対象外です。
 
@@ -150,18 +202,18 @@ TypeScriptの内部参照には、`tsconfig.json` で定義した `@/*` から `
 
 環境別のファイルとCloudflare Workflowへの値の渡し方は、Cloudflareデプロイ仕様を参照してください。
 
-## 8. 実装時の規約
+## 9. 実装時の規約
 
 - 新しいルートはServer Componentを基本とし、クライアント処理だけを分離する
 - ルート固有のClient Componentは、現在の構成に合わせて同じルート配下へ置く
 - 複数ルートで再利用するUIは `components/` へ置く
 - ドメイン固有の処理は、対応するドメインディレクトリへ置く
-- UI状態にはZustand、API・サーバー状態にはTanStack Queryを使用する
+- 状態は本書の「状態管理の使い分け」にしたがい、責務の異なる管理方法へ重複保存しない
 - 外部データ用のZodスキーマがある場合は、データを読み込む境界で実行時検証する
 - Static Exportで利用できないNext.js機能を導入しない
 - 生成物や環境変数の実値をGitへ追加しない
 
-## 9. 検証
+## 10. 検証
 
 コマンドは `frontend/next/` で実行します。
 
@@ -185,7 +237,7 @@ npm run build:cf
 
 Cloudflareへの実デプロイは通常のコード検証に含めません。Wranglerプレビューやデプロイが必要な場合は、Cloudflareデプロイ仕様の環境別手順にしたがってください。
 
-## 10. 移行元資料
+## 11. 移行元資料
 
 本書は、次の既存資料から設計意図を抽出し、現在のコードと設定に合わせて再構成しています。
 
