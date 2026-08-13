@@ -69,6 +69,7 @@ related_paths:
 
 | 領域 | 文書 | 状態 |
 | --- | --- | --- |
+| Laravel | [Laravelアプリケーション 概要仕様](backend/laravel/overview.md) | `current`。Laravelの役割、機能・認証境界、データ構成、検証状況を記録 |
 | Next.js | [Next.jsアプリケーション アーキテクチャ仕様](frontend/next/architecture.md) | `current`。実行環境、Static Export、ルーティング、コンポーネント境界を記録 |
 | Next.js | [Next.jsアプリケーション 認証仕様](frontend/next/authentication.md) | `current`。Split Token、APIクライアント、認証ルーティング、フォームを記録 |
 | Next.js | [Next.jsアプリケーション データ取得・投稿表示仕様](frontend/next/data-fetching.md) | `current`。TanStack Query、投稿一覧・詳細、ページネーション、実行時検証を記録 |
@@ -80,7 +81,7 @@ related_paths:
 
 | 領域 | 現在の配置 | 内容 |
 | --- | --- | --- |
-| Laravel | `specifications/backend/laravel/TASKS.md`、`specifications/backend/laravel/TASK_*.md` | 実装済み機能の作業手順。現在仕様を抽出後にArchive予定 |
+| Laravel | `specifications/backend/laravel/TASKS.md`、`specifications/backend/laravel/TASK_*.md` | 実装済み機能の作業手順。残る詳細仕様を抽出後にArchive予定 |
 | WordPress | `specifications/backend/wordpress/TASKS.md` | 未整理のタスクリスト。現在のテーマ実装を基に仕様化予定 |
 | Docker | `specifications/server/docker/TASKS.md`、`specifications/server/docker/TASK_*.md` | 環境構築手順。現在のCompose、Makefile、Nginx設定と照合後に再編予定 |
 
