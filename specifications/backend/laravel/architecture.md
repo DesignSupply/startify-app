@@ -122,7 +122,7 @@ Eloquent Modelは `backend/laravel/app/Models/` に置きます。現在のModel
 - 認証対象Modelの `Authenticatable`
 - Notification対象Modelの `Notifiable`
 
-DBのRelation、Index、外部キー、論理削除方式の正本は、Migrationと今後作成するデータベース仕様です。Modelには、現在のSchemaと機能に必要なRelation、Cast、Scopeを定義します。
+物理Schemaの正本はMigration、現在のDB設計と運用方針の正本は `specifications/backend/laravel/database.md` です。Modelには、現在のSchemaと機能に必要なRelation、Cast、Scopeを定義します。
 
 ## 6. ServiceとHelper
 
