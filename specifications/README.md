@@ -71,6 +71,7 @@ related_paths:
 | --- | --- | --- |
 | Laravel | [Laravelアプリケーション 概要仕様](backend/laravel/overview.md) | `current`。Laravelの役割、機能・認証境界、データ構成、検証状況を記録 |
 | Laravel | [Laravelアプリケーション アーキテクチャ仕様](backend/laravel/architecture.md) | `current`。レイヤー責務、配置、命名、ルーティング、Blade構成を記録 |
+| Laravel | [Laravelアプリケーション 画面・機能仕様](backend/laravel/screens-and-features.md) | `current`。画面、アクセス境界、Web処理、主要な画面遷移を記録 |
 | Next.js | [Next.jsアプリケーション アーキテクチャ仕様](frontend/next/architecture.md) | `current`。実行環境、Static Export、ルーティング、コンポーネント境界を記録 |
 | Next.js | [Next.jsアプリケーション 認証仕様](frontend/next/authentication.md) | `current`。Split Token、APIクライアント、認証ルーティング、フォームを記録 |
 | Next.js | [Next.jsアプリケーション データ取得・投稿表示仕様](frontend/next/data-fetching.md) | `current`。TanStack Query、投稿一覧・詳細、ページネーション、実行時検証を記録 |
