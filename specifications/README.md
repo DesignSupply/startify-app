@@ -80,9 +80,9 @@ related_paths:
 
 | 領域 | 現在の配置 | 内容 |
 | --- | --- | --- |
-| Laravel | `backend/laravel/TASKS.md`、`backend/laravel/TASK_*.md` | 実装済み機能の作業手順。現在仕様を抽出後にArchive予定 |
-| WordPress | `backend/wordpress/TASKS.md` | 未整理のタスクリスト。現在のテーマ実装を基に仕様化予定 |
-| Docker | `server/docker/TASKS.md`、`server/docker/TASK_*.md` | 環境構築手順。現在のCompose、Makefile、Nginx設定と照合後に再編予定 |
+| Laravel | `specifications/backend/laravel/TASKS.md`、`specifications/backend/laravel/TASK_*.md` | 実装済み機能の作業手順。現在仕様を抽出後にArchive予定 |
+| WordPress | `specifications/backend/wordpress/TASKS.md` | 未整理のタスクリスト。現在のテーマ実装を基に仕様化予定 |
+| Docker | `specifications/server/docker/TASKS.md`、`specifications/server/docker/TASK_*.md` | 環境構築手順。現在のCompose、Makefile、Nginx設定と照合後に再編予定 |
 
 ## 参照と更新の手順
 
@@ -102,7 +102,7 @@ related_paths:
 - 未実装の内容は `planned` な文書または明確に区別した将来項目へ記載します。
 - 実装方法の長い時系列ではなく、現在の構造、責務、制約、検証方法を中心に記載します。
 - コード例は仕様理解に必要な最小限とし、実装全体を複製しません。
-- ファイルパスはリポジトリルートからの相対パスで記載します。
+- コード表記で示すリポジトリ内のファイルパスは、リポジトリルートからの相対パスで記載します。Markdownリンクのリンク先は、リンク元ファイルからの相対パスで記載します。
 - コマンドには実行ディレクトリまたは前提条件を明記します。
 - 環境変数の実値、秘密情報、ローカル固有の設定は記載しません。
 - 文書の移動や名称変更を行った場合は、README、`AGENTS.md`、Cursorルールを含む参照元を更新します。
