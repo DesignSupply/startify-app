@@ -74,6 +74,7 @@ related_paths:
 | Laravel | [Laravelアプリケーション 画面・機能仕様](backend/laravel/screens-and-features.md) | `current`。画面、アクセス境界、Web処理、主要な画面遷移を記録 |
 | Laravel | [Laravelアプリケーション データベース仕様](backend/laravel/database.md) | `current`。テーブル、制約、Relation、論理削除、Seederを記録 |
 | Laravel | [Laravelアプリケーション 認証仕様](backend/laravel/authentication.md) | `current`。Session認証、新規登録、パスワード再設定、JWT認証APIを記録 |
+| Laravel | [Laravelアプリケーション 問い合わせ・メール仕様](backend/laravel/contact-and-mail.md) | `current`。問い合わせフロー、Notification、メールTemplate、SMTP、Mailpitを記録 |
 | Next.js | [Next.jsアプリケーション アーキテクチャ仕様](frontend/next/architecture.md) | `current`。実行環境、Static Export、ルーティング、コンポーネント境界を記録 |
 | Next.js | [Next.jsアプリケーション 認証仕様](frontend/next/authentication.md) | `current`。Split Token、APIクライアント、認証ルーティング、フォームを記録 |
 | Next.js | [Next.jsアプリケーション データ取得・投稿表示仕様](frontend/next/data-fetching.md) | `current`。TanStack Query、投稿一覧・詳細、ページネーション、実行時検証を記録 |
@@ -124,7 +125,11 @@ specifications/
 ├── backend/
 │   ├── laravel/
 │   │   ├── overview.md
+│   │   ├── architecture.md
+│   │   ├── screens-and-features.md
+│   │   ├── database.md
 │   │   ├── authentication.md
+│   │   ├── contact-and-mail.md
 │   │   ├── content-management.md
 │   │   ├── file-management.md
 │   │   └── validation-and-security.md
