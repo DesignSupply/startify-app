@@ -307,6 +307,7 @@ Logout時はCookieが有効なRecordに対応する場合だけ失効日時を�
 | [#19](https://github.com/DesignSupply/startify-app/issues/19) | Refresh TokenローテーションにTransactionと行Lockがなく、同時更新で多重発行される可能性がある |
 | [#20](https://github.com/DesignSupply/startify-app/issues/20) | JWTのIssuerなどのClaim検証と、期限切れを含むエラーレスポンスが整理されていない |
 | [#21](https://github.com/DesignSupply/startify-app/issues/21) | API Guard、CORS、Refresh CSRFの環境設定とNext.js Clientの互換性が整理されていない |
+| [#22](https://github.com/DesignSupply/startify-app/issues/22) | Refresh Token削除Commandの開発環境での手動実行方法と、本番環境でのCron運用が整備されていない |
 
 次の項目も現在実装の制約です。実装方針を変更する場合は影響を精査し、必要に応じて別Issueで管理します。
 
