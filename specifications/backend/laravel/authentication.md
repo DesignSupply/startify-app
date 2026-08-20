@@ -38,7 +38,7 @@ related_paths:
 
 Startify-AppのLaravelアプリケーションが提供する、一般ユーザーと管理者のSession認証、新規ユーザー登録、パスワード再設定、Next.js向けJWT認証APIを定義します。
 
-本書はLaravel側の認証処理を正本とします。画面とRouteの索引は `specifications/backend/laravel/screens-and-features.md`、認証テーブルのSchemaは `specifications/backend/laravel/database.md`、Next.js側のToken保持と画面制御は `specifications/frontend/next/authentication.md` を参照してください。
+本書はLaravel側の認証処理を正本とします。画面とRouteの索引は `specifications/backend/laravel/screens-and-features.md`、認証テーブルのSchemaは `specifications/backend/laravel/database.md`、プロフィールと管理者による一般ユーザー管理は `specifications/backend/laravel/user-and-profile-management.md`、Next.js側のToken保持と画面制御は `specifications/frontend/next/authentication.md` を参照してください。
 
 ## 1. 認証方式と対象
 

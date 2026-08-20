@@ -77,6 +77,7 @@ related_paths:
 | Laravel | [Laravelアプリケーション 問い合わせ・メール仕様](backend/laravel/contact-and-mail.md) | `current`。問い合わせフロー、Notification、メールTemplate、SMTP、Mailpitを記録 |
 | Laravel | [Laravelアプリケーション コンテンツ管理仕様](backend/laravel/content-management.md) | `current`。投稿、カテゴリ、タグの閲覧・管理、Validation、Relation、論理削除を記録 |
 | Laravel | [Laravelアプリケーション ファイル管理仕様](backend/laravel/file-management.md) | `current`。管理者向けアップロード、非公開Storage、Metadata、画像Preview、Download、削除を記録 |
+| Laravel | [Laravelアプリケーション ユーザー・プロフィール管理仕様](backend/laravel/user-and-profile-management.md) | `current`。一般・管理者プロフィール、管理者による一般ユーザー更新、論理削除・復元を記録 |
 | Laravel | [Laravelアプリケーション Validation・Security仕様](backend/laravel/validation-and-security.md) | `current`。入力検証、認証・認可境界、CSRF、Cookie、CORS、JWT、出力、ログ、依存監査を記録 |
 | Next.js | [Next.jsアプリケーション アーキテクチャ仕様](frontend/next/architecture.md) | `current`。実行環境、Static Export、ルーティング、コンポーネント境界を記録 |
 | Next.js | [Next.jsアプリケーション 認証仕様](frontend/next/authentication.md) | `current`。Split Token、APIクライアント、認証ルーティング、フォームを記録 |
@@ -135,6 +136,7 @@ specifications/
 │   │   ├── contact-and-mail.md
 │   │   ├── content-management.md
 │   │   ├── file-management.md
+│   │   ├── user-and-profile-management.md
 │   │   └── validation-and-security.md
 │   └── wordpress/
 │       ├── overview.md

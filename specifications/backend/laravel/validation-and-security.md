@@ -382,6 +382,7 @@ composer audit --locked
 | 問い合わせ、Notification、SMTP、Mailpit | `specifications/backend/laravel/contact-and-mail.md` |
 | 投稿、カテゴリ、タグ | `specifications/backend/laravel/content-management.md` |
 | Upload、Storage、Preview、Download | `specifications/backend/laravel/file-management.md` |
+| 一般・管理者プロフィール、一般ユーザー管理 | `specifications/backend/laravel/user-and-profile-management.md` |
 | Next.jsの認証Client | `specifications/frontend/next/authentication.md` |
 | Docker、Nginx、PHP | `.cursor/rules/env-overview.mdc`、`server/`。現在仕様への移行前 |
 

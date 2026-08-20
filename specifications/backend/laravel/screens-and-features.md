@@ -62,7 +62,7 @@ Startify-AppのLaravel MPAが現在提供する画面、アクセス境界、画
 | `profile` | プロフィール | `GET /profile/{id}` | `profile` | `pages.profile.index` | 一般ユーザー情報の表示 |
 | `profile-edit` | プロフィール編集 | `GET /profile/{id}/edit` | `profile.edit` | `pages.profile.edit` | 一般ユーザー情報の編集 |
 
-`GET /profile` の `profile.redirect` は画面を表示せず、ログイン中の一般ユーザーIDを含む `profile` RouteへRedirectします。プロフィールの表示・編集では、Controllerでもログイン中のユーザーとRoute Parameterの一致を確認します。
+`GET /profile` の `profile.redirect` は画面を表示せず、ログイン中の一般ユーザーIDを含む `profile` RouteへRedirectします。現在の詳細表示は本人以外も許可し、名前だけを表示します。編集・更新では、Controllerがログイン中のユーザーとRoute Parameterの対象UserのID一致を確認します。詳細表示を含めて本人だけに制限する改善はIssue #35で管理します。
 
 ## 5. 管理者認証関連画面
 
@@ -86,7 +86,7 @@ Startify-AppのLaravel MPAが現在提供する画面、アクセス境界、画
 | `admin-profile` | 管理者プロフィール | `GET /admin/profile/{id}` | `admin.profile` | `pages.admin.profile.index` | 管理者情報の表示 |
 | `admin-profile-edit` | 管理者プロフィール編集 | `GET /admin/profile/{id}/edit` | `admin.profile.edit` | `pages.admin.profile.edit` | 管理者情報の編集 |
 
-`GET /admin/profile` の `admin.profile.redirect` は画面を表示せず、ログイン中の管理者IDを含む `admin.profile` RouteへRedirectします。プロフィールの表示・編集では、Controllerでもログイン中の管理者とRoute Parameterの一致を確認します。
+`GET /admin/profile` の `admin.profile.redirect` は画面を表示せず、ログイン中の管理者IDを含む `admin.profile` RouteへRedirectします。現在の詳細表示は本人以外も許可し、名前だけを表示します。編集・更新では、Controllerがログイン中の管理者とRoute Parameterの対象AdminUserのID一致を確認します。詳細表示を含めて本人だけに制限する改善はIssue #35で管理します。
 
 ### 6.2 ファイル管理
 
