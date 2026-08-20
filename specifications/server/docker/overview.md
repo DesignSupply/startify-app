@@ -20,7 +20,7 @@ related_paths:
 
 Startify-AppのDocker Composeによるローカル開発環境について、現在のService構成、Network、Volume、Host、HTTPS、環境変数、各Applicationとの接続、およびローカル環境としての境界を定義します。
 
-本書はDocker環境の構成と責務の正本です。初回構築、日常操作、検証、トラブルシューティングの手順は、後続で作成する `specifications/server/docker/setup-and-operations.md` へ分離する予定です。
+本書はDocker環境の構成と責務の正本です。初回構築、日常操作、検証、トラブルシューティングの手順は `specifications/server/docker/setup-and-operations.md` で定義します。
 
 ## 1. 目的と適用範囲
 
@@ -319,6 +319,8 @@ ComposeのPortは `HOST_PORT:CONTAINER_PORT` の短縮形式で定義してお�
 | [#36](https://github.com/DesignSupply/startify-app/issues/36) | Docker ImageとBuild中に取得する外部ToolのVersionが固定されていない |
 | [#37](https://github.com/DesignSupply/startify-app/issues/37) | MariaDB Dockerfileに未定義のBuild時変数と秘密値用 `ENV` がある |
 | [#38](https://github.com/DesignSupply/startify-app/issues/38) | Laravel環境変数の初期生成が既存 `.env` とAPP_KEYを上書きする |
+| [#39](https://github.com/DesignSupply/startify-app/issues/39) | WordPress公開DirectoryのSymbolic Link作成が現在構成を再現しない |
+| [#40](https://github.com/DesignSupply/startify-app/issues/40) | Laravel公開Storage Linkの作成を安全に再実行できない |
 | Issue化なし | `depends_on` はServiceの準備完了を保証せず、Mailpit以外にHealth Checkを明示していない |
 | Issue化なし | 診断Pageはローカル専用で、環境変数表示またはメール送信の副作用がある |
 | Issue化なし | Docker環境を検証するGitHub Actions Workflowは存在しない |
@@ -342,7 +344,7 @@ Issue解決時は実装だけでなく、本書のImage、環境変数、制約�
 - Certificate、`.env`、JWT鍵がGit管理対象外である
 - Symbolic LinkがContainer内の正しいPathを参照する
 
-具体的なCommand、初回構築、日常操作、破棄時の注意は、後続で作成する `specifications/server/docker/setup-and-operations.md` へ分離します。
+具体的なCommand、初回構築、日常操作、破棄時の注意は `specifications/server/docker/setup-and-operations.md` を参照してください。
 
 ## 16. 移行元資料
 

@@ -79,6 +79,8 @@ related_paths:
 | Laravel | [Laravelアプリケーション ファイル管理仕様](backend/laravel/file-management.md) | `current`。管理者向けアップロード、非公開Storage、Metadata、画像Preview、Download、削除を記録 |
 | Laravel | [Laravelアプリケーション ユーザー・プロフィール管理仕様](backend/laravel/user-and-profile-management.md) | `current`。一般・管理者プロフィール、管理者による一般ユーザー更新、論理削除・復元を記録 |
 | Laravel | [Laravelアプリケーション Validation・Security仕様](backend/laravel/validation-and-security.md) | `current`。入力検証、認証・認可境界、CSRF、Cookie、CORS、JWT、出力、ログ、依存監査を記録 |
+| Docker | [Dockerローカル開発環境 概要仕様](server/docker/overview.md) | `current`。Service構成、Network、Volume、Host、HTTPS、環境変数、ローカル環境の境界を記録 |
+| Docker | [Dockerローカル開発環境 セットアップ・運用手順](server/docker/setup-and-operations.md) | `current`。初回構築、日常操作、検証、トラブルシューティング、破棄時の注意を記録 |
 | Next.js | [Next.jsアプリケーション アーキテクチャ仕様](frontend/next/architecture.md) | `current`。実行環境、Static Export、ルーティング、コンポーネント境界を記録 |
 | Next.js | [Next.jsアプリケーション 認証仕様](frontend/next/authentication.md) | `current`。Split Token、APIクライアント、認証ルーティング、フォームを記録 |
 | Next.js | [Next.jsアプリケーション データ取得・投稿表示仕様](frontend/next/data-fetching.md) | `current`。TanStack Query、投稿一覧・詳細、ページネーション、実行時検証を記録 |
@@ -91,7 +93,7 @@ related_paths:
 | 領域 | 現在の配置 | 内容 |
 | --- | --- | --- |
 | WordPress | `specifications/backend/wordpress/TASKS.md` | 未整理のタスクリスト。現在のテーマ実装を基に仕様化予定 |
-| Docker | `specifications/server/docker/TASKS.md`、`specifications/server/docker/TASK_*.md` | 環境構築手順。現在のCompose、Makefile、Nginx設定と照合後に再編予定 |
+| Docker | `specifications/server/docker/TASKS.md`、`specifications/server/docker/TASK_*.md` | 現在仕様への移行済み資料。完全移行監査後にRepositoryから除去予定 |
 
 ## 参照と更新の手順
 
@@ -149,9 +151,12 @@ specifications/
 │       ├── metadata-and-pwa.md
 │       └── testing.md
 ├── infrastructure/
-│   ├── local-docker.md
 │   └── cloudflare/
 │       └── next-static-deployment.md
+├── server/
+│   └── docker/
+│       ├── overview.md
+│       └── setup-and-operations.md
 └── archive/
     └── server/docker/
 ```
