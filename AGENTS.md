@@ -9,10 +9,12 @@ Startify-Appは、WebアプリケーションおよびWebサイトの開発基�
 - `backend/laravel/`: LaravelアプリケーションとAPI
 - `backend/wordpress/`: WordPress本体とクラシックテーマ
 - `frontend/next/`: Next.jsアプリケーション
+- `frontend/nuxt/`: Nuxt.js用の未実装予約領域
 - `frontend/astro/`: Astroアプリケーション
 - `frontend/vite/`: Viteベースのフロントエンド環境
 - `frontend/ui/`: StorybookとUIコンポーネント
 - `frontend/_design-tokens/`: 共通デザイントークン
+- `frontend/react-native/`: React Native用の未実装予約領域
 - `server/`: Docker Compose、Nginx、PHP、MariaDB、Mailpitのローカル環境
 - `specifications/`: 人間とAIが共有する現在仕様および関連資料
 

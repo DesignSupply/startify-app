@@ -155,6 +155,7 @@ WordPressのHome URLは `https://cms.localhost`、Coreを配置するSite URLは
 Nginxは次の共通TLS設定を使用します。
 
 - TLS 1.2とTLS 1.3
+- Server側のCipher Suiteを優先する `ssl_prefer_server_ciphers on`
 - Shared SSL Session Cache
 - 4Host共通のSAN証明書
 - HTTP Port 80から同じHostのHTTPSへ301 Redirect
