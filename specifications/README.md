@@ -76,6 +76,7 @@ related_paths:
 | Laravel | [Laravelアプリケーション 認証仕様](backend/laravel/authentication.md) | `current`。Session認証、新規登録、パスワード再設定、JWT認証APIを記録 |
 | Laravel | [Laravelアプリケーション 問い合わせ・メール仕様](backend/laravel/contact-and-mail.md) | `current`。問い合わせフロー、Notification、メールTemplate、SMTP、Mailpitを記録 |
 | Laravel | [Laravelアプリケーション コンテンツ管理仕様](backend/laravel/content-management.md) | `current`。投稿、カテゴリ、タグの閲覧・管理、Validation、Relation、論理削除を記録 |
+| Laravel | [Laravelアプリケーション ファイル管理仕様](backend/laravel/file-management.md) | `current`。管理者向けアップロード、非公開Storage、Metadata、画像Preview、Download、削除を記録 |
 | Next.js | [Next.jsアプリケーション アーキテクチャ仕様](frontend/next/architecture.md) | `current`。実行環境、Static Export、ルーティング、コンポーネント境界を記録 |
 | Next.js | [Next.jsアプリケーション 認証仕様](frontend/next/authentication.md) | `current`。Split Token、APIクライアント、認証ルーティング、フォームを記録 |
 | Next.js | [Next.jsアプリケーション データ取得・投稿表示仕様](frontend/next/data-fetching.md) | `current`。TanStack Query、投稿一覧・詳細、ページネーション、実行時検証を記録 |
