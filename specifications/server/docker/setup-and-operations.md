@@ -251,6 +251,20 @@ WP_HOME=https://cms.localhost
 WP_SITEURL=https://cms.localhost/wordpress
 ```
 
+### 7.1 WordPressのGit管理
+
+`backend/wordpress/.gitignore` に基づき、Downloadまたは実行時に生成される次の対象はGit管理へ追加しません。
+
+- WordPress Core
+- `wp-config.php`
+- `wp-content/uploads/`
+- Cache、Log、Backup、Upgrade時の生成物
+- 第三者ThemeとPlugin
+
+独自実装は例外として管理します。現在は `backend/wordpress/wp-content/themes/startify-classic-theme/` を追跡し、`backend/wordpress/wp-content/plugins/custom-plugin/` を追跡可能な例外Pathとして定義しています。
+
+WordPressのDownload、Setup、Update、Plugin操作後は、Core、設定、Upload、第三者Package、生成物が意図せずGitの変更対象になっていないことを確認します。
+
 ## 8. 日常のDocker操作
 
 各Commandは `server/` で実行します。
@@ -386,6 +400,14 @@ CoreやPluginのUpdate前には、互換性、変更内容、復旧方法を確�
 | `http://localhost:8025` | Mailpit Web UIを表示できる |
 
 HTTPのApplication HostはHTTPSへ301 Redirectします。
+
+WordPressの初回セットアップ後は、管理画面へログインし、現在構成で次の基本操作ができることを確認します。
+
+- 投稿を公開、編集、削除できる
+- Themeと管理画面のAssetを読み込める
+- 必要に応じて、検証用Pluginをインストール、更新、削除できる
+
+投稿やPluginを使用した確認はローカル環境で行い、不要になった検証DataやPackageを残しません。既存Dataや開発中の独自Theme・Pluginを検証目的で変更または削除しません。
 
 ### 10.2 診断Page
 
