@@ -81,6 +81,7 @@ Startify-Appは、WebアプリケーションおよびWebサイトの開発基�
 | Laravelの問い合わせ、メール | `specifications/backend/laravel/contact-and-mail.md`、`backend/laravel/app/Notifications/`、`backend/laravel/resources/views/emails/` |
 | Laravelの投稿、カテゴリ、タグ | `specifications/backend/laravel/content-management.md`、`backend/laravel/app/Models/`、`backend/laravel/app/Http/Controllers/` |
 | Laravelのファイル管理 | `specifications/backend/laravel/file-management.md`、`backend/laravel/app/Services/UploadedFileService.php`、`backend/laravel/config/filesystems.php` |
+| LaravelのValidation、Security | `specifications/backend/laravel/validation-and-security.md`、`backend/laravel/app/Http/Requests/`、`backend/laravel/app/Http/Middleware/`、`backend/laravel/config/` |
 | Laravelの実装規約 | `specifications/backend/laravel/architecture.md`、`.cursor/rules/dev-backend.mdc`、`backend/laravel/` |
 | WordPress | `.cursor/rules/cms-overview.mdc`、`specifications/backend/wordpress/` |
 | Next.js | `specifications/frontend/next/architecture.md`、`specifications/frontend/next/authentication.md`、`specifications/frontend/next/data-fetching.md`、`specifications/frontend/next/metadata-and-pwa.md`、`specifications/frontend/next/testing.md`、`specifications/frontend/next/`、`frontend/next/` |
