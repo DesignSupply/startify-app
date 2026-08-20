@@ -227,10 +227,6 @@ make laravel-test
 
 ## 13. 移行元資料
 
-本書は、次の既存資料から設計意図を抽出し、現在のRoute、Middleware、Controller、Form Request、Model、Service、Helper、Filesystem、Migration、Blade、Docker設定、テストと照合して再構成しています。
+本書は、`.cursor/rules/env-overview.mdc` から設計意図を抽出し、現在のRoute、Middleware、Controller、Form Request、Model、Service、Helper、Filesystem、Migration、Blade、Docker設定、テストと照合して再構成しています。
 
-- `.cursor/rules/app-overview.mdc`
-- `.cursor/rules/dev-backend.mdc`
-- `.cursor/rules/env-overview.mdc`
-
-これらはドキュメント移行が完了するまで設計意図の確認に使用しますが、Laravelのファイル管理に関する現在仕様としては本書と現在の実装を優先します。
+この資料はドキュメント移行が完了するまで設計意図の確認に使用しますが、Laravelのファイル管理に関する現在仕様としては本書と現在の実装を優先します。
