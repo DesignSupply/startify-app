@@ -288,7 +288,6 @@ make laravel-test
 
 本書は、次の既存資料から設計意図を抽出し、現在のRoute、Middleware、Controller、Form Request、Model、Migration、Seeder、Blade、テストと照合して再構成しています。
 
-- `specifications/backend/laravel/TASK_015.md`
 - `.cursor/rules/app-overview.mdc`
 - `.cursor/rules/dev-backend.mdc`
 

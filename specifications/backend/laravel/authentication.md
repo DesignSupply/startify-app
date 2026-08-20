@@ -346,11 +346,6 @@ make laravel-route
 
 本書は、次の既存資料から設計意図を抽出し、現在のコード、設定、Migration、Next.js側仕様と照合して再構成しています。
 
-- `specifications/backend/laravel/TASK_003.md`
-- `specifications/backend/laravel/TASK_004.md`
-- `specifications/backend/laravel/TASK_005.md`
-- `specifications/backend/laravel/TASK_006.md`
-- `specifications/backend/laravel/TASK_014.md`
 - `.cursor/rules/app-overview.mdc`
 - `.cursor/rules/dev-backend.mdc`
 

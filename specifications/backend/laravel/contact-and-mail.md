@@ -271,7 +271,6 @@ http://localhost:8025
 
 本書は、次の既存資料から設計意図を抽出し、現在のController、Form Request、Notification、Blade、Mail設定、Docker構成と照合して再構成しています。
 
-- `specifications/backend/laravel/TASK_011.md`
 - `.cursor/rules/app-overview.mdc`
 - `.cursor/rules/dev-backend.mdc`
 - `.cursor/rules/env-overview.mdc`

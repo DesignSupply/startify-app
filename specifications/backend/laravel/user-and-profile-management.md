@@ -267,15 +267,3 @@ make laravel-test
 | Guard、Session、ログイン、認証情報変更 | `specifications/backend/laravel/authentication.md` |
 | Validation、認可、CSRF、Log | `specifications/backend/laravel/validation-and-security.md` |
 | Controller、Service、Modelの責務 | `specifications/backend/laravel/architecture.md` |
-
-## 14. 移行元資料
-
-本書は次の実装タスクから設計意図を確認し、現在のRoute、Controller、Model、Blade、Migration、既存仕様、GitHub Issueと照合して再構成しています。
-
-- `specifications/backend/laravel/TASK_007.md`
-- `specifications/backend/laravel/TASK_008.md`
-- `specifications/backend/laravel/TASK_009.md`
-- `specifications/backend/laravel/TASK_010.md`
-- `specifications/backend/laravel/TASK_013.md`
-
-これらは過去の実装順序と作業記録を含みます。ユーザー・プロフィール管理の現在仕様としては本書と現在の実装を優先します。

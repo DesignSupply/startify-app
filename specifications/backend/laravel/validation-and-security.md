@@ -390,8 +390,6 @@ composer audit --locked
 
 本書は、次の既存資料から設計意図を確認し、現在のRoute、Middleware、Controller、Form Request、Model、Config、Blade、Docker設定、Composer、テスト、実行時Responseと照合して再構成しています。
 
-- `specifications/backend/laravel/TASKS.md`
-- `specifications/backend/laravel/TASK_003.md`〜`specifications/backend/laravel/TASK_015.md`
 - `.cursor/rules/app-overview.mdc`
 - `.cursor/rules/dev-backend.mdc`
 - `.cursor/rules/env-overview.mdc`

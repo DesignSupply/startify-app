@@ -90,7 +90,6 @@ related_paths:
 
 | 領域 | 現在の配置 | 内容 |
 | --- | --- | --- |
-| Laravel | `specifications/backend/laravel/TASKS.md`、`specifications/backend/laravel/TASK_*.md` | 実装済み機能の作業手順。残る詳細仕様を抽出後にArchive予定 |
 | WordPress | `specifications/backend/wordpress/TASKS.md` | 未整理のタスクリスト。現在のテーマ実装を基に仕様化予定 |
 | Docker | `specifications/server/docker/TASKS.md`、`specifications/server/docker/TASK_*.md` | 環境構築手順。現在のCompose、Makefile、Nginx設定と照合後に再編予定 |
 
@@ -154,7 +153,6 @@ specifications/
 │   └── cloudflare/
 │       └── next-static-deployment.md
 └── archive/
-    ├── backend/laravel/
     └── server/docker/
 ```
 

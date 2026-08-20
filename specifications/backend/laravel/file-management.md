@@ -80,7 +80,7 @@ Storage上のファイル実体と、`uploaded_files` テーブルのMetadataを
 | 文書・表計算・プレゼンテーション | `pdf`、`csv`、`doc`、`docx`、`xls`、`xlsx`、`ppt`、`pptx` |
 | 動画 | `mp4` |
 
-移行元の `TASK_012.md` にはTXTが記載されていますが、現在のValidationはTXTを許可していません。本書では現在実装を記録し、許可形式を変更するときはValidation、形式判定、画像処理環境、テストを同時に更新します。
+現在のValidationはTXTを許可していません。許可形式を変更するときはValidation、形式判定、画像処理環境、テストを同時に更新します。
 
 Laravelの `mimes` Ruleは、元ファイル名ではなく、ファイル内容から推測された拡張子を検証します。一方、現在の保存処理は `getClientOriginalExtension()` を使用します。この不一致はIssue #29で管理します。
 
@@ -229,7 +229,6 @@ make laravel-test
 
 本書は、次の既存資料から設計意図を抽出し、現在のRoute、Middleware、Controller、Form Request、Model、Service、Helper、Filesystem、Migration、Blade、Docker設定、テストと照合して再構成しています。
 
-- `specifications/backend/laravel/TASK_012.md`
 - `.cursor/rules/app-overview.mdc`
 - `.cursor/rules/dev-backend.mdc`
 - `.cursor/rules/env-overview.mdc`
