@@ -274,12 +274,12 @@ http://localhost:6006/ でローカルサーバーが起動します。
 
 ## AI駆動開発
 
-本環境では、Cursorを使用したAI駆動開発を想定した仕様書ドキュメントを収録しています。 `/specifications/` ディレクトリ配下にマークダウン形式で、機能実装のタスクを記載しており、それらをコンテキストとして読み込んだプロンプトを実行することで、より再現性の高い機能実装が可能になります。
+本環境では、特定のEditorやAgent製品に依存しないAI駆動開発用ドキュメントを収録しています。Agent共通の必須指示は `AGENTS.md`、現在の設計と実装規約は `specifications/` を参照し、人間とAIが同じContextを共有して開発を進めます。
 
 ---
 
 ## 備考
 
-- 開発環境概要については `/.cursor/rules/env-overview.mdc` のファイルを参照ください。
-- 開発環境で使用される変数は `/server/.env` で管理できます。
+- Dockerローカル開発環境の構成は [概要仕様](specifications/server/docker/overview.md)、構築と操作は [セットアップ・運用手順](specifications/server/docker/setup-and-operations.md) を参照してください。
+- 開発環境で使用される変数は `server/.env` で管理できます。
 - この開発環境では、Laravel、WordPressのアプリケーションディレクトリがドキュメントルート外にインストールされる形になります。

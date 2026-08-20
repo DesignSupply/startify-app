@@ -224,9 +224,3 @@ make laravel-test
 ```
 
 現在の自動テストは基本Test 2件だけで、ファイルのアップロード、表示、更新、プレビュー、ダウンロード、削除、認証境界を直接検証しません。調査・レビューだけの場合は、Storageへのファイル保存、DBレコードの作成・更新・削除を行いません。
-
-## 13. 移行元資料
-
-本書は、`.cursor/rules/env-overview.mdc` から設計意図を抽出し、現在のRoute、Middleware、Controller、Form Request、Model、Service、Helper、Filesystem、Migration、Blade、Docker設定、テストと照合して再構成しています。
-
-この資料はドキュメント移行が完了するまで設計意図の確認に使用しますが、Laravelのファイル管理に関する現在仕様としては本書と現在の実装を優先します。

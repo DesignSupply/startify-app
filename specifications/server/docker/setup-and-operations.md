@@ -578,17 +578,3 @@ Laravel・WordPressのSource、Application `.env`、Upload、証明書、JWT鍵�
 | [#40](https://github.com/DesignSupply/startify-app/issues/40) | `make laravel-storage-link`と公開Link作成を安全に再実行できない |
 
 Issue解決時は、実装、`README.md`、`specifications/server/docker/overview.md`、本書を同じ現在状態へ更新します。
-
-## 14. 移行元資料
-
-本書は、次の既存資料にある構築・検証・トラブルシューティングの意図を確認し、現在のMakefile、Compose、Dockerfile、Nginx、PHP、MariaDB、Mailpit、Application設定と照合して再構成しています。
-
-- `README.md`
-- `.cursor/rules/env-overview.mdc`
-- `specifications/server/docker/TASKS.md`
-- `specifications/server/docker/TASK_001.md`
-- `specifications/server/docker/TASK_002.md`
-- `specifications/server/docker/TASK_003.md`
-- `specifications/server/docker/TASK_004.md`
-
-旧資料にある設定Fileの新規作成工程、HTTP URL、旧環境変数名、現在の実装と異なるLink作成手順は、現在の操作手順として引き継いでいません。

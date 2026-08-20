@@ -384,10 +384,4 @@ composer audit --locked
 | Upload、Storage、Preview、Download | `specifications/backend/laravel/file-management.md` |
 | 一般・管理者プロフィール、一般ユーザー管理 | `specifications/backend/laravel/user-and-profile-management.md` |
 | Next.jsの認証Client | `specifications/frontend/next/authentication.md` |
-| Docker、Nginx、PHP | `.cursor/rules/env-overview.mdc`、`server/`。現在仕様への移行前 |
-
-## 20. 移行元資料
-
-本書は、`.cursor/rules/env-overview.mdc` から設計意図を確認し、現在のRoute、Middleware、Controller、Form Request、Model、Config、Blade、Docker設定、Composer、テスト、実行時Responseと照合して再構成しています。
-
-この資料はドキュメント移行が完了するまで設計意図の確認に使用しますが、LaravelのValidation・Securityに関する現在仕様としては本書、各機能仕様、現在の実装を優先します。
+| Docker、Nginx、PHP | `specifications/server/docker/overview.md`、`specifications/server/docker/setup-and-operations.md`、`server/` |

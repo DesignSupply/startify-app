@@ -266,9 +266,3 @@ http://localhost:8025
 ```
 
 現在、問い合わせ入力、確認、送信、完了、宛先、Template、送信失敗を直接検証するFeature Testはありません。外部SMTPや実在アドレスへの送信を自動テストの前提にせず、LaravelのNotification Fakeなどを使用します。
-
-## 14. 移行元資料
-
-本書は、`.cursor/rules/env-overview.mdc` から設計意図を抽出し、現在のController、Form Request、Notification、Blade、Mail設定、Docker構成と照合して再構成しています。
-
-この資料はドキュメント移行が完了するまで設計意図の確認に使用しますが、問い合わせとメールの現在仕様としては本書と現在の実装を優先します。

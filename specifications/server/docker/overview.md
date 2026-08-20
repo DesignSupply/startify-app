@@ -346,16 +346,3 @@ Issue解決時は実装だけでなく、本書のImage、環境変数、制約�
 - Symbolic LinkがContainer内の正しいPathを参照する
 
 具体的なCommand、初回構築、日常操作、破棄時の注意は `specifications/server/docker/setup-and-operations.md` を参照してください。
-
-## 16. 移行元資料
-
-本書は、次の既存資料から設計意図を確認し、現在のCompose、Dockerfile、Nginx、PHP、MariaDB、Mailpit、Makefile、Application設定、Git管理状態、起動中Containerと照合して再構成しています。
-
-- `.cursor/rules/env-overview.mdc`
-- `specifications/server/docker/TASKS.md`
-- `specifications/server/docker/TASK_001.md`
-- `specifications/server/docker/TASK_002.md`
-- `specifications/server/docker/TASK_003.md`
-- `specifications/server/docker/TASK_004.md`
-
-これらはドキュメント移行が完了するまで設計意図の確認に使用しますが、Dockerローカル環境の現在仕様としては本書、関連する現在仕様、現在の実装を優先します。

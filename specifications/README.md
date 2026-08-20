@@ -93,7 +93,6 @@ related_paths:
 | 領域 | 現在の配置 | 内容 |
 | --- | --- | --- |
 | WordPress | `specifications/backend/wordpress/TASKS.md` | 未整理のタスクリスト。現在のテーマ実装を基に仕様化予定 |
-| Docker | `specifications/server/docker/TASKS.md`、`specifications/server/docker/TASK_*.md` | 現在仕様への移行済み資料。完全移行監査後にRepositoryから除去予定 |
 
 ## 参照と更新の手順
 

@@ -89,7 +89,7 @@ Startify-Appは、WebアプリケーションおよびWebサイトの開発基�
 | WordPress | `.cursor/rules/cms-overview.mdc`、`specifications/backend/wordpress/` |
 | Next.js | `specifications/frontend/next/architecture.md`、`specifications/frontend/next/authentication.md`、`specifications/frontend/next/data-fetching.md`、`specifications/frontend/next/metadata-and-pwa.md`、`specifications/frontend/next/testing.md`、`specifications/frontend/next/`、`frontend/next/` |
 | デザイントークン、UI | `.cursor/rules/app-design.mdc`、`frontend/_design-tokens/`、`frontend/ui/` |
-| Docker、ローカル環境 | `.cursor/rules/env-overview.mdc`、`specifications/server/docker/`、`server/` |
+| Docker、ローカル環境 | `specifications/server/docker/overview.md`、`specifications/server/docker/setup-and-operations.md`、`server/` |
 | Next.jsのCloudflare配信 | `specifications/infrastructure/cloudflare/next-static-deployment.md` |
 
 `.cursor/rules/` と既存の `TASK_*.md` は移行前の資料を含みます。記述が現在の実装と一致することを確認してから利用してください。
