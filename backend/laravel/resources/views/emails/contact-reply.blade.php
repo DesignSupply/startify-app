@@ -15,7 +15,7 @@
             <p>【会社名】<br>{{ $company }}</p>
         @endif
 
-        <p> 【メールアドレス】</strong><br>{{ $email }}</p>
+        <p>【メールアドレス】<br>{{ $email }}</p>
 
         @if(!empty($phone))
             <p>【電話番号】<br>{{ $phone }}</p>
