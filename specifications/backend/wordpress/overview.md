@@ -1,7 +1,7 @@
 ---
 title: WordPress 概要仕様
 status: current
-last_updated: 2026-08-27
+last_updated: 2026-08-31
 related_paths:
   - backend/_cms-webroot/
   - backend/wordpress/
@@ -17,7 +17,7 @@ related_paths:
 
 Startify-AppにおけるWordPressの役割、公開構成、Git管理境界、独自Theme・Pluginの位置付け、およびWordPress Coreとの統合方針を定義します。
 
-本書はWordPress領域全体の概要仕様です。WordPress Coreの内部仕様を再定義する文書ではありません。クラシックテーマのTemplate、Theme Support、Asset、Metadata、画面表示などの詳細は`specifications/backend/wordpress/classic-theme.md`、投稿・Taxonomy・検索・REST API・Ajaxの詳細は`specifications/backend/wordpress/content-and-api.md`で定義します。これらの後続仕様書は現在作成予定です。
+本書はWordPress領域全体の概要仕様です。WordPress Coreの内部仕様を再定義する文書ではありません。クラシックテーマのTemplate、Theme Support、Asset、Metadata、画面表示などの詳細は`specifications/backend/wordpress/classic-theme.md`で定義します。投稿・Taxonomy・検索・REST API・Ajaxの詳細を扱う`specifications/backend/wordpress/content-and-api.md`は現在作成予定です。
 
 Docker Container、Nginx、MariaDB、Mailpit、初回Setup Commandの詳細は、`specifications/server/docker/overview.md`と`specifications/server/docker/setup-and-operations.md`を参照します。
 
@@ -266,10 +266,10 @@ Dockerを使用する具体的な確認手順は`specifications/server/docker/se
 | --- | --- |
 | Docker構成 | `specifications/server/docker/overview.md` |
 | Setupと運用 | `specifications/server/docker/setup-and-operations.md` |
-| クラシックテーマ | `specifications/backend/wordpress/classic-theme.md`、作成予定 |
+| クラシックテーマ | `specifications/backend/wordpress/classic-theme.md` |
 | コンテンツとAPI | `specifications/backend/wordpress/content-and-api.md`、作成予定 |
 | 公開Symbolic Link | Issue #39 |
-| Theme、表示、Metadata、メール、管理画面 | Issue #42〜#44、#47〜#56 |
+| Theme、表示、Metadata、メール、管理画面 | Issue #42〜#44、#47〜#57 |
 | 投稿、検索、REST API、Ajax | Issue #42〜#47 |
 
 詳細な既知課題は、対象機能を定義する仕様書へ記録します。本書へすべてのIssue詳細を重複させません。現在のIssue範囲は後続仕様書が未作成の間だけ本書で案内し、`classic-theme.md`と`content-and-api.md`の作成後に各文書へ移します。
