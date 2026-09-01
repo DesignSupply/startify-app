@@ -75,7 +75,7 @@ Startify-Appには、Webアプリケーション開発およびWebサイト制�
   - WebGL（Three.js）サンプルコード
   - GLSLシェーダー対応
 - Storybook
-  - 各種UIコンポーネントのデザイン管理・テスト
+  - 各種UIコンポーネントの表示・確認
 
 ## 導入
 
