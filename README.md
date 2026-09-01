@@ -2,7 +2,7 @@
 
 Startify-Appは、AI駆動開発に対応できるように設計されたウェブアプリケーション・ウェブサイトの開発環境です。DockerやNode.jsの環境を使用して、バックエンドとフロントエンドに対応する、さまざまなフレームワークを用いた開発環境を構築します。
 
-フレームワークごとにウェブプリケーションに必要となる基本的な機能を実装したコードが初期状態で備わっていますが、開発環境の構築手順やアプリケーションの概要を記載した各種手順書などを活用することで、新たな機能の実装や開発環境の拡張をAIを活用したコーディングによって効率的に進めることができます。
+フレームワークごとにウェブアプリケーションに必要となる基本的な機能を実装したコードが初期状態で備わっていますが、開発環境の構築手順やアプリケーションの概要を記載した各種手順書などを活用することで、新たな機能の実装や開発環境の拡張をAIを活用したコーディングによって効率的に進めることができます。
 
 ## 開発環境構築・実装済み機能
 
@@ -12,7 +12,7 @@ Startify-Appには、Webアプリケーション開発およびWebサイト制�
   - Nginx
     - SSL証明書対応 ※ホストOS側でインストール要
   - PHP
-  - MySQL(MariaDB)
+  - MariaDB
   - Mailpit
     - ウェブメール画面（localhost:8025）
 - Laravel
@@ -39,10 +39,10 @@ Startify-Appには、Webアプリケーション開発およびWebサイト制�
 - Next.js
   - リンター／フォーマッター
   - 環境変数のサンプル設定
-  - TailwindCSSの使用
+  - Tailwind CSSの使用
   - Sassのコンパイル
   - UIコンポーネント最適化
-  - メタデータ最適化（matadata API）
+  - メタデータ最適化（Metadata API）
   - フォント最適化（next/font）
   - サイトマップ出力
   - PWA対応
@@ -50,15 +50,16 @@ Startify-Appには、Webアプリケーション開発およびWebサイト制�
     - ユニットテスト（Vitest, React Testing Library）
     - フォーム処理・バリデーション（React Hook Form、Zod）
     - UIグローバルステート管理（Zustand）
-    - 認証APIを使ったログインフォームと認証ルーティング（バックエンド:Laravel）
-    - モックJSONのデータ取得と動的ルーティングページ
+    - 認証APIを使ったログインフォームと認証ルーティング（バックエンド：Laravel）
+    - サーバー状態管理（TanStack Query）とZodによる取得データ検証
+    - モックJSONを使った投稿一覧・詳細の動的ルーティングページ
 - Vite
   - 各種リンター・フォーマッター
   - React、Vue.jsの使用
-  - TailwindCSSの使用
+  - Tailwind CSSの使用
   - Sassのコンパイル
   - Pug、Handlebarsのコンパイル
-  - マルチページビルト対応
+  - マルチページBuild対応
   - メタデータの一元管理
   - 各種ライブラリのサンプルコード
   - WebGL（Three.js）サンプルコード
@@ -66,16 +67,16 @@ Startify-Appには、Webアプリケーション開発およびWebサイト制�
 - Astro
   - 各種リンター・フォーマッター
   - React、Vue.jsの使用
-  - TailwindCSSの使用
+  - Tailwind CSSの使用
   - Sassのコンパイル
-  - マルチページビルト対応
+  - マルチページBuild対応
   - メタデータの一元管理
-  - markdownのコンテンツ管理と動的ページ生成
+  - Markdownのコンテンツ管理と動的ページ生成
   - 各種ライブラリのサンプルコード
   - WebGL（Three.js）サンプルコード
   - GLSLシェーダー対応
 - Storybook
-  - 各種UIコンポーネントのデザイン管理・テスト
+  - 各種UIコンポーネントの表示・確認
 
 ## 導入
 
@@ -83,11 +84,18 @@ Startify-Appには、Webアプリケーション開発およびWebサイト制�
 
 用意された各種Dockerfileを使用してDockerコンテナーを起動します。
 
+最初に`server/.env.example`から`server/.env`を準備します。`server/.env`がすでに存在する場合は上書きせず、現在の設定を確認して使用してください。
+
+次のmkcert導入コマンドは、macOSでHomebrewを使用する場合の手順です。LinuxやWindowsなど、その他の環境では[mkcert公式のInstallation手順](https://github.com/FiloSottile/mkcert#installation)にしたがってインストールしてください。
+
 ```bash
-# 証明書が必要な場合にはホストOSでインストール
+cd ./server
+cp -n .env.example .env
+
+# macOSで証明書が必要な場合にはホストOSへインストール
 brew install mkcert
 mkcert -install
-cd ./server/docker/nginx
+cd docker/nginx
 mkdir -p certs
 cd certs
 mkcert localhost cms.localhost testing.localhost api.localhost
@@ -124,15 +132,23 @@ make laravel-migrate
 make laravel-seed
 ```
 
-http://localhost/ にアクセスすることでLaravelのアプリケーションフロントページが表示されます。
+`make laravel-keygen`は`backend/laravel/.env`とAPP_KEYの初回生成用です。既存環境へ再実行すると現在の設定を上書きするため、すでに`.env`が存在する場合は実行しないでください。この改善は[Issue #38](https://github.com/DesignSupply/startify-app/issues/38)で管理しています。
+
+Storage Link用の2コマンドも初回セットアップ時に限って実行します。[Issue #40](https://github.com/DesignSupply/startify-app/issues/40)が解決するまでは、既存Linkの修復や再作成を目的として再実行しないでください。詳細は[Dockerローカル開発環境 セットアップ・運用手順](specifications/server/docker/setup-and-operations.md)を参照してください。
+
+https://localhost/ にアクセスすることでLaravelのアプリケーションフロントページが表示されます。
 
 また、認証APIを使用する場合にはSSLに対応させるためキーペアを生成します。
 
 ```bash
+cd ./server
+
 docker compose exec app bash -lc "mkdir -p /var/www/html/laravel/storage/keys && \
   openssl genrsa -out /var/www/html/laravel/storage/keys/jwtRS256.key 4096 && \
   openssl rsa -in /var/www/html/laravel/storage/keys/jwtRS256.key -pubout -out /var/www/html/laravel/storage/keys/jwtRS256.key.pub"
 ```
+
+このコマンドは既存鍵を上書きします。`backend/laravel/storage/keys/`に鍵が存在しない初回セットアップ時だけ実行し、生成した秘密鍵と公開鍵をGit管理対象へ追加しないでください。
 
 ### 3. WordPressのインストール・セットアップ
 
@@ -143,12 +159,13 @@ cd ./server
 
 # WordPressのインストール・セットアップ
 make wp-setup
-
-# シンボリックリンク設定
-make wp-symlinks
 ```
 
-http://cms.localhost/ にアクセスすることでWordPressのサイトトップページが表示されます。
+`make wp-setup`には公開用シンボリックリンクの作成も含まれるため、続けて`make wp-symlinks`を実行する必要はありません。
+
+`make wp-setup`はWordPress本体、設定、Database、公開Linkを作成する初回構築用コマンドです。既存のWordPress、`wp-config.php`、Database、Plugin、Theme、Uploadがある環境へ再実行しないでください。[Issue #39](https://github.com/DesignSupply/startify-app/issues/39)が解決するまでは、既存環境で`make wp-symlinks`を個別に再実行せず、公開Linkの状態を[Dockerローカル開発環境 セットアップ・運用手順](specifications/server/docker/setup-and-operations.md)にしたがって確認してください。
+
+https://cms.localhost/ にアクセスすることでWordPressのサイトトップページが表示されます。
 
 ### 4. Next.jsのインストール（ローカル環境）
 
@@ -182,45 +199,33 @@ http://localhost:3000/ にアクセスすることでNext.jsのアプリケー�
 **品質確認**
 
 ```bash
+cd ./frontend/next
 npm run check
 ```
 
 `npm run check` はlint・型チェック・テストの一括実行です。個別実行する場合は `npm run typecheck` や `npm run test` も利用できます。
 
-**Production相当のStatic Export**
+**Cloudflare互換性確認**
 
 ```bash
+cd ./frontend/next
 npm run build:cf
 npm run preview:cf
-npm run deploy:cf
-```
-
-**Staging**
-
-```bash
-npm run build:cf:staging
-npm run preview:cf:staging
-npm run deploy:cf:staging
 ```
 
 - 日常開発は `npm run dev` を使用する
-- Cloudflare互換性確認はWranglerプレビュー（`preview:cf` / `preview:cf:staging`）を使用する
+- Cloudflare互換性確認はWrangler Previewを使用する
 - `out/` は生成物のためGit管理対象外
-- `.env.staging` はGit管理対象外（ローカルStagingビルド・デプロイ用）
-- Stagingデプロイは `main` へマージ時にGitHub Actionsから自動実行される
-- GitHub Actions画面から手動再デプロイも可能（`workflow_dispatch`）
-- Productionデプロイの自動化は未実装（現状はローカルから `npm run deploy:cf` のみ）
-- 詳細は [`specifications/infrastructure/cloudflare/next-static-deployment.md`](specifications/infrastructure/cloudflare/next-static-deployment.md) を参照
 
-### 5. Vite環境の静的コーディング環境構築
+### 5. Vite静的ページ制作環境の構築
 
-ローカル環境にNode.jsをインストール後、Viteのコーディング環境を構築します。
+Viteは、HTML、Pug、Handlebars、React、Vue.jsなどを使用できる静的ページ制作向けのボイラープレートです。ローカル環境にNode.jsをインストール後、次のコマンドで起動します。
 
 ```bash
 cd ./frontend/vite
 
 # インストール
-npm install
+npm ci
 
 # ローカルサーバー起動
 npm run dev
@@ -228,15 +233,15 @@ npm run dev
 
 http://localhost:2000/ でローカルサーバーが起動します。
 
-### 6. Astro環境の静的コーディング環境構築
+### 6. Astro静的ページ制作環境の構築
 
-ローカル環境にNode.jsをインストール後、Astroのコーディング環境を構築します。
+Astroは、Astroコンポーネント、Markdown、React、Vue.jsなどを使用できる静的ページ制作向けのボイラープレートです。ローカル環境にNode.jsをインストール後、次のコマンドで起動します。
 
 ```bash
 cd ./frontend/astro
 
 # インストール
-npm install
+npm ci
 
 # ローカルサーバー起動
 npm run dev
@@ -252,7 +257,7 @@ http://localhost:2000/ でローカルサーバーが起動します。
 cd ./frontend/ui
 
 # インストール
-npm install
+npm ci
 
 # ローカルサーバー起動
 npm run storybook
@@ -262,13 +267,13 @@ http://localhost:6006/ でローカルサーバーが起動します。
 
 ---
 
-## アプリケーション要件
+## 動作確認環境
 
-- Docker: ^27.10.0
-- docker-compose: ^2.31.0
-- Docker Desktop: ^4.0
-- Node.js: ^22.12.0
-- npm: ^10.8.2
+- Docker Engine: `27.4.0`
+- Docker Compose: `2.31.0`
+- Docker Desktop: `4.37.2`
+- Node.js: `22.12.0`（`frontend/.nvmrc`の指定値）
+- npm: `10.8.2`（`frontend/next/package.json`の指定値）
 
 ---
 
@@ -281,5 +286,5 @@ http://localhost:6006/ でローカルサーバーが起動します。
 ## 備考
 
 - Dockerローカル開発環境の構成は [概要仕様](specifications/server/docker/overview.md)、構築と操作は [セットアップ・運用手順](specifications/server/docker/setup-and-operations.md) を参照してください。
-- 開発環境で使用される変数は `server/.env` で管理できます。
+- Dockerローカル開発環境の変数は `server/.env` で管理します。Laravelや各フロントエンドの環境変数は、それぞれのアプリケーション配下で管理します。
 - この開発環境では、Laravel、WordPressのアプリケーションディレクトリがドキュメントルート外にインストールされる形になります。

@@ -8,10 +8,10 @@
 
 - 現在仕様は、既存の設計意図と現在のコード、設定、テスト、CIを照合して記録します。
 - 仕様書では、現在実装されている内容と、未実装の方針や将来案を明確に区別します。
-- 同じ仕様をREADME、Cursorルール、複数の仕様書へ重複して記載せず、正本となる文書へ参照を集約します。
+- 同じ仕様をREADME、ツール固有の補助指示、複数の仕様書へ重複して記載せず、正本となる文書へ参照を集約します。
 - 実装変更で仕様が変わる場合は、関連する仕様書も同じ作業範囲で更新します。
 - 仕様書と実装の不一致を発見した場合は、どちらかを根拠なく上書きせず、設計意図と現在の実装を確認します。
-- 過去の実装手順は削除せず、現在仕様への情報移行後にArchiveへ移します。
+- 古くなった文書は、有効な内容を現在仕様へ反映して参照先を更新した後、リポジトリから削除します。過去の内容はGit履歴で確認します。
 
 ## 文書の種類
 
@@ -25,10 +25,6 @@
 
 手順のうち、AIエージェントが繰り返し実行できる定型作業は、必要に応じて `.agents/skills/` へ切り出します。仕様書には目的、前提、完了条件を残し、Skillには実行手順を記載します。
 
-### Archive
-
-完了済みの実装タスク、廃止された設計、過去の移行手順を保存します。設計意図や変更履歴の調査には利用できますが、現在の実装指示としては使用しません。
-
 ## 文書ステータス
 
 新しく作成または再編する仕様書は、次のステータスを明示します。
@@ -38,9 +34,8 @@
 | `current` | 現在のコード、設定、運用と照合済み | 現在仕様の正本として参照する |
 | `draft` | 内容を整理中、または照合が未完了 | 参考資料として扱い、実装前に確認する |
 | `planned` | 未実装の方針や将来計画 | 現在仕様として適用しない |
-| `archived` | 完了、廃止、置換済み | 履歴調査にのみ使用する |
 
-ステータスがない既存文書は、移行が完了するまで `draft` 相当として扱います。ただし、後述する「現在仕様」に明示した文書は除きます。
+ステータスがない文書は `draft` 相当として扱います。ただし、後述する「現在仕様」に明示した文書は除きます。
 
 ## 推奨メタデータ
 
@@ -57,7 +52,7 @@ related_paths:
 ```
 
 - `title`: 文書の内容を表す名称
-- `status`: `current`、`draft`、`planned`、`archived` のいずれか
+- `status`: `current`、`draft`、`planned` のいずれか
 - `last_updated`: 内容を最後に実装と照合した日付
 - `related_paths`: 仕様の根拠または主な適用対象となるリポジトリ相対パス
 
@@ -84,6 +79,7 @@ related_paths:
 | WordPress | [WordPress コンテンツ・API仕様](backend/wordpress/content-and-api.md) | `current`。投稿、Taxonomy、検索、Archive、REST API、Ajaxを記録 |
 | Docker | [Dockerローカル開発環境 概要仕様](server/docker/overview.md) | `current`。Service構成、Network、Volume、Host、HTTPS、環境変数、ローカル環境の境界を記録 |
 | Docker | [Dockerローカル開発環境 セットアップ・運用手順](server/docker/setup-and-operations.md) | `current`。初回構築、日常操作、検証、トラブルシューティング、破棄時の注意を記録 |
+| デザインシステム | [デザインシステム・UIコンポーネント仕様](frontend/ui/design-system.md) | `current`。デザイントークン、Storybook、UIコンポーネント、検証状況を記録 |
 | Next.js | [Next.jsアプリケーション アーキテクチャ仕様](frontend/next/architecture.md) | `current`。実行環境、Static Export、ルーティング、コンポーネント境界を記録 |
 | Next.js | [Next.jsアプリケーション 認証仕様](frontend/next/authentication.md) | `current`。Split Token、APIクライアント、認証ルーティング、フォームを記録 |
 | Next.js | [Next.jsアプリケーション データ取得・投稿表示仕様](frontend/next/data-fetching.md) | `current`。TanStack Query、投稿一覧・詳細、ページネーション、実行時検証を記録 |
@@ -97,7 +93,7 @@ related_paths:
 
 1. ルートの `AGENTS.md` とこのREADMEを読む
 2. 対象領域の `current` な仕様書を確認する
-3. 関連する既存の `TASK_*.md` や `.cursor/rules/` から設計意図を確認する
+3. 必要に応じてGit履歴、GitHub Issue、ユーザーから提供された過去資料から設計意図を確認する
 4. 現在のコード、設定、テスト、CIと照合する
 5. 一致する内容を現在仕様へ反映する
 6. 不一致や未確定事項を、現在仕様、将来計画、要確認事項に分ける
@@ -112,17 +108,15 @@ related_paths:
 - コード表記で示すリポジトリ内のファイルパスは、リポジトリルートからの相対パスで記載します。Markdownリンクのリンク先は、リンク元ファイルからの相対パスで記載します。
 - コマンドには実行ディレクトリまたは前提条件を明記します。
 - 環境変数の実値、秘密情報、ローカル固有の設定は記載しません。
-- 文書の移動や名称変更を行った場合は、README、`AGENTS.md`、Cursorルールを含む参照元を更新します。
+- 文書の移動や名称変更を行った場合は、README、`AGENTS.md`、ツール固有の補助指示を含む参照元を更新します。
 
-## 推奨する構成
+## 現在の構成
 
-ドキュメント移行後は、次の構成を基本とします。名称や分割単位は、既存文書から現在仕様を抽出する過程で調整できます。
+現在仕様として管理している文書は、次の構成です。新しい領域を追加するときは、対象コードの責務に合わせて分割単位を決め、この構成と「現在のドキュメント」を更新します。
 
 ```text
 specifications/
 ├── README.md
-├── architecture/
-│   └── repository-structure.md
 ├── backend/
 │   ├── laravel/
 │   │   ├── overview.md
@@ -140,7 +134,8 @@ specifications/
 │       ├── classic-theme.md
 │       └── content-and-api.md
 ├── frontend/
-│   ├── design-system.md
+│   ├── ui/
+│   │   └── design-system.md
 │   └── next/
 │       ├── architecture.md
 │       ├── authentication.md
@@ -150,24 +145,20 @@ specifications/
 ├── infrastructure/
 │   └── cloudflare/
 │       └── next-static-deployment.md
-├── server/
+└── server/
 │   └── docker/
 │       ├── overview.md
 │       └── setup-and-operations.md
-└── archive/
-    └── server/docker/
 ```
 
-この構成は移行先の指針であり、未作成の文書を現在仕様として扱うものではありません。
+## 過去資料の扱い
 
-## Archiveへの移動条件
-
-既存のタスク文書は、次の条件を満たしてからArchiveへ移します。
+古い仕様書や作業記録のための専用保存領域は設けません。次の条件を満たしてからリポジトリから削除します。
 
 1. 現在も有効な設計意図と実装規約を抽出した
 2. 現在のコード、設定、テスト、CIとの不一致を確認した
 3. 必要な内容を `current` な仕様書へ移した
-4. 移動後の参照先とリンクを更新した
-5. Git差分上で、内容の削除ではなく移動として追跡できる状態にした
+4. 削除後の参照先とリンクを更新した
+5. 必要な設計意図や対応状況が、現在仕様またはGitHub Issueから確認できる状態にした
 
-Archiveへの移動と現在仕様の大幅な書き換えは、レビューしやすいよう原則として別コミットに分けます。
+古い文書の削除と現在仕様の大幅な書き換えは、レビューしやすいよう原則として別コミットに分けます。削除後の内容や変更経緯はGit履歴から確認します。

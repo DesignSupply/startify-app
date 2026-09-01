@@ -28,7 +28,7 @@ Startify-Appは、WebアプリケーションおよびWebサイトの開発基�
 4. `specifications/` の現在仕様
 5. 対象コード、設定、テスト、CIが示す現在の実装事実
 6. `.cursor/rules/` など、ツール固有の補助指示
-7. Archiveされた資料や完了済みの実装タスク
+7. Git履歴、完了済みのGitHub Issue、ユーザーから提供された過去資料
 
 仕様書と実装が一致しない場合は、片方を根拠なく正しいものとして上書きしないでください。差異を確認し、依頼の範囲内で解消できない場合はユーザーへ報告してください。
 
@@ -64,17 +64,16 @@ Startify-Appは、WebアプリケーションおよびWebサイトの開発基�
 
 ## 仕様書の扱い
 
-- `specifications/` は、現在の設計と実装規約を記録する正本として整備します。ドキュメントの移行が完了するまでは、現在仕様として明示された文書のみを正本として扱ってください。
-- `TASK_*.md` と `TASKS.md` には完了済みの実装手順や古い記述が含まれるため、現在仕様として無条件に適用しないでください。
-- 完了済みタスクやArchive資料は、設計意図や変更履歴を調査する目的で参照してください。
-- 現在仕様へ内容を移す場合は、既存文書の意図を確認したうえで、コード、設定、テスト、CIと照合してください。
+- `specifications/` は、現在の設計と実装規約を記録する正本です。文書のステータスを確認し、`current`な文書を現在仕様として扱ってください。
+- Git履歴、完了済みのGitHub Issue、ユーザーから提供された過去資料は、設計意図や変更履歴を調査する目的でのみ参照してください。
+- リポジトリ外の過去資料から現在仕様へ内容を移す場合は、資料の意図を確認したうえで、コード、設定、テスト、CIと照合してください。
 - READMEには利用者向けの概要と導線を置き、詳細仕様やエージェント向け指示を重複させないでください。
 - 文書には、リポジトリ内に実在するパス、スクリプト、環境変数、設定値を記載してください。
 - 未実装の方針、将来案、確認できない要件は、現在仕様と区別して明記してください。
 
 ## 現在の参照ルーティング
 
-ドキュメント再編が完了するまでは、次の資料と現在の実装を併せて確認してください。
+対象領域に応じて、次の資料と現在の実装を併せて確認してください。
 
 | 対象 | 主な参照先 |
 | --- | --- |
@@ -88,11 +87,9 @@ Startify-Appは、WebアプリケーションおよびWebサイトの開発基�
 | Laravelの実装規約 | `specifications/backend/laravel/architecture.md`、`backend/laravel/` |
 | WordPress | `specifications/backend/wordpress/overview.md`、`specifications/backend/wordpress/classic-theme.md`、`specifications/backend/wordpress/content-and-api.md`、`backend/wordpress/` |
 | Next.js | `specifications/frontend/next/architecture.md`、`specifications/frontend/next/authentication.md`、`specifications/frontend/next/data-fetching.md`、`specifications/frontend/next/metadata-and-pwa.md`、`specifications/frontend/next/testing.md`、`specifications/frontend/next/`、`frontend/next/` |
-| デザイントークン、UI | `.cursor/rules/app-design.mdc`、`frontend/_design-tokens/`、`frontend/ui/` |
+| デザイントークン、UI | `specifications/frontend/ui/design-system.md`、`frontend/_design-tokens/`、`frontend/ui/` |
 | Docker、ローカル環境 | `specifications/server/docker/overview.md`、`specifications/server/docker/setup-and-operations.md`、`server/` |
 | Next.jsのCloudflare配信 | `specifications/infrastructure/cloudflare/next-static-deployment.md` |
-
-`.cursor/rules/` と既存の `TASK_*.md` は移行前の資料を含みます。記述が現在の実装と一致することを確認してから利用してください。
 
 ## 検証方針
 
