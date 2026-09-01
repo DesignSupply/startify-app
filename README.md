@@ -148,10 +148,9 @@ cd ./server
 
 # WordPressのインストール・セットアップ
 make wp-setup
-
-# シンボリックリンク設定
-make wp-symlinks
 ```
+
+`make wp-setup`には公開用シンボリックリンクの作成も含まれるため、続けて`make wp-symlinks`を実行する必要はありません。
 
 http://cms.localhost/ にアクセスすることでWordPressのサイトトップページが表示されます。
 
