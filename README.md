@@ -133,7 +133,7 @@ make laravel-seed
 
 Storage Link用の2コマンドも初回セットアップ時に限って実行します。[Issue #40](https://github.com/DesignSupply/startify-app/issues/40)が解決するまでは、既存Linkの修復や再作成を目的として再実行しないでください。詳細は[Dockerローカル開発環境 セットアップ・運用手順](specifications/server/docker/setup-and-operations.md)を参照してください。
 
-http://localhost/ にアクセスすることでLaravelのアプリケーションフロントページが表示されます。
+https://localhost/ にアクセスすることでLaravelのアプリケーションフロントページが表示されます。
 
 また、認証APIを使用する場合にはSSLに対応させるためキーペアを生成します。
 
@@ -160,7 +160,7 @@ make wp-setup
 
 `make wp-setup`はWordPress本体、設定、Database、公開Linkを作成する初回構築用コマンドです。既存のWordPress、`wp-config.php`、Database、Plugin、Theme、Uploadがある環境へ再実行しないでください。[Issue #39](https://github.com/DesignSupply/startify-app/issues/39)が解決するまでは、既存環境で`make wp-symlinks`を個別に再実行せず、公開Linkの状態を[Dockerローカル開発環境 セットアップ・運用手順](specifications/server/docker/setup-and-operations.md)に従って確認してください。
 
-http://cms.localhost/ にアクセスすることでWordPressのサイトトップページが表示されます。
+https://cms.localhost/ にアクセスすることでWordPressのサイトトップページが表示されます。
 
 ### 4. Next.jsのインストール（ローカル環境）
 
