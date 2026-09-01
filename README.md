@@ -199,30 +199,16 @@ npm run check
 
 `npm run check` はlint・型チェック・テストの一括実行です。個別実行する場合は `npm run typecheck` や `npm run test` も利用できます。
 
-**Production相当のStatic Export**
+**Cloudflare互換性確認**
 
 ```bash
 npm run build:cf
 npm run preview:cf
-npm run deploy:cf
-```
-
-**Staging**
-
-```bash
-npm run build:cf:staging
-npm run preview:cf:staging
-npm run deploy:cf:staging
 ```
 
 - 日常開発は `npm run dev` を使用する
-- Cloudflare互換性確認はWranglerプレビュー（`preview:cf` / `preview:cf:staging`）を使用する
+- Cloudflare互換性確認はWrangler Previewを使用する
 - `out/` は生成物のためGit管理対象外
-- `.env.staging` はGit管理対象外（ローカルStagingビルド・デプロイ用）
-- Stagingデプロイは `main` へマージ時にGitHub Actionsから自動実行される
-- GitHub Actions画面から手動再デプロイも可能（`workflow_dispatch`）
-- Productionデプロイの自動化は未実装（現状はローカルから `npm run deploy:cf` のみ）
-- 詳細は [`specifications/infrastructure/cloudflare/next-static-deployment.md`](specifications/infrastructure/cloudflare/next-static-deployment.md) を参照
 
 ### 5. Vite静的ページ制作環境の構築
 
