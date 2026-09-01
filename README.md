@@ -138,6 +138,8 @@ https://localhost/ にアクセスすることでLaravelのアプリケーショ
 また、認証APIを使用する場合にはSSLに対応させるためキーペアを生成します。
 
 ```bash
+cd ./server
+
 docker compose exec app bash -lc "mkdir -p /var/www/html/laravel/storage/keys && \
   openssl genrsa -out /var/www/html/laravel/storage/keys/jwtRS256.key 4096 && \
   openssl rsa -in /var/www/html/laravel/storage/keys/jwtRS256.key -pubout -out /var/www/html/laravel/storage/keys/jwtRS256.key.pub"
@@ -194,6 +196,7 @@ http://localhost:3000/ にアクセスすることでNext.jsのアプリケー�
 **品質確認**
 
 ```bash
+cd ./frontend/next
 npm run check
 ```
 
@@ -202,6 +205,7 @@ npm run check
 **Cloudflare互換性確認**
 
 ```bash
+cd ./frontend/next
 npm run build:cf
 npm run preview:cf
 ```
