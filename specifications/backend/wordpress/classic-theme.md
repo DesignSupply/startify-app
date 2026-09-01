@@ -14,7 +14,7 @@ related_paths:
 
 Startify-Appで現在Git管理しているクラシックテーマについて、Template構成、共通部品、Theme Support、Asset、表示機能、Metadata、コメント、メール、管理画面調整、およびWordPress Coreとの統合方法を定義します。
 
-WordPress領域全体の役割、公開構成、Git管理境界、Coreとの責務境界は`specifications/backend/wordpress/overview.md`を参照します。カスタム投稿タイプ、Taxonomy、Query、検索、REST API、Ajaxの詳細は、作成予定の`specifications/backend/wordpress/content-and-api.md`で定義します。
+WordPress領域全体の役割、公開構成、Git管理境界、Coreとの責務境界は`specifications/backend/wordpress/overview.md`を参照します。カスタム投稿タイプ、Taxonomy、Query、検索、REST API、Ajaxの詳細は`specifications/backend/wordpress/content-and-api.md`で定義します。
 
 ## 1. 適用範囲
 
@@ -391,12 +391,6 @@ WordPress Core更新後は、Template、Theme Support、Asset、管理画面、M
 
 | Issue | 対象 |
 | --- | --- |
-| #42 | Ajax Sampleの受付、Nonce、入力、Response、Script |
-| #43 | 検索・Archive QueryとPagination |
-| #44 | REST APIでのPassword保護投稿 |
-| #45 | ブログ詳細REST API、詳細は`content-and-api.md`へ記録 |
-| #46 | ブログ一覧・検索REST API、詳細は`content-and-api.md`へ記録 |
-| #47 | REST API NamespaceとResponse Schema |
 | #48 | Context別Escape |
 | #49 | Canonical、OGP、Twitterの正規URL |
 | #50 | 画面BreadcrumbとJSON-LD |
@@ -408,7 +402,7 @@ WordPress Core更新後は、Template、Theme Support、Asset、管理画面、M
 | #56 | Theme SetupとAsset登録 |
 | #57 | Comment FormとComment一覧 |
 
-REST APIとQueryの詳細な課題は`content-and-api.md`へ移し、本書にはTheme表示へ直接影響する境界だけを残します。
+Ajax、REST API、Queryの詳細な課題は`content-and-api.md`で管理し、本書にはTheme表示へ直接影響する境界だけを残します。
 
 ## 15. Theme適用時の申し送り事項
 

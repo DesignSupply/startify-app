@@ -81,6 +81,7 @@ related_paths:
 | Laravel | [Laravelアプリケーション Validation・Security仕様](backend/laravel/validation-and-security.md) | `current`。入力検証、認証・認可境界、CSRF、Cookie、CORS、JWT、出力、ログ、依存監査を記録 |
 | WordPress | [WordPress 概要仕様](backend/wordpress/overview.md) | `current`。WordPress領域の役割、公開構成、Git管理境界、独自Theme・Plugin、Coreとの統合方針を記録 |
 | WordPress | [WordPress クラシックテーマ仕様](backend/wordpress/classic-theme.md) | `current`。Template、共通部品、Theme Support、Asset、表示、Metadata、コメント、メール、管理画面を記録 |
+| WordPress | [WordPress コンテンツ・API仕様](backend/wordpress/content-and-api.md) | `current`。投稿、Taxonomy、検索、Archive、REST API、Ajaxを記録 |
 | Docker | [Dockerローカル開発環境 概要仕様](server/docker/overview.md) | `current`。Service構成、Network、Volume、Host、HTTPS、環境変数、ローカル環境の境界を記録 |
 | Docker | [Dockerローカル開発環境 セットアップ・運用手順](server/docker/setup-and-operations.md) | `current`。初回構築、日常操作、検証、トラブルシューティング、破棄時の注意を記録 |
 | Next.js | [Next.jsアプリケーション アーキテクチャ仕様](frontend/next/architecture.md) | `current`。実行環境、Static Export、ルーティング、コンポーネント境界を記録 |
