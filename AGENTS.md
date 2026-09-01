@@ -88,7 +88,7 @@ Startify-Appは、WebアプリケーションおよびWebサイトの開発基�
 | Laravelの実装規約 | `specifications/backend/laravel/architecture.md`、`backend/laravel/` |
 | WordPress | `specifications/backend/wordpress/overview.md`、`specifications/backend/wordpress/classic-theme.md`、`specifications/backend/wordpress/content-and-api.md`、`backend/wordpress/` |
 | Next.js | `specifications/frontend/next/architecture.md`、`specifications/frontend/next/authentication.md`、`specifications/frontend/next/data-fetching.md`、`specifications/frontend/next/metadata-and-pwa.md`、`specifications/frontend/next/testing.md`、`specifications/frontend/next/`、`frontend/next/` |
-| デザイントークン、UI | `.cursor/rules/app-design.mdc`、`frontend/_design-tokens/`、`frontend/ui/` |
+| デザイントークン、UI | `specifications/frontend/ui/design-system.md`、`frontend/_design-tokens/`、`frontend/ui/` |
 | Docker、ローカル環境 | `specifications/server/docker/overview.md`、`specifications/server/docker/setup-and-operations.md`、`server/` |
 | Next.jsのCloudflare配信 | `specifications/infrastructure/cloudflare/next-static-deployment.md` |
 
