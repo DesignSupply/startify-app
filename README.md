@@ -85,11 +85,13 @@ Startify-Appには、Webアプリケーション開発およびWebサイト制�
 
 最初に`server/.env.example`から`server/.env`を準備します。`server/.env`がすでに存在する場合は上書きせず、現在の設定を確認して使用してください。
 
+次のmkcert導入コマンドは、macOSでHomebrewを使用する場合の手順です。LinuxやWindowsなど、その他の環境では[mkcert公式のInstallation手順](https://github.com/FiloSottile/mkcert#installation)に従ってインストールしてください。
+
 ```bash
 cd ./server
 cp -n .env.example .env
 
-# 証明書が必要な場合にはホストOSでインストール
+# macOSで証明書が必要な場合にはホストOSへインストール
 brew install mkcert
 mkcert -install
 cd docker/nginx
