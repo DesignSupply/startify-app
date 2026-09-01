@@ -12,7 +12,7 @@ Startify-Appには、Webアプリケーション開発およびWebサイト制�
   - Nginx
     - SSL証明書対応 ※ホストOS側でインストール要
   - PHP
-  - MySQL（MariaDB）
+  - MariaDB
   - Mailpit
     - ウェブメール画面（localhost:8025）
 - Laravel
@@ -286,5 +286,5 @@ http://localhost:6006/ でローカルサーバーが起動します。
 ## 備考
 
 - Dockerローカル開発環境の構成は [概要仕様](specifications/server/docker/overview.md)、構築と操作は [セットアップ・運用手順](specifications/server/docker/setup-and-operations.md) を参照してください。
-- 開発環境で使用される変数は `server/.env` で管理できます。
+- Dockerローカル開発環境の変数は `server/.env` で管理します。Laravelや各フロントエンドの環境変数は、それぞれのアプリケーション配下で管理します。
 - この開発環境では、Laravel、WordPressのアプリケーションディレクトリがドキュメントルート外にインストールされる形になります。
