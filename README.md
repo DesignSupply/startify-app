@@ -260,13 +260,13 @@ http://localhost:6006/ でローカルサーバーが起動します。
 
 ---
 
-## アプリケーション要件
+## 動作確認環境
 
-- Docker: ^27.10.0
-- Docker Compose: ^2.31.0
-- Docker Desktop: ^4.0
-- Node.js: ^22.12.0
-- npm: ^10.8.2
+- Docker Engine: `27.4.0`
+- Docker Compose: `2.31.0`
+- Docker Desktop: `4.37.2`
+- Node.js: `22.12.0`（`frontend/.nvmrc`の指定値）
+- npm: `10.8.2`（`frontend/next/package.json`の指定値）
 
 ---
 
