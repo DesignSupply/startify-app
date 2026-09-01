@@ -86,7 +86,7 @@ Startify-Appには、Webアプリケーション開発およびWebサイト制�
 
 最初に`server/.env.example`から`server/.env`を準備します。`server/.env`がすでに存在する場合は上書きせず、現在の設定を確認して使用してください。
 
-次のmkcert導入コマンドは、macOSでHomebrewを使用する場合の手順です。LinuxやWindowsなど、その他の環境では[mkcert公式のInstallation手順](https://github.com/FiloSottile/mkcert#installation)に従ってインストールしてください。
+次のmkcert導入コマンドは、macOSでHomebrewを使用する場合の手順です。LinuxやWindowsなど、その他の環境では[mkcert公式のInstallation手順](https://github.com/FiloSottile/mkcert#installation)にしたがってインストールしてください。
 
 ```bash
 cd ./server
@@ -163,7 +163,7 @@ make wp-setup
 
 `make wp-setup`には公開用シンボリックリンクの作成も含まれるため、続けて`make wp-symlinks`を実行する必要はありません。
 
-`make wp-setup`はWordPress本体、設定、Database、公開Linkを作成する初回構築用コマンドです。既存のWordPress、`wp-config.php`、Database、Plugin、Theme、Uploadがある環境へ再実行しないでください。[Issue #39](https://github.com/DesignSupply/startify-app/issues/39)が解決するまでは、既存環境で`make wp-symlinks`を個別に再実行せず、公開Linkの状態を[Dockerローカル開発環境 セットアップ・運用手順](specifications/server/docker/setup-and-operations.md)に従って確認してください。
+`make wp-setup`はWordPress本体、設定、Database、公開Linkを作成する初回構築用コマンドです。既存のWordPress、`wp-config.php`、Database、Plugin、Theme、Uploadがある環境へ再実行しないでください。[Issue #39](https://github.com/DesignSupply/startify-app/issues/39)が解決するまでは、既存環境で`make wp-symlinks`を個別に再実行せず、公開Linkの状態を[Dockerローカル開発環境 セットアップ・運用手順](specifications/server/docker/setup-and-operations.md)にしたがって確認してください。
 
 https://cms.localhost/ にアクセスすることでWordPressのサイトトップページが表示されます。
 
