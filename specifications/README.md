@@ -84,6 +84,7 @@ related_paths:
 | WordPress | [WordPress コンテンツ・API仕様](backend/wordpress/content-and-api.md) | `current`。投稿、Taxonomy、検索、Archive、REST API、Ajaxを記録 |
 | Docker | [Dockerローカル開発環境 概要仕様](server/docker/overview.md) | `current`。Service構成、Network、Volume、Host、HTTPS、環境変数、ローカル環境の境界を記録 |
 | Docker | [Dockerローカル開発環境 セットアップ・運用手順](server/docker/setup-and-operations.md) | `current`。初回構築、日常操作、検証、トラブルシューティング、破棄時の注意を記録 |
+| デザインシステム | [デザインシステム・UIコンポーネント仕様](frontend/ui/design-system.md) | `current`。デザイントークン、Storybook、UIコンポーネント、検証状況を記録 |
 | Next.js | [Next.jsアプリケーション アーキテクチャ仕様](frontend/next/architecture.md) | `current`。実行環境、Static Export、ルーティング、コンポーネント境界を記録 |
 | Next.js | [Next.jsアプリケーション 認証仕様](frontend/next/authentication.md) | `current`。Split Token、APIクライアント、認証ルーティング、フォームを記録 |
 | Next.js | [Next.jsアプリケーション データ取得・投稿表示仕様](frontend/next/data-fetching.md) | `current`。TanStack Query、投稿一覧・詳細、ページネーション、実行時検証を記録 |
@@ -140,7 +141,8 @@ specifications/
 │       ├── classic-theme.md
 │       └── content-and-api.md
 ├── frontend/
-│   ├── design-system.md
+│   ├── ui/
+│   │   └── design-system.md
 │   └── next/
 │       ├── architecture.md
 │       ├── authentication.md
