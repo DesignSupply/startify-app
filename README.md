@@ -224,9 +224,9 @@ npm run deploy:cf:staging
 - Productionデプロイの自動化は未実装（現状はローカルから `npm run deploy:cf` のみ）
 - 詳細は [`specifications/infrastructure/cloudflare/next-static-deployment.md`](specifications/infrastructure/cloudflare/next-static-deployment.md) を参照
 
-### 5. Vite環境の静的コーディング環境構築
+### 5. Vite静的ページ制作環境の構築
 
-ローカル環境にNode.jsをインストール後、Viteのコーディング環境を構築します。
+Viteは、HTML、Pug、Handlebars、React、Vue.jsなどを使用できる静的ページ制作向けのボイラープレートです。ローカル環境にNode.jsをインストール後、次のコマンドで起動します。
 
 ```bash
 cd ./frontend/vite
@@ -240,9 +240,9 @@ npm run dev
 
 http://localhost:2000/ でローカルサーバーが起動します。
 
-### 6. Astro環境の静的コーディング環境構築
+### 6. Astro静的ページ制作環境の構築
 
-ローカル環境にNode.jsをインストール後、Astroのコーディング環境を構築します。
+Astroは、Astroコンポーネント、Markdown、React、Vue.jsなどを使用できる静的ページ制作向けのボイラープレートです。ローカル環境にNode.jsをインストール後、次のコマンドで起動します。
 
 ```bash
 cd ./frontend/astro
