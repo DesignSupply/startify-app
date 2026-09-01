@@ -83,11 +83,16 @@ Startify-Appには、Webアプリケーション開発およびWebサイト制�
 
 用意された各種Dockerfileを使用してDockerコンテナーを起動します。
 
+最初に`server/.env.example`から`server/.env`を準備します。`server/.env`がすでに存在する場合は上書きせず、現在の設定を確認して使用してください。
+
 ```bash
+cd ./server
+cp -n .env.example .env
+
 # 証明書が必要な場合にはホストOSでインストール
 brew install mkcert
 mkcert -install
-cd ./server/docker/nginx
+cd docker/nginx
 mkdir -p certs
 cd certs
 mkcert localhost cms.localhost testing.localhost api.localhost
