@@ -232,7 +232,7 @@ Viteは、HTML、Pug、Handlebars、React、Vue.jsなどを使用できる静的
 cd ./frontend/vite
 
 # インストール
-npm install
+npm ci
 
 # ローカルサーバー起動
 npm run dev
@@ -248,7 +248,7 @@ Astroは、Astroコンポーネント、Markdown、React、Vue.jsなどを使用
 cd ./frontend/astro
 
 # インストール
-npm install
+npm ci
 
 # ローカルサーバー起動
 npm run dev
@@ -264,7 +264,7 @@ http://localhost:2000/ でローカルサーバーが起動します。
 cd ./frontend/ui
 
 # インストール
-npm install
+npm ci
 
 # ローカルサーバー起動
 npm run storybook

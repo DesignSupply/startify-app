@@ -95,7 +95,7 @@ npm ci
 npm run storybook
 ```
 
-Lockfileから依存関係を再現する標準手順として、この文書では`npm ci`を使用します。現在の`README.md`には`npm install`が記載されていますが、再現可能な導入手順への統一は、Test環境と検証コマンドの整備を扱うIssue #61で更新します。
+Lockfileから依存関係を再現する標準手順として、`npm ci`を使用します。
 
 StorybookはPort `6006`で起動します。
 
@@ -166,7 +166,7 @@ cd frontend/ui
 npm run build-storybook
 ```
 
-StorybookのローカルTest環境、Test Script、Type Check Command、READMEの手順はIssue #61で整備します。Storybook TestのCI組み込みはIssue #61の対象外であり、将来の検討事項です。
+StorybookのローカルTest環境、Test Script、Type Check CommandはIssue #61で整備します。Storybook TestのCI組み込みはIssue #61の対象外であり、将来の検討事項です。
 
 依存パッケージの監査で確認された既知脆弱性と、Storybook・Vitest関連Packageの更新はIssue #59で管理しています。
 
