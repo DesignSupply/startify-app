@@ -51,7 +51,8 @@ Startify-Appには、Webアプリケーション開発およびWebサイト制�
     - フォーム処理・バリデーション（React Hook Form、Zod）
     - UIグローバルステート管理（Zustand）
     - 認証APIを使ったログインフォームと認証ルーティング（バックエンド：Laravel）
-    - モックJSONのデータ取得と動的ルーティングページ
+    - サーバー状態管理（TanStack Query）とZodによる取得データ検証
+    - モックJSONを使った投稿一覧・詳細の動的ルーティングページ
 - Vite
   - 各種リンター・フォーマッター
   - React、Vue.jsの使用
