@@ -1,7 +1,7 @@
 ---
 title: WordPress 概要仕様
 status: current
-last_updated: 2026-08-31
+last_updated: 2026-09-01
 related_paths:
   - backend/_cms-webroot/
   - backend/wordpress/
@@ -272,11 +272,10 @@ Dockerを使用する具体的な確認手順は`specifications/server/docker/se
 
 詳細な既知課題は、対象機能を定義する仕様書へ記録します。本書へすべてのIssue詳細を重複させません。
 
-## 13. 移行元資料
+## 13. 移行・監査元
 
-本書は、次の旧資料と現在実装を照合して作成しました。
+本書は、次の資料と現在実装を照合して作成しました。
 
-- `.cursor/rules/cms-overview.mdc`
 - `backend/wordpress/wp-content/themes/startify-classic-theme/`
 - `backend/wordpress/.gitignore`
 - `backend/_cms-webroot/`
@@ -284,7 +283,3 @@ Dockerを使用する具体的な確認手順は`specifications/server/docker/se
 - `server/docker/nginx/nginx.conf`
 - `specifications/server/docker/overview.md`
 - `specifications/server/docker/setup-and-operations.md`
-
-旧資料の標準Table一覧とERはWordPress Coreの一般仕様と重複するため、本書へ移行しません。Startify-App固有のDatabase利用方針だけを本書へ残し、標準Schemaの詳細は使用中のWordPress CoreとWordPress公式資料を参照します。
-
-`.cursor/rules/cms-overview.mdc`は、WordPress関連仕様の完全移行監査が完了するまで移行元資料として残します。
