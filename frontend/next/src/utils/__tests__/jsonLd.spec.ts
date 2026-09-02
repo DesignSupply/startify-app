@@ -7,7 +7,7 @@ describe('jsonLd', () => {
       {
         '@type': 'ListItem',
         position: 1,
-        item: { '@id': 'https://example.com', name: 'HOME' },
+        item: { '@id': 'https://example.com/', name: 'HOME' },
       },
     ]);
 
@@ -20,12 +20,12 @@ describe('jsonLd', () => {
       {
         '@type': 'ListItem',
         position: 1,
-        item: { '@id': 'https://example.com', name: 'HOME' },
+        item: { '@id': 'https://example.com/', name: 'HOME' },
       },
       {
         '@type': 'ListItem',
         position: 2,
-        item: { '@id': 'https://example.com/example', name: 'Example' },
+        item: { '@id': 'https://example.com/example/', name: 'Example' },
       },
     ]);
 
@@ -47,7 +47,7 @@ describe('jsonLd', () => {
       {
         '@type': 'ListItem',
         position: 1,
-        item: { '@id': 'https://example.com', name: 'HOME' },
+        item: { '@id': 'https://example.com/', name: 'HOME' },
       },
     ]);
     const serialized = serializeJsonLd(jsonData);

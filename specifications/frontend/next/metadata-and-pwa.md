@@ -1,7 +1,7 @@
 ---
 title: Next.jsアプリケーション メタデータ・Googleタグ・PWA仕様
 status: current
-last_updated: 2026-08-11
+last_updated: 2026-09-02
 related_paths:
   - frontend/next/.env.example
   - frontend/next/.gitignore
@@ -52,9 +52,9 @@ Static Export、環境別ビルド、Cloudflare配信の詳細は[Next.js Static
 - Apple Web App設定とiOS Splash Screen候補
 - 電話番号、住所、メールアドレスの自動検出無効化
 
-`src/app/example/page.tsx` はページ固有のTitle、Canonical、Open Graph、Twitter Metadataを上書きします。404ページは固有Titleを設定します。その他のページは、現在、共通Metadataを継承します。そのため、`/signin/`、`/dashboard/`、`/posts/`、`/posts/[id]/` を含むページ固有Canonicalを持たないルートでは、トップページ用の `APPURL` がCanonicalになります。
+`src/app/example/page.tsx` はページ固有のTitle、Canonical、Open Graph、Twitter Metadataを上書きします。404ページは固有Titleを設定します。その他のページは、現在、共通Metadataを継承します。そのため、`/signin/`、`/dashboard/`、`/posts/`、`/posts/[id]/` を含むページ固有Canonicalを持たないルートでは、トップページ用の `APPURL/` がCanonicalになります。
 
-現在のCanonical、Open Graph、Breadcrumb JSON-LDの一部URLは末尾スラッシュを付けずに生成します。Next.jsは `trailingSlash: true` のため、実際に配信するURLとの末尾スラッシュ表記は統一されていません。
+Canonical URL、Open Graph URL、Breadcrumb JSON-LDの `@id` は、`next.config.mjs` の `trailingSlash: true` に合わせて末尾スラッシュ付きで生成します。トップページは `${APPURL}/`、下位ページは `${APPURL}/example/` のように、配信URLと同じ表記で統一します。
 
 ## 2. Metadata用アセットの現在の制約
 
@@ -136,7 +136,7 @@ AdSenseは次の2層で構成します。
 | `generateRobotsTxt` | `false` |
 | `outDir` | `./out` |
 
-生成される`sitemap.xml`と分割サイトマップは`out/`へ配置されます。`out/`と`public/sitemap*.xml`はGit管理対象外です。サイトマップ生成時は、対象環境の公開URLを `APPURL` に設定します。
+生成される`sitemap.xml`と分割サイトマップは`out/`へ配置されます。`out/`と`public/sitemap*.xml`はGit管理対象外です。サイトマップ生成時は、対象環境の公開URLを `APPURL` に設定します。`next-sitemap` は `trailingSlash: true` に合わせて、各ルートURLを末尾スラッシュ付きで出力します。
 
 現在の設定にはルートの除外条件がなく、`/signin/`、`/dashboard/`、`/posts/`、`/posts/[id]/` もサイトマップへ含まれます。
 
@@ -184,7 +184,6 @@ Service Worker、Workbox、Fallback Script、生成サイトマップは `.gitig
 - 共通Robotsは `index, follow` で、サインインと認証保護ページもページ固有設定なしで継承する
 - ページ固有Canonicalを持たないルートはトップページ用の `APPURL` を継承する
 - サインインと認証保護ページを含め、サイトマップから除外するルートを設定していない
-- Canonical、Open Graph、Breadcrumb JSON-LDの一部URLは、`trailingSlash: true` の配信URLと末尾スラッシュ表記が一致しない
 - Metadataが参照するApple Touch Icon、OGP画像、iOS Splash Screen画像は未配置
 - Google Verification、Twitter Account、Microsoft・Pinterest Verificationは空文字のまま
 - Googleタグの出力判定はテスト済みだが、実際のScript出力や広告枠は自動テストしていない

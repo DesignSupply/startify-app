@@ -6,7 +6,7 @@ export default function HomePage() {
     {
       '@type': 'ListItem',
       position: 1,
-      item: { '@id': `${process.env.APPURL}`, name: 'HOME' },
+      item: { '@id': `${process.env.APPURL}/`, name: 'HOME' },
     },
   ];
 
