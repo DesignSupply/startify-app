@@ -49,7 +49,31 @@ token-value:
   # Token固有の定義
 ```
 
-個々の値、階層、命名は各YAMLファイルの現在実装を参照します。現在はYAML全体に共通するSchemaや、Token名を強制する自動検証を導入していません。
+命名規則の最低限は次のとおりです。
+
+- `token-name`は、拡張子を除いたYAMLファイル名と一致する
+- ルートは`token-name`と`token-value`の2キーを持つ
+
+個々の値、階層、命名は各YAMLファイルの現在実装を参照します。`easing.yaml`の`linear`、`dropshadow.yaml`のElevation `level4.name: highest` など、Token内部の詳細は各ファイルを正本とします。
+
+ローカルでは、次のコマンドでYAMLの構文と最低限の構造を検証します。
+
+```bash
+cd frontend/ui
+npm run check:tokens
+```
+
+検証は`frontend/ui/scripts/validate-design-tokens.mjs`が行い、対象は`frontend/_design-tokens/*.yaml`です。YAML Parserには、`frontend/ui/package.json`で直接宣言した`yaml`パッケージを使用します。検証内容は次のとおりです。
+
+- 現在の7ファイルがすべて存在する
+- 対象YAMLをすべて構文解析できる
+- YAMLのルートがObjectである
+- `token-name`が空でない文字列である
+- `token-name`が拡張子を除いたファイル名と一致する
+- `token-value`がArrayではないObjectである
+- `token-value`が空ではない
+
+構文不正または構造不正が1件でもあれば、エラー内容と対象ファイルを表示して非0で終了します。全件正常なら、検証したファイル数が分かる成功メッセージを表示して0で終了します。検証対象ディレクトリは、必要に応じて第1引数で差し替えられますが、通常の利用では引数は不要です。
 
 ### 2.2. 現在の位置付け
 
@@ -64,15 +88,6 @@ token-value:
 - npm Package
 
 Tokenの変更時は、影響を受ける実装が別に存在しないかリポジトリ内を確認します。生成処理が導入されるまでは、YAMLの変更だけでUIへ反映されたものと判断しません。
-
-### 2.3. 現在確認されている誤記
-
-現在、次のToken名に誤記があります。
-
-- `frontend/_design-tokens/easing.yaml`の`liner`
-- `frontend/_design-tokens/dropshadow.yaml`の`higest`
-
-正しい名称はそれぞれ`linear`と`highest`です。修正と検証方法の整備はIssue #62で管理しています。
 
 ## 3. Startify-UIとの関係
 
@@ -161,18 +176,17 @@ Anchorは `state="disabled"` の場合に `aria-disabled="true"` と `tabIndex={
 
 現在はStorybook向けのVitest・Playwright設定が存在しますが、`frontend/ui/package.json`にはTestとType Checkを実行するScriptがありません。また、PlaywrightのChromiumがローカル環境へ導入されていない場合、Browser Testを完了できません。
 
-現時点で利用者向けに定義されている検証コマンドは、Storybookの静的Buildです。
+現時点で利用者向けに定義されている検証コマンドは、デザイントークンの構造検証とStorybookの静的Buildです。
 
 ```bash
 cd frontend/ui
+npm run check:tokens
 npm run build-storybook
 ```
 
-StorybookのローカルTest環境、Test Script、Type Check CommandはIssue #61で整備します。Storybook TestのCI組み込みはIssue #61の対象外であり、将来の検討事項です。
+StorybookのローカルTest環境、Test Script、Type Check CommandはIssue #61で整備します。Storybook TestのCI組み込みはIssue #61の対象外であり、将来の検討事項です。デザイントークン検証のCI組み込みも、現在は将来の検討事項です。
 
 依存パッケージの監査で確認された既知脆弱性と、Storybook・Vitest関連Packageの更新はIssue #59で管理しています。
-
-デザイントークンについては、YAMLの構文と最低限の構造を確認する標準コマンドがまだありません。Token名の誤記修正と併せてIssue #62で整備します。
 
 ## 7. 旧Cursorルールの扱い
 
@@ -226,7 +240,6 @@ StorybookのローカルTest環境、Test Script、Type Check CommandはIssue #6
 | --- | --- |
 | #59 | Storybook・Vitest関連の依存パッケージ更新と既知脆弱性の解消 |
 | #61 | StorybookのローカルTest環境と検証コマンドの整備 |
-| #62 | Token定義の誤記修正と検証方法の整備 |
 
 Issueの実装完了後は、実装結果に合わせて該当記述を更新し、解消した既知課題をこの節から削除します。
 
@@ -238,6 +251,7 @@ Issueの実装完了後は、実装結果に合わせて該当記述を更新し
 - 各FrontendとStorybookへのTokenの自動連携
 - TokenまたはUI成果物のPackage化
 - Icon・Pattern Tokenの追加
+- デザイントークン検証のCI組み込み
 - Visual Regression Test
 - Accessibility違反を失敗として扱う基準
 - Storybook TestのCI組み込み
