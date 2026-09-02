@@ -169,13 +169,12 @@ https://cms.localhost/ にアクセスすることでWordPressのサイトトッ
 
 ### 4. Next.jsのインストール（ローカル環境）
 
-Node.jsのバージョンは `frontend/.nvmrc` で `22.12.0` に固定しています（`engines.node` は `>=22.12.0 <23`）。npmは `10.8.2` を使用します。
+Node.jsのバージョンは `frontend/next/.nvmrc` で `22.12.0` に固定しています（`engines.node` は `>=22.12.0 <23`）。npmは `10.8.2` を使用します。
 
 ```bash
-cd ./frontend
+cd ./frontend/next
 nvm use
 
-cd next
 npm ci
 npm run check
 npm run build
@@ -272,8 +271,8 @@ http://localhost:6006/ でローカルサーバーが起動します。
 - Docker Engine: `27.4.0`
 - Docker Compose: `2.31.0`
 - Docker Desktop: `4.37.2`
-- Node.js: `22.12.0`（`frontend/.nvmrc`の指定値）
-- npm: `10.8.2`（`frontend/next/package.json`の指定値）
+- Next.js Node.js: `22.12.0`（`frontend/next/.nvmrc`の指定値）
+- Next.js npm: `10.8.2`（`frontend/next/package.json`の指定値）
 
 ---
 

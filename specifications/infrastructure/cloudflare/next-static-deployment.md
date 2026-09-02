@@ -1,8 +1,9 @@
 ---
 title: Next.js Static Export — Cloudflare Workers Static Assets デプロイ仕様
 status: current
-last_updated: 2026-08-09
+last_updated: 2026-09-02
 related_paths:
+  - frontend/next/.nvmrc
   - frontend/next/package.json
   - frontend/next/next.config.mjs
   - frontend/next/wrangler.jsonc
@@ -58,7 +59,7 @@ flowchart TD
 
 | パス | 役割 |
 |---|---|
-| `frontend/.nvmrc` | Node.js バージョン固定（`22.12.0`） |
+| `frontend/next/.nvmrc` | Node.js バージョン固定（`22.12.0`） |
 | `frontend/next/package.json` | npm スクリプト、`engines.node`、`packageManager`、依存関係 |
 | `frontend/next/package-lock.json` | 依存バージョンの正本 |
 | `frontend/next/next.config.mjs` | Static Export（`output: 'export'`）、PWA、末尾スラッシュ等 |
@@ -76,7 +77,7 @@ flowchart TD
 
 | 項目 | 値 |
 |---|---|
-| Node.js 固定場所 | `frontend/.nvmrc` |
+| Node.js 固定場所 | `frontend/next/.nvmrc` |
 | Node.js バージョン | `22.12.0` |
 | `engines.node` | `>=22.12.0 <23` |
 | npm バージョン | `10.8.2`（`packageManager: npm@10.8.2`） |
@@ -189,10 +190,9 @@ NEXT_PUBLIC_GOOGLE_ADSENSE_ID=
 ### 初回セットアップ
 
 ```bash
-cd frontend
+cd frontend/next
 nvm use
 
-cd next
 npm ci
 npm run check
 npm run dev
@@ -272,7 +272,6 @@ Workflow: `.github/workflows/next-cloudflare-ci.yml`
 
 ```text
 frontend/next/**
-frontend/.nvmrc
 .github/workflows/next-cloudflare-ci.yml
 .github/workflows/next-cloudflare-staging.yml
 ```
@@ -310,7 +309,6 @@ Workflow: `.github/workflows/next-cloudflare-staging.yml`
 
 ```text
 frontend/next/**
-frontend/.nvmrc
 .github/workflows/next-cloudflare-staging.yml
 ```
 
