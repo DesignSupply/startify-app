@@ -103,6 +103,18 @@ Tokenの変更時は、影響を受ける実装が別に存在しないかリポ
 
 UIコンポーネント管理環境は`frontend/ui/`に配置し、ReactとStorybookを使用しています。Packageと正確なVersionは`frontend/ui/package.json`と`frontend/ui/package-lock.json`を正本とします。
 
+現在の主要な直接Dependency Versionは次のとおりです。
+
+| Package | Version |
+| --- | --- |
+| Storybook関連（`storybook`、`@storybook/*`） | `^10.6.0` |
+| Vitest関連（`vitest`、`@vitest/*`） | `^4.1.11` |
+| Playwright | `^1.62.1` |
+| `@chromatic-com/storybook` | `^4.1.3`（今回変更なし） |
+| React / React DOM | `^19.2.3`（今回変更なし） |
+
+`npm audit`の結果、Critical・Highの既知脆弱性は解消済みです（2026-09-02時点: Critical 0件、High 0件、Moderate 0件、Low 0件、Info 0件、合計 0件）。
+
 依存関係の導入とStorybookの起動は、`frontend/ui/`で実行します。
 
 ```bash
@@ -128,7 +140,7 @@ Storybookの主な設定は次のファイルにあります。
 
 | ファイル | 役割 |
 | --- | --- |
-| `frontend/ui/.storybook/main.js` | Storyの探索、Addon、React Vite Framework、Docgenの設定 |
+| `frontend/ui/.storybook/main.js` | Storyの探索、Addon、React Vite Framework、`reactDocgen: "react-docgen"` の設定 |
 | `frontend/ui/.storybook/preview.js` | Global Style、Controls、Accessibility Addonの設定 |
 | `frontend/ui/.storybook/vitest.setup.js` | StorybookとAccessibility AnnotationのTest設定 |
 | `frontend/ui/vitest.config.js` | Playwright Chromiumを使用するBrowser Test設定 |
@@ -180,13 +192,14 @@ Anchorは `state="disabled"` の場合に `aria-disabled="true"` と `tabIndex={
 
 ```bash
 cd frontend/ui
+npm ci
+npm audit
 npm run check:tokens
+npx --no-install tsc --noEmit
 npm run build-storybook
 ```
 
-StorybookのローカルTest環境、Test Script、Type Check CommandはIssue #61で整備します。Storybook TestのCI組み込みはIssue #61の対象外であり、将来の検討事項です。デザイントークン検証のCI組み込みも、現在は将来の検討事項です。
-
-依存パッケージの監査で確認された既知脆弱性と、Storybook・Vitest関連Packageの更新はIssue #59で管理しています。
+StorybookのローカルTest環境、Test Script、Type Check CommandのScript化はIssue #61で整備します。Storybook TestのCI組み込みはIssue #61の対象外であり、将来の検討事項です。デザイントークン検証のCI組み込みも、現在は将来の検討事項です。
 
 ## 7. 旧Cursorルールの扱い
 
@@ -238,7 +251,6 @@ StorybookのローカルTest環境、Test Script、Type Check CommandはIssue #6
 
 | Issue | 内容 |
 | --- | --- |
-| #59 | Storybook・Vitest関連の依存パッケージ更新と既知脆弱性の解消 |
 | #61 | StorybookのローカルTest環境と検証コマンドの整備 |
 
 Issueの実装完了後は、実装結果に合わせて該当記述を更新し、解消した既知課題をこの節から削除します。
