@@ -1,9 +1,9 @@
 ---
 title: Next.jsアプリケーション テスト・品質検証仕様
 status: current
-last_updated: 2026-08-11
+last_updated: 2026-09-02
 related_paths:
-  - frontend/.nvmrc
+  - frontend/next/.nvmrc
   - frontend/next/.gitignore
   - frontend/next/.prettierignore
   - frontend/next/eslint.config.mjs
@@ -27,7 +27,7 @@ Startify-AppのNext.jsアプリケーションにおける、静的解析、型�
 
 ## 1. 実行環境と依存関係
 
-コマンドは `frontend/next/` で実行します。Node.jsのバージョンは `frontend/.nvmrc`、npmのバージョンは `frontend/next/package.json` の `packageManager` を基準とします。
+コマンドは `frontend/next/` で実行します。Node.jsのバージョンは `frontend/next/.nvmrc`、npmのバージョンは `frontend/next/package.json` の `packageManager` を基準とします。
 
 クリーン環境または依存関係変更後は、Lockfileに基づいて依存関係を導入します。
 
@@ -171,7 +171,7 @@ CIのQuality Jobは次を実行します。
 
 CI用の公開値を環境変数として設定し、Cloudflareへ実デプロイしません。WorkflowのActionはCommit SHAで固定します。
 
-現在のPath Filterは `frontend/next/**`、`frontend/.nvmrc`、対象のNext.js Workflowです。`specifications/` やルート `AGENTS.md` だけの変更ではNext.js CIは起動しません。
+現在のPath Filterは `frontend/next/**` と対象のNext.js Workflowです。`frontend/next/.nvmrc` は `frontend/next/**` に含まれます。`specifications/` やルート `AGENTS.md` だけの変更ではNext.js CIは起動しません。
 
 ## 11. Cloudflare Staging Workflow
 

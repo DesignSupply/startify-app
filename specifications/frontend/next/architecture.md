@@ -1,9 +1,9 @@
 ---
 title: Next.jsアプリケーション アーキテクチャ仕様
 status: current
-last_updated: 2026-08-11
+last_updated: 2026-09-02
 related_paths:
-  - frontend/.nvmrc
+  - frontend/next/.nvmrc
   - frontend/next/package.json
   - frontend/next/package-lock.json
   - frontend/next/next.config.mjs
@@ -27,7 +27,7 @@ Startify-AppのNext.jsアプリケーションにおける、現在の実行環�
 
 | 項目 | 現在の構成 |
 | --- | --- |
-| Node.js | `22.12.0`（`frontend/.nvmrc`） |
+| Node.js | `22.12.0`（`frontend/next/.nvmrc`） |
 | npm | `10.8.2` |
 | Next.js | `15.5.22`、App Router |
 | React | `19` |
