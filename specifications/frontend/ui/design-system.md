@@ -1,7 +1,7 @@
 ---
 title: デザインシステム・UIコンポーネント仕様
 status: current
-last_updated: 2026-09-02
+last_updated: 2026-09-03
 related_paths:
   - frontend/_design-tokens/
   - frontend/ui/
@@ -119,12 +119,15 @@ UIコンポーネント管理環境は`frontend/ui/`に配置し、ReactとStory
 
 ```bash
 npm ci
+npm run playwright:install
 npm run storybook
 ```
 
-Lockfileから依存関係を再現する標準手順として、`npm ci`を使用します。
+Lockfileから依存関係を再現する標準手順として、`npm ci`を使用します。Playwright PackageとChromium実行ファイルは別に導入され、`npm run playwright:install`でChromiumを取得します。初回Setup時またはPlaywright更新後に実行し、通常の開発時に毎回再インストールする必要はありません。
 
 StorybookはPort `6006`で起動します。
+
+TypeScript関連Package（`typescript`、`@types/react`、`@types/react-dom`）は、`frontend/ui/package.json`の直接Dependencyとして管理します。
 
 静的Buildは次のコマンドで確認します。
 
@@ -142,13 +145,14 @@ Storybookの主な設定は次のファイルにあります。
 | --- | --- |
 | `frontend/ui/.storybook/main.js` | Storyの探索、Addon、React Vite Framework、`reactDocgen: "react-docgen"` の設定 |
 | `frontend/ui/.storybook/preview.js` | Global Style、Controls、Accessibility Addonの設定 |
-| `frontend/ui/.storybook/vitest.setup.js` | StorybookとAccessibility AnnotationのTest設定 |
-| `frontend/ui/vitest.config.js` | Playwright Chromiumを使用するBrowser Test設定 |
+| `frontend/ui/vitest.config.js` | Playwright Chromiumを使用するStorybook Browser Test設定 |
 | `frontend/ui/styles/preview.scss` | Storybook Previewへ適用するStyleの入口 |
+
+Storybook 10.6.0では、Preview Annotation（Accessibility Addonを含む）はStorybook Testへ自動適用されます。`vitest.setup.js`による`setProjectAnnotations`は使用しません。
 
 現在のPreview Styleは、CDN経由で`@designsupply/startify-ui@0.2.3`のBuild済みCSSを読み込みます。ローカルのToken YAMLからCSSを生成しているものではありません。
 
-Accessibility Addonは有効ですが、`a11y.test`は`todo`です。違反はTest UIへ表示する設定であり、現在は違反によってTestを失敗させる設定ではありません。
+Accessibility Addonは有効です。`preview.js`の`a11y.test`は`todo`です。Accessibility検査はローカルのStorybook Test（`npm run test:storybook`）で実行され、検査結果はTest出力で確認できます。現在は`todo`であるため、Accessibility違反は自動的なTest失敗条件ではありません。違反を失敗条件にする基準の策定は将来課題です。
 
 ## 5. UIコンポーネント
 
@@ -186,20 +190,40 @@ Anchorは `state="disabled"` の場合に `aria-disabled="true"` と `tabIndex={
 
 ## 6. Test・品質検証
 
-現在はStorybook向けのVitest・Playwright設定が存在しますが、`frontend/ui/package.json`にはTestとType Checkを実行するScriptがありません。また、PlaywrightのChromiumがローカル環境へ導入されていない場合、Browser Testを完了できません。
+Storybook TestはVitest 4.1.11とPlaywright Chromiumを使用します。Browser Testはheadless Chromium上でStoryをRenderし、Accessibility Addonの検査を実行します。
 
-現時点で利用者向けに定義されている検証コマンドは、デザイントークンの構造検証とStorybookの静的Buildです。
+現在検出されるStoryは`frontend/ui/stories/Button.stories.tsx`の5件です。
+
+| Story | タイトル |
+| --- | --- |
+| Primary | `Components/Button/Primary` |
+| Secondary | `Components/Button/Secondary` |
+| DisabledButton | `Components/Button/Disabled Button` |
+| EnabledAnchor | `Components/Button/Enabled Anchor` |
+| DisabledAnchor | `Components/Button/Disabled Anchor` |
+
+利用者向けの検証コマンドは次のとおりです。
 
 ```bash
 cd frontend/ui
 npm ci
-npm audit
+npm run playwright:install
+npm run test:storybook
+npm run typecheck
 npm run check:tokens
-npx --no-install tsc --noEmit
 npm run build-storybook
+npm audit
 ```
 
-StorybookのローカルTest環境、Test Script、Type Check CommandのScript化はIssue #61で整備します。Storybook TestのCI組み込みはIssue #61の対象外であり、将来の検討事項です。デザイントークン検証のCI組み込みも、現在は将来の検討事項です。
+| Script | 用途 |
+| --- | --- |
+| `playwright:install` | Playwright Chromiumの導入 |
+| `test:storybook` | Storybook Browser Test（Render・Accessibility検査） |
+| `typecheck` | TypeScript型チェック（`tsc --noEmit`） |
+| `check:tokens` | デザイントークンYAMLの構造検証 |
+| `build-storybook` | Storybook静的Build |
+
+Storybook TestのCI組み込みは未実装であり、将来の検討事項です。デザイントークン検証のCI組み込みも、現在は将来の検討事項です。
 
 ## 7. 旧Cursorルールの扱い
 
@@ -249,9 +273,7 @@ StorybookのローカルTest環境、Test Script、Type Check CommandのScript�
 
 ### 登録済みIssue
 
-| Issue | 内容 |
-| --- | --- |
-| #61 | StorybookのローカルTest環境と検証コマンドの整備 |
+現在、登録済みIssueはありません。
 
 Issueの実装完了後は、実装結果に合わせて該当記述を更新し、解消した既知課題をこの節から削除します。
 
