@@ -5,10 +5,10 @@ import { metaDefault } from '@/utils/meta';
 
 export const metadata: Metadata = {
   title: `静的ルーティングページサンプル | ${process.env.APPNAME}`,
-  alternates: { canonical: `${process.env.APPURL}/example` },
+  alternates: { canonical: `${process.env.APPURL}/example/` },
   openGraph: {
     type: 'article',
-    url: `${process.env.APPURL}/example`,
+    url: `${process.env.APPURL}/example/`,
     title: `静的ルーティングページサンプル | ${process.env.APPNAME}`,
     description: metaDefault.openGraph?.description,
     siteName: metaDefault.openGraph?.siteName,
@@ -28,12 +28,12 @@ export default function ExamplePage() {
     {
       '@type': 'ListItem',
       position: 1,
-      item: { '@id': `${process.env.APPURL}`, name: 'HOME' },
+      item: { '@id': `${process.env.APPURL}/`, name: 'HOME' },
     },
     {
       '@type': 'ListItem',
       position: 2,
-      item: { '@id': `${process.env.APPURL}/example`, name: '静的ルーティングページサンプル' },
+      item: { '@id': `${process.env.APPURL}/example/`, name: '静的ルーティングページサンプル' },
     },
   ];
 

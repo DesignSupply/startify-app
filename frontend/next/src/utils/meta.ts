@@ -273,7 +273,7 @@ export const metaDefault: Metadata = {
     index: true,
     follow: true,
   },
-  alternates: { canonical: `${process.env.APPURL}` },
+  alternates: { canonical: `${process.env.APPURL}/` },
   icons: [
     {
       rel: 'icon',
@@ -289,7 +289,7 @@ export const metaDefault: Metadata = {
   manifest: `${process.env.APPURL}/manifest.json`,
   openGraph: {
     type: 'website',
-    url: `${process.env.APPURL}`,
+    url: `${process.env.APPURL}/`,
     title: `${process.env.APPNAME}`,
     description: `${process.env.APPDESCRIPTION}`,
     siteName: `${process.env.APPNAME}`,
