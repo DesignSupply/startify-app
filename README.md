@@ -250,17 +250,33 @@ http://localhost:2000/ でローカルサーバーが起動します。
 
 ### 7. StorybookのUIコンポーネント管理
 
-ローカル環境にNode.jsをインストール後、StorybookのUIコンポーネント管理環境を構築します。
+ローカル環境にNode.jsをインストール後、StorybookのUIコンポーネント管理環境を構築します。依存関係は`npm ci`でlockfileから導入します。
 
 ```bash
 cd ./frontend/ui
 
-# インストール
+# 依存関係の導入
 npm ci
+
+# Playwright Chromiumの導入（初回Setup時、またはPlaywright更新後）
+npm run playwright:install
 
 # ローカルサーバー起動
 npm run storybook
+
+# Storybook Test（Render・Accessibility検査）
+npm run test:storybook
+
+# TypeScript型チェック
+npm run typecheck
+
+# 静的Build
+npm run build-storybook
 ```
+
+Playwright PackageとChromium実行ファイルは別に導入されます。`npm run playwright:install`は初回Setup時またはPlaywright更新後に実行します。通常の開発時に毎回Chromiumを再インストールする必要はありません。
+
+StorybookはPort `6006`で起動します。Test、型チェック、静的Buildは個別に実行できます。
 
 http://localhost:6006/ でローカルサーバーが起動します。
 
