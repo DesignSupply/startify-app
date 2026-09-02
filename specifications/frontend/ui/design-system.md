@@ -1,7 +1,7 @@
 ---
 title: デザインシステム・UIコンポーネント仕様
 status: current
-last_updated: 2026-09-01
+last_updated: 2026-09-02
 related_paths:
   - frontend/_design-tokens/
   - frontend/ui/
@@ -151,9 +151,11 @@ Accessibility Addonは有効ですが、`a11y.test`は`todo`です。違反はTe
 
 Style用Classには`su-button-`を基点とする命名を使用します。旧Cursorルールに記載されていた`l-`、`c-`、`u-`、`js-`の共通Prefixは、現在のUI実装には適用されていません。
 
-StorybookにはPrimaryとSecondaryのStoryがあり、ControlsとAutodocsの対象です。
+StorybookにはPrimary、Secondary、Disabled Button、Enabled Anchor、Disabled AnchorのStoryがあり、ControlsとAutodocsの対象です。
 
-`state="disabled"`時の内部属性やEvent Handlerを呼び出し側のPropsで上書きできる現在の問題は、Issue #60で管理しています。
+Native Buttonは、`state="disabled"` またはNative属性の `disabled={true}` のどちらかを指定した場合にDisabledとして扱います。Disabled用CSS ClassとNativeの `disabled` 属性を同期し、`state="disabled"` を `disabled={false}` で解除できない構成です。`type` の初期値は `button` とし、呼び出し側が指定した `submit` または `reset` を維持します。
+
+Anchorは `state="disabled"` の場合に `aria-disabled="true"` と `tabIndex={-1}` を設定し、`href` を出力しません。Click Eventは `preventDefault()` と `stopPropagation()` で停止し、呼び出し側の `onClick` を実行しません。Enabled時は呼び出し側の `href`、`tabIndex`、`onClick` を維持します。Componentが管理する `className`、`disabled`、`aria-disabled`、`tabIndex`、`onClick`、`type` は、呼び出し側のProps展開で意図せず上書きされない順序で設定します。
 
 ## 6. Test・品質検証
 
@@ -223,7 +225,6 @@ StorybookのローカルTest環境、Test Script、Type Check CommandはIssue #6
 | Issue | 内容 |
 | --- | --- |
 | #59 | Storybook・Vitest関連の依存パッケージ更新と既知脆弱性の解消 |
-| #60 | ButtonのDisabled状態がPropsで上書きされる問題の修正 |
 | #61 | StorybookのローカルTest環境と検証コマンドの整備 |
 | #62 | Token定義の誤記修正と検証方法の整備 |
 

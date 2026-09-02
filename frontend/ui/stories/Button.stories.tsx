@@ -44,3 +44,27 @@ export const Secondary: Story = {
     variant: 'secondary',
   },
 };
+
+export const DisabledButton: Story = {
+  args: {
+    children: 'Disabled Button',
+    state: 'disabled',
+  },
+};
+
+export const EnabledAnchor: Story = {
+  args: {
+    htmlElement: 'a',
+    children: 'Anchor',
+    href: '#enabled-anchor',
+  },
+};
+
+export const DisabledAnchor: Story = {
+  args: {
+    htmlElement: 'a',
+    children: 'Disabled Anchor',
+    href: '#disabled-anchor',
+    state: 'disabled',
+  },
+};
