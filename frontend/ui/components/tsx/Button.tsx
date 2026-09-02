@@ -45,13 +45,14 @@ export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Bu
     ref,
   ) {
     const isAnchor = htmlElement === 'a';
-    const isDisabled = state === 'disabled';
+    const buttonRest = rest as React.ButtonHTMLAttributes<HTMLButtonElement>;
+    const isDisabled = state === 'disabled' || (!isAnchor && buttonRest.disabled === true);
     const classes = [
       color !== 'default' ? variant === 'primary' ? `su-button-fill-${color}` : `su-button-outline-${color}` : `su-button-${variant}`,
       size !== 'default' ? `su-button-size-${size}` : '',
       display === 'inline' ? '' : 'su-button-display-block',
       `su-button-shape-${shape}`,
-      state !== 'normal' ? `su-button-state-${state}` : '',
+      isDisabled ? 'su-button-state-disabled' : state !== 'normal' ? `su-button-state-${state}` : '',
       className,
     ]
       .filter(Boolean)
@@ -70,28 +71,26 @@ export const Button = React.forwardRef<HTMLButtonElement | HTMLAnchorElement, Bu
 
       return (
         <a
+          {...anchorRest}
           ref={ref as React.Ref<HTMLAnchorElement>}
           className={classes}
           aria-disabled={isDisabled}
           tabIndex={isDisabled ? -1 : anchorRest.tabIndex}
           onClick={handleClick}
-          href={anchorRest.href ?? '#'}
-          {...anchorRest}
+          href={isDisabled ? undefined : anchorRest.href ?? '#'}
         >
           {children}
         </a>
       );
     }
 
-    const buttonRest = rest as React.ButtonHTMLAttributes<HTMLButtonElement>;
-
     return (
       <button
+        {...buttonRest}
         ref={ref as React.Ref<HTMLButtonElement>}
         className={classes}
         type={buttonRest.type ?? 'button'}
         disabled={isDisabled}
-        {...buttonRest}
       >
         {children}
       </button>
