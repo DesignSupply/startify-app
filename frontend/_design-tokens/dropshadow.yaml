@@ -34,7 +34,7 @@ token-value:
       spread: 0
       color: rgb(0 0 0 / 25%)
     level4:
-      name: higest
+      name: highest
       offset: 7px
       blur: 18px
       spread: 0

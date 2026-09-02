@@ -1,6 +1,6 @@
 token-name: easing
 token-value:
-  liner: linear
+  linear: linear
   ease: 
     ease: ease
     in: ease-in
