@@ -37,15 +37,21 @@ Startify-Appには、Webアプリケーション開発およびWebサイト制�
     - WP REST APIの独自エンドポイント
     - その他汎用的に使えるコンポーネント
 - Next.js
-  - リンター／フォーマッター
+  - Static Export対応
+  - Cloudflare Workers Static Assets向けのBuild・Preview・Deploy
+  - ESLint、Stylelint、Markuplint、Prettierによる品質検証
+  - TypeScript型チェックとVitestによる自動テスト
   - 環境変数のサンプル設定
   - Tailwind CSSの使用
   - Sassのコンパイル
   - UIコンポーネント最適化
   - メタデータ最適化（Metadata API）
+  - JSON-LDによる構造化データ出力
   - フォント最適化（next/font）
+  - Google Analytics・Google AdSense対応
   - サイトマップ出力
   - PWA対応
+  - GitHub Actionsによる品質検証・Cloudflare Stagingデプロイ
   - 【サンプル機能一覧】
     - ユニットテスト（Vitest, React Testing Library）
     - フォーム処理・バリデーション（React Hook Form、Zod）
@@ -75,8 +81,12 @@ Startify-Appには、Webアプリケーション開発およびWebサイト制�
   - 各種ライブラリのサンプルコード
   - WebGL（Three.js）サンプルコード
   - GLSLシェーダー対応
-- Storybook
-  - 各種UIコンポーネントの表示・確認
+- デザイントークン・Storybook
+  - YAMLによる共通デザイントークン管理・構造検証
+  - React UIコンポーネントの表示・確認
+  - Controls・Autodocs・Accessibility Addon対応
+  - Vitest・Playwright ChromiumによるStorybook Browser Test
+  - TypeScript型チェックとStorybook静的Build
 
 ## 導入
 
