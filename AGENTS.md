@@ -26,10 +26,11 @@ Startify-Appは、WebアプリケーションおよびWebサイトの開発基�
 2. 対象ファイルに適用される、より深い階層の `AGENTS.md`
 3. このルート `AGENTS.md`
 4. `specifications/project/profile.md` のプロジェクト採用範囲
-5. `specifications/` の現在仕様（[§3の条件](specifications/project/profile.md#3-文書-status-と領域の採用状態の違い)を満たす個別仕様書）
-6. 対象コード、設定、テスト、CIが示す現在の実装事実
-7. `.cursor/rules/` など、ツール固有の補助指示
-8. Git履歴、完了済みのGitHub Issue、ユーザーから提供された過去資料
+5. `specifications/project/brief.md`（存在し、`status: current` かつ `document_type: project-brief` として現在要件として有効な場合）
+6. `specifications/` の現在仕様（[§3の条件](specifications/project/profile.md#3-文書-status-と領域の採用状態の違い)を満たす個別仕様書）
+7. 対象コード、設定、テスト、CIが示す現在の実装事実
+8. `.cursor/rules/` など、ツール固有の補助指示
+9. Git履歴、完了済みのGitHub Issue、ユーザーから提供された過去資料
 
 仕様書と実装が一致しない場合は、片方を根拠なく正しいものとして上書きしないでください。差異を確認し、依頼の範囲内で解消できない場合はユーザーへ報告してください。
 
@@ -41,8 +42,9 @@ Startify-Appは、WebアプリケーションおよびWebサイトの開発基�
 2. staged、unstaged、untrackedを含む既存差分
 3. 依頼の対象範囲と変更が必要なファイル
 4. `specifications/project/profile.md` の採用状態・コード状態・仕様書の扱い
-5. 対象領域に関係する仕様書、設定、テスト、CI
-6. 変更後に必要となる検証
+5. 派生先に `specifications/project/brief.md` が存在する場合は、その内容（`status: current` かつ `document_type: project-brief` の場合は用途・要件・デザイン方針の正本として確認）
+6. 対象領域に関係する仕様書、設定、テスト、CI
+7. 変更後に必要となる検証
 
 調査やレビューだけを依頼された場合は、明示的に変更も求められていない限り、ファイルを変更しないでください。
 
@@ -67,6 +69,12 @@ Startify-Appは、WebアプリケーションおよびWebサイトの開発基�
 ## 仕様書の扱い
 
 - `specifications/project/profile.md` を、プロジェクトの**適用範囲**の正本として扱います。作業開始時に確認し、採用状態が `active` の領域を現在採用中として扱います。
+- 派生先に `specifications/project/brief.md` が存在する場合は、作業開始時に確認します。`status: current` かつ `document_type: project-brief` の Brief を、用途・要件・デザイン方針の正本として扱います。`status: current` かつ `decided` な要件を判断基準として使います。Startify-App本体には `brief.md` が存在しないため、存在する現在仕様として扱いません。
+- Brief の `status: current` は要件文書として確認済み・有効であることを表し、**実装完了を意味しません**。実装の完了状況はコード、テスト、Issue、領域別仕様書で確認します。
+- `tbd` を勝手に確定しません。`tbd` が作業を左右する場合はユーザーへ確認します。
+- `not-applicable` な機能を勝手に追加しません。
+- `profile.md` と `brief.md` が矛盾する場合は、根拠なく変更せず報告します。
+- Project Brief Template の利用手順は [`specifications/project/templates/brief.md`](specifications/project/templates/brief.md) を参照してください。Secret や個人情報を Brief へ記録しません。
 - 個別仕様書を現在仕様として適用する条件は、領域が `active`、仕様書の扱いが `applicable`、文書 `status` が `current` です。詳細は [`specifications/project/profile.md`](specifications/project/profile.md) を参照してください。
 - 採用状態が `planned` または `inactive` の領域を、現在実装済みとして扱いません。
 - 採用状態が `active` でも、仕様書の扱いが `none` の領域（例: Vite、Astro）は、コード・設定・テスト・CI を実装事実として確認します。
@@ -88,6 +96,8 @@ Startify-Appは、WebアプリケーションおよびWebサイトの開発基�
 | 対象 | 主な参照先 |
 | --- | --- |
 | プロジェクト採用範囲、派生運用 | `specifications/project/profile.md` |
+| Project Brief Template | `specifications/project/templates/brief.md` |
+| 派生先 Project Brief（存在する場合） | `specifications/project/brief.md` |
 | リポジトリ概要、セットアップ | `README.md` |
 | Laravelの概要、画面、API、DB、認証 | `specifications/backend/laravel/overview.md`、`specifications/backend/laravel/screens-and-features.md`、`specifications/backend/laravel/database.md`、`specifications/backend/laravel/authentication.md`、`specifications/backend/laravel/` |
 | Laravelの問い合わせ、メール | `specifications/backend/laravel/contact-and-mail.md`、`backend/laravel/app/Notifications/`、`backend/laravel/resources/views/emails/` |
