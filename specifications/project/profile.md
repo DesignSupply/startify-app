@@ -19,7 +19,7 @@ Startify-Appを自社サイトや各種プロジェクトへ横展開すると�
 個別領域の詳細設計は、引き続き各領域の仕様書を正本とします。本書は、それらの**適用範囲**を決める上位の構成表です。
 
 ```text
-project-profile.md
+project/profile.md
   ├─ 採用状態
   ├─ コード状態
   └─ 仕様書の扱い
@@ -40,7 +40,7 @@ project-profile.md
 
 | 文書 | 役割 |
 | --- | --- |
-| `specifications/project-profile.md`（本書） | プロジェクトの**採用範囲**の正本 |
+| `specifications/project/profile.md`（本書） | プロジェクトの**採用範囲**の正本 |
 | 領域別仕様書（例: `specifications/frontend/next/`） | 採用した領域の**詳細仕様**の正本 |
 | コード・設定・テスト・CI | 現在の**実装事実**の正本 |
 
@@ -115,14 +115,14 @@ project-profile.md
 
 | 領域 | 採用状態 | コード状態 | 仕様書の扱い | 実装パス | 参照仕様 | 依存・連動領域 | 備考 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| Laravel | `active` | `present` | `applicable` | `backend/laravel/` | [Laravel 概要](backend/laravel/overview.md) ほか `backend/laravel/` | Docker、MariaDB、Mailpit、Next.js API | `vendor/` は `setup-managed` |
-| WordPressクラシックテーマ | `active` | `present` | `applicable` | `backend/wordpress/wp-content/themes/startify-classic-theme/` | [WordPress 概要](backend/wordpress/overview.md)、[クラシックテーマ](backend/wordpress/classic-theme.md)、[コンテンツ・API](backend/wordpress/content-and-api.md) | Docker、WordPress Core、Nginx | WordPress Core は `setup-managed`。ブロックテーマは Git 未追跡 |
-| Docker | `active` | `present` | `applicable` | `server/` | [Docker 概要](server/docker/overview.md)、[セットアップ・運用](server/docker/setup-and-operations.md) | Laravel、WordPress、Nginx、MariaDB、Mailpit | `server/.env` は Git 管理外 |
-| Next.js | `active` | `present` | `applicable` | `frontend/next/` | [アーキテクチャ](frontend/next/architecture.md) ほか `frontend/next/` | Laravel API、Cloudflare、Docker（ローカル検証は Node 単体） | Static Export 前提 |
-| デザイントークン／UI／Storybook | `active` | `present` | `applicable` | `frontend/_design-tokens/`、`frontend/ui/` | [デザインシステム](frontend/ui/design-system.md) | 相互参照のみ（自動連携なし） | Token と UI は YAML / Storybook で別管理 |
+| Laravel | `active` | `present` | `applicable` | `backend/laravel/` | [Laravel 概要](../backend/laravel/overview.md) ほか `backend/laravel/` | Docker、MariaDB、Mailpit、Next.js API | `vendor/` は `setup-managed` |
+| WordPressクラシックテーマ | `active` | `present` | `applicable` | `backend/wordpress/wp-content/themes/startify-classic-theme/` | [WordPress 概要](../backend/wordpress/overview.md)、[クラシックテーマ](../backend/wordpress/classic-theme.md)、[コンテンツ・API](../backend/wordpress/content-and-api.md) | Docker、WordPress Core、Nginx | WordPress Core は `setup-managed`。ブロックテーマは Git 未追跡 |
+| Docker | `active` | `present` | `applicable` | `server/` | [Docker 概要](../server/docker/overview.md)、[セットアップ・運用](../server/docker/setup-and-operations.md) | Laravel、WordPress、Nginx、MariaDB、Mailpit | `server/.env` は Git 管理外 |
+| Next.js | `active` | `present` | `applicable` | `frontend/next/` | [アーキテクチャ](../frontend/next/architecture.md) ほか `frontend/next/` | Laravel API、Cloudflare、Docker（ローカル検証は Node 単体） | Static Export 前提 |
+| デザイントークン／UI／Storybook | `active` | `present` | `applicable` | `frontend/_design-tokens/`、`frontend/ui/` | [デザインシステム](../frontend/ui/design-system.md) | 相互参照のみ（自動連携なし） | Token と UI は YAML / Storybook で別管理 |
 | Vite | `active` | `present` | `none` | `frontend/vite/` | — | なし（独立した静的サイト用） | 専用 `current` 仕様書なし |
 | Astro | `active` | `present` | `none` | `frontend/astro/` | — | なし（独立した静的サイト用） | 専用 `current` 仕様書なし |
-| Cloudflare（Next.js配信） | `active` | `present` | `applicable` | `.github/workflows/next-cloudflare-*.yml`、`frontend/next/wrangler.jsonc` | [Cloudflare デプロイ](infrastructure/cloudflare/next-static-deployment.md) | Next.js Static Export | CI は Next.js 変更時のみ |
+| Cloudflare（Next.js配信） | `active` | `present` | `applicable` | `.github/workflows/next-cloudflare-*.yml`、`frontend/next/wrangler.jsonc` | [Cloudflare デプロイ](../infrastructure/cloudflare/next-static-deployment.md) | Next.js Static Export | CI は Next.js 変更時のみ |
 | Nuxt | `planned` | `reserved` | `none` | `frontend/nuxt/`（`.gitkeep` のみ） | — | — | 予約領域 |
 | React Native | `planned` | `reserved` | `none` | `frontend/react-native/`（`.gitkeep` のみ） | — | — | 予約領域 |
 
@@ -179,7 +179,7 @@ source:
 2. Git 履歴を引き継ぐか、新しい履歴で開始するか決定する
 3. Repository 名、Remote、Default Branch を設定する
 4. 派生元 Repository、Revision、派生日を記録する（[§8](#8-派生元情報派生先で記録する項目)）
-5. `project-profile.md` を派生プロジェクト向けに更新する
+5. `profile.md` を派生プロジェクト向けに更新する
 6. 各領域を `active`、`planned`、`inactive` へ分類する
 7. コード状態と仕様書の扱いを記録する
 8. [§6](#6-領域間の依存連動関係) の依存関係を確認する
@@ -237,8 +237,8 @@ FastAPI は Startify-App 本体には存在しません。将来、新しい Bac
 3. 依存・連動領域を整理する（Docker、認証、Frontend API など）
 4. 環境変数、Setup、検証方法を定義する
 5. 本書の構成表へ追加する（初期は `planned` または `inactive`）
-6. [`specifications/README.md`](README.md) の索引を更新する
-7. [`AGENTS.md`](../AGENTS.md) の参照ルーティングを更新する
+6. [`specifications/README.md`](../README.md) の索引を更新する
+7. [`AGENTS.md`](../../AGENTS.md) の参照ルーティングを更新する
 8. 実装と検証が完了するまでは `active` として扱わない
 
 ## 14. 派生後の検証チェックリスト
@@ -259,6 +259,6 @@ FastAPI は Startify-App 本体には存在しません。将来、新しい Bac
 
 ## 15. 関連資料
 
-- 仕様書索引: [`specifications/README.md`](README.md)
-- エージェント共通指示: [`AGENTS.md`](../AGENTS.md)
-- 利用者向け導線: [`README.md`](../README.md)
+- 仕様書索引: [`specifications/README.md`](../README.md)
+- エージェント共通指示: [`AGENTS.md`](../../AGENTS.md)
+- 利用者向け導線: [`README.md`](../../README.md)

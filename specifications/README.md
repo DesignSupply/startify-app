@@ -4,7 +4,7 @@
 
 このREADMEは、仕様書の読み方、状態、更新ルール、参照先を定義する索引です。リポジトリ全体に共通するAIエージェント向けの必須指示は、ルートの [`AGENTS.md`](../AGENTS.md) を参照してください。
 
-派生プロジェクトでは、最初に [`project-profile.md`](project-profile.md) を確認し、どの領域を採用するかを判断してください。採用状態が `active` の領域を現在採用中とします。個別仕様書を現在仕様として適用する条件は、領域が `active`、仕様書の扱いが `applicable`、文書 `status` が `current` です（詳細は [`project-profile.md`](project-profile.md) §3）。文書 Front Matter の `status`（例: `current`）は**文書自体**の状態であり、プロジェクトへの適用可否は採用状態・仕様書の扱いと合わせて判断します。採用状態が `inactive` または `planned` な領域、または `status: planned` / `draft` の個別仕様書は、現在仕様として適用しません。
+派生プロジェクトでは、最初に [`project/profile.md`](project/profile.md) を確認し、どの領域を採用するかを判断してください。採用状態が `active` の領域を現在採用中とします。個別仕様書を現在仕様として適用する条件は、領域が `active`、仕様書の扱いが `applicable`、文書 `status` が `current` です（詳細は [`project/profile.md`](project/profile.md) §3）。文書 Front Matter の `status`（例: `current`）は**文書自体**の状態であり、プロジェクトへの適用可否は採用状態・仕様書の扱いと合わせて判断します。採用状態が `inactive` または `planned` な領域、または `status: planned` / `draft` の個別仕様書は、現在仕様として適用しません。
 
 ## 基本方針
 
@@ -66,7 +66,7 @@ related_paths:
 
 | 文書 | 状態 | 内容 |
 | --- | --- | --- |
-| [プロジェクト構成・派生運用仕様](project-profile.md) | `current` | 採用範囲、コード状態、仕様書の扱い、派生初期化手順、構成表 |
+| [プロジェクト構成・派生運用仕様](project/profile.md) | `current` | 採用範囲、コード状態、仕様書の扱い、派生初期化手順、構成表 |
 
 ### 現在仕様
 
@@ -100,7 +100,7 @@ related_paths:
 仕様の確認または更新は、原則として次の順序で行います。
 
 1. ルートの `AGENTS.md` とこのREADMEを読む
-2. [`project-profile.md`](project-profile.md) で対象領域の採用状態を確認する（`active` が現在採用中）
+2. [`project/profile.md`](project/profile.md) で対象領域の採用状態を確認する（`active` が現在採用中）
 3. 対象領域について、個別仕様書が現在仕様として適用できるか確認する（`active`、`applicable`、`status: current`）
 4. 該当する個別仕様書を確認する。仕様書の扱いが `none` の領域は、コード・設定・テスト・CI を実装事実として確認する
 5. 必要に応じてGit履歴、GitHub Issue、ユーザーから提供された過去資料から設計意図を確認する
@@ -109,7 +109,7 @@ related_paths:
 8. 不一致や未確定事項を、現在仕様、将来計画、要確認事項に分ける
 9. 関連するリンク、パス、コマンド、環境変数名を検証する
 
-派生プロジェクトの構成選択・初期化の詳細は [`project-profile.md`](project-profile.md) を参照してください。
+派生プロジェクトの構成選択・初期化の詳細は [`project/profile.md`](project/profile.md) を参照してください。
 
 ## 更新時のルール
 
@@ -129,7 +129,8 @@ related_paths:
 ```text
 specifications/
 ├── README.md
-├── project-profile.md
+├── project/
+│   └── profile.md
 ├── backend/
 │   ├── laravel/
 │   │   ├── overview.md
