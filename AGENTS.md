@@ -25,10 +25,11 @@ Startify-Appは、WebアプリケーションおよびWebサイトの開発基�
 1. 現在の依頼におけるユーザーからの明示的な指示
 2. 対象ファイルに適用される、より深い階層の `AGENTS.md`
 3. このルート `AGENTS.md`
-4. `specifications/` の現在仕様
-5. 対象コード、設定、テスト、CIが示す現在の実装事実
-6. `.cursor/rules/` など、ツール固有の補助指示
-7. Git履歴、完了済みのGitHub Issue、ユーザーから提供された過去資料
+4. `specifications/project-profile.md` のプロジェクト採用範囲
+5. `specifications/` の現在仕様（[§3の条件](specifications/project-profile.md#3-文書-status-と領域の採用状態の違い)を満たす個別仕様書）
+6. 対象コード、設定、テスト、CIが示す現在の実装事実
+7. `.cursor/rules/` など、ツール固有の補助指示
+8. Git履歴、完了済みのGitHub Issue、ユーザーから提供された過去資料
 
 仕様書と実装が一致しない場合は、片方を根拠なく正しいものとして上書きしないでください。差異を確認し、依頼の範囲内で解消できない場合はユーザーへ報告してください。
 
@@ -39,8 +40,9 @@ Startify-Appは、WebアプリケーションおよびWebサイトの開発基�
 1. 現在のブランチと `git status`
 2. staged、unstaged、untrackedを含む既存差分
 3. 依頼の対象範囲と変更が必要なファイル
-4. 対象領域に関係する仕様書、設定、テスト、CI
-5. 変更後に必要となる検証
+4. `specifications/project-profile.md` の採用状態・コード状態・仕様書の扱い
+5. 対象領域に関係する仕様書、設定、テスト、CI
+6. 変更後に必要となる検証
 
 調査やレビューだけを依頼された場合は、明示的に変更も求められていない限り、ファイルを変更しないでください。
 
@@ -64,6 +66,14 @@ Startify-Appは、WebアプリケーションおよびWebサイトの開発基�
 
 ## 仕様書の扱い
 
+- `specifications/project-profile.md` を、プロジェクトの**適用範囲**の正本として扱います。作業開始時に確認し、採用状態が `active` の領域を現在採用中として扱います。
+- 個別仕様書を現在仕様として適用する条件は、領域が `active`、仕様書の扱いが `applicable`、文書 `status` が `current` です。詳細は [`specifications/project-profile.md`](specifications/project-profile.md) を参照してください。
+- 採用状態が `planned` または `inactive` の領域を、現在実装済みとして扱いません。
+- 採用状態が `active` でも、仕様書の扱いが `none` の領域（例: Vite、Astro）は、コード・設定・テスト・CI を実装事実として確認します。
+- 文書 `status` が `planned` または `draft` の領域別仕様書を、実装と照合して `current` へ更新するまで現在仕様として適用しません。
+- コードが存在しない領域では、領域別仕様書内のパスやコマンドが派生先に実在するとは限りません。
+- 未採用コードをユーザーの指示なく削除しません。構成変更時は、構成表と実装・設定・仕様書を同期します。
+- `specifications/` 内の詳細手順は [`specifications/project-profile.md`](specifications/project-profile.md) を参照してください。
 - `specifications/` は、現在の設計と実装規約を記録する正本です。文書のステータスを確認し、`current`な文書を現在仕様として扱ってください。
 - Git履歴、完了済みのGitHub Issue、ユーザーから提供された過去資料は、設計意図や変更履歴を調査する目的でのみ参照してください。
 - リポジトリ外の過去資料から現在仕様へ内容を移す場合は、資料の意図を確認したうえで、コード、設定、テスト、CIと照合してください。
@@ -77,6 +87,7 @@ Startify-Appは、WebアプリケーションおよびWebサイトの開発基�
 
 | 対象 | 主な参照先 |
 | --- | --- |
+| プロジェクト採用範囲、派生運用 | `specifications/project-profile.md` |
 | リポジトリ概要、セットアップ | `README.md` |
 | Laravelの概要、画面、API、DB、認証 | `specifications/backend/laravel/overview.md`、`specifications/backend/laravel/screens-and-features.md`、`specifications/backend/laravel/database.md`、`specifications/backend/laravel/authentication.md`、`specifications/backend/laravel/` |
 | Laravelの問い合わせ、メール | `specifications/backend/laravel/contact-and-mail.md`、`backend/laravel/app/Notifications/`、`backend/laravel/resources/views/emails/` |
