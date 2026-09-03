@@ -41,6 +41,7 @@ project/profile.md
 | 文書 | 役割 |
 | --- | --- |
 | `specifications/project/profile.md`（本書） | プロジェクトの**採用範囲**の正本 |
+| `specifications/project/brief.md`（派生先） | 派生プロジェクト固有の**目的・要件・デザイン方針・品質基準**の正本 |
 | 領域別仕様書（例: `specifications/frontend/next/`） | 採用した領域の**詳細仕様**の正本 |
 | コード・設定・テスト・CI | 現在の**実装事実**の正本 |
 
@@ -180,16 +181,23 @@ source:
 3. Repository 名、Remote、Default Branch を設定する
 4. 派生元 Repository、Revision、派生日を記録する（[§8](#8-派生元情報派生先で記録する項目)）
 5. `profile.md` を派生プロジェクト向けに更新する
-6. 各領域を `active`、`planned`、`inactive` へ分類する
-7. コード状態と仕様書の扱いを記録する
-8. [§6](#6-領域間の依存連動関係) の依存関係を確認する
-9. 不要なコード、設定、Workflow を**ユーザー判断**に基づいて整理する
-10. Repository 名、Package 名、アプリ名、URL、Metadata を変更する
-11. 環境変数、Secrets、Cloudflare 設定を棚卸しする
-12. README、`AGENTS.md`、仕様書を派生先に合わせる
-13. 削除後の import、Script、パス、リンクを確認する
-14. 採用領域に応じた検証を実行する
-15. 実装・構成表・仕様書が一致した状態で変更を確定する
+6. [`specifications/project/templates/brief.md`](templates/brief.md) を確認する
+7. Template から `specifications/project/brief.md` を作成する
+8. 作成直後は `status: draft` とする
+9. `tbd` と `not-applicable` を明示する
+10. ユーザーまたは意思決定者が要件を確認する
+11. 実装判断に必要な要件が整理された段階で `status: current` へ変更する（Brief の `status` は実装完了を表さない）
+12. `profile.md` と `brief.md` の整合を確認する
+13. 各領域を `active`、`planned`、`inactive` へ分類する
+14. コード状態と仕様書の扱いを記録する
+15. [§6](#6-領域間の依存連動関係) の依存関係を確認する
+16. 不要なコード、設定、Workflow を**ユーザー判断**に基づいて整理する
+17. Repository 名、Package 名、アプリ名、URL、Metadata を変更する
+18. 環境変数、Secrets、Cloudflare 設定を棚卸しする
+19. README、`AGENTS.md`、仕様書を派生先に合わせる
+20. 削除後の import、Script、パス、リンクを確認する
+21. 採用領域に応じた検証を実行する
+22. 実装・構成表・仕様書が一致した状態で変更を確定する
 
 ## 10. 初期化・棚卸しの確認対象
 
