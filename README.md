@@ -306,7 +306,7 @@ http://localhost:6006/ でローカルサーバーが起動します。
 
 本環境では、特定のEditorやAgent製品に依存しないAI駆動開発用ドキュメントを収録しています。Agent共通の必須指示は `AGENTS.md`、現在の設計と実装規約は `specifications/` を参照し、人間とAIが同じContextを共有して開発を進めます。
 
-Startify-Appは、自社サイトや各種プロジェクトの派生基盤としても利用できます。派生時は、採用する構成を [`specifications/project-profile.md`](specifications/project-profile.md) で定義してください。詳細な構成選択・初期化手順も同文書を参照してください。
+Startify-Appは、自社サイトや各種プロジェクトの派生基盤としても利用できます。派生時は、採用する構成を [`specifications/project/profile.md`](specifications/project/profile.md) で定義してください。詳細な構成選択・初期化手順も同文書を参照してください。
 
 ---
 
